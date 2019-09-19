@@ -1,0 +1,8 @@
+﻿@model MediaRequest.WebUI.Models.API_Objects.MovieRequestObject
+
+<form asp-action="SearchMovies" asp-controller="Home" method="post">
+    <div class="form-group">
+        <label class="control-label" asp-for="@Model.title">Title</label>
+        <input class="form-control" asp-for="@Model.title" />
+    </div>
+</form>
