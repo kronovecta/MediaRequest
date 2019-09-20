@@ -1,8 +1,11 @@
 ﻿using MediaRequest.Application;
+using MediaRequest.Application.Commands;
+using MediaRequest.Application.Queries;
 using MediaRequest.Domain;
 using MediaRequest.Models;
 using MediaRequest.WebUI.Models;
 using MediaRequest.WebUI.ViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -18,16 +21,20 @@ namespace MediaRequest.Controllers
     public class HomeController : Controller
     {
         private readonly IMediaDbContext _context;
+        private readonly IMediator _mediator;
 
-        public HomeController(IMediaDbContext context)
+        public HomeController(IMediaDbContext context, IMediator mediator)
         {
+            _mediator = mediator;
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var movies = await FetchAddedMovies();
-            return View(movies);
+            //var movies = await FetchAddedMovies();
+            var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel(), Movies = await FetchAddedMovies() };
+
+            return View(model);
         }
 
         public IActionResult Search()
@@ -46,8 +53,14 @@ namespace MediaRequest.Controllers
             return PartialView("_MovieSearchResultPartial", model);
         }
 
-        public async Task<IActionResult> Request(string id)
+        public async Task<IActionResult> Request(string id, string userid)
         {
+            var request = new UserRequest { MovieId = id, UserId = userid, Status = false };
+
+            var command = new AddRequestCommand { Request = request };
+
+            await _mediator.Send(command);
+
             //var request = new MovieRequestObject()
             //{
             //    title = "Godzilla King of the Monsters",
@@ -58,33 +71,11 @@ namespace MediaRequest.Controllers
             //    titleSlug = "godzilla-king-of-the-monsters-373571"
             //};
 
-            var movie = await SearchSingleMovie(id);
+            //var movie = await SearchSingleMovie(id);
 
             //var response = RequestMovie(request);
 
             return View();
-        }
-
-        public async Task<bool> ApproveRequest(int requestId)
-        {
-            var requestObject = await _context.Request.Select(x => new UserRequest()).SingleOrDefaultAsync(x => x.RequestId == requestId);
-
-            var movie = await SearchSingleMovie(requestObject.MovieId);
-
-            var request = new MovieRequestObject()
-            {
-                title = movie.Title,
-                path = $"/home17/robert/downloads/movies/{movie.Title} ({movie.Year})".Replace(":", ""),
-                qualityProfileId = 7,
-                year = movie.Year,
-                tmdbId = movie.TMDBId,
-                titleSlug = movie.TitleSlug,
-                images = movie.Images
-            };
-
-            var response = await RequestMovie(request);
-
-            return response;
         }
 
 
@@ -103,7 +94,7 @@ namespace MediaRequest.Controllers
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey=fc2c71c89e9b42cf99c4bd4d215632b0");
+                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey=<API_KEY>");
                 response.EnsureSuccessStatusCode();
 
                 var result = await response.Content.ReadAsStringAsync();
@@ -113,19 +104,9 @@ namespace MediaRequest.Controllers
             }
         }
 
-        public async Task<Movie> SearchSingleMovie(string id)
-        {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup/tmdb?apikey=fc2c71c89e9b42cf99c4bd4d215632b0&tmdbId={id}");
-                response.EnsureSuccessStatusCode();
-
-                var result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject<Movie>(result);
-
-                return json;
-            }
-        }
+        //public async Task<Movie> SearchSingleMovie(string id)
+        //{
+        //}
 
         public async Task<List<Movie>> SearchMovies(string input)
         {
@@ -136,7 +117,7 @@ namespace MediaRequest.Controllers
 
                 using (var client = new HttpClient())
                 {
-                    var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey=fc2c71c89e9b42cf99c4bd4d215632b0&term={cleanedInput}");
+                    var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey=<API_KEY>&term={cleanedInput}");
                     response.EnsureSuccessStatusCode();
 
                     var result = await response.Content.ReadAsStringAsync();
@@ -148,34 +129,6 @@ namespace MediaRequest.Controllers
             {
                 return null;
             }
-        }
-
-        public async Task<bool> RequestMovie(MovieRequestObject obj)
-        {
-            var state = false;
-
-            if(obj != null)
-            {
-                using (var client = new HttpClient())
-                {
-                    var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
-
-                    var parameters = $"&title={obj.title}&qualityProfileId={obj.qualityProfileId}&titleSlug={obj.titleSlug}&tmdbId={obj.tmdbId}&year={obj.year}&path={obj.path}&images={obj.images}";
-
-                    var response = await client.PostAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey=fc2c71c89e9b42cf99c4bd4d215632b0", content);
-
-                    //var res = JsonConvert.DeserializeObject<Movie>(response.Content.ReadAsStreamAsync());
-                    if(response.StatusCode.ToString().StartsWith("2"))
-                    {
-                        state = true;
-                    } else
-                    {
-                        state = false;
-                    }
-                }
-            }
-
-            return state;
         }
     }
 }

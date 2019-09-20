@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@model MediaRequest.WebUI.ViewModels.MovieUserViewModel
+@inject UserManager<IdentityUser> userManager;
+
+<form asp-action="Request" asp-controller="Admin" method="post">
+    <input value="@userManager" hidden />
+    <input value="@Model.Movie.TMDBId" hidden />
+</form>

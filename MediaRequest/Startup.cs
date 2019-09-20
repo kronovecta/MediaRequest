@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using MediaRequest.Application;
 using MediaRequest.Data;
+using MediatR;
+using MediaRequest.Application.Queries;
+using MediaRequest.Application.Commands;
 
 namespace MediaRequest
 {
@@ -31,6 +34,10 @@ namespace MediaRequest
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddMediatR(
+                typeof(GetSingleMovieHandler).Assembly,
+                typeof(AddRequestHandler).Assembly);
 
             services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlServer(conn));
             services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(conn));
