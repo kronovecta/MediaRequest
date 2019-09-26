@@ -6,14 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using MediaRequest.Application;
 using MediaRequest.Application.Queries;
+using MediaRequest.Application.Queries.Requests;
 using MediaRequest.Data;
 using MediaRequest.Domain;
+//using MediaRequest.Domain.Configuration;
 using MediaRequest.WebUI.Models;
+using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace MediaRequest.WebUI.Controllers
@@ -23,24 +27,27 @@ namespace MediaRequest.WebUI.Controllers
         private readonly IMediator _mediator;
         private readonly IMediaDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ApiKeys _apikeys;
 
-        public AdminController(IMediator mediator, IMediaDbContext context, UserManager<IdentityUser> userManager)
+        public AdminController(IMediator mediator, IMediaDbContext context, UserManager<IdentityUser> userManager, IOptions<ApiKeys> apikeys)
         {
             _mediator = mediator;
             _context = context;
             _userManager = userManager;
+            _apikeys = apikeys.Value;
         }
 
         public async Task<IActionResult> AdminPanel()
         {
             var modelList = new List<MovieUserRequestViewModel>();
 
-            var requests = _context.Request.ToList();
+            var requests = await _mediator.Send(new GetRequestsRequest());
 
-            foreach (var request in requests)
+            foreach (var request in requests.Requests)
             {
                 var movieRequest = new GetSingleMovieRequest()
                 {
+                    ApiKey = _apikeys.Radarr,
                     TmdbId = request.MovieId
                 };
 
@@ -49,7 +56,7 @@ namespace MediaRequest.WebUI.Controllers
                 var model = new MovieUserRequestViewModel()
                 {
                     Movie = response.Movie,
-                    User = await _userManager.FindByIdAsync(request.UserId),
+                    User = await _userManager.FindByIdAsync(request.UserId.ToString()),
                     Request = request
                 };
 
@@ -59,13 +66,15 @@ namespace MediaRequest.WebUI.Controllers
             return View(modelList);
         }
 
-        public async Task<bool> ApproveRequest(int requestId)
+        public async Task<IActionResult> ApproveRequest(int requestId)
         {
-            var requestObject = await _context.Request.Select(x => new UserRequest()).SingleOrDefaultAsync(x => x.RequestId == requestId);
+            //var requestObject = await _context.Request.Select(x => new UserRequest()).SingleOrDefaultAsync(x => x.RequestId == requestId);
+            var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.RequestId == requestId);
+
 
             //var movie = await SearchSingleMovie(requestObject.MovieId);
 
-            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = requestObject.MovieId });
+            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = userRequest.MovieId, ApiKey = _apikeys.Radarr });
 
             var request = new MovieRequestObject()
             {
@@ -78,7 +87,7 @@ namespace MediaRequest.WebUI.Controllers
                 images = movie.Movie.Images
             };
 
-            var response = await RequestMovie(request);
+            var response = await RequestMovie(request, _apikeys.Radarr);
 
             if (response)
             {
@@ -86,10 +95,14 @@ namespace MediaRequest.WebUI.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return response;
+            userRequest.Status = true;
+            await _context.SaveChangesAsync();
+            
+
+            return RedirectToAction("AdminPanel", "Admin");
         }
 
-        public async Task<bool> RequestMovie(MovieRequestObject obj)
+        public async Task<bool> RequestMovie(MovieRequestObject obj, string apikey)
         {
             var state = false;
 
@@ -101,10 +114,10 @@ namespace MediaRequest.WebUI.Controllers
 
                     var parameters = $"&title={obj.title}&qualityProfileId={obj.qualityProfileId}&titleSlug={obj.titleSlug}&tmdbId={obj.tmdbId}&year={obj.year}&path={obj.path}&images={obj.images}";
 
-                    var response = await client.PostAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey=<API_KEY>", content);
+                    var response = await client.PostAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={apikey}", content);
 
                     //var res = JsonConvert.DeserializeObject<Movie>(response.Content.ReadAsStreamAsync());
-                    if (response.StatusCode.ToString().StartsWith("2"))
+                    if (response.StatusCode.ToString().Equals("Created"))
                     {
                         state = true;
                     }

@@ -6,7 +6,7 @@
         <h2>@item.Title</h2>
         <p>@item.Overview</p>
 
-        <partial name="_RequestButtonPartial", model="@Model.Model" />
+        @*<partial name="_RequestButtonPartial", model="@Model.Model" />*@
 
         <a class="btn btn-primary" asp-action="Request" asp-controller="Home" asp-route-id="@item.TMDBId">Request</a>
     </div>

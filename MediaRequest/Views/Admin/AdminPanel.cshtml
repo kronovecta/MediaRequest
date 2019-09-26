@@ -1,11 +1,28 @@
 ﻿@model List<MediaRequest.WebUI.ViewModels.MovieUserRequestViewModel>
 
-AdminPanel
-
+<h1>Active requests</h1>
 @foreach (var request in Model)
 {
-    <div style="border:1px solid lightgrey;padding:1em;">
-        <h1>@request.Movie.Title</h1>
-        <h3 style="opacity:0.7">@request.User.UserName</h3>
-    </div>
+    if (request.Request.Status == false)
+    {
+        <div style="border:1px solid lightgrey;padding:1em;">
+            <h1>@request.Movie.Title</h1>
+            <h3 style="opacity:0.7">@request.User.UserName</h3>
+                
+            <a asp-action="ApproveRequest" asp-controller="Admin" asp-route-requestId="@request.Request.RequestId">Approve</a>
+        </div>
+    }
+}
+
+
+<h1>Previous requests</h1>
+@foreach (var request in Model)
+{
+    if (request.Request.Status == true)
+    {
+        <div style="border:1px solid lightgrey;padding:1em;">
+            <h1>@request.Movie.Title</h1>
+            <h3 style="opacity:0.7">@request.User.UserName</h3>
+        </div>
+    }
 }

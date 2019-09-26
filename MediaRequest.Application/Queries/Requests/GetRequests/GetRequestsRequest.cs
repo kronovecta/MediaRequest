@@ -1,10 +1,14 @@
-﻿using System;
+﻿using MediaRequest.Domain.Configuration;
+using MediatR;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MediaRequest.Application.Queries.Requests.GetRequests
+namespace MediaRequest.Application.Queries.Requests
 {
-    class GetRequestsRequest
+    public class GetRequestsRequest : IRequest<GetRequestsResponse>
     {
+        public IOptions<ApiKeys> ApiKeys { get; set; }
     }
 }

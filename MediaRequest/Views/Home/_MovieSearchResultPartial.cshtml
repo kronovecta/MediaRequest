@@ -1,13 +1,11 @@
-﻿@model MediaRequest.WebUI.ViewModels.SearchViewModel
-
-<h1>PARTIAL VIEW</h1>
+﻿@model List<MediaRequest.Domain.Movie>
 
 @if (Model != null)
 {
-    @foreach (var movie in Model.Movies)
+    @foreach (var movie in Model)
     {
         <div style="border:1px solid lightgrey; padding:1em;">
-            <h2>@movie.Title</h2>
+            <h2>@movie.Title <span style="opacity:0.5">(@movie.Year)</span></h2>
             <p>@movie.Overview</p>
 
             <a class="btn btn-primary" asp-action="Request" asp-controller="Home" asp-route-tmdbid="@movie.TMDBId">Request</a>

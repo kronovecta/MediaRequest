@@ -1,19 +1,20 @@
 ﻿using MediaRequest.Application;
 using MediaRequest.Application.Commands;
-using MediaRequest.Application.Queries;
 using MediaRequest.Domain;
 using MediaRequest.Models;
-using MediaRequest.WebUI.Models;
+using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MediaRequest.Controllers
@@ -22,16 +23,19 @@ namespace MediaRequest.Controllers
     {
         private readonly IMediaDbContext _context;
         private readonly IMediator _mediator;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly ApiKeys _apikeys;
 
-        public HomeController(IMediaDbContext context, IMediator mediator)
+        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<IdentityUser> userManager)
         {
+            _apikeys = apikeys.Value;
             _mediator = mediator;
+            _userManager = userManager;
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            //var movies = await FetchAddedMovies();
             var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel(), Movies = await FetchAddedMovies() };
 
             return View(model);
@@ -53,29 +57,24 @@ namespace MediaRequest.Controllers
             return PartialView("_MovieSearchResultPartial", model);
         }
 
-        public async Task<IActionResult> Request(string id, string userid)
+        public async Task<IActionResult> Request(string tmdbid)
         {
-            var request = new UserRequest { MovieId = id, UserId = userid, Status = false };
+            var requests = await _context.Request.ToListAsync();
+            bool valid = false;
 
-            var command = new AddRequestCommand { Request = request };
+            if (!requests.Any(x => x.MovieId == tmdbid)) valid = true;
 
-            await _mediator.Send(command);
+            if (valid)
+            {
+                var currentUser = await _userManager.GetUserAsync(User);
+                var request = new UserRequest() { Status = false, MovieId = tmdbid, UserId = Guid.Parse(currentUser.Id) };
 
-            //var request = new MovieRequestObject()
-            //{
-            //    title = "Godzilla King of the Monsters",
-            //    path = "/home17/robert/downloads/movies/Godzilla King of the Monsters (2019)",
-            //    qualityProfileId = 7,
-            //    year = 2019,
-            //    tmdbId = 373571,
-            //    titleSlug = "godzilla-king-of-the-monsters-373571"
-            //};
+                var command = new AddRequestCommand { Request = request };
 
-            //var movie = await SearchSingleMovie(id);
+                await _mediator.Send(command);
+            }
 
-            //var response = RequestMovie(request);
-
-            return View();
+            return RedirectToAction("Search", "Home");
         }
 
 
@@ -94,7 +93,7 @@ namespace MediaRequest.Controllers
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey=<API_KEY>");
+                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={_apikeys.Radarr}");
                 response.EnsureSuccessStatusCode();
 
                 var result = await response.Content.ReadAsStringAsync();
@@ -103,10 +102,6 @@ namespace MediaRequest.Controllers
                 return json;
             }
         }
-
-        //public async Task<Movie> SearchSingleMovie(string id)
-        //{
-        //}
 
         public async Task<List<Movie>> SearchMovies(string input)
         {
@@ -117,7 +112,7 @@ namespace MediaRequest.Controllers
 
                 using (var client = new HttpClient())
                 {
-                    var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey=<API_KEY>&term={cleanedInput}");
+                    var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey={_apikeys.Radarr}&term={cleanedInput}");
                     response.EnsureSuccessStatusCode();
 
                     var result = await response.Content.ReadAsStringAsync();

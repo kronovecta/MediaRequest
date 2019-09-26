@@ -11,14 +11,27 @@ using MediaRequest.Data;
 using MediatR;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Commands;
+using MediaRequest.WebUI.Models.Configuration;
 
 namespace MediaRequest
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true);
+
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets("16420ac2-2938-40e6-ade0-e700111f68a3");
+            }
+
+            Configuration = builder.Build();
+
+            //Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -35,6 +48,8 @@ namespace MediaRequest
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
+
             services.AddMediatR(
                 typeof(GetSingleMovieHandler).Assembly,
                 typeof(AddRequestHandler).Assembly);
@@ -48,11 +63,12 @@ namespace MediaRequest
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                new DataInitializer(Configuration).SeedData(userManager, roleManager);
             }
             else
             {
@@ -60,6 +76,8 @@ namespace MediaRequest
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
