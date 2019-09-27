@@ -2,31 +2,31 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MediaRequest.Data.Migrations.MediaDb
+namespace MediaRequest.Data.Migrations
 {
-    public partial class initial_MediaRequest : Migration
+    public partial class MoviePoster : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Request",
+                name: "MoviePoster",
                 columns: table => new
                 {
-                    RequestId = table.Column<int>(nullable: false)
+                    MoviePosterId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<Guid>(nullable: false),
-                    MovieId = table.Column<string>(nullable: true)
+                    Movie = table.Column<string>(nullable: true),
+                    PosterUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Request", x => x.RequestId);
+                    table.PrimaryKey("PK_MoviePoster", x => x.MoviePosterId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Request");
+                name: "MoviePoster");
         }
     }
 }

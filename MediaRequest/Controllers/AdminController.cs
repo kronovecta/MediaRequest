@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using MediaRequest.Application;
+﻿using MediaRequest.Application;
+using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Requests;
-using MediaRequest.Data;
-using MediaRequest.Domain;
-//using MediaRequest.Domain.Configuration;
-using MediaRequest.WebUI.Models;
 using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
@@ -18,7 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MediaRequest.WebUI.Controllers
 {
@@ -68,15 +60,11 @@ namespace MediaRequest.WebUI.Controllers
 
         public async Task<IActionResult> ApproveRequest(int requestId)
         {
-            //var requestObject = await _context.Request.Select(x => new UserRequest()).SingleOrDefaultAsync(x => x.RequestId == requestId);
-            var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.RequestId == requestId);
-
-
-            //var movie = await SearchSingleMovie(requestObject.MovieId);
+            var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.Id == requestId);
 
             var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = userRequest.MovieId, ApiKey = _apikeys.Radarr });
 
-            var request = new MovieRequestObject()
+            var request = new Domain.MovieRequestObject()
             {
                 title = movie.Movie.Title,
                 path = $"/home17/robert/downloads/movies/{movie.Movie.Title} ({movie.Movie.Year})".Replace(":", ""),
@@ -87,48 +75,20 @@ namespace MediaRequest.WebUI.Controllers
                 images = movie.Movie.Images
             };
 
-            var response = await RequestMovie(request, _apikeys.Radarr);
+            var command = new ApproveRequestCommand { ApiKey = _apikeys.Radarr, RequestObject = request };
+            var result = await _mediator.Send(command);
 
-            if (response)
+            if (result == true)
             {
-                await _context.Request.SingleOrDefaultAsync(x => x.Status == true);
+                userRequest.Status = true;
+                await _context.SaveChangesAsync();
+            } else
+            {
+                userRequest.Status = false;
                 await _context.SaveChangesAsync();
             }
 
-            userRequest.Status = true;
-            await _context.SaveChangesAsync();
-            
-
             return RedirectToAction("AdminPanel", "Admin");
-        }
-
-        public async Task<bool> RequestMovie(MovieRequestObject obj, string apikey)
-        {
-            var state = false;
-
-            if (obj != null)
-            {
-                using (var client = new HttpClient())
-                {
-                    var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
-
-                    var parameters = $"&title={obj.title}&qualityProfileId={obj.qualityProfileId}&titleSlug={obj.titleSlug}&tmdbId={obj.tmdbId}&year={obj.year}&path={obj.path}&images={obj.images}";
-
-                    var response = await client.PostAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={apikey}", content);
-
-                    //var res = JsonConvert.DeserializeObject<Movie>(response.Content.ReadAsStreamAsync());
-                    if (response.StatusCode.ToString().Equals("Created"))
-                    {
-                        state = true;
-                    }
-                    else
-                    {
-                        state = false;
-                    }
-                }
-            }
-
-            return state;
         }
     }
 }

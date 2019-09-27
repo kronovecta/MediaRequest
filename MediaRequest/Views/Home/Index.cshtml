@@ -1,13 +1,30 @@
 ﻿@model MediaRequest.WebUI.ViewModels.MoviesMovieUserViewModel
 
-@foreach (var item in Model.Movies)
+@if (Model.Movies != null)
 {
-    <div style="border:1px solid lightgrey; padding:1em;">
-        <h2>@item.Title</h2>
-        <p>@item.Overview</p>
+    @foreach (var item in Model.Movies)
+    {
 
-        @*<partial name="_RequestButtonPartial", model="@Model.Model" />*@
-
-        <a class="btn btn-primary" asp-action="Request" asp-controller="Home" asp-route-id="@item.TMDBId">Request</a>
-    </div>
+        <div class="movie-container">
+            <div class="movie-poster">
+                <img src="@item.PosterUrl" />
+            </div>
+            <div class="movie-info">
+                <h2>
+                    @item.Title
+                    <span style="opacity:0.7">(@item.Year)</span>
+                </h2>
+                <h5>
+                    @if (!item.Monitored)
+                    {
+                        <span class="badge badge-danger">Not Monitored</span>
+                    }
+                </h5>
+                <p>@item.Overview</p>
+            </div>
+        </div>
+    }
+} else
+{
+    <h1>No movies added</h1>
 }

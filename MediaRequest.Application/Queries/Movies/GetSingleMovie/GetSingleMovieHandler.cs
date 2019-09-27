@@ -1,5 +1,6 @@
 ﻿using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
+using MediaRequest.Domain.Radarr;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;

@@ -4,14 +4,16 @@ using MediaRequest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MediaRequest.Data.Migrations.MediaDb
+namespace MediaRequest.Data.Migrations
 {
     [DbContext(typeof(MediaDbContext))]
-    partial class MediaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190927002051_UpdatedMoviePoster")]
+    partial class UpdatedMoviePoster
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,9 +21,24 @@ namespace MediaRequest.Data.Migrations.MediaDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MediaRequest.Domain.MoviePoster", b =>
+                {
+                    b.Property<int>("MoviePosterId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("MovieId");
+
+                    b.Property<string>("PosterUrl");
+
+                    b.HasKey("MoviePosterId");
+
+                    b.ToTable("MoviePoster");
+                });
+
             modelBuilder.Entity("MediaRequest.Domain.UserRequest", b =>
                 {
-                    b.Property<int>("RequestId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,7 +48,7 @@ namespace MediaRequest.Data.Migrations.MediaDb
 
                     b.Property<Guid>("UserId");
 
-                    b.HasKey("RequestId");
+                    b.HasKey("Id");
 
                     b.ToTable("Request");
                 });

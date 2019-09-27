@@ -1,0 +1,18 @@
+﻿.movie-container {
+    padding:2em;
+    display:flex;
+    flex-direction:row;
+
+    > .movie-poster {
+        max-width:300px;
+        margin-right:5em;
+
+        img {
+            width:100%;
+        }
+    }
+
+    > .movie-info {
+
+    }
+}

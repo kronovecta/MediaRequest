@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediaRequest.Domain
+namespace MediaRequest.Domain.Radarr
 {
     public class Movie
     {
+        public string Id { get; set; }
         public string Title { get; set; }
-        public List<object> AlternativeTitles { get; set; }
+        public List<AlternativeTitle> AlternativeTitles { get; set; }
         public int SecondaryYearSourceId { get; set; }
         public string SortTitle { get; set; }
         public string SizeOnDisk { get; set; }
@@ -29,10 +30,40 @@ namespace MediaRequest.Domain
         public int Runtime { get; set; }
         public string TMDBId { get; set; }
         public string TitleSlug { get; set; }
-        public List<object> Genres { get; set; }
+        public List<Genre> Genres { get; set; }
         public List<object> Tags { get; set; }
         public DateTime Added { get; set; }
         public Ratings Ratings { get; set; }
         public int QualityProfileId { get; set; }
+        public string PosterUrl { get; set; }
+    }
+
+    public class Genre
+    {
+        public string GenreName { get; set; }
+    }
+
+    public class Image
+    {
+        public string CoverType { get; set; }
+        public string URL { get; set; }
+    }
+
+    public class Ratings
+    {
+        public int Votes { get; set; }
+        public double Value { get; set; }
+    }
+
+
+    public class AlternativeTitle
+    {
+        public string sourceType { get; set; }
+        public int movieId { get; set; }
+        public string title { get; set; }
+        public int sourceId { get; set; }
+        public int votes { get; set; }
+        public int voteCount { get; set; }
+        public string language { get; set; }
     }
 }

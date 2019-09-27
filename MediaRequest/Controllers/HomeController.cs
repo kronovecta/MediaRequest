@@ -1,6 +1,9 @@
 ﻿using MediaRequest.Application;
 using MediaRequest.Application.Commands;
+using MediaRequest.Application.Queries.Movies.GetExistingMovies;
+using MediaRequest.Application.Queries.Movies.SearchMovieByName;
 using MediaRequest.Domain;
+using MediaRequest.Domain.Radarr;
 using MediaRequest.Models;
 using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
@@ -36,7 +39,10 @@ namespace MediaRequest.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel(), Movies = await FetchAddedMovies() };
+            var movies = await _mediator.Send(new GetExistingMoviesRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB });
+
+            var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel() };
+            model.Movies = movies.Movies;
 
             return View(model);
         }
@@ -51,8 +57,35 @@ namespace MediaRequest.Controllers
         [HttpPost]
         public async Task<IActionResult> SearchMoviesByName(SearchViewModel query)
         {
-            var model = new List<Movie>();
-            model = await SearchMovies(query.Input);
+
+            var request = new SearchMovieByNameRequest
+            {
+                SearchTerm = query.Input,
+                ApiKey = _apikeys.Radarr
+            };
+
+            var results = await _mediator.Send(request);
+
+            var existingMovies = await _mediator.Send(new GetExistingMoviesRequest { ApiKey_Radarr = _apikeys.Radarr });
+            
+            var model = new SearchResultViewModel();
+
+            foreach (var item in results.Movies)
+            {
+                var movieExists = new MovieExists();
+
+                if (existingMovies.Movies.Any(x => x.Title == item.Title))
+                {
+                    movieExists.Exists = true;
+                    movieExists.Movie = item;
+                } else
+                {
+                    movieExists.Exists = false;
+                    movieExists.Movie = item;
+                }
+
+                model.Movies.Add(movieExists);
+            }
 
             return PartialView("_MovieSearchResultPartial", model);
         }
@@ -87,43 +120,6 @@ namespace MediaRequest.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public async Task<IEnumerable<Movie>> FetchAddedMovies()
-        {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={_apikeys.Radarr}");
-                response.EnsureSuccessStatusCode();
-
-                var result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result);
-
-                return json;
-            }
-        }
-
-        public async Task<List<Movie>> SearchMovies(string input)
-        {
-            var cleanedInput = "";
-            if(input != null && input != "")
-            {
-                cleanedInput = input.Replace(" ", "%20");
-
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey={_apikeys.Radarr}&term={cleanedInput}");
-                    response.EnsureSuccessStatusCode();
-
-                    var result = await response.Content.ReadAsStringAsync();
-                    var json = JsonConvert.DeserializeObject<List<Movie>>(result);
-
-                    return json;
-                }
-            } else
-            {
-                return null;
-            }
         }
     }
 }

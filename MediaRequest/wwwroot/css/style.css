@@ -1,0 +1,11 @@
+.movie-container {
+  padding: 2em;
+  display: flex;
+  flex-direction: row; }
+  .movie-container > .movie-poster {
+    max-width: 300px;
+    margin-right: 5em; }
+    .movie-container > .movie-poster img {
+      width: 100%; }
+
+/*# sourceMappingURL=style.css.map */

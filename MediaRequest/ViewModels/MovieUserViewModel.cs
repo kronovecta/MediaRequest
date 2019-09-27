@@ -1,4 +1,5 @@
 ﻿using MediaRequest.Domain;
+using MediaRequest.Domain.Radarr;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

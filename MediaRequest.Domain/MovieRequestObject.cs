@@ -1,13 +1,11 @@
-﻿using MediaRequest.Domain;
-using MediaRequest.Domain.Radarr;
+﻿using MediaRequest.Domain.Radarr;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace MediaRequest.WebUI.Models
+namespace MediaRequest.Domain
 {
-    public class MovieRequestObjectOld
+    public class MovieRequestObject
     {
         public string title { get; set; }
         public int qualityProfileId { get; set; }

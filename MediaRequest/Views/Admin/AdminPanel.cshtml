@@ -9,7 +9,7 @@
             <h1>@request.Movie.Title</h1>
             <h3 style="opacity:0.7">@request.User.UserName</h3>
                 
-            <a asp-action="ApproveRequest" asp-controller="Admin" asp-route-requestId="@request.Request.RequestId">Approve</a>
+            <a asp-action="ApproveRequest" asp-controller="Admin" asp-route-requestId="@request.Request.Id">Approve</a>
         </div>
     }
 }

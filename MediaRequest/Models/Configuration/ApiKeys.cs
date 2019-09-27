@@ -9,5 +9,6 @@ namespace MediaRequest.WebUI.Models.Configuration
     {
         public string Radarr { get; set; }
         public string Sonarr { get; set; }
+        public string TMDB { get; set; }
     }
 }

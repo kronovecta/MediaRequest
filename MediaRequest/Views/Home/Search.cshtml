@@ -3,7 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
 
-<form asp-action="SearchMoviesByName" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="POST">
+@*<form asp-action="SearchMoviesByName" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="POST">
     <div class="form-group">
         <label class="control-label" asp-for="@Model.Input">Title</label>
         <input class="form-control" asp-for="@Model.Input" />
@@ -11,6 +11,8 @@
     <div class="form-group">
         <input type="submit" value="Submit" />
     </div>
-</form>
+</form>*@
+
+<partial name="_SearchPartial" model="Model" />
 
 <div id="Results"></div>

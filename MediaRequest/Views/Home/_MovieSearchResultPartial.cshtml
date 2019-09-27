@@ -1,14 +1,21 @@
-﻿@model List<MediaRequest.Domain.Movie>
+﻿@model MediaRequest.WebUI.ViewModels.SearchResultViewModel
 
 @if (Model != null)
 {
-    @foreach (var movie in Model)
+    @foreach (var movie in Model.Movies)
     {
         <div style="border:1px solid lightgrey; padding:1em;">
-            <h2>@movie.Title <span style="opacity:0.5">(@movie.Year)</span></h2>
-            <p>@movie.Overview</p>
+            <h2>@movie.Movie.Title <span style="opacity:0.5">(@movie.Movie.Year)</span></h2>
+            <p>@movie.Movie.Overview</p>
 
-            <a class="btn btn-primary" asp-action="Request" asp-controller="Home" asp-route-tmdbid="@movie.TMDBId">Request</a>
+            @if(!movie.Exists)
+            {
+                <a class="btn btn-primary" asp-action="Request" asp-controller="Home" asp-route-tmdbid="@movie.Movie.TMDBId">Request</a>
+            } else
+            {
+                <p class="btn btn-light">Movie Exists</p>
+            }
+
         </div>
     }
 }

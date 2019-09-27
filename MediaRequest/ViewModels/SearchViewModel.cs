@@ -1,4 +1,5 @@
 ﻿using MediaRequest.Domain;
+using MediaRequest.Domain.Radarr;
 using MediaRequest.WebUI.Models;
 using System;
 using System.Collections.Generic;
