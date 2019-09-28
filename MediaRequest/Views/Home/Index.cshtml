@@ -44,7 +44,7 @@
                         @if (item.InCinemas > DateTime.Now)
                         {
                             // If movie isn't in cinema
-                            <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToShortDateString()</span>
+                        <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToString("dd MMMM yyyy")</span>
                         }
                         else if (item.InCinemas < DateTime.Now && item.PhysicalRelease == DateTime.Parse("0001-01-01 00:00:00"))
                         {
@@ -58,25 +58,25 @@
                             <span class="badge badge-secondary">In Cinemas</span>
 
                         }
-                        else if (item.PhysicalRelease < DateTime.Now)
+                        @*else if (item.PhysicalRelease < DateTime.Now)
+                {
+                    {
+                        var diff = Convert.ToInt32(item.PhysicalRelease.Subtract(DateTime.Now).TotalDays);
+                        var months = Math.Abs(diff / 30);
+                        var years = Math.Abs(diff / 365);
+
+                        if (months > 12)
                         {
-                            {
-                                var diff = Convert.ToInt32(item.PhysicalRelease.Subtract(DateTime.Now).TotalDays);
-                                var months = Math.Abs(diff / 30);
-                                var years = Math.Abs(diff / 365);
-
-                                if (months > 12)
-                                {
-                                    <span class="badge badge-secondary">Released @years years ago</span>
-                                }
-                                else if (months <= 12)
-                                {
-                                    <span class="badge badge-secondary">Released @months months ago</span>
-                                }
-                            }
+                            <span class="badge badge-secondary">Released @years years ago</span>
                         }
+                        else if (months <= 12)
+                        {
+                            <span class="badge badge-secondary">Released @months months ago</span>
+                        }
+                    }
+                }*@
 
-                        @if (!item.Monitored)
+                        @if (!item.Monitored && !item.Downloaded)
                         {
                             <span class="badge badge-danger">Not Monitored</span>
                         }
@@ -92,7 +92,21 @@
                     </h6>
                 </section>
 
-                <p>@item.Overview</p>
+                @if (item.Overview != "")
+                {
+                    <p>@item.Overview</p>
+                } else
+                {
+                    <p class="errormsg">No information available at this time</p>
+                }
+
+
+                <section class="button-container">
+                    @if (!item.Monitored && !item.Downloaded)
+                    {
+                        <a class="btn btn-primary" href="#">Request re-download</a>
+                    }
+                </section>
             </div>
         </div>
     }

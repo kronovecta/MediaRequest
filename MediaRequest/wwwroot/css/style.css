@@ -10,10 +10,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Open Sans", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
 p {
-  line-height: 1.6rem; }
+  line-height: 1.6rem;
+  font-weight: 400; }
 
 body {
-  font-size: 20px; }
+  font-size: 18px; }
+
+.errormsg {
+  opacity: 0.7; }
 
 main .movie-hero {
   display: flex;
@@ -85,7 +89,8 @@ main .movie-list-container {
     padding: 2em;
     display: flex;
     flex-direction: row;
-    max-width: 1400px; }
+    max-width: 1400px;
+    width: 100%; }
     main .movie-list-container .movie-container > .movie-poster {
       margin-right: 5em;
       max-width: 200px;
@@ -94,6 +99,8 @@ main .movie-list-container {
         width: 100%; }
     main .movie-list-container .movie-container > .movie-info {
       width: 100%; }
+      main .movie-list-container .movie-container > .movie-info > p {
+        margin-top: 1rem; }
       main .movie-list-container .movie-container > .movie-info > .badge-container {
         margin-bottom: 0.5rem; }
         main .movie-list-container .movie-container > .movie-info > .badge-container h2, main .movie-list-container .movie-container > .movie-info > .badge-container h6 {

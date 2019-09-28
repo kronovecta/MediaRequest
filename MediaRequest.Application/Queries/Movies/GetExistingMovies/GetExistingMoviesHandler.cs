@@ -31,7 +31,7 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
                 res.EnsureSuccessStatusCode();
 
                 var result = await res.Content.ReadAsStringAsync();
-                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.Added));
+                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.lastInfoSync));
 
                 var moviePosters = await _context.MoviePoster.ToListAsync<MoviePoster>();
 
