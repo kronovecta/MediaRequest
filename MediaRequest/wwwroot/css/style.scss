@@ -3,6 +3,8 @@ $purple-dark: hsl(280, 60%, 25%);
 $white-main: hsl(218, 43%, 98%);
 $dark-main: hsl(0, 0%, 7%);
 
+$dark-main: hsl(0, 0%, 5%);
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap');
 @import url(_bootstrap.css);
 
@@ -30,6 +32,39 @@ body {
     opacity:0.7;
 }
 
+nav {
+    width: 100%;
+    background: $dark-main;
+    padding: 1.5rem 0;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    z-index:999;
+    position:fixed;
+
+    .nav-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 1100px;
+
+        a, span {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-item-container {
+            ul {
+                li {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
 main {
     .movie-hero {
         display: flex;
@@ -41,9 +76,9 @@ main {
         height: 85vh;
         top: 0;
         left: 0;
-        -webkit-box-shadow: 0px 1px 40px 5px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0px 1px 40px 5px rgba(0, 0, 0, .75);
-        box-shadow: 0px 1px 40px 5px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 37px 29px -29px rgba(0,0,0,0.47);
+        -moz-box-shadow: 0px 37px 29px -29px rgba(0,0,0,0.47);
+        box-shadow: 0px 37px 29px -29px rgba(0,0,0,0.47);
 
         .movie-hero-content {
             display: flex;
@@ -101,6 +136,7 @@ main {
         }
 
         > .background {
+            filter: brightness(30%);
             position: absolute;
             width: 100%;
             width: 100%;
@@ -127,7 +163,7 @@ main {
             display: flex;
             flex-direction: row;
             max-width: 1400px;
-            width:100%;
+            width: 100%;
 
             > .movie-poster {
                 margin-right: 5em;
@@ -143,7 +179,7 @@ main {
                 width: 100%;
 
                 > p {
-                    margin-top:1rem;
+                    margin-top: 1rem;
                 }
 
                 > .badge-container {

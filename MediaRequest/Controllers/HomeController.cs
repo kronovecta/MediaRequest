@@ -49,6 +49,8 @@ namespace MediaRequest.Controllers
 
         public IActionResult Search()
         {
+            var isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+
             var model = new SearchViewModel();
 
             return View(model);

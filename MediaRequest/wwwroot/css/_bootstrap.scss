@@ -1,5 +1,10 @@
 ﻿$purple-main: hsl(280, 60%, 35%);
 $purple-dark: hsl(280, 60%, 25%);
+
+$blue-main: hsl(225, 73%, 52%);
+$blue-dark: hsl(225, 73%, 35%);
+$blue-light: hsl(225, 73%, 95%);
+
 $white-main: hsl(218, 43%, 98%);
 $dark-main: hsl(0, 0%, 7%);
 
@@ -12,9 +17,11 @@ $dark-main: hsl(0, 0%, 7%);
     background: none;
     font-weight: 400;
     text-decoration: none;
-    -webkit-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
-    box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+    transition: 0.2s;
+
+    &:hover {
+        transition: 0.2s;
+    }
 
     i {
         margin-left: 5px;
@@ -22,16 +29,26 @@ $dark-main: hsl(0, 0%, 7%);
     }
 }
 
+.btn-shadow {
+    -webkit-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+}
+
 .btn-primary {
     background: linear-gradient($purple-main, $purple-dark);
     background: hsl(280, 60%, 35%);
     color: hsl(218, 43%, 90%);
-    transition: 0.2s;
 
     &:hover {
-        transition: 0.2s;
         background: $purple-dark;
     }
+}
+
+.btn-default {
+    background:linear-gradient($blue-main, $blue-dark);
+    background:$blue-main;
+    color:$blue-light;
 }
 
 .badge {

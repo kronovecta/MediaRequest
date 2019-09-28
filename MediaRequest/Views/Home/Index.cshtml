@@ -12,14 +12,13 @@
                     <h1>@recentMovie.Title </h1>
                     <p>@recentMovie.Overview</p>
                     <div class="button-container">
-                        <a href="#" class="btn btn-primary">Go to movie page <i class="fas fa-film"></i></a>
+                        <a href="#" class="btn btn-primary btn-shadow">Go to movie page <i class="fas fa-film"></i></a>
                     </div>
                 </div>
                 <div class="movie-hero-poster">
                     <img src="@recentMovie.PosterUrl" />
                 </div>
             </div>
-            <div class="gradient"></div>
             <div class="background">
                 <img src="@recentMovie.FanartUrl" />
                 @*<img src="~/img/backdrop.jpg" />*@
@@ -104,7 +103,7 @@
                 <section class="button-container">
                     @if (!item.Monitored && !item.Downloaded)
                     {
-                        <a class="btn btn-primary" href="#">Request re-download</a>
+                        <a class="btn btn-default" href="#">Request re-download</a>
                     }
                 </section>
             </div>
