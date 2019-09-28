@@ -2,9 +2,34 @@
 
 @if (Model.Movies != null)
 {
+    {
+        var recentMovie = Model.Movies.Where(x => x.Downloaded).ToList().First();
+
+        <div class="movie-hero">
+            <div class="movie-hero-content">
+                <div class="text-body">
+                    <h3>Recently Added:</h3>
+                    <h1>@recentMovie.Title </h1>
+                    <p>@recentMovie.Overview</p>
+                    <div class="button-container">
+                        <a href="#" class="btn btn-primary">Go to movie page <i class="fas fa-film"></i></a>
+                    </div>
+                </div>
+                <div class="movie-hero-poster">
+                    <img src="@recentMovie.PosterUrl" />
+                </div>
+            </div>
+            <div class="gradient"></div>
+            <div class="background">
+                <img src="@recentMovie.FanartUrl" />
+                @*<img src="~/img/backdrop.jpg" />*@
+            </div>
+        </div>
+    }
+
+<div class="movie-list-container">
     @foreach (var item in Model.Movies)
     {
-
         <div class="movie-container">
             <div class="movie-poster">
                 <img src="@item.PosterUrl" />
@@ -14,17 +39,66 @@
                     @item.Title
                     <span style="opacity:0.7">(@item.Year)</span>
                 </h2>
-                <h5>
-                    @if (!item.Monitored)
-                    {
-                        <span class="badge badge-danger">Not Monitored</span>
-                    }
-                </h5>
+                <section class="badge-container">
+                    <h6>
+                        @if (item.InCinemas > DateTime.Now)
+                        {
+                            // If movie isn't in cinema
+                            <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToShortDateString()</span>
+                        }
+                        else if (item.InCinemas < DateTime.Now && item.PhysicalRelease == DateTime.Parse("0001-01-01 00:00:00"))
+                        {
+                            // If movie is in cinema and no physical release date
+                            <span class="badge badge-secondary">In Cinemas</span>
+                        }
+                        else if (item.InCinemas < DateTime.Now && item.PhysicalRelease > DateTime.Now)
+                        {
+                            // If movie is in cinemas and physical release is announced
+
+                            <span class="badge badge-secondary">In Cinemas</span>
+
+                        }
+                        else if (item.PhysicalRelease < DateTime.Now)
+                        {
+                            {
+                                var diff = Convert.ToInt32(item.PhysicalRelease.Subtract(DateTime.Now).TotalDays);
+                                var months = Math.Abs(diff / 30);
+                                var years = Math.Abs(diff / 365);
+
+                                if (months > 12)
+                                {
+                                    <span class="badge badge-secondary">Released @years years ago</span>
+                                }
+                                else if (months <= 12)
+                                {
+                                    <span class="badge badge-secondary">Released @months months ago</span>
+                                }
+                            }
+                        }
+
+                        @if (!item.Monitored)
+                        {
+                            <span class="badge badge-danger">Not Monitored</span>
+                        }
+
+                        @if (!item.Downloaded)
+                        {
+                            <span class="badge badge-danger">Not Downloaded</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Downloaded</span>
+                        }
+                    </h6>
+                </section>
+
                 <p>@item.Overview</p>
             </div>
         </div>
     }
-} else
+    </div>
+}
+else
 {
     <h1>No movies added</h1>
 }

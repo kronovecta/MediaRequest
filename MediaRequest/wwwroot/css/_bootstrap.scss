@@ -1,0 +1,62 @@
+﻿$purple-main: hsl(280, 60%, 35%);
+$purple-dark: hsl(280, 60%, 25%);
+$white-main: hsl(218, 43%, 98%);
+$dark-main: hsl(0, 0%, 7%);
+
+
+.btn {
+    display: inline-block;
+    padding: 0.9rem 1.3rem;
+    border-radius: 0.3rem;
+    border: none;
+    background: none;
+    font-weight: 400;
+    text-decoration: none;
+    -webkit-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+
+    i {
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+}
+
+.btn-primary {
+    background: linear-gradient($purple-main, $purple-dark);
+    background: hsl(280, 60%, 35%);
+    color: hsl(218, 43%, 90%);
+    transition: 0.2s;
+
+    &:hover {
+        transition: 0.2s;
+        background: $purple-dark;
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: .25rem .4rem;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.badge-secondary {
+    color: #fff;
+    background-color: hsl(208, 7%, 50%);
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}

@@ -54,8 +54,11 @@ namespace MediaRequest
                 typeof(GetSingleMovieHandler).Assembly,
                 typeof(AddRequestHandler).Assembly);
 
-            services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlServer(conn));
-            services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(conn));
+            //services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlServer(conn));
+            //services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(conn));
+
+            services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlite(conn));
+            services.AddDbContext<IdentityContext>(opt => opt.UseSqlite(conn));
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
 

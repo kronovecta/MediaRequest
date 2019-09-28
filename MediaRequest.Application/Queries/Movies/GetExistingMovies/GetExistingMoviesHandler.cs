@@ -31,17 +31,18 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
                 res.EnsureSuccessStatusCode();
 
                 var result = await res.Content.ReadAsStringAsync();
-                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderBy(x => x.Title).ThenBy(x => x.Year));
+                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.Added));
 
                 var moviePosters = await _context.MoviePoster.ToListAsync<MoviePoster>();
 
                 foreach (var movie in movies)
                 {
-                    if(moviePosters.Any(x => x.MovieId == movie.TMDBId))
+                    if (moviePosters.Any(x => x.MovieId == movie.TMDBId))
                     {
                         var poster = await _context.MoviePoster.SingleOrDefaultAsync(x => x.MovieId == movie.TMDBId);
                         if(poster != null && poster.PosterUrl != "")
                             movie.PosterUrl = poster.PosterUrl;
+                            movie.FanartUrl = poster.FanartUrl;
                     } else
                     {
                         using (var tmdbclient = new HttpClient())
@@ -50,18 +51,21 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
                             var tmdb_string = await tmdb_response.Content.ReadAsStringAsync();
                             var tmdb_movie = (JsonConvert.DeserializeObject<TMDBMovie>(tmdb_string));
                             var poster_path = $"https://image.tmdb.org/t/p/w500{tmdb_movie.poster_path}";
+                            var fanart_path = $"https://image.tmdb.org/t/p/original{tmdb_movie.backdrop_path}";
 
                             movie.PosterUrl = poster_path;
 
                             var moviePoster = new MoviePoster()
                             {
                                 MovieId = movie.TMDBId,
-                                PosterUrl = poster_path
+                                PosterUrl = poster_path,
+                                FanartUrl = fanart_path
                             };
 
                             await _context.MoviePoster.AddAsync(moviePoster);
                             await _context.SaveChangesAsync();
 
+                            movie.FanartUrl = fanart_path;
                             movie.PosterUrl = poster_path;
                         }
                     }

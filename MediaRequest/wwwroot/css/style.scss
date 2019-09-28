@@ -1,18 +1,158 @@
-﻿.movie-container {
-    padding:2em;
-    display:flex;
-    flex-direction:row;
+﻿$purple-main: hsl(280, 60%, 35%);
+$purple-dark: hsl(280, 60%, 25%);
+$white-main: hsl(218, 43%, 98%);
+$dark-main: hsl(0, 0%, 7%);
 
-    > .movie-poster {
-        max-width:300px;
-        margin-right:5em;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap');
+@import url(_bootstrap.css);
 
-        img {
-            width:100%;
+html, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:"Open Sans", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    line-height:1.6rem;
+}
+
+body {
+    font-size: 20px;
+}
+
+
+
+main {
+    .movie-hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        height: 85vh;
+        top: 0;
+        left: 0;
+        -webkit-box-shadow: 0px 1px 40px 5px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 1px 40px 5px rgba(0, 0, 0, .75);
+        box-shadow: 0px 1px 40px 5px rgba(0, 0, 0, 0.75);
+
+        .movie-hero-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            top: 25vh;
+            left: 15vw;
+            z-index: 3;
+            max-width: 80vw;
+            width: 60%;
+            align-items: center;
+
+            > .movie-hero-poster {
+                max-width: 300px;
+
+                img {
+                    width: 100%;
+                    -webkit-box-shadow: 0px 14px 10px -5px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 0px 14px 10px -5px rgba(0,0,0,0.75);
+                    box-shadow: 0px 14px 10px -5px rgba(0,0,0,0.75);
+                }
+            }
+
+            > .text-body {
+                max-width: 400px;
+
+                h1, p {
+                    color: hsl(218, 43%, 98%)
+                }
+
+                p {
+                    font-size: 1.1rem;
+                    color: hsl(218, 43%, 90%)
+                }
+
+                h3 {
+                    color: hsl(218, 43%, 80%)
+                }
+
+                .button-container {
+                    margin-top: 1em;
+                }
+            }
+        }
+
+        > .gradient {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0.7;
+            z-index: 2;
+        }
+
+        > .background {
+            position: absolute;
+            width: 100%;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-position: center;
+                object-fit: cover;
+            }
         }
     }
 
-    > .movie-info {
+    .movie-list-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 0;
 
+        .movie-container {
+            padding: 2em;
+            display: flex;
+            flex-direction: row;
+            max-width: 1400px;
+
+            > .movie-poster {
+                margin-right: 5em;
+                max-width: 200px;
+                min-width: 100px;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            > .movie-info {
+                width: 100%;
+
+                > .badge-container {
+                    margin-bottom: 0.5rem;
+
+                    h2, h6 {
+                        display: inline-block;
+                        vertical-align: baseline;
+                        margin-top: 5px;
+                        display: inline-block;
+                    }
+                }
+            }
+
+            &:hover {
+                background: hsl(218, 43%, 98%)
+            }
+        }
     }
 }

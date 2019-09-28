@@ -16,6 +16,7 @@ namespace MediaRequest.Domain.Radarr
         public string Status { get; set; }
         public string Overview { get; set; }
         public DateTime InCinemas { get; set; }
+        public DateTime PhysicalRelease { get; set; }
         public List<Image> Images { get; set; }
         public bool Downloaded { get; set; }
         public string RemotePoster { get; set; }
@@ -36,6 +37,7 @@ namespace MediaRequest.Domain.Radarr
         public Ratings Ratings { get; set; }
         public int QualityProfileId { get; set; }
         public string PosterUrl { get; set; }
+        public string FanartUrl { get; set; }
     }
 
     public class Genre
