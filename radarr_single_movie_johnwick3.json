@@ -1,0 +1,88 @@
+{
+  "title": "John Wick: Chapter 3 – Parabellum",
+  "alternativeTitles": [
+    {
+      "sourceType": "tmdb",
+      "movieId": 0,
+      "title": "John Wick 3",
+      "sourceId": 458156,
+      "votes": 0,
+      "voteCount": 0,
+      "language": "english"
+    },
+    {
+      "sourceType": "tmdb",
+      "movieId": 0,
+      "title": "John Wick: Chapter 3",
+      "sourceId": 458156,
+      "votes": 0,
+      "voteCount": 0,
+      "language": "english"
+    },
+    {
+      "sourceType": "tmdb",
+      "movieId": 0,
+      "title": "John Wick 3 Parabellum",
+      "sourceId": 458156,
+      "votes": 0,
+      "voteCount": 0,
+      "language": "english"
+    },
+    {
+      "sourceType": "tmdb",
+      "movieId": 0,
+      "title": "John Wick - Chapter 3 - Parabellum",
+      "sourceId": 458156,
+      "votes": 0,
+      "voteCount": 0,
+      "language": "english"
+    }
+  ],
+  "secondaryYearSourceId": 0,
+  "sortTitle": "john wick chapter 3 parabellum",
+  "sizeOnDisk": 0,
+  "status": "released",
+  "overview": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.",
+  "inCinemas": "2019-05-15T00:00:00Z",
+  "physicalRelease": "2019-08-23T00:00:00Z",
+  "physicalReleaseNote": "",
+  "images": [
+    {
+      "coverType": "poster",
+      "url": "http://image.tmdb.org/t/p/original/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg"
+    },
+    {
+      "coverType": "fanart",
+      "url": "http://image.tmdb.org/t/p/original/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg"
+    }
+  ],
+  "website": "https://www.johnwick.movie",
+  "downloaded": false,
+  "year": 2019,
+  "hasFile": false,
+  "youTubeTrailerId": "M7XM597XO94",
+  "studio": "Summit Entertainment",
+  "profileId": 0,
+  "pathState": "dynamic",
+  "monitored": false,
+  "minimumAvailability": "tba",
+  "isAvailable": true,
+  "folderName": "",
+  "runtime": 131,
+  "cleanTitle": "johnwickchapter3parabellum",
+  "imdbId": "tt6146586",
+  "tmdbId": 458156,
+  "titleSlug": "john-wick-chapter-3-parabellum-458156",
+  "genres": [
+    "Action",
+    "Thriller",
+    "Crime"
+  ],
+  "tags": [],
+  "added": "0001-01-01T00:00:00Z",
+  "ratings": {
+    "votes": 2644,
+    "value": 7.1
+  },
+  "qualityProfileId": 0
+}

@@ -1,5 +1,6 @@
-﻿$purple-main: hsl(280, 60%, 35%);
+﻿$purple-main: hsl(280, 60%, 30%);
 $purple-dark: hsl(280, 60%, 25%);
+$purple-superlight: hsl(280, 60%, 95%);
 
 $blue-main: hsl(225, 73%, 52%);
 $blue-dark: hsl(225, 73%, 35%);
@@ -38,7 +39,7 @@ $dark-main: hsl(0, 0%, 7%);
 .btn-primary {
     background: linear-gradient($purple-main, $purple-dark);
     background: hsl(280, 60%, 35%);
-    color: hsl(218, 43%, 90%);
+    color: $purple-superlight;
 
     &:hover {
         background: $purple-dark;
@@ -49,6 +50,10 @@ $dark-main: hsl(0, 0%, 7%);
     background:linear-gradient($blue-main, $blue-dark);
     background:$blue-main;
     color:$blue-light;
+
+    &:hover {
+        background:$blue-dark;  
+    }
 }
 
 .badge {

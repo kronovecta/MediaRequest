@@ -19,9 +19,9 @@
   box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.75); }
 
 .btn-primary {
-  background: linear-gradient(#6b248f, #4d1a66);
+  background: linear-gradient(#5c1f7a, #4d1a66);
   background: #6b248f;
-  color: #dbe3f0; }
+  color: #f5ebfa; }
   .btn-primary:hover {
     background: #4d1a66; }
 
@@ -29,6 +29,8 @@
   background: linear-gradient(#2b58de, #18399a);
   background: #2b58de;
   color: #e9eefc; }
+  .btn-default:hover {
+    background: #18399a; }
 
 .badge {
   display: inline-block;

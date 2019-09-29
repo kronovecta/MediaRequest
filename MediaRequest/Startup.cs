@@ -88,6 +88,8 @@ namespace MediaRequest
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute("Movies", "{action}", new { controller = "Movie" });
+
                 routes.MapRoute(
                     name: "Short",
                     template: "{action}",
@@ -95,7 +97,8 @@ namespace MediaRequest
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    //template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Movie}/{action=ShowMovie}/{id?}");
             });
         }
     }

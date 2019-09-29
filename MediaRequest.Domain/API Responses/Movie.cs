@@ -31,7 +31,7 @@ namespace MediaRequest.Domain.Radarr
         public int Runtime { get; set; }
         public string TMDBId { get; set; }
         public string TitleSlug { get; set; }
-        public List<Genre> Genres { get; set; }
+        public List<string> Genres { get; set; }
         public List<object> Tags { get; set; }
         public DateTime Added { get; set; }
         public Ratings Ratings { get; set; }
