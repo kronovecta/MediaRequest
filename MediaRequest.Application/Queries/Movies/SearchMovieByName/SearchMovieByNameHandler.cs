@@ -1,9 +1,11 @@
 ﻿using MediaRequest.Domain;
 using MediaRequest.Domain.Radarr;
+using MediaRequest.Domain.TMDB;
 using MediatR;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -17,17 +19,49 @@ namespace MediaRequest.Application.Queries.Movies.SearchMovieByName
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey={request.ApiKey}&term={request.SearchTerm}");
+                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey={request.ApiKey_Radarr}&term={request.SearchTerm}");
                 response.EnsureSuccessStatusCode();
 
                 var result = await response.Content.ReadAsStringAsync();
                 var moviesJson = JsonConvert.DeserializeObject<List<Movie>>(result);
+
+                var existingResponse = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={request.ApiKey_Radarr}");
+                existingResponse.EnsureSuccessStatusCode();
+
+                var existingResponseResult = await existingResponse.Content.ReadAsStringAsync();
+                var existingMovies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.lastInfoSync));
 
                 var responseObject = new SearchMovieByNameResponse
                 {
                     Movies = moviesJson,
                     SearchResults = moviesJson.Count
                 };
+
+                foreach (var movie in moviesJson)
+                {
+                    var existingMovie = existingMovies.SingleOrDefault(x => x.TMDBId == movie.TMDBId);
+                    if(existingMovie != null)
+                    {
+                        movie.Added = existingMovie.Added;
+                        movie.PhysicalRelease = existingMovie.PhysicalRelease;
+                        movie.Downloaded = existingMovie.Downloaded;
+                        movie.Monitored = existingMovie.Monitored; 
+                    }
+
+                    //using (var tmdbclient = new HttpClient())
+                    //{
+                    //    var tmdb_response = await tmdbclient.GetAsync($"https://api.themoviedb.org/3/movie/{movie.TMDBId}?api_key={request.ApiKey_TMDB}");
+                    //    var tmdb_string = await tmdb_response.Content.ReadAsStringAsync();
+                    //    var tmdb_movie = (JsonConvert.DeserializeObject<TMDBMovie>(tmdb_string));
+                    //    var poster_path = $"https://image.tmdb.org/t/p/w500{tmdb_movie.poster_path}";
+                    //    var fanart_path = $"https://image.tmdb.org/t/p/original{tmdb_movie.backdrop_path}";
+
+                    //    movie.PosterUrl = poster_path;
+
+                    //    movie.FanartUrl = fanart_path;
+                    //    movie.PosterUrl = poster_path;
+                    //}
+                }
 
                 return responseObject;
             }

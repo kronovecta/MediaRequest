@@ -7,5 +7,6 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
     public class GetExistingMoviesResponse
     {
         public IEnumerable<Movie> Movies { get; set; }
+        public Movie LatestMovie { get; set; }
     }
 }

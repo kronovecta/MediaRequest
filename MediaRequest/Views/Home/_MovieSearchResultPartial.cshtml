@@ -1,6 +1,77 @@
 ﻿@model MediaRequest.WebUI.ViewModels.SearchResultViewModel
 
-@if (Model != null)
+    <div class="movie-list-container">
+        @foreach (var item in Model.Movies)
+        {
+            <div class="movie-container">
+                <div class="movie-poster">
+                    @if (item.Movie.RemotePoster.EndsWith("jpg") || item.Movie.RemotePoster.EndsWith("png")) 
+                    { 
+                        <img src="@item.Movie.RemotePoster" />
+                    } else
+                    {
+                        <img src="~/img/noposter.png" />
+                    }
+                </div>
+                <div class="movie-info">
+                    <h2>
+                        @item.Movie.Title
+                        <span style="opacity:0.7">(@item.Movie.Year)</span>
+                    </h2>
+                    @if (item.Exists || item.Movie.InCinemas > DateTime.Now)
+                            {
+                        <section class="badge-container">
+                            <h6>
+                                @if (item.Exists)
+                            {
+                                @if (!item.Monitored && !item.Downloaded)
+                                    {
+                                        <span class="badge badge-danger">Not Monitored</span>
+                                        <span class="badge badge-danger">Not Downloaded</span>
+                                    } else if (!item.Downloaded)
+                                    {
+                                        <span class="badge badge-danger">Not Downloaded</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-success">Downloaded</span>
+                                    }
+                                }
+
+                                @if (item.Movie.InCinemas > DateTime.Now)
+                    {
+                                    // If movie isn't in cinema
+                                    <span class="badge badge-secondary">In Cinemas: @item.Movie.InCinemas.ToString("dd MMMM yyyy")</span>
+                                }
+                            </h6>
+                        </section>
+                    }
+
+                    @if (item.Movie.Overview != "")
+                    {
+                        <p>@item.Movie.Overview</p>
+                    }
+                    else
+                    {
+                        <p class="errormsg">No information available at this time</p>
+                    }
+
+
+                    @if (item.Exists)
+                    {
+                        if (!item.Monitored || !item.Downloaded)
+                        {
+                            <section class="button-container">
+                                <a class="btn btn-default" href="#">Request re-download</a>
+                            </section>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+@*@if (Model != null)
 {
     @foreach (var movie in Model.Movies)
     {
@@ -18,4 +89,4 @@
 
         </div>
     }
-}
+}*@

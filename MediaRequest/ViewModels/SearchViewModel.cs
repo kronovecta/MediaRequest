@@ -13,6 +13,8 @@ namespace MediaRequest.WebUI.ViewModels
         public string Input { get; set; }
         public List<Movie> Movies { get; set; }
         public MovieRequestObject RequestObject { get; set; }
+        public int? TotalPages { get; set; }
+        public int? PageNr { get; set; }
 
         public SearchViewModel()
         {

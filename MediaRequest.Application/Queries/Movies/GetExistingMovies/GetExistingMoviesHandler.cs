@@ -31,19 +31,22 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
                 res.EnsureSuccessStatusCode();
 
                 var result = await res.Content.ReadAsStringAsync();
-                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.lastInfoSync));
+                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.Id));
 
                 var moviePosters = await _context.MoviePoster.ToListAsync<MoviePoster>();
+
+                var latestMovie = movies.Where(x => x.Downloaded == true).First();
 
                 foreach (var movie in movies)
                 {
                     if (moviePosters.Any(x => x.MovieId == movie.TMDBId))
                     {
                         var poster = await _context.MoviePoster.SingleOrDefaultAsync(x => x.MovieId == movie.TMDBId);
-                        if(poster != null && poster.PosterUrl != "")
+                        if (poster != null && poster.PosterUrl != "")
                             movie.PosterUrl = poster.PosterUrl;
                             movie.FanartUrl = poster.FanartUrl;
-                    } else
+                    }
+                    else
                     {
                         using (var tmdbclient = new HttpClient())
                         {
@@ -71,11 +74,10 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
                     }
                 }
 
-                
-
                 var response = new GetExistingMoviesResponse
                 {
-                    Movies = movies
+                    Movies = movies,
+                    LatestMovie = latestMovie
                 };
 
                 return response;

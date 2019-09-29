@@ -41,15 +41,19 @@ namespace MediaRequest.Controllers
         {
             var movies = await _mediator.Send(new GetExistingMoviesRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB });
 
-            var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel() };
-            model.Movies = movies.Movies;
+            //var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel() };
+            var model = new IndexViewModel()
+            {
+                Movies = movies.Movies,
+                LatestMovie = movies.LatestMovie
+            };
 
             return View(model);
         }
 
         public IActionResult Search()
         {
-            var isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            //var isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
 
             var model = new SearchViewModel();
 
@@ -63,7 +67,8 @@ namespace MediaRequest.Controllers
             var request = new SearchMovieByNameRequest
             {
                 SearchTerm = query.Input,
-                ApiKey = _apikeys.Radarr
+                ApiKey_Radarr = _apikeys.Radarr,
+                ApiKey_TMDB = _apikeys.TMDB
             };
 
             var results = await _mediator.Send(request);
@@ -75,9 +80,12 @@ namespace MediaRequest.Controllers
             foreach (var item in results.Movies)
             {
                 var movieExists = new MovieExists();
+                var existingMovie = existingMovies.Movies.SingleOrDefault(x => x.TMDBId == item.TMDBId);
 
-                if (existingMovies.Movies.Any(x => x.Title == item.Title))
+                if (/*existingMovies.Movies.Any(x => x.Title == item.Title)*/ existingMovie != null)
                 {
+                    movieExists.Downloaded = existingMovie.Downloaded;
+                    movieExists.Monitored = existingMovie.Monitored;
                     movieExists.Exists = true;
                     movieExists.Movie = item;
                 } else
@@ -88,6 +96,8 @@ namespace MediaRequest.Controllers
 
                 model.Movies.Add(movieExists);
             }
+
+            model.LatestMovie = existingMovies.LatestMovie;
 
             return PartialView("_MovieSearchResultPartial", model);
         }
