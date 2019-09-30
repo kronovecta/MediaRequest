@@ -1,58 +1,62 @@
-﻿@model MediaRequest.Domain.Radarr.Movie
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="singlemovie.css">
+    <link rel="stylesheet" href="singlemovie.1.css">
     <title>Document</title>
 </head>
 <body>
     <div class="single-movie-container">
-        <div class="head">
+        <div class="hero-container">
+            <!-- <div class="gradient"></div> -->
+            <img class="background" src="backdrop.jpg" />
+        </div>
+
+        <div class="content">
             <div class="info">
-                <div class="title">
-                    <h1>John Wick 3: Parabellum</h1>
-                    <!-- <small>Also known as: John Wick 3, John Wick: Chapter 3, John Wick 3 Parabellum</small> -->
-                    <div class="genres">
-                        <ul>
-                            <li>Release: 2019</li>
-                        </ul>
-                        <ul>
-                            <li>Action</li>
-                            <li>Thriller</li>
-                            <li>Crime</li>
-                        </ul>
-                        <ul>
-                            <li>2hr 16min</li>
-                        </ul>
-                    </div>
+                <div class="poster">
+                    <img src="poster.jpg">
                 </div>
-                <div class="button-block">
+                <div class="head">
+                    <div class="title">
+                        <h1>John Wick 3: Parabellum</h1>
+                        <!-- <small>Also known as: John Wick 3, John Wick: Chapter 3, John Wick 3 Parabellum</small> -->
+                        <div class="genres">
+                            <ul>
+                                <li>Release: 2019</li>
+                            </ul>
+                            <ul>
+                                <li>Action</li>
+                                <li>Thriller</li>
+                                <li>Crime</li>
+                            </ul>
+                            <ul>
+                                <li>2hr 16min</li>
+                            </ul>
+                        </div>
+                    </div>
+                <!-- <div class="button-block">
                     <ul>
                         <li><a class="btn btn-primary" href="#">Watch trailer</a></li>
                         <li><a class="btn btn-default" href="#">Request movie</a></li>
                     </ul>
+                </div> -->
+                    <!-- <p class="overview">Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.</p> -->
                 </div>
-                <p class="overview">Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.</p>
             </div>
-            <div class="poster">
-                <img src="poster.jpg">
-            </div>
-
         </div>
-
+            
         <div class="body">
-            <ul class="body-nav">
+            <!-- <ul class="body-nav">
                 <li><a href="#">Details</a></li>
                 <li><a href="#">Cast</a></li>
                 <li><a href="#">Similar</a></li>
-            </ul>
+            </ul> -->
 
             <div class="body-content">
-                <section class="cast">
+                <!-- <section class="cast">
                     <h1>Top billed cast</h1>
                     <ul>
                         <li class="actor">
@@ -91,16 +95,12 @@
                             </div>
                         </li>
                     </ul>
-                </section>
+                </section> -->
+
             </div>
 
             <div class="trailer-block">
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="gradient"></div>
-            <img class="background" src="backdrop.jpg" />
+            </div>                    
         </div>
     </div>
 </body>

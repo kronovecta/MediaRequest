@@ -1,0 +1,58 @@
+.btn {
+  display: inline-block;
+  padding: 0.9rem 1.3rem;
+  border-radius: 0.3rem;
+  border: none;
+  background: none;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s; }
+  .btn:hover {
+    transition: 0.2s; }
+  .btn i {
+    margin-left: 5px;
+    vertical-align: middle; }
+
+.btn-shadow {
+  -webkit-box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.75); }
+
+.btn-primary {
+  background: linear-gradient(#5c1f7a, #4d1a66);
+  background: #6b248f;
+  color: #f5ebfa; }
+  .btn-primary:hover {
+    background: #4d1a66; }
+
+.btn-default {
+  background: linear-gradient(#2b58de, #18399a);
+  background: #2b58de;
+  color: #e9eefc; }
+  .btn-default:hover {
+    background: #18399a; }
+
+.badge {
+  display: inline-block;
+  padding: .25rem .4rem;
+  font-size: 85%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem; }
+
+.badge-secondary {
+  color: #fff;
+  background-color: #778088; }
+
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545; }
+
+.badge-success {
+  color: #fff;
+  background-color: #28a745; }
+
+/*# sourceMappingURL=_bootstrap.css.map */
