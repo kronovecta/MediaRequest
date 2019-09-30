@@ -42,9 +42,15 @@ body {
     max-width: 80vw; }
     .single-movie-container > .head .info {
       flex-grow: 2;
-      max-width: 600px; }
+      max-width: 600px;
+      margin-right: 2rem; }
       .single-movie-container > .head .info .title {
         margin-bottom: 2rem; }
+        .single-movie-container > .head .info .title h1 {
+          vertical-align: middle;
+          margin-right: 1rem; }
+          .single-movie-container > .head .info .title h1 .badge {
+            vertical-align: middle; }
         .single-movie-container > .head .info .title .genres {
           opacity: 0.6; }
           .single-movie-container > .head .info .title .genres ul {
@@ -81,7 +87,6 @@ body {
       flex-grow: 1;
       display: block;
       padding: 2rem;
-      max-width: 768px;
       width: 100%; }
       .single-movie-container > .body .cast h4 {
         margin-bottom: 1rem;
@@ -102,11 +107,15 @@ body {
         display: flex;
         align-items: center;
         width: 100%;
-        margin-bottom: 1.5rem; }
+        padding: 0.5rem; }
+        .single-movie-container > .body .cast .starring > .actor:hover {
+          background: #1a1a1a;
+          border-radius: 0.25rem; }
         .single-movie-container > .body .cast .starring > .actor .actor-name {
           width: 50%; }
-        .single-movie-container > .body .cast .starring > .actor .actor-role {
+        .single-movie-container > .body .cast .starring > .actor div.actor-role {
           width: 50%;
+          color: #999999;
           display: flex;
           align-items: center; }
       .single-movie-container > .body .cast .col-2 {
@@ -117,7 +126,10 @@ body {
         .single-movie-container > .body .cast .col-2 .cast-director {
           width: 50%; }
           .single-movie-container > .body .cast .col-2 .cast-director .crew {
-            margin-bottom: 0.8rem; }
+            padding: 0.5rem; }
+            .single-movie-container > .body .cast .col-2 .cast-director .crew:hover {
+              background: #1a1a1a;
+              border-radius: 0.25rem; }
             .single-movie-container > .body .cast .col-2 .cast-director .crew p {
               vertical-align: middle;
               display: inline-block; }
@@ -185,5 +197,28 @@ body {
       height: 100%;
       object-position: center;
       object-fit: cover; }
+
+@media screen and (max-width: 768px) {
+  .single-movie-container .head {
+    flex-direction: column-reverse;
+    width: 100%;
+    min-width: 375px; }
+    .single-movie-container .head .info {
+      margin: 0; }
+      .single-movie-container .head .info .button-block ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around; }
+        .single-movie-container .head .info .button-block ul li {
+          margin: 0; }
+          .single-movie-container .head .info .button-block ul li a {
+            font-size: 0.8rem; }
+    .single-movie-container .head .poster {
+      margin-bottom: 2rem; }
+  .single-movie-container > .body {
+    width: 100%; }
+
+  .single-movie-container {
+    padding: 2rem 1rem 0 1rem; } }
 
 /*# sourceMappingURL=singlemovie.2.css.map */
