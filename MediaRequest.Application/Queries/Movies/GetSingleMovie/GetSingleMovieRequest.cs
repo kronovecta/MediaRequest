@@ -1,9 +1,4 @@
-﻿using MediaRequest.Domain.Configuration;
-using MediatR;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MediatR;
 
 namespace MediaRequest.Application.Queries
 {
