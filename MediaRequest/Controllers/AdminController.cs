@@ -2,7 +2,8 @@
 using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Requests;
-using MediaRequest.WebUI.Models.Configuration;
+using MediaRequest.Domain.Configuration;
+//using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +40,7 @@ namespace MediaRequest.WebUI.Controllers
             {
                 var movieRequest = new GetSingleMovieRequest()
                 {
-                    ApiKey = _apikeys.Radarr,
+                    Keys = _apikeys,
                     TmdbId = request.MovieId
                 };
 
@@ -62,7 +63,7 @@ namespace MediaRequest.WebUI.Controllers
         {
             var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.Id == requestId);
 
-            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = userRequest.MovieId, ApiKey = _apikeys.Radarr });
+            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = userRequest.MovieId, Keys = _apikeys });
 
             var request = new Domain.MovieRequestObject()
             {

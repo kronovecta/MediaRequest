@@ -3,45 +3,48 @@
 <div class="single-movie-container">
     <div class="hero-container">
         <!-- <div class="gradient"></div> -->
-        <img class="background" src="backdrop.jpg" />
+        @*<img class="background" src="backdrop.jpg" />*@
+        <img class="background" src="@Model.FanartUrl" />
     </div>
     <section class="container">
         <div class="head">
             <div class="poster">
                 <!-- <img src="https://image.tmdb.org/t/p/w500/rXsh4MI6uyVgZBSSzXCfitJnVPy.jpg"> -->
-                <img src="poster.jpg">
+                <img src="@Model.PosterUrl">
             </div>
             <div class="info">
                 <div class="title">
                     <h1 style="color:#222;">@Model.Title</h1>
                     <div class="trivia">
                         <ul>
-                            <li>2019</li>
+                            <li>@Model.Year</li>
                         </ul>
                         <ul>
-                            <li>Action</li>
-                            <li>Thriller</li>
-                            <li>Crime</li>
+                            @foreach (var genre in Model.Genres)
+                            {
+                                <li>@genre</li>
+                            }
                         </ul>
                         <ul>
-                            <li>2hr 16min</li>
+                            <li>@Model.Runtime</li>
                         </ul>
                     </div>
                 </div>
 
-                <p class="overview">Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.</p>
+                @*<p class="overview">Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.</p>*@
+                <p class="overview">@Model.Overview</p>
 
                 <div class="ratings">
                     <span title="The Movie Database rating">
                         <i class="fas fa-star"></i>
-                        <span class="rating">7.3</span>
-                        <span class="totalvotes">/ 10 202 votes</span>
+                        <span class="rating">@Model.Ratings.Value</span>
+                        <span class="totalvotes">/ @Model.Ratings.Votes votes</span>
                     </span>
                 </div>
 
                 <div class="button-block">
                     <ul>
-                        <li><a class="btn btn-primary" href="#">Watch trailer <i class="fab fa-youtube"></i></a></li>
+                        <li><a class="btn btn-primary" href="https://www.youtube.com/watch?v=@Model.youTubeTrailerId">Watch trailer <i class="fab fa-youtube"></i></a></li>
                         <li><a class="btn btn-default" href="#">Request movie <i class="fas fa-plus"></i></a></li>
                     </ul>
                 </div>

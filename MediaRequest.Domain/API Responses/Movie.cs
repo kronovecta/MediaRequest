@@ -39,6 +39,7 @@ namespace MediaRequest.Domain.Radarr
         public string PosterUrl { get; set; }
         public string FanartUrl { get; set; }
         public DateTime lastInfoSync { get; set; }
+        public string youTubeTrailerId { get; set; }
     }
 
     public class Genre
