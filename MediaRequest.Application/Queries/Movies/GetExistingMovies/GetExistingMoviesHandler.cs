@@ -37,6 +37,7 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
 
                 var latestMovie = movies.Where(x => x.Downloaded == true).First();
 
+
                 foreach (var movie in movies)
                 {
                     if (moviePosters.Any(x => x.MovieId == movie.TMDBId))
