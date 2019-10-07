@@ -1,0 +1,92 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:500&display=swap');
+
+$purple-light: hsl(280, 35%, 55%);
+$purple-main: hsl(280, 35%, 45%);
+$purple-dark: hsl(280, 45%, 30%);
+$purple-superlight: hsl(280, 35%, 95%);
+
+$blue-main: hsl(225, 73%, 52%);
+$blue-dark: hsl(225, 73%, 35%);
+$blue-light: hsl(225, 73%, 95%);
+
+$white-main: hsl(0, 0%, 98%);
+$white-dark: hsl(0, 0%, 60%);
+
+$dark-main: hsl(0, 0%, 4%);
+$dark-light: hsl(0, 0%, 10%);
+
+
+.btn {
+    white-space: nowrap;
+    display: inline-block;
+    padding: 0.9rem 1.3rem;
+    border-radius: 0.3rem;
+    border: none;
+    background: none;
+    font-weight: 500;
+    font-family: "Open Sans";
+    text-decoration: none;
+    transition: 0.2s;
+
+    &:hover {
+        transition: 0.2s;
+    }
+
+    i {
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+}
+
+.btn-shadow {
+    -webkit-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.75);
+}
+
+.btn-primary {
+    background: $purple-main;
+    // background: linear-gradient($purple-main, $purple-dark);
+    color: $purple-superlight;
+
+    &:hover {
+        background: $purple-light;
+    }
+}
+
+.btn-default {
+    background:$blue-main;
+    // background:linear-gradient($blue-main, $blue-dark);
+    color:$blue-light;
+
+    &:hover {
+        background:$blue-dark;  
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: .25rem .4rem;
+    font-size: 85%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.badge-secondary {
+    color: #fff;
+    background-color: hsl(208, 7%, 50%);
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}

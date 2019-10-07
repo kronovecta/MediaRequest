@@ -11,7 +11,8 @@ using MediaRequest.Data;
 using MediatR;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Commands;
-using MediaRequest.WebUI.Models.Configuration;
+using MediaRequest.Domain.Configuration;
+//using MediaRequest.WebUI.Models.Configuration;
 
 namespace MediaRequest
 {
@@ -22,12 +23,15 @@ namespace MediaRequest
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                .AddUserSecrets<Startup>();
 
-            if (env.IsDevelopment())
-            {
-                builder.AddUserSecrets("16420ac2-2938-40e6-ade0-e700111f68a3");
-            }
+            //builder.AddUserSecrets("16420ac2-2938-40e6-ade0-e700111f68a3");
+
+            //if (env.IsDevelopment())
+            //{
+            //    builder.AddUserSecrets<Startup>();
+            //}
 
             Configuration = builder.Build();
 
@@ -97,8 +101,8 @@ namespace MediaRequest
 
                 routes.MapRoute(
                     name: "default",
-                    //template: "{controller=Home}/{action=Index}/{id?}");
-                    template: "{controller=Movie}/{action=ShowMovie}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
+                    //template: "{controller=Movie}/{action=ShowMovie}/{id?}");
             });
         }
     }

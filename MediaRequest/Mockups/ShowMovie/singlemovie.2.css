@@ -16,7 +16,8 @@ ul, li {
   list-style: none; }
 
 body {
-  background: black; }
+  background: black;
+  margin-right: 1rem; }
 
 .single-movie-container {
   padding-top: 10rem;
@@ -161,16 +162,25 @@ body {
             font-weight: 400;
             font-size: 0.6rem; }
     .single-movie-container > .body .body-nav {
-      background: #4d1a66;
-      text-align: center; }
+      background: #804b9b;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-around; }
       .single-movie-container > .body .body-nav li {
-        display: inline-block; }
+        flex-grow: 1;
+        text-align: center; }
+        .single-movie-container > .body .body-nav li:hover {
+          background: #f5ebfa;
+          transition: 1s; }
         .single-movie-container > .body .body-nav li a {
           font-weight: 700;
           text-decoration: none;
           color: #f5ebfa;
           padding: 1rem 2rem;
           display: block; }
+          .single-movie-container > .body .body-nav li a i {
+            margin-right: 0.5rem; }
         .single-movie-container > .body .body-nav li:not(:last-child) {
           margin-right: 1rem; }
   .single-movie-container .img-container {

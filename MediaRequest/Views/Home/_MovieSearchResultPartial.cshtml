@@ -19,16 +19,17 @@
                         <span style="opacity:0.7">(@item.Movie.Year)</span>
                     </h2>
                     @if (item.Exists || item.Movie.InCinemas > DateTime.Now)
-                            {
+                    {
                         <section class="badge-container">
                             <h6>
                                 @if (item.Exists)
-                            {
-                                @if (!item.Monitored && !item.Downloaded)
+                                {
+                                    @if (!item.Monitored && !item.Downloaded)
                                     {
                                         <span class="badge badge-danger">Not Monitored</span>
                                         <span class="badge badge-danger">Not Downloaded</span>
-                                    } else if (!item.Downloaded)
+                                    }
+                                    else if (!item.Downloaded)
                                     {
                                         <span class="badge badge-danger">Not Downloaded</span>
                                     }
@@ -39,7 +40,7 @@
                                 }
 
                                 @if (item.Movie.InCinemas > DateTime.Now)
-                    {
+                                {
                                     // If movie isn't in cinema
                                     <span class="badge badge-secondary">In Cinemas: @item.Movie.InCinemas.ToString("dd MMMM yyyy")</span>
                                 }
@@ -57,15 +58,16 @@
                     }
 
 
-                    @if (item.Exists)
-                    {
-                        if (!item.Monitored || !item.Downloaded)
+                    <section class="button-container">
+                        <a class="btn btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-tmdbid="@item.Movie.TMDBId"><i class="fas fa-film"></i> Go to movie page</a>
+                        @if (item.Exists)
                         {
-                            <section class="button-container">
+                            if (!item.Monitored || !item.Downloaded)
+                            {
                                 <a class="btn btn-default" href="#">Request re-download</a>
-                            </section>
+                            }
                         }
-                    }
+                    </section>
                 </div>
             </div>
         }

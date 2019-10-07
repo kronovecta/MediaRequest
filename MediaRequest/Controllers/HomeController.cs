@@ -3,14 +3,16 @@ using MediaRequest.Application.Commands;
 using MediaRequest.Application.Queries.Movies.GetExistingMovies;
 using MediaRequest.Application.Queries.Movies.SearchMovieByName;
 using MediaRequest.Domain;
+using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Models;
-using MediaRequest.WebUI.Models.Configuration;
+//using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
@@ -27,22 +29,26 @@ namespace MediaRequest.Controllers
         private readonly IMediaDbContext _context;
         private readonly IMediator _mediator;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IConfiguration config;
         private readonly ApiKeys _apikeys;
 
-        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<IdentityUser> userManager)
+        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<IdentityUser> userManager, IConfiguration config)
         {
             _apikeys = apikeys.Value;
             _mediator = mediator;
             _userManager = userManager;
+            this.config = config;
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
+            //var conf = config["ApiKeys:Radarr"];
+
             var movies = await _mediator.Send(new GetExistingMoviesRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB });
 
             //var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel() };
-            var model = new IndexViewModel()
+            var model = new IndexViewModel() 
             {
                 Movies = movies.Movies,
                 LatestMovie = movies.LatestMovie
@@ -55,18 +61,58 @@ namespace MediaRequest.Controllers
         {
             //var isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
 
-            var model = new SearchViewModel();
+            var model = new SearchResultViewModel();
 
             return View(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SearchMoviesByName(SearchViewModel query)
-        {
+        //public async Task<IActionResult> SearchMoviesByName(SearchResultViewModel inputModel)
+        //{
+        //    var request = new SearchMovieByNameRequest
+        //    {
+        //        SearchTerm = inputModel.SearchTerm,
+        //        ApiKey_Radarr = _apikeys.Radarr,
+        //        ApiKey_TMDB = _apikeys.TMDB
+        //    };
 
+        //    var results = await _mediator.Send(request);
+
+        //    var existingMovies = await _mediator.Send(new GetExistingMoviesRequest { ApiKey_Radarr = _apikeys.Radarr });
+
+        //    var model = new SearchResultViewModel();
+
+        //    foreach (var item in results.Movies)
+        //    {
+        //        var movieExists = new MovieExists();
+        //        var existingMovie = existingMovies.Movies.SingleOrDefault(x => x.TMDBId == item.TMDBId);
+
+        //        if (/*existingMovies.Movies.Any(x => x.Title == item.Title)*/ existingMovie != null)
+        //        {
+        //            movieExists.Downloaded = existingMovie.Downloaded;
+        //            movieExists.Monitored = existingMovie.Monitored;
+        //            movieExists.Exists = true;
+        //            movieExists.Movie = item;
+        //        }
+        //        else
+        //        {
+        //            movieExists.Exists = false;
+        //            movieExists.Movie = item;
+        //        }
+
+        //        model.Movies.Add(movieExists);
+        //    }
+
+        //    model.LatestMovie = existingMovies.LatestMovie;
+
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        public async Task<IActionResult> SearchMoviesByName(SearchResultViewModel query)
+        {
             var request = new SearchMovieByNameRequest
             {
-                SearchTerm = query.Input,
+                SearchTerm = query.SearchTerm,
                 ApiKey_Radarr = _apikeys.Radarr,
                 ApiKey_TMDB = _apikeys.TMDB
             };
@@ -74,7 +120,7 @@ namespace MediaRequest.Controllers
             var results = await _mediator.Send(request);
 
             var existingMovies = await _mediator.Send(new GetExistingMoviesRequest { ApiKey_Radarr = _apikeys.Radarr });
-            
+
             var model = new SearchResultViewModel();
 
             foreach (var item in results.Movies)
@@ -88,7 +134,8 @@ namespace MediaRequest.Controllers
                     movieExists.Monitored = existingMovie.Monitored;
                     movieExists.Exists = true;
                     movieExists.Movie = item;
-                } else
+                }
+                else
                 {
                     movieExists.Exists = false;
                     movieExists.Movie = item;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="singlemovie.2.css">
+    <script src="https://kit.fontawesome.com/8f9a064853.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -30,183 +31,98 @@
                 </div>
                 <div class="button-block">
                     <ul>
-                        <li><a class="btn btn-primary" href="#">Watch trailer</a></li>
-                        <li><a class="btn btn-default" href="#">Request movie</a></li>
+                        <li><a class="btn btn-primary" href="#">Watch trailer <i class="fab fa-youtube"></i></a></li>
+                        <li><a class="btn btn-default" href="#">Request movie <i class="fas fa-plus"></i></a></li>
                     </ul>
                 </div>
                 <p class="overview">Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.</p>
             </div>
             <div class="poster">
-                <!-- <img src="https://image.tmdb.org/t/p/w500/rXsh4MI6uyVgZBSSzXCfitJnVPy.jpg"> -->
-                <img src="poster.jpg">
+                <img src="https://image.tmdb.org/t/p/w500/rXsh4MI6uyVgZBSSzXCfitJnVPy.jpg">
+                <!-- <img src="poster.jpg"> -->
             </div>
 
             </div>
             
             <div class="body">
-                
-                <!-- <ul class="body-nav">
-                    <li><a href="#">Details</a></li>
-                    <li><a href="#">Cast</a></li>
-                    <li><a href="#">Similar</a></li>
-                </ul> -->
+                <ul class="body-nav">
+                    <li><a href="#"><i class="fas fa-info-circle"> </i>Details</i></a></li>
+                    <li><a href="#"><i class="fas fa-address-card"></i> Cast</a></li>
+                    <li><a href="#"><i class="fas fa-list-alt"></i> Similar </a></li>
+                </ul>
+                <section id="body-nav-content"></section>
 
-                    <section class="cast">
-                        <div class="col-2">
-                            <div class="cast-director">
-                                <h4>Director</h4>
-                                <div class="crew">
-                                    <img src="keanu.jpg" />
-                                    <p>Keanu Reeves</p>
-                                </div>
-                            </div>
-                            <div class="cast-director">
-                                <h4>Writers</h4>
-                                <div class="crew">
-                                    <img src="laurence.jpg" />
-                                    <p>Keanu Reeves</p>
-                                </div>
-                                <div class="crew">
-                                    <img src="mcshane.jpg" />
-                                    <p>Keanu Reeves</p>
-                                </div>
+                <!-- <section class="cast">
+                    <div class="col-2">
+                        <div class="cast-director">
+                            <h4>Director</h4>
+                            <div class="crew">
+                                <img src="keanu.jpg" />
+                                <p>Keanu Reeves</p>
                             </div>
                         </div>
-                        <div class="starring">
-                            <h4>Starring</h4>
-
-                            <div class="actor">
-                                <div class="actor-name">
-                                    <img src="keanu.jpg" alt="">    
-                                    <p>Keanu Reeves</p>
-                                </div>
-                                <div class="actor-role">
-                                    <p class="actor-role">as John Wick</p>
-                                </div>
+                        <div class="cast-director">
+                            <h4>Writers</h4>
+                            <div class="crew">
+                                <img src="laurence.jpg" />
+                                <p>Keanu Reeves</p>
                             </div>
-                            <div class="actor">
-                                <div class="actor-name">
-                                    <img src="halle.jpg" alt="">    
-                                    <p>Halle Berry</p>
-                                </div>
-                                <div class="actor-role">
-                                    <p class="actor-role">as Sofia</p>
-                                </div>
+                            <div class="crew">
+                                <img src="mcshane.jpg" />
+                                <p>Keanu Reeves</p>
                             </div>
-                            <div class="actor">
-                                <div class="actor-name">
-                                    <img src="mcshane.jpg" alt="">    
-                                    <p>Ian McShane</p>
-                                </div>
-                                <div class="actor-role">
-                                    <p class="actor-role">as Winston</p>
-                                </div>
-                            </div>
-                            <div class="actor">
-                                <div class="actor-name">
-                                    <img src="laurence.jpg" alt="">    
-                                    <p>Laurence Fishburne</p>
-                                </div>
-                                <div class="actor-role">
-                                    <p class="actor-role">as Bowery King</p>
-                                </div>
-                            </div>
-
-                            <!-- <table>
-                                <tr>
-                                    <td>
-                                        <div class="actor">
-                                            <img src="keanu.jpg" />
-                                            <p class="actor-name">Keanu Reeves</p>
-                                        </div> 
-                                    </td>
-                                    <td>
-                                        <span class="actor-role">as John Wick</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="actor">
-                                            <img src="halle.jpg" />
-                                            <p class="actor-name">Halle Berry</p>
-                                        </div> 
-                                    </td>
-                                    <td>
-                                        <span class="actor-role">as Sofia</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="actor">
-                                            <img src="mcshane.jpg" />
-                                            <p class="actor-name">Ian McShane</p>
-                                        </div> 
-                                    </td>
-                                    <td>
-                                        <span class="actor-role">as Winston</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="actor">
-                                            <img src="laurence.jpg" />
-                                            <p class="actor-name">Laurence Fishburne</p>
-                                        </div> 
-                                    </td>
-                                    <td>
-                                        <span class="actor-role">as Bowery King</span>
-                                    </td>
-                                </tr>
-                            </table> -->
                         </div>
-                        <!-- <ul>
-                            <li class="actor">
-                                <img src="keanu.jpg" alt="">
-                                <div class="info">
-                                    <h2>Keanu Reeves</h2>
-                                    <h3>John Wick</h3>
-                                </div>
-                            </li>
-                            <li class="actor">
-                                <img src="halle.jpg" alt="">
-                                <div class="info">
-                                    <h2>Halle Berry</h2>
-                                    <h3>Sofia</h3>
-                                </div>
-                            </li>
-                            <li class="actor">
-                                <img src="mcshane.jpg" alt="">
-                                <div class="info">
-                                    <h2>Iac McShane</h2>
-                                    <h3>Winston</h3>
-                                </div>
-                            </li>
-                            <li class="actor">
-                                <img src="laurence.jpg" alt="">
-                                <div class="info">
-                                    <h2>Laurence Fishburne</h2>
-                                    <h3>Bowery King</h3>
-                                </div>
-                            </li>
-                            <li class="actor">
-                                <img src="dacascos.jpg" alt="">
-                                <div class="info">
-                                    <h2>Mark Dacascos</h2>
-                                    <h3>Zero</h3>
-                                </div>
-                            </li>
-                        </ul> -->
-                    </section> <!--
-                </div> -->
+                    </div>
+                    <div class="starring">
+                        <h4>Starring</h4>
 
-                <div class="trailer-block">
-                </div>                    
+                        <div class="actor">
+                            <div class="actor-name">
+                                <img src="keanu.jpg" alt="">    
+                                <p>Keanu Reeves</p>
+                            </div>
+                            <div class="actor-role">
+                                <p class="actor-role">as John Wick</p>
+                            </div>
+                        </div>
+                        <div class="actor">
+                            <div class="actor-name">
+                                <img src="halle.jpg" alt="">    
+                                <p>Halle Berry</p>
+                            </div>
+                            <div class="actor-role">
+                                <p class="actor-role">as Sofia</p>
+                            </div>
+                        </div>
+                        <div class="actor">
+                            <div class="actor-name">
+                                <img src="mcshane.jpg" alt="">    
+                                <p>Ian McShane</p>
+                            </div>
+                            <div class="actor-role">
+                                <p class="actor-role">as Winston</p>
+                            </div>
+                        </div>
+                        <div class="actor">
+                            <div class="actor-name">
+                                <img src="laurence.jpg" alt="">    
+                                <p>Laurence Fishburne</p>
+                            </div>
+                            <div class="actor-role">
+                                <p class="actor-role">as Bowery King</p>
+                            </div>
+                        </div>
+                    </div>
+                </section> -->
+
+                <!-- <div class="trailer-block">
+                </div>                     -->
             </div>
 
             <div class="img-container">
                 <div class="gradient"></div>
-                <!-- <img class="background" src="https://image.tmdb.org/t/p/original/g6GtOfXtzDpY73ef7wludoorTti.jpg" /> -->
-                <img class="background" src="backdrop.jpg">
+                <img class="background" src="https://image.tmdb.org/t/p/original/g6GtOfXtzDpY73ef7wludoorTti.jpg" />
+                <!-- <img class="background" src="backdrop.jpg"> -->
             </div>
         </div>
 </body>
