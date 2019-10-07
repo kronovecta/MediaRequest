@@ -1,18 +1,17 @@
-﻿@model MediaRequest.WebUI.ViewModels.SearchViewModel
+﻿@model MediaRequest.WebUI.ViewModels.SearchResultViewModel
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
 
-@*<form asp-action="SearchMoviesByName" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="POST">
-    <div class="form-group">
-        <label class="control-label" asp-for="@Model.Input">Title</label>
-        <input class="form-control" asp-for="@Model.Input" />
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Submit" />
-    </div>
-</form>*@
+<div class="SearchPartialContainer">
+    <form asp-action="SearchMoviesByName" asp-controller="Home" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="get">
+        <div class="input-container">
+            <i class="fas fa-search"></i>
+            <input placeholder="Search movie..." class="form-control" asp-for="@Model.SearchTerm" />
+        </div>
+    </form>
+</div>
 
-<partial name="_SearchPartial" model="Model" />
+@*<partial name="_SearchPartial" model="Model" />*@
 
 <div id="Results"></div>

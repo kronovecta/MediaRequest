@@ -43,8 +43,8 @@ namespace MediaRequest.Application.Queries
                 } else
                 {
                     var tmdbRespons = await _mediator.Send(new GetMovieMediaRequest { ApiKey = _apikeys.TMDB, TMDBId = request.TmdbId });
-                    json.PosterUrl = tmdbRespons.Movie.PosterUrl;
-                    json.FanartUrl = tmdbRespons.Movie.FanartUrl;
+                    json.PosterUrl = $"https://image.tmdb.org/t/p/w500{tmdbRespons.Movie.poster_path}";
+                    json.FanartUrl = $"https://image.tmdb.org/t/p/original{tmdbRespons.Movie.backdrop_path}";
                 }
 
                 var responseObject = new GetSingleMovieResponse()

@@ -1,10 +1,10 @@
-﻿@model MediaRequest.WebUI.ViewModels.SearchViewModel
+﻿@model MediaRequest.WebUI.ViewModels.SearchResultViewModel
 
 <div class="SearchPartialContainer">
-    <form asp-action="SearchMoviesByName" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="POST">
+    <form asp-action="SearchMoviesByName" asp-controller="Home" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="get">
         <div class="input-container">
             <i class="fas fa-search"></i>
-            <input placeholder="Search movie..." class="form-control" asp-for="@Model.Input" />
+            <input placeholder="Search movie..." class="form-control" asp-for="@Model.SearchTerm" />
         </div>
     </form>
 </div>
