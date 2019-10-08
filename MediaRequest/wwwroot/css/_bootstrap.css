@@ -1,7 +1,8 @@
 .btn {
   display: inline-block;
   padding: 0.9rem 1.3rem;
-  border-radius: 0.3rem;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
   border: none;
   background: none;
   font-weight: 400;
@@ -20,10 +21,10 @@
 
 .btn-primary {
   background: linear-gradient(#5c1f7a, #4d1a66);
-  background: #6b248f;
+  background: #f5323f;
   color: #f5ebfa; }
   .btn-primary:hover {
-    background: #4d1a66; }
+    background: #b90914; }
 
 .btn-default {
   background: linear-gradient(#2b58de, #18399a);

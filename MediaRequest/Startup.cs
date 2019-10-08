@@ -92,7 +92,7 @@ namespace MediaRequest
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("Movies", "{action}", new { controller = "Movie" });
+                routes.MapRoute("Movies", "{action}/{query?}", new { controller = "Movie" });
 
                 routes.MapRoute(
                     name: "Short",

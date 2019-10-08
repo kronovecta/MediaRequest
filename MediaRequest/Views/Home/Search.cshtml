@@ -7,7 +7,7 @@
     <form asp-action="SearchMoviesByName" asp-controller="Home" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="get">
         <div class="input-container">
             <i class="fas fa-search"></i>
-            <input placeholder="Search movie..." class="form-control" asp-for="@Model.SearchTerm" />
+            <input placeholder="Search movie..." class="form-control" name="term" />
         </div>
     </form>
 </div>

@@ -14,6 +14,10 @@ $blue-main: hsl(225, 73%, 52%);
 $blue-dark: hsl(225, 73%, 35%);
 $blue-light: hsl(225, 73%, 95%);
 
+$red-main: hsl(356, 91%, 58%);
+$red-dark: hsl(356, 91%, 38%);
+$red-light: hsl(356, 91%, 78%);
+
 $white-main: hsl(218, 43%, 98%);
 $dark-main: hsl(0, 0%, 7%);
 
@@ -44,7 +48,7 @@ body {
     opacity: 0.7;
 }
 
-nav {
+nav.navbar {
     width: 100%;
     background: $dark-main;
     /*padding: 1.5rem 0;*/
@@ -53,7 +57,9 @@ nav {
     display: flex;
     justify-content: center;
     z-index: 999;
-    /*position:fixed;*/
+    position:fixed;
+    top:0;
+
     .nav-container {
         width: 100%;
         display: flex;
@@ -86,7 +92,7 @@ nav {
                     padding: 1.5rem 0;
 
                     &:hover {
-                        background:red;
+                        background:$red-main;
                     }
 
                     &:not(:last-child) {
@@ -144,6 +150,8 @@ nav {
 }
 
 main {
+    background:lightgrey;
+
     .movie-hero {
         display: flex;
         align-items: center;
@@ -290,7 +298,7 @@ main {
     color: $white-main;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
 
@@ -330,20 +338,27 @@ main {
 }
 
 .single-movie-container {
-    // padding-top:22%;
+    height: 100%;
     color: $dark-main;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     z-index: 999;
 
     section.container {
-        max-width: 1000px;
+        margin-top: 10rem;
+        max-width: 1080px;
         width: 100%;
         z-index: 999;
-        padding: 0 1rem;
+        padding: 5rem 3rem 0 3rem;
+        background: white;
+        z-index: 1;
+        border-radius: 3px;
+        -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
 
         > .head {
             display: flex;
@@ -358,6 +373,7 @@ main {
             .info {
                 padding-top: 1rem;
                 max-width: 600px;
+                flex-grow:1;
 
                 .title {
                     margin-bottom: 1rem;
@@ -400,7 +416,7 @@ main {
                 }
 
                 .button-block {
-                    margin-top: 1rem;
+                    margin-top: 2rem;
 
                     li {
                         display: inline-block;
@@ -427,10 +443,11 @@ main {
             }
 
             .poster {
-                margin-top: -7rem;
+                /*margin-top: -7rem;*/
                 // width:30%;
                 width: 300px;
                 margin-right: 5rem;
+                z-index: 3;
 
                 img {
                     width: 100%;
@@ -442,11 +459,13 @@ main {
         }
 
         nav.page-nav {
-            background: $purple-main;
+            background: lightgrey;
             border-radius: 0.25rem 0.25rem 0 0;
             width: 100%;
 
             ul {
+                width: 100%;
+                list-style: none;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
@@ -455,6 +474,7 @@ main {
                     flex-grow: 1;
 
                     a {
+                        color: inherit;
                         width: 100%;
                         padding: 1rem 0;
                         display: block;
@@ -466,16 +486,60 @@ main {
         }
     }
 
+    .recommended {
+        padding: 2rem;
+
+        .movie-sm {
+            display: flex;
+            flex-direction: row;
+            padding: 2rem;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,.16);
+            background: $white-main;
+            transition: 0.5s;
+
+            &:active {
+                transition: 0.5s;
+                box-shadow: 0 3px 3px 0 rgba(0,0,0,.16);
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+
+            > .poster {
+                width: 25%;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            > .info {
+                width: 75%;
+                margin-left: 5rem;
+
+                h1 {
+                    margin-bottom: 0.5rem;
+                }
+
+                p {
+                    font-size: 1rem;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+
     .hero-container {
-        // position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         filter: brightness(70%);
         z-index: 1;
-        max-height: 50vh;
-        /*height: 50%;*/
-        margin-bottom: 2rem;
+        /*max-height: 35vh;*/
+        height: 100%;
         -webkit-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.55);
         -moz-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.55);
         box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.55);

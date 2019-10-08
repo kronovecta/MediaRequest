@@ -108,13 +108,12 @@ namespace MediaRequest.Controllers
         //}
 
         //[HttpPost]
-        public async Task<IActionResult> SearchMoviesByName(SearchResultViewModel query)
+        public async Task<IActionResult> SearchMoviesByName(string term)
         {
             var request = new SearchMovieByNameRequest
             {
-                SearchTerm = query.SearchTerm,
-                ApiKey_Radarr = _apikeys.Radarr,
-                ApiKey_TMDB = _apikeys.TMDB
+                SearchTerm = term,
+                Keys = _apikeys
             };
 
             var results = await _mediator.Send(request);
