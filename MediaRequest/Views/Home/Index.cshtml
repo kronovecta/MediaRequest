@@ -12,7 +12,7 @@
                     <h1>@Model.LatestMovie.Title </h1>
                     <p>@Model.LatestMovie.Overview</p>
                     <div class="button-container">
-                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-id="@Model.LatestMovie.TMDBId" class="btn btn-primary btn-shadow">Go to movie page <i class="fas fa-film"></i></a>
+                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-tmdbid="@Model.LatestMovie.TMDBId" class="btn btn-primary btn-shadow">Go to movie page <i class="fas fa-film"></i></a>
                     </div>
                 </div>
                 <div class="movie-hero-poster">

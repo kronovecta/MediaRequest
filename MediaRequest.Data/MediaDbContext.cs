@@ -15,6 +15,7 @@ namespace MediaRequest.Data
     {
         public MediaDbContext(DbContextOptions<MediaDbContext> options) : base(options)
         {
+            
         }
 
         public DbSet<UserRequest> Request { get; set; }

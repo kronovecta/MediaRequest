@@ -3,15 +3,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
 
-<div class="SearchPartialContainer">
-    <form asp-action="SearchMoviesByName" asp-controller="Home" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="get">
-        <div class="input-container">
-            <i class="fas fa-search"></i>
-            <input placeholder="Search movie..." class="form-control" name="term" />
-        </div>
-    </form>
+<div class="container">
+    <div class="SearchPartialContainer">
+        <form asp-action="SearchMoviesByName" asp-controller="Home" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="get">
+            <div class="input-container">
+                <i class="fas fa-search"></i>
+                <input placeholder="Search movie..." class="form-control" name="term" />
+            </div>
+        </form>
+    </div>
+
+    @*<partial name="_SearchPartial" model="Model" />*@
+
+    <div id="Results"></div>
 </div>
-
-@*<partial name="_SearchPartial" model="Model" />*@
-
-<div id="Results"></div>

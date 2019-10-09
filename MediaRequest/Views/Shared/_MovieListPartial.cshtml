@@ -9,79 +9,64 @@
 
             </div>
             <div class="movie-info">
-                <h2>
-                    @item.Title
-                    <span style="opacity:0.7">(@item.Year)</span>
-                </h2>
-                <section class="badge-container">
-                    <h6>
-                        @if (item.InCinemas > DateTime.Now)
-                        {
-                            // If movie isn't in cinema
-                            <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToString("dd MMMM yyyy")</span>
-                        }
-                        else if (item.InCinemas < DateTime.Now && item.PhysicalRelease == DateTime.Parse("0001-01-01 00:00:00"))
-                        {
-                            // If movie is in cinema and no physical release date
-                            <span class="badge badge-secondary">In Cinemas</span>
-                        }
-                        else if (item.InCinemas < DateTime.Now && item.PhysicalRelease > DateTime.Now)
-                        {
-                            // If movie is in cinemas and physical release is announced
-
-                            <span class="badge badge-secondary">In Cinemas</span>
-
-                        }
-                        @*else if (item.PhysicalRelease < DateTime.Now)
-                        {
+                <div class="info">
+                    <h2>
+                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-tmdbid="@item.TMDBId">@item.Title</a>
+                        <span style="opacity:0.7">(@item.Year)</span>
+                    </h2>
+                    <section class="badge-container">
+                        <h6>
+                            @if (item.InCinemas > DateTime.Now)
                             {
-                                var diff = Convert.ToInt32(item.PhysicalRelease.Subtract(DateTime.Now).TotalDays);
-                                var months = Math.Abs(diff / 30);
-                                var years = Math.Abs(diff / 365);
-
-                                if (months > 12)
-                                {
-                                    <span class="badge badge-secondary">Released @years years ago</span>
-                                }
-                                else if (months <= 12)
-                                {
-                                    <span class="badge badge-secondary">Released @months months ago</span>
-                                }
+                                // If movie isn't in cinema
+                                <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToString("dd MMMM yyyy")</span>
                             }
-                        }*@
+                            else if (item.InCinemas < DateTime.Now && item.PhysicalRelease == DateTime.Parse("0001-01-01 00:00:00"))
+                            {
+                                // If movie is in cinema and no physical release date
+                                <span class="badge badge-secondary">In Cinemas</span>
+                            }
+                            else if (item.InCinemas < DateTime.Now && item.PhysicalRelease > DateTime.Now)
+                            {
+                                // If movie is in cinemas and physical release is announced
 
-                        @if (!item.Monitored && !item.Downloaded)
-                        {
-                            <span class="badge badge-danger">Not Monitored</span>
-                        }
+                                <span class="badge badge-secondary">In Cinemas</span>
 
-                        @if (!item.Downloaded && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
-                        {
-                            <span class="badge badge-danger">Not Downloaded</span>
-                        }
-                        else if (item.Downloaded)
-                        {
-                            <span class="badge badge-success">Downloaded</span>
-                        }
-                    </h6>
-                </section>
+                            }
 
-                @if (item.Overview != "")
-                {
-                    <p>@item.Overview</p>
-                }
-                else
-                {
-                    <p class="errormsg">No information available at this time</p>
-                }
+                            @if (!item.Monitored && !item.Downloaded)
+                            {
+                                <span class="badge badge-danger">Not Monitored</span>
+                            }
+
+                            @if (!item.Downloaded && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
+                            {
+                                <span class="badge badge-danger">Not Downloaded</span>
+                            }
+                            else if (item.Downloaded)
+                            {
+                                <span class="badge badge-success">Downloaded</span>
+                            }
+                        </h6>
+                    </section>
+
+                    @if (item.Overview != "")
+                    {
+                        <p>@item.Overview</p>
+                    }
+                    else
+                    {
+                        <p class="errormsg">No information available at this time</p>
+                    }
+                </div>
 
                 <div class="button-container">
-                    <a class="btn btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-tmdbid="@item.TMDBId"><i class="fas fa-film"></i> Go to movie page</a>
+                    <a class="btn-sm btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-tmdbid="@item.TMDBId"><i class="fas fa-film"></i> Go to movie page</a>
                 @if (item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
                 {
                     if ((!item.Monitored && !item.Downloaded) || !item.Downloaded)
                     {
-                            <a class="btn btn-default" href="#"><i class="fas fa-redo"></i> Request re-download</a>
+                            <a class="btn-sm btn-default" href="#"><i class="fas fa-redo"></i> Request re-download</a>
                     }
                 }
                 </div>

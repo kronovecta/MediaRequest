@@ -5,11 +5,19 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <link rel="stylesheet" href="~/css/style.css" media="all" />
     <script src="https://kit.fontawesome.com/8f9a064853.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <partial name="_Navbar" />
     <main>
         @RenderBody()
     </main>
-</body>
-</html>
+
+    <script>
+        $(document).ready(function () {
+            let navheight = $('nav.navbar').outerHeight();
+            $('main').css('padding-top', navheight);
+        });
+    </script>
+</body >
+</html >

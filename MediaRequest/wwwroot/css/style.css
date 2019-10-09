@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
 @import url(_bootstrap.css);
-@font-face {
-  font-family: "FontAwesome";
-  font-weight: normal;
-  font-display: auto;
-  font-style: normal;
-  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2") format("woff2"); }
 html, * {
   margin: 0;
   padding: 0;
@@ -19,11 +13,23 @@ p {
   line-height: 1.6rem;
   font-weight: 400; }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer; }
+  a:hover {
+    text-decoration: underline; }
+
 body {
   font-size: 18px; }
 
 .errormsg {
   opacity: 0.7; }
+
+.container {
+  padding: 3rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto; }
 
 nav.navbar {
   width: 100%;
@@ -91,12 +97,14 @@ nav.navbar {
         border-radius: 0.25rem;
         color: #f8f9fc;
         font-weight: 700;
-        font-size: 1rem; }
+        font-size: 1rem;
+        width: 100%; }
       .SearchPartialContainer form .input-container input, .SearchPartialContainer form .input-container label {
         display: inline-block; }
 
 main {
-  background: lightgrey; }
+  min-height: 100vh;
+  background: #e3e3e3; }
   main .movie-hero {
     display: flex;
     align-items: center;
@@ -165,16 +173,20 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem 0; }
+    padding: 3rem 1rem; }
     main .movie-list-container .movie-container {
-      padding: 2em;
+      padding: 1.5em;
       display: flex;
       flex-direction: row;
-      max-width: 1400px;
-      width: 100%; }
+      max-width: 1000px;
+      width: 100%;
+      background: white;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+      margin-bottom: 1.5em;
+      border-radius: 3px; }
       main .movie-list-container .movie-container > .movie-poster {
-        margin-right: 5em;
-        max-width: 200px;
+        margin-right: 3em;
+        max-width: 150px;
         min-width: 100px;
         overflow: hidden;
         padding-bottom: 10px; }
@@ -185,15 +197,17 @@ main {
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
       main .movie-list-container .movie-container > .movie-info {
         width: 100%; }
-        main .movie-list-container .movie-container > .movie-info > p {
+        main .movie-list-container .movie-container > .movie-info > .info > p {
           margin-top: 1rem; }
-        main .movie-list-container .movie-container > .movie-info > .badge-container {
+        main .movie-list-container .movie-container > .movie-info > .info > .badge-container {
           margin-bottom: 0.5rem; }
-          main .movie-list-container .movie-container > .movie-info > .badge-container h2, main .movie-list-container .movie-container > .movie-info > .badge-container h6 {
+          main .movie-list-container .movie-container > .movie-info > .info > .badge-container h2, main .movie-list-container .movie-container > .movie-info > .info > .badge-container h6 {
             display: inline-block;
             vertical-align: baseline;
             margin-top: 5px;
             display: inline-block; }
+        main .movie-list-container .movie-container > .movie-info > .info > .button-container {
+          margin-top: 1em; }
       main .movie-list-container .movie-container:hover {
         background: #f8f9fc; }
 
@@ -329,6 +343,39 @@ main {
             display: block;
             text-align: center;
             text-decoration: none; }
+  .single-movie-container .cast > h1 {
+    margin: 1rem 0; }
+  .single-movie-container .cast ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+  .single-movie-container .cast .actor {
+    height: 105px;
+    width: 49%;
+    margin-bottom: 1rem;
+    background: #f4f4f4;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
+    .single-movie-container .cast .actor > .info {
+      display: inline-block; }
+      .single-movie-container .cast .actor > .info h1 {
+        font-size: 1.3rem; }
+      .single-movie-container .cast .actor > .info h2 {
+        font-size: 1rem; }
+      .single-movie-container .cast .actor > .info > * {
+        display: block; }
+    .single-movie-container .cast .actor > img {
+      margin-right: 3rem;
+      height: 60px;
+      width: 60px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%; }
   .single-movie-container .recommended {
     padding: 2rem; }
     .single-movie-container .recommended .movie-sm {
@@ -389,6 +436,44 @@ main {
   .single-movie-container section.container .head .poster {
     min-width: 250px; } }
 @media screen and (max-width: 375px) {
+  nav.navbar {
+    display: none; }
+
+  main .movie-hero {
+    height: initial;
+    padding: 2rem 0; }
+    main .movie-hero .movie-hero-content {
+      flex-direction: column-reverse;
+      width: 100%;
+      min-width: initial; }
+      main .movie-hero .movie-hero-content .movie-hero-poster {
+        margin-bottom: 1rem;
+        max-width: 200px; }
+      main .movie-hero .movie-hero-content .text-body {
+        width: 100%; }
+        main .movie-hero .movie-hero-content .text-body p {
+          display: none; }
+        main .movie-hero .movie-hero-content .text-body .button-container {
+          margin-top: 1rem; }
+
+  main .movie-list-container .movie-container {
+    flex-direction: column; }
+    main .movie-list-container .movie-container .movie-info .button-container {
+      margin-top: 1rem; }
+      main .movie-list-container .movie-container .movie-info .button-container .btn {
+        width: 100%;
+        text-align: center; }
+    main .movie-list-container .movie-container .movie-info p {
+      margin-top: 0.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden; }
+    main .movie-list-container .movie-container .movie-poster {
+      width: 100%;
+      margin: 0;
+      max-width: initial; }
+
   .single-movie-container .hero-container {
     margin-bottom: 1rem; }
   .single-movie-container section.container .head {

@@ -1,26 +1,4 @@
-﻿@font-face {
-    font-family: "FontAwesome";
-    font-weight: normal;
-    font-display: auto;
-    font-style: normal;
-    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2") format("woff2");
-}
-
-$purple-main: hsl(280, 60%, 30%);
-$purple-dark: hsl(280, 60%, 25%);
-$purple-superlight: hsl(280, 60%, 95%);
-
-$blue-main: hsl(225, 73%, 52%);
-$blue-dark: hsl(225, 73%, 35%);
-$blue-light: hsl(225, 73%, 95%);
-
-$red-main: hsl(356, 91%, 58%);
-$red-dark: hsl(356, 91%, 38%);
-$red-light: hsl(356, 91%, 78%);
-
-$white-main: hsl(218, 43%, 98%);
-$dark-main: hsl(0, 0%, 7%);
-
+﻿@import "_colors.scss";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap');
 @import url(_bootstrap.css);
 
@@ -40,12 +18,28 @@ p {
     font-weight: 400;
 }
 
+a {
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
+
+    &:hover {
+        text-decoration:underline;
+    }
+}
+
 body {
     font-size: 18px;
 }
 
 .errormsg {
     opacity: 0.7;
+}
+
+.container {
+    padding:3rem 1rem;
+    max-width:1000px;
+    margin:0 auto;
 }
 
 nav.navbar {
@@ -140,6 +134,7 @@ nav.navbar {
                 color: $white-main;
                 font-weight: 700;
                 font-size: 1rem;
+                width:100%;
             }
 
             input, label {
@@ -150,7 +145,8 @@ nav.navbar {
 }
 
 main {
-    background:lightgrey;
+    min-height:100vh;
+    background: #e3e3e3;
 
     .movie-hero {
         display: flex;
@@ -244,21 +240,25 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 3rem 0;
+        padding: 3rem 1rem;
 
         .movie-container {
-            padding: 2em;
+            padding: 1.5em;
             display: flex;
             flex-direction: row;
-            max-width: 1400px;
+            max-width: 1000px;
             width: 100%;
+            background: white;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+            margin-bottom: 1.5em;
+            border-radius: 3px;
 
             > .movie-poster {
-                margin-right: 5em;
-                max-width: 200px;
+                margin-right: 3em;
+                max-width: 150px;
                 min-width: 100px;
-                overflow:hidden;
-                padding-bottom:10px;
+                overflow: hidden;
+                padding-bottom: 10px;
 
                 img {
                     width: 100%;
@@ -271,18 +271,24 @@ main {
             > .movie-info {
                 width: 100%;
 
-                > p {
-                    margin-top: 1rem;
-                }
+                > .info {
+                    > p {
+                        margin-top: 1rem;
+                    }
 
-                > .badge-container {
-                    margin-bottom: 0.5rem;
+                    > .badge-container {
+                        margin-bottom: 0.5rem;
 
-                    h2, h6 {
-                        display: inline-block;
-                        vertical-align: baseline;
-                        margin-top: 5px;
-                        display: inline-block;
+                        h2, h6 {
+                            display: inline-block;
+                            vertical-align: baseline;
+                            margin-top: 5px;
+                            display: inline-block;
+                        }
+                    }
+
+                    > .button-container {
+                        margin-top: 1em;
                     }
                 }
             }
@@ -373,7 +379,7 @@ main {
             .info {
                 padding-top: 1rem;
                 max-width: 600px;
-                flex-grow:1;
+                flex-grow: 1;
 
                 .title {
                     margin-bottom: 1rem;
@@ -486,6 +492,57 @@ main {
         }
     }
 
+    .cast {
+        > h1 {
+            margin: 1rem 0;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .actor {
+            height: 105px;
+            width: 49%;
+            margin-bottom: 1rem;
+            background: #f4f4f4;
+            padding: 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+
+            > .info {
+                display: inline-block;
+
+                h1 {
+                    font-size: 1.3rem;
+                }
+
+                h2 {
+                    font-size: 1rem;
+                }
+
+                > * {
+                    display: block;
+                }
+            }
+
+            > img {
+                margin-right: 3rem;
+                height: 60px;
+                width: 60px;
+                object-fit: cover;
+                object-position: center;
+                border-radius: 50%;
+            }
+        }
+    }
+
     .recommended {
         padding: 2rem;
 
@@ -583,6 +640,71 @@ main {
 }
 
 @media screen and (max-width:375px) {
+    nav.navbar {
+        display:none;
+    }
+
+    main .movie-hero {
+        height:initial;
+        padding:2rem 0;
+
+        .movie-hero-content {
+            flex-direction: column-reverse;
+            width: 100%;
+            min-width: initial;
+
+            .movie-hero-poster {
+                margin-bottom: 1rem;
+                max-width: 200px;
+            }
+
+            .text-body {
+                width: 100%;
+
+                p {
+                    display: none;
+                }
+
+                .button-container {
+                    margin-top: 1rem;
+                }
+            }
+        }
+    }
+
+    main .movie-list-container {
+        .movie-container {
+            flex-direction: column;
+
+            .movie-info {
+                .button-container {
+                    margin-top:1rem;
+
+                    .btn {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .movie-info {
+                p {
+                    margin-top:0.5rem;
+                    display:-webkit-box;
+                    -webkit-line-clamp:4;
+                    -webkit-box-orient:vertical;
+                    overflow:hidden;
+                }
+            }
+
+            .movie-poster {
+                width: 100%;
+                margin: 0;
+                max-width: initial;
+            }
+        }
+    }
+
     .single-movie-container {
         .hero-container {
             margin-bottom: 1rem;
