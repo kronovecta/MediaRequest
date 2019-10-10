@@ -43,12 +43,23 @@ namespace MediaRequest.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //var conf = config["ApiKeys:Radarr"];
-
             var movies = await _mediator.Send(new GetExistingMoviesRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB });
 
-            //var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel() };
             var model = new IndexViewModel() 
+            {
+                Movies = movies.Movies,
+                LatestMovie = movies.LatestMovie
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string term)
+        {
+            var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB, input = term });
+
+            var model = new IndexViewModel()
             {
                 Movies = movies.Movies,
                 LatestMovie = movies.LatestMovie

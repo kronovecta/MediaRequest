@@ -10,4 +10,11 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
         public string ApiKey_Radarr { get; set; }
         public string ApiKey_TMDB { get; set; }
     }
+
+    public class GetExistingMoviesFilteredRequest : IRequest<GetExistingMoviesResponse>
+    {
+        public string ApiKey_Radarr { get; set; }
+        public string ApiKey_TMDB { get; set; }
+        public string input { get; set; }
+    }
 }

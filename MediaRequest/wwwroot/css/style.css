@@ -31,6 +31,31 @@ body {
   max-width: 1000px;
   margin: 0 auto; }
 
+form .input-container {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  width: 100%; }
+  form .input-container i, form .input-container input {
+    display: inline-block; }
+  form .input-container i {
+    margin-left: -4px;
+    padding: 0.8rem;
+    position: absolute;
+    left: 10px;
+    color: #f8f9fc; }
+  form .input-container input {
+    background: #1a1a1a;
+    border: 0;
+    padding: 0.8rem 0.8rem 0.8rem calc(2.5rem + 10px);
+    border-radius: 0.25rem;
+    color: #f8f9fc;
+    font-weight: 700;
+    font-size: 1rem;
+    width: 100%; }
+  form .input-container input, form .input-container label {
+    display: inline-block; }
+
 nav.navbar {
   width: 100%;
   background: #121212;
@@ -77,34 +102,10 @@ nav.navbar {
   flex-grow: 10 !important; }
   .SearchPartialContainer form {
     width: 100%; }
-    .SearchPartialContainer form .input-container {
-      position: relative;
-      display: inline-block;
-      margin: 0;
-      width: 100%; }
-      .SearchPartialContainer form .input-container i, .SearchPartialContainer form .input-container input {
-        display: inline-block; }
-      .SearchPartialContainer form .input-container i {
-        margin-left: -4px;
-        padding: 0.8rem;
-        position: absolute;
-        left: 10px;
-        color: #f8f9fc; }
-      .SearchPartialContainer form .input-container input {
-        background: #1a1a1a;
-        border: 0;
-        padding: 0.8rem 0.8rem 0.8rem calc(2.5rem + 10px);
-        border-radius: 0.25rem;
-        color: #f8f9fc;
-        font-weight: 700;
-        font-size: 1rem;
-        width: 100%; }
-      .SearchPartialContainer form .input-container input, .SearchPartialContainer form .input-container label {
-        display: inline-block; }
 
 main {
   min-height: 100vh;
-  background: #e3e3e3; }
+  background: #f2f2f2; }
   main .movie-hero {
     display: flex;
     align-items: center;
@@ -173,7 +174,16 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem 1rem; }
+    padding: 0 1rem 3rem 1rem; }
+    main .movie-list-container .movie-list-header {
+      margin-bottom: 1rem;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
+      main .movie-list-container .movie-list-header > * {
+        display: inline-block; }
     main .movie-list-container .movie-container {
       padding: 1.5em;
       display: flex;

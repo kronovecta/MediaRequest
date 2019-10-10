@@ -4,11 +4,9 @@ using MediaRequest.Domain.TMDB;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,15 +35,14 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
 
                 var latestMovie = movies.Where(x => x.Downloaded == true).First();
 
-
                 foreach (var movie in movies)
                 {
                     if (moviePosters.Any(x => x.MovieId == movie.TMDBId))
-                    {
+                     {
                         var poster = await _context.MoviePoster.SingleOrDefaultAsync(x => x.MovieId == movie.TMDBId);
                         if (poster != null && poster.PosterUrl != "")
                             movie.PosterUrl = poster.PosterUrl;
-                            movie.FanartUrl = poster.FanartUrl;
+                        movie.FanartUrl = poster.FanartUrl;
                     }
                     else
                     {
@@ -72,6 +69,55 @@ namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
                             movie.FanartUrl = fanart_path;
                             movie.PosterUrl = poster_path;
                         }
+                    }
+                }
+
+                var response = new GetExistingMoviesResponse
+                {
+                    Movies = movies,
+                    LatestMovie = latestMovie
+                };
+
+                return response;
+            }
+        }
+    }
+
+    public class GetExistingMoviesFilteredHandler : IRequestHandler<GetExistingMoviesFilteredRequest, GetExistingMoviesResponse>
+    {
+        private readonly IMediaDbContext _context;
+
+        public GetExistingMoviesFilteredHandler(IMediaDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<GetExistingMoviesResponse> Handle(GetExistingMoviesFilteredRequest request, CancellationToken cancellationToken)
+        {
+            using (var client = new HttpClient())
+            {
+                var res = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={request.ApiKey_Radarr}");
+                res.EnsureSuccessStatusCode();
+
+                var result = await res.Content.ReadAsStringAsync();
+                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.Id)).ToList();
+                //var filtered = movies.Where(x => x.Title.Contains(request.input));
+                var filtered = (from m in movies
+                                where m.Title == request.input
+                                select m).ToList();
+
+                var moviePosters = _context.MoviePoster.Where(x => filtered.Any(y => y.TMDBId == x.MovieId)).ToList();
+
+                var latestMovie = movies.Where(x => x.Downloaded == true).First();
+
+                foreach (var movie in movies)
+                {
+                    if (moviePosters.Any(x => x.MovieId == movie.TMDBId))
+                    {
+                        var poster = await _context.MoviePoster.SingleOrDefaultAsync(x => x.MovieId == movie.TMDBId);
+                        if (poster != null && poster.PosterUrl != "")
+                            movie.PosterUrl = poster.PosterUrl;
+                        movie.FanartUrl = poster.FanartUrl;
                     }
                 }
 
