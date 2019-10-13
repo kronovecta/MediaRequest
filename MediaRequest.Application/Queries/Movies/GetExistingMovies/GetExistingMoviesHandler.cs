@@ -100,10 +100,9 @@ namespace MediaRequest.Application.Queries.Movies
         private readonly ServicePath _path;
         private readonly IHttpHelper _http;
 
-        public GetExistingMoviesFilteredHandler(IHttpHelper http, IMediaDbContext context, IOptions<ServicePath> path)
+        public GetExistingMoviesFilteredHandler(IHttpHelper http, IMediaDbContext context)
         {
             _context = context;
-            _path = path.Value;
             _http = http;
         }
 
