@@ -1,5 +1,7 @@
-﻿using MediaRequest.Domain.TMDB;
+﻿using MediaRequest.Domain.Configuration;
+using MediaRequest.Domain.TMDB;
 using MediatR;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,18 @@ namespace MediaRequest.Application.Queries.Movies
 {
     public class GetMovieMediaHandler : IRequestHandler<GetMovieMediaRequest, GetMovieMediaResponse>
     {
+        private readonly IHttpHelper _http;
+
+        public GetMovieMediaHandler(IHttpHelper http)
+        {
+            _http = http;
+        }
+
         public async Task<GetMovieMediaResponse> Handle(GetMovieMediaRequest request, CancellationToken cancellationToken)
         {
-            // https://api.themoviedb.org/3/movie/109445?api_key=
-
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync($"https://api.themoviedb.org/3/movie/{request.TMDBId}?api_key={request.ApiKey}");
+                var result = await _http.GetMovie(request);
                 result.EnsureSuccessStatusCode();
 
                 var resultString = await result.Content.ReadAsStringAsync();

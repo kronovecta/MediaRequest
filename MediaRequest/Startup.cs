@@ -52,7 +52,10 @@ namespace MediaRequest
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<IHttpHelper, HttpHelper>();
+
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
+            services.Configure<ServicePath>(Configuration.GetSection("Path"));
 
             services.AddMediatR(
                 typeof(GetSingleMovieHandler).Assembly,
@@ -103,7 +106,7 @@ namespace MediaRequest
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{term?}");
                     //template: "{controller=Movie}/{action=ShowMovie}/{id?}");
             });
         }

@@ -1,6 +1,7 @@
 ﻿@import "_colors.scss";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap');
 @import url(_bootstrap.css);
+@import url(_showmovie.css);
 
 html, * {
     margin: 0;
@@ -30,6 +31,7 @@ a {
 
 body {
     font-size: 18px;
+    margin-bottom:5rem;
 }
 
 .errormsg {
@@ -157,7 +159,7 @@ nav.navbar {
             width: 100%;
             overflow: hidden;
             position: relative;
-            height: 85vh;
+            height: 65vh;
             top: 0;
             left: 0;
             -webkit-box-shadow: 0px 37px 29px -29px rgba(0,0,0,0.47);
@@ -373,7 +375,7 @@ nav.navbar {
             max-width: 1080px;
             width: 100%;
             z-index: 999;
-            padding: 5rem 3rem 0 3rem;
+            padding: 5rem 3rem 2rem 3rem;
             background: white;
             z-index: 1;
             border-radius: 3px;
@@ -503,57 +505,6 @@ nav.navbar {
                             text-decoration: none;
                         }
                     }
-                }
-            }
-        }
-
-        .cast {
-            > h1 {
-                margin: 1rem 0;
-            }
-
-            ul {
-                display: flex;
-                flex-direction: row;
-                list-style: none;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-
-            .actor {
-                height: 105px;
-                width: 49%;
-                margin-bottom: 1rem;
-                background: #f4f4f4;
-                padding: 1rem;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
-
-                > .info {
-                    display: inline-block;
-
-                    h1 {
-                        font-size: 1.3rem;
-                    }
-
-                    h2 {
-                        font-size: 1rem;
-                    }
-
-                    > * {
-                        display: block;
-                    }
-                }
-
-                > img {
-                    margin-right: 3rem;
-                    height: 60px;
-                    width: 60px;
-                    object-fit: cover;
-                    object-position: center;
-                    border-radius: 50%;
                 }
             }
         }

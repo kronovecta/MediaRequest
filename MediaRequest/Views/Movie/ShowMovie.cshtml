@@ -1,15 +1,15 @@
 ﻿@model MediaRequest.Domain.Radarr.Movie
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+
 <div class="single-movie-container">
     <div class="hero-container">
-        <!-- <div class="gradient"></div> -->
-        @*<img class="background" src="backdrop.jpg" />*@
         <img class="background" src="@Model.FanartUrl" />
     </div>
     <section class="container">
         <div class="head">
             <div class="poster">
-                <!-- <img src="https://image.tmdb.org/t/p/w500/rXsh4MI6uyVgZBSSzXCfitJnVPy.jpg"> -->
                 <img src="@Model.PosterUrl">
             </div>
             <div class="info">
@@ -31,7 +31,6 @@
                     </div>
                 </div>
 
-                @*<p class="overview">Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.</p>*@
                 <p class="overview">@Model.Overview</p>
 
                 <div class="ratings">
@@ -53,14 +52,15 @@
         <div class="body">
             <nav class="page-nav">
                 <ul class="body-nav">
-                    <li><a href="#">Details</a></li>
-                    <li><a href="#">Cast</a></li>
-                    <li><a href="#">Similar</a></li>
+                    <li><a asp-action="Details" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Details</a></li>
+                    <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Cast</a></li>
+                    @*<li><a asp-action="Cast" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Recommended</a></li>*@
                 </ul>
             </nav>
+            <div id="container">
+
+            </div>
             <!--Details-->
-
-
             <!--Similar-->
             <!-- <div class="container recommended">
                 <div class="movie-sm">
@@ -96,7 +96,6 @@
                     </div>
                 </div>
             </div>-->
-
             <!--Cast-->
             <!--<section class="cast">
                 <h1>Top billed cast</h1>
@@ -140,5 +139,5 @@
             </section>-->
 
         </div>
-    </section>            
+    </section>
 </div>

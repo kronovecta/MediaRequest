@@ -1,20 +1,29 @@
-﻿using MediatR;
+﻿using MediaRequest.Application.Queries.Movies;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
+namespace MediaRequest.Application.Queries.Movies
 {
     public class GetExistingMoviesRequest : IRequest<GetExistingMoviesResponse>
     {
-        public string ApiKey_Radarr { get; set; }
-        public string ApiKey_TMDB { get; set; }
     }
 
     public class GetExistingMoviesFilteredRequest : IRequest<GetExistingMoviesResponse>
     {
-        public string ApiKey_Radarr { get; set; }
-        public string ApiKey_TMDB { get; set; }
-        public string input { get; set; }
+        private string _input = string.Empty;
+        public string Input
+        {
+            get
+            {
+                return _input;
+            }
+            set
+            {
+                
+                _input = value.ToLower();
+            }
+        }
     }
 }

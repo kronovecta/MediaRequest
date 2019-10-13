@@ -2,7 +2,7 @@
 using MediaRequest.Domain.Radarr;
 using System.Collections.Generic;
 
-namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
+namespace MediaRequest.Application.Queries.Movies
 {
     public class GetExistingMoviesResponse
     {

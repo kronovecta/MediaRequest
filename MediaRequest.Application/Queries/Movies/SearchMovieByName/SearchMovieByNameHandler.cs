@@ -1,7 +1,9 @@
 ﻿using MediaRequest.Domain;
+using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Domain.TMDB;
 using MediatR;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,17 +17,26 @@ namespace MediaRequest.Application.Queries.Movies.SearchMovieByName
 {
     public class SearchMovieByNameHandler : IRequestHandler<SearchMovieByNameRequest, SearchMovieByNameResponse>
     {
+        private readonly ApiKeys _apikeys;
+        private readonly ServicePath _path;
+
+        public SearchMovieByNameHandler(IOptions<ApiKeys> apikeys, IOptions<ServicePath> path)
+        {
+            _apikeys = apikeys.Value;
+            _path = path.Value;
+        }
+
         public async Task<SearchMovieByNameResponse> Handle(SearchMovieByNameRequest request, CancellationToken cancellationToken)
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey={request.Keys.Radarr}&term={request.SearchTerm}");
+                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey={_apikeys.Radarr}&term={request.SearchTerm}");
                 response.EnsureSuccessStatusCode();
 
                 var result = await response.Content.ReadAsStringAsync();
                 var moviesJson = JsonConvert.DeserializeObject<List<Movie>>(result);
 
-                var existingResponse = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={request.Keys.Radarr}");
+                var existingResponse = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={_apikeys.Radarr}");
                 existingResponse.EnsureSuccessStatusCode();
 
                 var existingResponseResult = await existingResponse.Content.ReadAsStringAsync();

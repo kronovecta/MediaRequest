@@ -1,6 +1,6 @@
 ﻿using MediaRequest.Application;
 using MediaRequest.Application.Commands;
-using MediaRequest.Application.Queries.Movies.GetExistingMovies;
+using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.SearchMovieByName;
 using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
@@ -29,21 +29,17 @@ namespace MediaRequest.Controllers
         private readonly IMediaDbContext _context;
         private readonly IMediator _mediator;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IConfiguration config;
-        private readonly ApiKeys _apikeys;
 
-        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<IdentityUser> userManager, IConfiguration config)
+        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<IdentityUser> userManager)
         {
-            _apikeys = apikeys.Value;
             _mediator = mediator;
             _userManager = userManager;
-            this.config = config;
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetExistingMoviesRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB });
+            var movies = await _mediator.Send(new GetExistingMoviesRequest());
 
             var model = new IndexViewModel() 
             {
@@ -57,7 +53,7 @@ namespace MediaRequest.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string term)
         {
-            var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB, input = term });
+            var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term });
 
             var model = new IndexViewModel()
             {
@@ -124,12 +120,11 @@ namespace MediaRequest.Controllers
             var request = new SearchMovieByNameRequest
             {
                 SearchTerm = term,
-                Keys = _apikeys
             };
 
             var results = await _mediator.Send(request);
 
-            var existingMovies = await _mediator.Send(new GetExistingMoviesRequest { ApiKey_Radarr = _apikeys.Radarr });
+            var existingMovies = await _mediator.Send(new GetExistingMoviesRequest());
 
             var model = new SearchResultViewModel();
 

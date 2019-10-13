@@ -1,11 +1,10 @@
 ﻿using MediaRequest.Domain.Configuration;
 using MediatR;
 
-namespace MediaRequest.Application.Queries
+namespace MediaRequest.Application.Queries.Movies
 {
     public class GetSingleMovieRequest : IRequest<GetSingleMovieResponse>
     {
-        public ApiKeys Keys { get; set; }
         public string TmdbId { get; set; }
     }
 }

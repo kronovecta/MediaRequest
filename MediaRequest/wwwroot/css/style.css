@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
 @import url(_bootstrap.css);
+@import url(_showmovie.css);
 html, * {
   margin: 0;
   padding: 0;
@@ -21,7 +22,8 @@ a {
     text-decoration: underline; }
 
 body {
-  font-size: 18px; }
+  font-size: 18px;
+  margin-bottom: 5rem; }
 
 .errormsg {
   opacity: 0.7; }
@@ -113,7 +115,7 @@ main {
     width: 100%;
     overflow: hidden;
     position: relative;
-    height: 85vh;
+    height: 65vh;
     top: 0;
     left: 0;
     -webkit-box-shadow: 0px 37px 29px -29px rgba(0, 0, 0, 0.47);
@@ -269,7 +271,7 @@ main {
     max-width: 1080px;
     width: 100%;
     z-index: 999;
-    padding: 5rem 3rem 0 3rem;
+    padding: 5rem 3rem 2rem 3rem;
     background: white;
     z-index: 1;
     border-radius: 3px;
@@ -353,39 +355,6 @@ main {
             display: block;
             text-align: center;
             text-decoration: none; }
-  .single-movie-container .cast > h1 {
-    margin: 1rem 0; }
-  .single-movie-container .cast ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    flex-wrap: wrap;
-    justify-content: space-between; }
-  .single-movie-container .cast .actor {
-    height: 105px;
-    width: 49%;
-    margin-bottom: 1rem;
-    background: #f4f4f4;
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
-    .single-movie-container .cast .actor > .info {
-      display: inline-block; }
-      .single-movie-container .cast .actor > .info h1 {
-        font-size: 1.3rem; }
-      .single-movie-container .cast .actor > .info h2 {
-        font-size: 1rem; }
-      .single-movie-container .cast .actor > .info > * {
-        display: block; }
-    .single-movie-container .cast .actor > img {
-      margin-right: 3rem;
-      height: 60px;
-      width: 60px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%; }
   .single-movie-container .recommended {
     padding: 2rem; }
     .single-movie-container .recommended .movie-sm {

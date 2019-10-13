@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using MediaRequest.Application.Queries;
+using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
+using MediaRequest.WebUI.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -29,13 +31,23 @@ namespace MediaRequest.Controllers
 
         public async Task<IActionResult> ShowMovie(string tmdbid)
         {
-            //_apikeys.Radarr = _configuration["ApiKeys:Radarr"];
-            //_apikeys.Radarr = _configuration["ApiKeys:TMDB"];
-
-            //var movie = JsonConvert.DeserializeObject<Movie>(System.IO.File.ReadAllText("../radarr_single_movie_johnwick3.json"));
-            var result = await _mediator.Send(new GetSingleMovieRequest() { Keys = _apikeys, TmdbId = tmdbid });
+            var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = tmdbid });
 
             return View(result.Movie);
+        }
+
+        public async Task<IActionResult> Details(string tmdbid)
+        {
+            return PartialView("_DetailsPartial");
+        }
+
+        public async Task<IActionResult> Credits(string tmdbid, int? amount)
+        {
+            var response = await _mediator.Send(new GetCreditsRequest { TMDBId = tmdbid, Amount = amount ?? 0 });
+
+            var model = new MovieCreditsViewModel { Credits = response.Credits, TMDBId = tmdbid };
+
+            return PartialView("_CreditsPartial", model);
         }
     }
 }

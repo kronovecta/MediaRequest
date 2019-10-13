@@ -1,0 +1,12 @@
+﻿@model MediaRequest.Domain.TMDB.Cast
+
+    <li class="actor">
+        @if (Model.Profile_path.Contains(".jpg") || Model.Profile_path.Contains(".png") || Model.Profile_path.Contains(".gif"))
+        {
+            <img src="@Model.Profile_path" alt="Portrait">
+        }
+        <div class="info">
+            <h1>@Model.Name</h1>
+            <h2>@Model.Character</h2>
+        </div>
+    </li>
