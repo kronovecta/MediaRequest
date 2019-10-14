@@ -52,6 +52,12 @@
   .btn-default:hover {
     background: #18399a; }
 
+.btn-accept {
+  background: #5eba6e;
+  color: white; }
+  .btn-accept:hover {
+    background: #45a154; }
+
 .badge {
   display: inline-block;
   padding: .25rem .4rem;

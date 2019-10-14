@@ -1,0 +1,20 @@
+﻿@model MediaRequest.WebUI.ViewModels.MovieUserRequestViewModel
+
+<div class="movie-container">
+    <div class="movie-poster">
+        <img src="@Model.Movie.PosterUrl" />
+    </div>
+    <div class="movie-info">
+        <h2>
+            @Model.Movie.Title
+            <span style="opacity:0.7">(@Model.Movie.Year)</span>
+        </h2>
+        @if (Model.Request.Status == false)
+        {
+            <ul class="button-container">
+                <li><a class="btn btn-accept" href="#">Approve <i class="fas fa-check-circle"></i></a></li>
+                <li><a class="btn btn-primary" href="#">Deny <i class="fas fa-check-circle"></i></a></li>
+            </ul>
+        }
+    </div>
+</div>

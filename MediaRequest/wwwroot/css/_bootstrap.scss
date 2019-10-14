@@ -73,6 +73,15 @@
     }
 }
 
+.btn-accept {
+    background:$green-main;
+    color:white;
+
+    &:hover {
+        background:$green-dark;
+    }
+}
+
 .badge {
     display: inline-block;
     padding: .25rem .4rem;
