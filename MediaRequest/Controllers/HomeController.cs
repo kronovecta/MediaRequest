@@ -53,15 +53,25 @@ namespace MediaRequest.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string term)
         {
-            var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term });
-
-            var model = new IndexViewModel()
+            if(term == null)
             {
-                Movies = movies.Movies,
-                LatestMovie = movies.LatestMovie
-            };
+                var response = await _mediator.Send(new GetExistingMoviesRequest());
+                var model = response.Movies;
 
-            return View(model);
+                return PartialView("_MovieListPartial", model);
+            } 
+            else
+            {
+                var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term });
+
+                var model = new IndexViewModel()
+                {
+                    Movies = movies.Movies,
+                    LatestMovie = movies.LatestMovie
+                };
+
+                return PartialView("_MovieListPartial", model.Movies);
+            }
         }
 
         public IActionResult Search()

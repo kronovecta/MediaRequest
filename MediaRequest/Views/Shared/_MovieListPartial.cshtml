@@ -1,17 +1,6 @@
 ﻿@model IEnumerable<MediaRequest.Domain.Radarr.Movie>
 
-<div class="container">
     <div class="movie-list-container">
-        <div class="movie-list-header">
-            <h1>Existing movies</h1>
-            <form method="post" asp-action="Index" asp-controller="Home">
-                <div class="input-container">
-                    <i class="fas fa-search"></i>
-                    <input name="term" placeholder="Search.." />
-                </div>
-            </form>
-        </div>
-
         @foreach (var item in Model)
         {
             <div class="movie-container">
@@ -88,4 +77,3 @@
             </div>
         }
     </div>
-</div>

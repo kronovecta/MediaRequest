@@ -1,116 +1,127 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexViewModel
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
+
 @if (Model.Movies != null)
 {
-    {
-        //var recentMovie = Model.Movies.Where(x => x.Downloaded).ToList().First();
-
-        <div class="movie-hero">
-            <div class="movie-hero-content">
-                <div class="text-body">
-                    <h3>Recently Added:</h3>
-                    <h1>@Model.LatestMovie.Title </h1>
-                    <p>@Model.LatestMovie.Overview</p>
-                    <div class="button-container">
-                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-tmdbid="@Model.LatestMovie.TMDBId" class="btn btn-primary btn-shadow">Go to movie page <i class="fas fa-film"></i></a>
-                    </div>
-                </div>
-                <div class="movie-hero-poster">
-                    <img src="@Model.LatestMovie.PosterUrl" />
+    <div class="movie-hero">
+        <div class="movie-hero-content">
+            <div class="text-body">
+                <h3>Recently Added:</h3>
+                <h1>@Model.LatestMovie.Title </h1>
+                <p>@Model.LatestMovie.Overview</p>
+                <div class="button-container">
+                    <a asp-action="ShowMovie" asp-controller="Movie" asp-route-tmdbid="@Model.LatestMovie.TMDBId" class="btn btn-primary btn-shadow">Go to movie page <i class="fas fa-film"></i></a>
                 </div>
             </div>
-            <div class="background">
-                <img src="@Model.LatestMovie.FanartUrl" />
+            <div class="movie-hero-poster">
+                <img src="@Model.LatestMovie.PosterUrl" />
             </div>
         </div>
-    }
+        <div class="background">
+            <img src="@Model.LatestMovie.FanartUrl" />
+        </div>
+    </div>
 
-    <partial name="_MovieListPartial" model="Model.Movies" />
+    <div class="container">
+        <div class="movie-list-header">
+            <h1>Existing movies</h1>
+            <form asp-action="Index" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movie-list-container" data-ajax-method="post">
+                <div class="input-container">
+                    <i class="fas fa-search"></i>
+                    <input name="term" placeholder="Search.." />
+                </div>
+            </form>
+        </div>
 
-@*<div class="movie-list-container">
-    @foreach (var item in Model.Movies)
-    {
-        <div class="movie-container">
-            <div class="movie-poster">
-                <img src="@item.PosterUrl" />
-            </div>
-            <div class="movie-info">
-                <h2>
-                    @item.Title
-                    <span style="opacity:0.7">(@item.Year)</span>
-                </h2>
-                <section class="badge-container">
-                    <h6>
-                        @if (item.InCinemas > DateTime.Now)
-                        {
-                            // If movie isn't in cinema
-                        <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToString("dd MMMM yyyy")</span>
-                        }
-                        else if (item.InCinemas < DateTime.Now && item.PhysicalRelease == DateTime.Parse("0001-01-01 00:00:00"))
-                        {
-                            // If movie is in cinema and no physical release date
-                            <span class="badge badge-secondary">In Cinemas</span>
-                        }
-                        else if (item.InCinemas < DateTime.Now && item.PhysicalRelease > DateTime.Now)
-                        {
-                            // If movie is in cinemas and physical release is announced
+        <partial name="_MovieListPartial" model="Model.Movies" />
+    </div>
 
-                            <span class="badge badge-secondary">In Cinemas</span>
-
-                        }
-                        else if (item.PhysicalRelease < DateTime.Now)
-                        {
+    @*<div class="movie-list-container">
+        @foreach (var item in Model.Movies)
+        {
+            <div class="movie-container">
+                <div class="movie-poster">
+                    <img src="@item.PosterUrl" />
+                </div>
+                <div class="movie-info">
+                    <h2>
+                        @item.Title
+                        <span style="opacity:0.7">(@item.Year)</span>
+                    </h2>
+                    <section class="badge-container">
+                        <h6>
+                            @if (item.InCinemas > DateTime.Now)
                             {
-                                var diff = Convert.ToInt32(item.PhysicalRelease.Subtract(DateTime.Now).TotalDays);
-                                var months = Math.Abs(diff / 30);
-                                var years = Math.Abs(diff / 365);
+                                // If movie isn't in cinema
+                            <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToString("dd MMMM yyyy")</span>
+                            }
+                            else if (item.InCinemas < DateTime.Now && item.PhysicalRelease == DateTime.Parse("0001-01-01 00:00:00"))
+                            {
+                                // If movie is in cinema and no physical release date
+                                <span class="badge badge-secondary">In Cinemas</span>
+                            }
+                            else if (item.InCinemas < DateTime.Now && item.PhysicalRelease > DateTime.Now)
+                            {
+                                // If movie is in cinemas and physical release is announced
 
-                                if (months > 12)
+                                <span class="badge badge-secondary">In Cinemas</span>
+
+                            }
+                            else if (item.PhysicalRelease < DateTime.Now)
+                            {
                                 {
-                                    <span class="badge badge-secondary">Released @years years ago</span>
-                                }
-                                else if (months <= 12)
-                                {
-                                    <span class="badge badge-secondary">Released @months months ago</span>
+                                    var diff = Convert.ToInt32(item.PhysicalRelease.Subtract(DateTime.Now).TotalDays);
+                                    var months = Math.Abs(diff / 30);
+                                    var years = Math.Abs(diff / 365);
+
+                                    if (months > 12)
+                                    {
+                                        <span class="badge badge-secondary">Released @years years ago</span>
+                                    }
+                                    else if (months <= 12)
+                                    {
+                                        <span class="badge badge-secondary">Released @months months ago</span>
+                                    }
                                 }
                             }
-                        }
 
+                            @if (!item.Monitored && !item.Downloaded)
+                            {
+                                <span class="badge badge-danger">Not Monitored</span>
+                            }
+
+                            @if (!item.Downloaded && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
+                            {
+                                <span class="badge badge-danger">Not Downloaded</span>
+                            }
+                            else if(item.Downloaded)
+                            {
+                                <span class="badge badge-success">Downloaded</span>
+                            }
+                        </h6>
+                    </section>
+
+                    @if (item.Overview != "")
+                    {
+                        <p>@item.Overview</p>
+                    } else
+                    {
+                        <p class="errormsg">No information available at this time</p>
+                    }
+
+
+                    <section class="button-container">
                         @if (!item.Monitored && !item.Downloaded)
                         {
-                            <span class="badge badge-danger">Not Monitored</span>
+                            <a class="btn btn-default" href="#">Request re-download</a>
                         }
-
-                        @if (!item.Downloaded && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
-                        {
-                            <span class="badge badge-danger">Not Downloaded</span>
-                        }
-                        else if(item.Downloaded)
-                        {
-                            <span class="badge badge-success">Downloaded</span>
-                        }
-                    </h6>
-                </section>
-
-                @if (item.Overview != "")
-                {
-                    <p>@item.Overview</p>
-                } else
-                {
-                    <p class="errormsg">No information available at this time</p>
-                }
-
-
-                <section class="button-container">
-                    @if (!item.Monitored && !item.Downloaded)
-                    {
-                        <a class="btn btn-default" href="#">Request re-download</a>
-                    }
-                </section>
+                    </section>
+                </div>
             </div>
-        </div>
-    }
-    </div>*@
+        }
+        </div>*@
 }
 else
 {
