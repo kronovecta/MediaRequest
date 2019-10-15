@@ -97,7 +97,8 @@ namespace MediaRequest
             {
                 routes.MapRoute("Search", "{action}/{term?}", new { controller = "Home" });
 
-                routes.MapRoute("Movies", "{action}", new { controller = "Movie" });
+                //routes.MapRoute("Movies", "{action}", new { controller = "Movie" });
+                routes.MapRoute("ShowMovie", "{action}/{slug}", new { controller = "Movie" });
 
                 routes.MapRoute(
                     name: "Short",

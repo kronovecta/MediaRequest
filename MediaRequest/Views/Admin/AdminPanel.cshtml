@@ -1,33 +1,41 @@
-﻿@model List<MediaRequest.WebUI.ViewModels.MovieUserRequestViewModel>
+﻿@model MediaRequest.WebUI.ViewModels.Admin.AdminPanelViewModel
 
-<div class="container">
-    <h1>Active requests</h1>
-    @foreach (var request in Model)
-    {
-        if (request.Request.Status == false)
-        {
-            <partial name="_RequestMoviePartial" model="request" />
+<div class="admin-container">
+    <div class="row">
+        <div class="card card-sm">
+            <h1>Active requests</h1>
+            <h2>@Model.Requests</h2>
+        </div>
 
-            @*<div style="border:1px solid lightgrey;padding:1em;">
-                <h1>@request.Movie.Title</h1>
-                <h3 style="opacity:0.7">@request.User.UserName</h3>
+        <div class="card card-sm">
+            <h1>Active reminders</h1>
+            <h2>@Model.Reminders</h2>
+        </div>
 
-                <a asp-action="ApproveRequest" asp-controller="Admin" asp-route-requestId="@request.Request.Id">Approve</a>
-            </div>*@
-        }
-    }
+        <div class="card card-sm">
+            <h1>Members</h1>
+            <h2>@Model.Members</h2>
+        </div>
+    </div>
 
-    <h1>Previous requests</h1>
-    @foreach (var request in Model)
-    {
-        if (request.Request.Status == true)
-        {
-            <partial name="_RequestMoviePartial" model="request" />
+    <div class="row">
+        <div class="card card-lg">
+            <h1>Latest request</h1>
+            <h2>@Model.LatestRequest.MovieId</h2>
+        </div>
+    </div>
 
-            @*<div style="border:1px solid lightgrey;padding:1em;">
-                <h1>@request.Movie.Title</h1>
-                <h3 style="opacity:0.7">@request.User.UserName</h3>
-            </div>*@
-        }
-    }
+    <div class="row">
+        <div class="card card-lg">
+            <h1>Next upcoming (30 days)</h1>
+            <h2>@Model.NextUpcomingMovie.Title</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card card-sm">
+            <h1>Total Movies</h1>
+            <h2>@Model.TotalMovies</h2>
+        </div>
+    </div>
 </div>

@@ -38,9 +38,13 @@ body {
   text-align: center; }
 
 .container {
-  padding: 3rem 1rem;
+  padding: 3rem 2rem;
   max-width: 1000px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background: white;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); }
 
 form .input-container {
   position: relative;
@@ -182,56 +186,55 @@ main {
         height: 100%;
         object-position: center;
         object-fit: cover; }
-  main .movie-list-container {
+  main .container .movie-list-header {
+    margin-bottom: 2rem;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 1rem 3rem 1rem; }
-    main .movie-list-container .movie-list-header {
-      margin-bottom: 1rem;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center; }
-      main .movie-list-container .movie-list-header > * {
-        display: inline-block; }
-    main .movie-list-container .movie-container {
-      padding: 1.5em;
-      display: flex;
-      flex-direction: row;
-      max-width: 1000px;
-      width: 100%;
-      background: white;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
-      margin-bottom: 1.5em;
-      border-radius: 3px; }
-      main .movie-list-container .movie-container > .movie-poster {
-        margin-right: 3em;
-        max-width: 150px;
-        min-width: 100px;
-        overflow: hidden;
-        padding-bottom: 10px; }
-        main .movie-list-container .movie-container > .movie-poster img {
-          width: 100%;
-          -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
-      main .movie-list-container .movie-container > .movie-info {
-        width: 100%; }
-        main .movie-list-container .movie-container > .movie-info > .info > p {
-          margin-top: 1rem; }
-        main .movie-list-container .movie-container > .movie-info > .info > .badge-container {
-          margin-bottom: 0.5rem; }
-          main .movie-list-container .movie-container > .movie-info > .info > .badge-container h2, main .movie-list-container .movie-container > .movie-info > .info > .badge-container h6 {
-            display: inline-block;
-            vertical-align: baseline;
-            margin-top: 5px;
-            display: inline-block; }
-        main .movie-list-container .movie-container > .movie-info > .info > .button-container {
-          margin-top: 1em; }
-      main .movie-list-container .movie-container:hover {
-        background: #f8f9fc; }
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; }
+    main .container .movie-list-header > * {
+      display: inline-block; }
+    main .container .movie-list-header > h1 {
+      flex-grow: 1; }
+    main .container .movie-list-header > form {
+      flex-grow: 2; }
+  main .container .movie-container {
+    padding: 1.5em;
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+    width: 100%;
+    background: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+    margin-bottom: 1.5em;
+    border-radius: 3px; }
+    main .container .movie-container > .movie-poster {
+      margin-right: 3em;
+      max-width: 150px;
+      min-width: 100px;
+      overflow: hidden;
+      padding-bottom: 10px; }
+      main .container .movie-container > .movie-poster img {
+        width: 100%;
+        -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
+    main .container .movie-container > .movie-info {
+      width: 100%; }
+      main .container .movie-container > .movie-info > .info > p {
+        margin-top: 1rem; }
+      main .container .movie-container > .movie-info > .info > .badge-container {
+        margin-bottom: 0.5rem; }
+        main .container .movie-container > .movie-info > .info > .badge-container h2, main .container .movie-container > .movie-info > .info > .badge-container h6 {
+          display: inline-block;
+          vertical-align: baseline;
+          margin-top: 5px;
+          display: inline-block; }
+      main .container .movie-container > .movie-info > .info > .button-container {
+        margin-top: 1em; }
+    main .container .movie-container:hover {
+      background: #f8f9fc; }
 
 .single-movie-container {
   color: #f8f9fc;

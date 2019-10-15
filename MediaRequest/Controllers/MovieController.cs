@@ -29,16 +29,17 @@ namespace MediaRequest.Controllers
             _mediator = mediator;
         }
 
-        public async Task<IActionResult> ShowMovie(string tmdbid)
+        [Route("movie/{slug}")]
+        public async Task<IActionResult> ShowMovie(string slug)
         {
-            var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = tmdbid });
+            var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = slug.Split('-').Last() });
 
             return View(result.Movie);
         }
 
-        public async Task<IActionResult> Details(string tmdbid)
+        public async Task<IActionResult> Trailer(string ytid)
         {
-            return PartialView("_DetailsPartial");
+            return PartialView("_TrailerPartial", ytid);
         }
 
         public async Task<IActionResult> Credits(string tmdbid, int? amount)

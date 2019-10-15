@@ -2,16 +2,19 @@
 using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.Movies.GetUpcoming;
 using MediaRequest.Application.Queries.Requests;
 using MediaRequest.Domain.Configuration;
 //using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
+using MediaRequest.WebUI.ViewModels.Admin;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MediaRequest.WebUI.Controllers
@@ -32,6 +35,32 @@ namespace MediaRequest.WebUI.Controllers
         }
 
         public async Task<IActionResult> AdminPanel()
+        {
+            var model = new AdminPanelViewModel();
+
+            var upcomingResponse = await _mediator.Send(new GetUpcomingRequest());
+            var requests = await _mediator.Send(new GetRequestsRequest());
+            var members = await _userManager.Users.CountAsync();
+            var existingMovies = await _mediator.Send(new GetExistingMoviesRequest());
+
+            model.Requests = requests.Requests.Count();
+            model.Members = members;
+            model.LatestRequest = requests.Requests.Last();
+            model.Reminders = 0;
+            model.TotalMovies = existingMovies.Movies.Count();
+
+            if (upcomingResponse.Movies.Count() > 0)
+            {
+                model.NextUpcomingMovie = upcomingResponse.Movies.First();
+            } else
+            {
+                model.NextUpcomingMovie = null;
+            }
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Requests()
         {
             var modelList = new List<MovieUserRequestViewModel>();
 

@@ -1,6 +1,5 @@
 ﻿@model MediaRequest.Domain.Radarr.Movie
 
-
 <div class="single-movie-container">
     <div class="hero-container">
         <img class="background" src="@Model.FanartUrl" />
@@ -41,13 +40,14 @@
 
                 <div class="button-block">
                     <ul>
-                        <li><a class="btn btn-primary" href="https://www.youtube.com/watch?v=@Model.youTubeTrailerId">Watch trailer <i class="fab fa-youtube"></i></a></li>
+                        <li><a class="btn btn-primary" asp-action="Trailer" asp-controller="Movie" asp-route-ytid="@Model.youTubeTrailerId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#trailer-container" data-ajax-method="get" data-ajax-loading=".loading">Watch trailer <i class="fab fa-youtube"></i></a></li>
                         <li><a class="btn btn-default" href="#">Request movie <i class="fas fa-plus"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="body">
+            <div id="trailer-container"></div>
             <nav class="page-nav">
                 <ul class="body-nav">
                     <li><a asp-action="Details" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Details</a></li>
@@ -56,86 +56,11 @@
                 </ul>
             </nav>
             <div id="container">
+                <section class="details">
+
+                </section>
                 <div class="hidden loading"><img src="~/img/loading.gif" /></div>
             </div>
-            <!--Details-->
-            <!--Similar-->
-            <!-- <div class="container recommended">
-                <div class="movie-sm">
-                    <div class="poster">
-                        <img src="~/img/poster.jpg" />
-                    </div>
-                    <div class="info">
-                        <h1>John Wick 3: Parabellum</h1>
-                        <p>The X-Men face their most formidable and powerful foe when one of their own, Jean Grey, starts to spiral out of control. During a rescue mission in outer space, Jean is nearly killed when she's hit by a mysterious cosmic force. Once she returns home, this force not only makes her infinitely more powerful, but far more unstable. The X-Men must now band together to save her soul and battle aliens that want to use Grey's new abilities to rule the galaxy.</p>
-                        <a class="btn btn-default" href="#">Go to movie page</a>
-                    </div>
-                </div>
-
-                <div class="movie-sm">
-                    <div class="poster">
-                        <img src="~/img/poster.jpg" />
-                    </div>
-                    <div class="info">
-                        <h1>John Wick 3: Parabellum</h1>
-                        <p>The X-Men face their most formidable and powerful foe when one of their own, Jean Grey, starts to spiral out of control. During a rescue mission in outer space, Jean is nearly killed when she's hit by a mysterious cosmic force. Once she returns home, this force not only makes her infinitely more powerful, but far more unstable. The X-Men must now band together to save her soul and battle aliens that want to use Grey's new abilities to rule the galaxy.</p>
-                        <a class="btn btn-default" href="#">Go to movie page</a>
-                    </div>
-                </div>
-
-                <div class="movie-sm">
-                    <div class="poster">
-                        <img src="~/img/poster.jpg" />
-                    </div>
-                    <div class="info">
-                        <h1>John Wick 3: Parabellum</h1>
-                        <p>The X-Men face their most formidable and powerful foe when one of their own, Jean Grey, starts to spiral out of control. During a rescue mission in outer space, Jean is nearly killed when she's hit by a mysterious cosmic force. Once she returns home, this force not only makes her infinitely more powerful, but far more unstable. The X-Men must now band together to save her soul and battle aliens that want to use Grey's new abilities to rule the galaxy.</p>
-                        <a class="btn btn-default" href="#">Go to movie page</a>
-                    </div>
-                </div>
-            </div>-->
-            <!--Cast-->
-            <!--<section class="cast">
-                <h1>Top billed cast</h1>
-                <ul>
-                    <li class="actor">
-                        <img src="~/img/keanu.jpg" alt="">
-                        <div class="info">
-                            <h1>Keanu Reeves</h1>
-                            <h2>John Wick</h2>
-                        </div>
-                    </li>
-                    <li class="actor">
-                        <img src="~/img/halle.jpg" alt="">
-                        <div class="info">
-                            <h1>Halle Berry</h1>
-                            <h2>Sofia</h2>
-                        </div>
-                    </li>
-                    <li class="actor">
-                        <img src="~/img/mcshane.jpg" alt="">
-                        <div class="info">
-                            <h1>Iac McShane</h1>
-                            <h2>Winston</h2>
-                        </div>
-                    </li>
-                    <li class="actor">
-                        <img src="~/img/laurence.jpg" alt="">
-                        <div class="info">
-                            <h1>Laurence Fishburne</h1>
-                            <h2>Bowery King</h2>
-                        </div>
-                    </li>
-                    <li class="actor">
-                        <img src="~/img/dacascos.jpg" alt="">
-                        <div class="info">
-                            <h1>Mark Dacascos</h1>
-                            <h2>Zero</h2>
-                        </div>
-                    </li>
-                </ul>
-            </section>-->
-
         </div>
     </section>
 </div>

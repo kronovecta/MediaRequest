@@ -1,4 +1,46 @@
-﻿.movie-container {
+﻿.admin-container {
+    max-width: 1000px;
+    margin: 5rem auto;
+    align-items: center;
+
+    .row {
+        margin-bottom: 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        border: 1px solid lightgrey;
+        border-radius: 3px;
+        text-align: center;
+
+        h1 {
+            display: inline-block;
+            font-size: 1.4rem;
+        }
+
+        h2 {
+            display: inline-block;
+            font-size: 2.4rem;
+        }
+    }
+
+    .card-sm {
+        width: 30%;
+    }
+
+    .card-lg {
+        width: 100%;
+    }
+}
+
+.movie-container {
     padding: 1.5em;
     display: flex;
     flex-direction: row;

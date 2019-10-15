@@ -91,22 +91,38 @@ section.recommended {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between; }
-  section.recommended .movie-container {
+  section.recommended .recommended-movie-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 25%;
     margin: 0;
     padding: 1rem; }
-    section.recommended .movie-container:hover {
+    section.recommended .recommended-movie-container:hover {
       text-decoration: none;
       background: #ddd; }
-    section.recommended .movie-container .poster {
+    section.recommended .recommended-movie-container .poster {
       width: 100%; }
-      section.recommended .movie-container .poster img {
+      section.recommended .recommended-movie-container .poster img {
         width: 100%; }
-    section.recommended .movie-container .info {
+    section.recommended .recommended-movie-container .info {
       flex-grow: 1; }
+
+#trailer-container {
+  padding: 1rem; }
+  #trailer-container .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 2rem; }
+    #trailer-container .video-container iframe, #trailer-container .video-container object, #trailer-container .video-container embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
 
 @media (max-width: 1000px) {
   .cast .cast-list {

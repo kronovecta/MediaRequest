@@ -16,5 +16,6 @@ namespace MediaRequest.Application
         Task<HttpResponseMessage> GetDetails(GetMovieDetailsRequest request);
         Task<HttpResponseMessage> GetCast(GetCreditsRequest request);
         Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request);
+        Task<HttpResponseMessage> GetUpcoming(int? days);
     }
 }

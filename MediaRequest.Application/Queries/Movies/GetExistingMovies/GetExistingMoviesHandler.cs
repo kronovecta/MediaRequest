@@ -116,26 +116,31 @@ namespace MediaRequest.Application.Queries.Movies
 
                 var result = await res.Content.ReadAsStringAsync();
                 var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result)
-                    .Where(x => x.Title.ToLower().Contains(request.Input.ToLower())).ToList();
+                    .Where(x => x.Title.ToLower().Contains(request.Input.ToLower()) || x.AlternativeTitles.Any(y => y.title.ToLower().Contains(request.Input.ToLower()))).ToList();
 
-                var moviePosters = _context.MoviePoster.Where(x => movies.Any(y => y.TMDBId == x.MovieId)).ToList();
+                var response = new GetExistingMoviesResponse();
 
-
-                foreach (var movie in movies)
+                if (movies.Count() > 0)
                 {
-                    movie.PosterUrl = _path.Radarr + movie.Images.SingleOrDefault(x => x.CoverType == "poster").URL.Split(new string[] { "/radarr" }, StringSplitOptions.None)[1];
-                    movie.FanartUrl = _path.Radarr + movie.Images.SingleOrDefault(x => x.CoverType == "fanart").URL.Split(new string[] { "/radarr" }, StringSplitOptions.None)[1];
+                    var moviePosters = _context.MoviePoster.Where(x => movies.Any(y => y.TMDBId == x.MovieId)).ToList();
+
+                    foreach (var movie in movies)
+                    {
+                        movie.PosterUrl = _path.Radarr + movie.Images.SingleOrDefault(x => x.CoverType == "poster").URL.Split(new string[] { "/radarr" }, StringSplitOptions.None)[1];
+                        movie.FanartUrl = _path.Radarr + movie.Images.SingleOrDefault(x => x.CoverType == "fanart").URL.Split(new string[] { "/radarr" }, StringSplitOptions.None)[1];
+                    }
+
+                    var latestMovie = movies.Where(x => x.Downloaded == true).First();
+
+                    
+                    response.Movies = movies;
+                    response.LatestMovie = latestMovie;
+
+                    return response;
+                } else
+                {
+                    return new GetExistingMoviesResponse { Movies = new List<Movie>() };
                 }
-
-                var latestMovie = movies.Where(x => x.Downloaded == true).First();
-
-                var response = new GetExistingMoviesResponse
-                {
-                    Movies = movies,
-                    LatestMovie = latestMovie
-                };
-
-                return response;
             }
         }
     }

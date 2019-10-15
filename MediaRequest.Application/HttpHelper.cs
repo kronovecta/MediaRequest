@@ -81,6 +81,22 @@ namespace MediaRequest.Application
             var response = await Client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}/recommendations?api_key=" + _keys.TMDB);
             return response;
         }
+
+        public async Task<HttpResponseMessage> GetUpcoming(int? days)
+        {
+            string span = "";
+
+            if(days > 0)
+            {
+                span = DateTime.Now.AddDays(days ?? 30).ToShortDateString();
+            } else
+            {
+                span = DateTime.Now.AddDays(30).ToShortDateString();
+            }
+            
+            var response = await Client.GetAsync(_path.Radarr + $"/api/calendar?end={span}&apikey=" + _keys.Radarr);
+            return response;
+        }
         #endregion
     }
 }
