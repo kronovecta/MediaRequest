@@ -15,5 +15,6 @@ namespace MediaRequest.Application
         Task<HttpResponseMessage> GetMovie(GetMovieMediaRequest request);
         Task<HttpResponseMessage> GetDetails(GetMovieDetailsRequest request);
         Task<HttpResponseMessage> GetCast(GetCreditsRequest request);
+        Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request);
     }
 }

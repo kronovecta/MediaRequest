@@ -49,5 +49,13 @@ namespace MediaRequest.Controllers
 
             return PartialView("_CreditsPartial", model);
         }
+
+        public async Task<IActionResult> Recommendations(string tmdbid, int? page)
+        {
+            var response = await _mediator.Send(new GetRecommendedRequest { TMDBId = tmdbid, Page = page ?? 1 });
+            var model = response.Recommendations;
+
+            return PartialView("_RecommendationsPartial", model);
+        }
     }
 }

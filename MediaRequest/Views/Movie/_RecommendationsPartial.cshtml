@@ -1,0 +1,9 @@
+﻿@model MediaRequest.Domain.API_Responses.Recommendations
+
+
+<section class="recommended">
+    @foreach (var item in Model.Results)
+    {
+        <partial name="_RecommendedMoviePartial" model="@item" />
+    }
+</section>

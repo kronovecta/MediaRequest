@@ -12,6 +12,7 @@ namespace MediaRequest.Application
 {
     public class HttpHelper : IHttpHelper
     {
+        private static HttpClient Client = new HttpClient();
         private readonly ApiKeys _keys;
         private readonly ServicePath _path;
 
@@ -65,11 +66,20 @@ namespace MediaRequest.Application
 
         public async Task<HttpResponseMessage> GetCast(GetCreditsRequest request)
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}/credits?api_key=" + _keys.TMDB);
-                return response;
-            }
+            var response = await Client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}/credits?api_key=" + _keys.TMDB);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request)
+        {
+            //using (var client = new HttpClient())
+            //{
+            //    var response = await Client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}/recommendations?api_key=" + _keys.TMDB);
+            //    return response;
+            //}
+
+            var response = await Client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}/recommendations?api_key=" + _keys.TMDB);
+            return response;
         }
         #endregion
     }
