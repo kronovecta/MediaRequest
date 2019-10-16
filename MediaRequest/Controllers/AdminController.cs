@@ -24,13 +24,15 @@ namespace MediaRequest.WebUI.Controllers
         private readonly IMediator _mediator;
         private readonly IMediaDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApiKeys _apikeys;
 
-        public AdminController(IMediator mediator, IMediaDbContext context, UserManager<IdentityUser> userManager, IOptions<ApiKeys> apikeys)
+        public AdminController(IMediator mediator, IMediaDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<ApiKeys> apikeys)
         {
             _mediator = mediator;
             _context = context;
             _userManager = userManager;
+            _roleManager = roleManager;
             _apikeys = apikeys.Value;
         }
 
@@ -138,6 +140,23 @@ namespace MediaRequest.WebUI.Controllers
             }
 
             return RedirectToAction("AdminPanel", "Admin");
+        }
+
+        //[Route("/user/manage")]
+        public async Task<IActionResult> UserManager()
+        {
+            var users = _userManager.Users.ToList();
+            var model = new UserManagerViewModel();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var item = new UserRoleViewModel { Roles = roles, User = user };
+
+                model.Users.Add(item);
+            }
+
+            return View(model);
         }
     }
 }

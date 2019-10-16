@@ -5,6 +5,7 @@
 @import url(_adminpanel.css);
 
 html, * {
+    color:#313131;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,6 +19,10 @@ h1, h2, h3, h4, h5, h6 {
 p {
     line-height: 1.6rem;
     font-weight: 400;
+}
+
+i:before {
+    vertical-align:middle;
 }
 
 a {
@@ -72,10 +77,11 @@ form {
 
         i {
             margin-left: -4px;
-            padding: 0.8rem;
+            /*padding: 0.8rem;*/
             position: absolute;
-            left: 10px;
+            left: 20px;
             color: $white-main;
+            top:25%;
         }
 
         input {

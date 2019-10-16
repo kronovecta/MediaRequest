@@ -3,6 +3,7 @@
 @import url(_showmovie.css);
 @import url(_adminpanel.css);
 html, * {
+  color: #313131;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,6 +15,9 @@ h1, h2, h3, h4, h5, h6 {
 p {
   line-height: 1.6rem;
   font-weight: 400; }
+
+i:before {
+  vertical-align: middle; }
 
 a {
   text-decoration: none;
@@ -55,10 +59,11 @@ form .input-container {
     display: inline-block; }
   form .input-container i {
     margin-left: -4px;
-    padding: 0.8rem;
+    /*padding: 0.8rem;*/
     position: absolute;
-    left: 10px;
-    color: #f8f9fc; }
+    left: 20px;
+    color: #f8f9fc;
+    top: 25%; }
   form .input-container input {
     background: #1a1a1a;
     border: 0;
