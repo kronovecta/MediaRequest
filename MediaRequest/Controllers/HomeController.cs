@@ -174,7 +174,7 @@ namespace MediaRequest.Controllers
             if (valid)
             {
                 var currentUser = await _userManager.GetUserAsync(User);
-                var request = new UserRequest() { Status = false, MovieId = tmdbid, UserId = Guid.Parse(currentUser.Id) };
+                var request = new UserRequest() { Status = false, MovieId = tmdbid, UserId = currentUser.Id };
 
                 var command = new AddRequestCommand { Request = request };
 

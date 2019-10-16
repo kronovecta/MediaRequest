@@ -36,26 +36,45 @@ namespace MediaRequest.WebUI.Controllers
 
         public async Task<IActionResult> AdminPanel()
         {
-            var model = new AdminPanelViewModel();
+            //var model = new AdminPanelViewModel();
 
             var upcomingResponse = await _mediator.Send(new GetUpcomingRequest());
             var requests = await _mediator.Send(new GetRequestsRequest());
             var members = await _userManager.Users.CountAsync();
             var existingMovies = await _mediator.Send(new GetExistingMoviesRequest());
+            var requestMovie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = requests.Requests.Last().MovieId });
+            var requestUser = await _userManager.FindByIdAsync(requests.Requests.Last().UserId);
 
-            model.Requests = requests.Requests.Count();
-            model.Members = members;
-            model.LatestRequest = requests.Requests.Last();
-            model.Reminders = 0;
-            model.TotalMovies = existingMovies.Movies.Count();
+            var model = new AdminPanelViewModel
+            {
+                NextUpcomingMovie = upcomingResponse.Movies.First(),
+                Requests = requests.Requests.Count(),
+                Members = members,
+                Reminders = 0,
+                TotalMovies = existingMovies.Movies.Count(),
+                LatestRequest = new AdminPanelRquestMovieViewModel
+                {
+                    Movie = requestMovie.Movie,
+                    User = requestUser
+                }
+            };
 
-            if (upcomingResponse.Movies.Count() > 0)
-            {
-                model.NextUpcomingMovie = upcomingResponse.Movies.First();
-            } else
-            {
-                model.NextUpcomingMovie = null;
-            }
+            //model.Requests = requests.Requests.Count();
+            //model.Members = members;
+
+            //model.LatestRequest.Movie = requestMovie.Movie;
+            //model.LatestRequest.User = requestUser;
+
+            //model.Reminders = 0;
+            //model.TotalMovies = existingMovies.Movies.Count();
+
+            //if (upcomingResponse.Movies.Count() > 0)
+            //{
+            //    model.NextUpcomingMovie = upcomingResponse.Movies.First();
+            //} else
+            //{
+            //    model.NextUpcomingMovie = null;
+            //}
 
             return View(model);
         }
