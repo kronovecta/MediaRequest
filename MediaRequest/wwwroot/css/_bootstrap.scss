@@ -1,7 +1,7 @@
 ﻿@import "_colors.scss";
 
 .btn {
-    display: inline-block;
+    display: inline-flex;
     padding: 0.9rem 1.3rem;
     border-radius: 3px;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.16);
@@ -20,11 +20,12 @@
     i {
         margin-left: 5px;
         vertical-align: middle;
+        color:inherit;
     }
 }
 
 .btn-sm {
-    display: inline-block;
+    display: inline-flex;
     padding: 0.6rem 0.7rem;
     font-size: 0.9em;
     border-radius: 3px;
@@ -44,6 +45,7 @@
     i {
         margin-right: 5px;
         vertical-align: middle;
+        color: inherit;
     }
 }
 

@@ -1,4 +1,12 @@
-﻿.admin-container {
+﻿.navbar {
+    .nav-container {
+        .nav-item-container {
+
+        }
+    }
+}
+
+.admin-container {
     max-width: 1000px;
     margin: 5rem auto;
     align-items: center;
@@ -10,34 +18,54 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-    }
 
-    .card {
-        display: flex;
-        flex-direction: column;
-        padding: 2rem;
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-        text-align: center;
-        background:#f8f8f8;
+        > a {
+            text-decoration: none;
+            width: 33%;
 
-        h1 {
-            display: inline-block;
-            font-size: 1.4rem;
+            .card-sm {
+                width: 100%;
+            }
+
+            .card-lg {
+                width: 100%;
+            }
         }
 
-        h2 {
-            display: inline-block;
-            font-size: 2.4rem;
+        .card {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            /*border: 1px solid lightgrey;*/
+            border-radius: 5px;
+            text-align: center;
+            background: #f8f8f8;
+            transition: 0.2s;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+
+            &:hover {
+                transition: 0.2s;
+                background: #f0f0f0;
+            }
+
+            h1 {
+                display: inline-block;
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                display: inline-block;
+                font-size: 2.4rem;
+            }
         }
-    }
 
-    .card-sm {
-        width: 30%;
-    }
+        .card-sm {
+            width: 30%;
+        }
 
-    .card-lg {
-        width: 100%;
+        .card-lg {
+            width: 100%;
+        }
     }
 }
 

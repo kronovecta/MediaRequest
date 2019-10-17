@@ -1,6 +1,6 @@
 .cast .loadmore {
   width: 100%;
-  background: #eee;
+  background: #f9f9f9;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
   .cast .loadmore a {
@@ -9,9 +9,9 @@
     text-align: center;
     padding: 1rem; }
 .cast .actor h1 {
-  font-size: 1.5rem; }
+  font-size: 1.2rem; }
 .cast .actor h2 {
-  font-size: 1.1rem; }
+  font-size: 1rem; }
 .cast > h1 {
   margin: 1rem 0; }
 .cast ul {
@@ -28,7 +28,7 @@
     width: 20%;
     padding: 1rem;
     border-radius: 3px;
-    background: #eee;
+    background: #f9f9f9;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
     .cast .top-billed .actor:not(:last-child) {
       margin-right: 1rem; }
@@ -45,7 +45,7 @@
     height: 105px;
     width: 32%;
     margin-bottom: 1rem;
-    background: #eee;
+    background: #f9f9f9;
     padding: 1rem;
     display: flex;
     flex-direction: row;
