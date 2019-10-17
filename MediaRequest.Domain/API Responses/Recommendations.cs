@@ -21,6 +21,7 @@ namespace MediaRequest.Domain.API_Responses
 
         public string PosterUrl { get; set; }
         public string FanartUrl { get; set; }
+        public string TitleSlug { get; set; }
     }
 
     public class Recommendations

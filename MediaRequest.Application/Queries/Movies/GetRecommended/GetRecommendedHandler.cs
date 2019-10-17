@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,10 +33,8 @@ namespace MediaRequest.Application.Queries.Movies
 
             foreach (var movie in recommendations.Results)
             {
+                movie.TitleSlug = movie.Title.Replace(" ", "-").ToString().ToLower() + ("-" + movie.Id);
                 movie.PosterUrl = "https://image.tmdb.org/t/p/w500" + movie.Poster_path;
-
-                //movie.PosterUrl = _path.Radarr + movie.Poster_path.Split(new string[] { "/radarr" }, StringSplitOptions.None)[1];
-                //movie.FanartUrl = _path.Radarr + movie.Backdrop_path.Split(new string[] { "/radarr" }, StringSplitOptions.None)[1];
             }
 
             var response = new GetRecommendedResponse { Recommendations = recommendations };
