@@ -9,9 +9,16 @@
                 <li><a asp-action="Search" asp-controller="Home">Search</a></li>
                 @if (this.User.IsInRole("admin"))
                 {
-                    <li><a asp-action="AdminPanel" asp-controller="Admin">Admin Panel</a></li>
-                    <li><a asp-action="Requests" asp-controller="Admin">Requests</a></li>
-                    <li><a asp-action="UserManager" asp-controller="Admin">Users</a></li>
+                    @*<li><a asp-action="AdminPanel" asp-controller="Admin">Admin Panel</a></li>
+                    <li><a asp-action="Requests" asp-controller="Admin">Requests</a></li>*@
+                    @*<li><a asp-action="UserManager" asp-controller="Admin">Users</a></li>*@
+                    <li class="dropdown"><a asp-action="AdminPanel" asp-controller="Admin">Admin</a>
+                        <div class="submenu">
+                            <a class="submenu-item" asp-action="Requests" asp-controller="Admin">Requests</a>
+                            <a class="submenu-item" asp-action="UserManager" asp-controller="Admin">Users</a>
+                            <a class="submenu-item">Settings</a>
+                        </div>
+                    </li>
                 }
             </ul>
         </div>

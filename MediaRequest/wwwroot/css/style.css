@@ -7,10 +7,10 @@ html, * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; }
+  font-family: 'Segoe UI', sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif; }
 
 p {
   line-height: 1.6rem;
@@ -120,6 +120,22 @@ nav.navbar {
           background: #f5323f; }
         nav.navbar .nav-container .nav-item-container ul li:not(:last-child) {
           margin-right: -5px; }
+        nav.navbar .nav-container .nav-item-container ul li div.submenu {
+          display: none;
+          position: absolute;
+          background: #121212;
+          padding: 0.3rem 0;
+          top: 72px;
+          right: 5rem; }
+          nav.navbar .nav-container .nav-item-container ul li div.submenu a.submenu-item {
+            padding: 0;
+            display: block;
+            width: 100%;
+            padding: 0.3rem 3rem; }
+            nav.navbar .nav-container .nav-item-container ul li div.submenu a.submenu-item:hover {
+              background: #f5323f; }
+      nav.navbar .nav-container .nav-item-container ul li:hover div.submenu {
+        display: block; }
 
 nav.submenu {
   margin-bottom: 2rem;
@@ -388,6 +404,7 @@ main {
         .single-movie-container section.container nav.page-nav ul li {
           flex-grow: 1; }
           .single-movie-container section.container nav.page-nav ul li a {
+            font-weight: 600;
             color: inherit;
             width: 100%;
             padding: 1rem 0;

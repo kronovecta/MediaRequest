@@ -19,14 +19,14 @@ namespace MediaRequest.WebUI.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Login()
+        public IActionResult Login(string ReturnUrl)
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl)
         {
             if(ModelState.IsValid)
             {
@@ -34,7 +34,7 @@ namespace MediaRequest.WebUI.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(ReturnUrl);
                 }
             }
 
@@ -46,9 +46,10 @@ namespace MediaRequest.WebUI.Controllers
             return View();
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            return RedirectToAction("Index", "Home");
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

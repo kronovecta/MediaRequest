@@ -9,11 +9,11 @@ html, * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+    font-family: 'Segoe UI', sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 p {
@@ -118,8 +118,8 @@ nav.navbar {
     }
 
     li.nav-divider {
-        border-left:1px solid lightgrey;
-        height:100%,
+        border-left: 1px solid lightgrey;
+        height: 100%,
     }
 
     .nav-container {
@@ -161,6 +161,30 @@ nav.navbar {
                     &:not(:last-child) {
                         margin-right: -5px;
                     }
+
+                    div.submenu {
+                        display: none;
+                        position: absolute;
+                        background: #121212;
+                        padding: 0.3rem 0;
+                        top: 72px;
+                        right: 5rem;
+
+                        a.submenu-item {
+                            padding: 0;
+                            display: block;
+                            width: 100%;
+                            padding: 0.3rem 3rem;
+
+                            &:hover {
+                                background: $red-main;
+                            }
+                        }
+                    }
+                }
+
+                li:hover div.submenu {
+                    display: block;
                 }
             }
         }
@@ -177,7 +201,7 @@ nav.submenu {
 
     .submenu-item {
         display:inline-block;
-        color: white;;
+        color: white;
         padding: 1rem 1.5rem;
         font-size: 1rem;
 
@@ -551,6 +575,7 @@ main {
                         flex-grow: 1;
 
                         a {
+                            font-weight:600;
                             color: inherit;
                             width: 100%;
                             padding: 1rem 0;

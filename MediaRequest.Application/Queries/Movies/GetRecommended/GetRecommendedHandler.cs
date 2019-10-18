@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,7 +34,8 @@ namespace MediaRequest.Application.Queries.Movies
 
             foreach (var movie in recommendations.Results)
             {
-                movie.TitleSlug = movie.Title.Replace(" ", "-").ToString().ToLower() + ("-" + movie.Id);
+                movie.TitleSlug = Regex.Replace(movie.Title, "[^0-9a-zA-Z ]+", "");
+                movie.TitleSlug = movie.TitleSlug.Replace(" ", "-").ToString().ToLower() + ("-" + movie.Id);
                 movie.PosterUrl = "https://image.tmdb.org/t/p/w500" + movie.Poster_path;
             }
 

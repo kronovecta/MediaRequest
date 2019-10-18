@@ -32,11 +32,12 @@ main {
         margin: 0 0.5rem 0.5rem 0.5rem; }
       main .form-container form .form-group:not(:last-child) input:not([type="submit"]) {
         border-radius: 5px;
-        padding: 0.5rem;
+        padding: 0.7rem 1rem;
         box-sizing: border-box;
         width: 100%;
         border: none;
-        background: #eee; }
+        background: #eee;
+        font-size: 1rem; }
       main .form-container form .form-group:not(:last-child) input[type="submit"] {
         width: 100%;
         margin: 1rem 0 0 0; }
