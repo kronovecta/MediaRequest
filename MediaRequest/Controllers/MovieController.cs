@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.People.GetCombinedMedia;
 using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.WebUI.ViewModels;
@@ -57,6 +58,20 @@ namespace MediaRequest.Controllers
             var model = response.Recommendations;
 
             return PartialView("_RecommendationsPartial", model);
+        }
+
+        public async Task<IActionResult> Actor(string actorid)
+        {
+            var response = await _mediator.Send(new GetCombinedMediaRequest { ActorID = actorid });
+            //var model = response.Movies;
+
+            var model = new ActorViewModel
+            {
+                Actor = response.Actor,
+                Movies = response.Movies
+            };
+
+            return View(model);
         }
     }
 }

@@ -17,5 +17,7 @@ namespace MediaRequest.Application
         Task<HttpResponseMessage> GetCast(GetCreditsRequest request);
         Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request);
         Task<HttpResponseMessage> GetUpcoming(int? days);
+        Task<HttpResponseMessage> GetDetails(string actorid);
+        Task<HttpResponseMessage> GetCombinedMedia(string actorid);
     }
 }

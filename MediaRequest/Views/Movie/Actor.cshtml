@@ -1,0 +1,8 @@
+﻿@model MediaRequest.WebUI.ViewModels.ActorViewModel
+
+<h1>@Model.Actor.name</h1>
+
+@foreach (var item in Model.Movies.cast)
+{
+    <h2>@item.title</h2>
+}
