@@ -41,17 +41,22 @@ namespace MediaRequest.Controllers
         {
             var movies = await _mediator.Send(new GetExistingMoviesRequest());
 
-            var model = new IndexViewModel() 
+            var model = new IndexViewModel()
             {
-                Movies = movies.Movies,
-                LatestMovie = movies.LatestMovie
+                LatestMovie = movies.LatestMovie,
+                PartialView = new IndexListPartialViewModel
+                {
+                    Term = "",
+                    FilterMode = 0,
+                    Movies = movies.Movies
+                }
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string term)
+        public async Task<IActionResult> Index(string term, int filter)
         {
             if(term == null)
             {
@@ -62,15 +67,20 @@ namespace MediaRequest.Controllers
             } 
             else
             {
-                var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term });
+                var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter });
 
                 var model = new IndexViewModel()
                 {
-                    Movies = movies.Movies,
-                    LatestMovie = movies.LatestMovie
+                    LatestMovie = movies.LatestMovie,
+                    PartialView = new IndexListPartialViewModel
+                    {
+                        Term = term,
+                        FilterMode = filter,
+                        Movies = movies.Movies
+                    }
                 };
 
-                return PartialView("_MovieListPartial", model.Movies);
+                return PartialView("_MovieListPartial", model.PartialView);
             }
         }
 

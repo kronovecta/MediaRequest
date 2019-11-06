@@ -113,10 +113,18 @@ namespace MediaRequest.Application.Queries.Movies
             {
                 var res = await _http.GetMovie();
                 res.EnsureSuccessStatusCode();
-
                 var result = await res.Content.ReadAsStringAsync();
                 var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result)
-                    .Where(x => x.Title.ToLower().Contains(request.Input.ToLower()) || x.AlternativeTitles.Any(y => y.title.ToLower().Contains(request.Input.ToLower()))).ToList();
+                        .Where(x => x.Title.ToLower().Contains(request.Input.ToLower()) || x.AlternativeTitles.Any(y => y.title.ToLower().Contains(request.Input.ToLower()))).ToList();
+
+                if (request.FilterMode == 1)
+                {
+                    movies = movies.Where(x => x.Downloaded == true).ToList();
+                    
+                } else if(request.FilterMode == 2)
+                {
+                    movies = movies.Where(x => x.Downloaded == false).ToList();
+                }
 
                 var response = new GetExistingMoviesResponse();
 
@@ -131,7 +139,7 @@ namespace MediaRequest.Application.Queries.Movies
                     }
 
                     var latestMovie = movies.Where(x => x.Downloaded == true).First();
-
+                    // TODO: NO MOVIE DOWNLOADED == CRASHES
                     
                     response.Movies = movies;
                     response.LatestMovie = latestMovie;

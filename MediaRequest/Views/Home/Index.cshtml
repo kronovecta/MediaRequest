@@ -1,7 +1,7 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexViewModel
 
 
-@if (Model.Movies != null)
+@if (Model.PartialView.Movies != null)
 {
     <div class="movie-hero">
         <div class="movie-hero-content">
@@ -22,18 +22,8 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="movie-list-header">
-            <h1>Existing movies</h1>
-            <form asp-action="Index" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movie-list-container" data-ajax-method="post">
-                <div class="input-container">
-                    <i class="fas fa-search"></i>
-                    <input name="term" placeholder="Search.." />
-                </div>
-            </form>
-        </div>
-
-        <partial name="_MovieListPartial" model="Model.Movies" />
+    <div class="container movies-partial-container">
+        <partial name="_MovieListPartial" model="Model.PartialView" />
     </div>
 
     @*<div class="movie-list-container">

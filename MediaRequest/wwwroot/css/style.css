@@ -204,6 +204,10 @@ main {
       flex-grow: 1; }
     main .container .movie-list-header > form {
       flex-grow: 2; }
+  main .container .movie-list-filter ul {
+    list-style: none; }
+    main .container .movie-list-filter ul li {
+      display: inline-block; }
   main .container .movie-container {
     padding: 1.5em;
     display: flex;

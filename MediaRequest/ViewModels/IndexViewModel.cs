@@ -8,7 +8,14 @@ namespace MediaRequest.WebUI.ViewModels
 {
     public class IndexViewModel
     {
-        public IEnumerable<Movie> Movies { get; set; }
         public Movie LatestMovie { get; set; }
+        public IndexListPartialViewModel PartialView { get; set; }
+    }
+
+    public class IndexListPartialViewModel
+    {
+        public string Term { get; set; }
+        public int FilterMode { get; set; }
+        public IEnumerable<Movie> Movies { get; set; }
     }
 }

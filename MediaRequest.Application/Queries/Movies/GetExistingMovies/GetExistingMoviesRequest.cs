@@ -25,5 +25,7 @@ namespace MediaRequest.Application.Queries.Movies
                 _input = value.ToLower();
             }
         }
+
+        public int FilterMode { get; set; }
     }
 }
