@@ -9,6 +9,7 @@ using MediaRequest.Models;
 //using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IMediaDbContext _context;

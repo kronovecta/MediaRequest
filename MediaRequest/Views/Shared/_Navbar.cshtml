@@ -1,13 +1,22 @@
 ﻿<nav class="navbar">
     <div class="nav-container">
         <div class="nav-brand">
-            <a asp-action="Index" asp-controller="Home"><i class="fas fa-film"></i> Requestr</a>
+            <a asp-action="Index" asp-controller="Home"><i class="fas fa-film"></i> Apollo</a>
         </div>
         <div class="nav-item-container">
             <ul>
                 <li><a asp-action="Index" asp-controller="Home">Home</a></li>
                 <li><a asp-action="Search" asp-controller="Home">Search</a></li>
-                <li><a asp-action="AdminPanel" asp-controller="Admin">Admin Panel</a></li>
+                @if (this.User.IsInRole("admin"))
+                {
+                    <li class="dropdown"><a asp-action="AdminPanel" asp-controller="Admin">Admin</a>
+                        <div class="submenu">
+                            <a class="submenu-item" asp-action="Requests" asp-controller="Admin">Requests</a>
+                            <a class="submenu-item" asp-action="UserManager" asp-controller="Admin">Users</a>
+                            <a class="submenu-item">Settings</a>
+                        </div>
+                    </li>
+                }
             </ul>
         </div>
     </div>

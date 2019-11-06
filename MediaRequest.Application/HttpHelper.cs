@@ -56,11 +56,6 @@ namespace MediaRequest.Application
         #region Misc
         public Task<HttpResponseMessage> GetDetails(GetMovieDetailsRequest request)
         {
-            //using (var client = new HttpClient())
-            //{
-            //    var response = client.GetAsync()
-            //}
-
             throw new NotImplementedException();
         }
 
@@ -72,12 +67,6 @@ namespace MediaRequest.Application
 
         public async Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request)
         {
-            //using (var client = new HttpClient())
-            //{
-            //    var response = await Client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}/recommendations?api_key=" + _keys.TMDB);
-            //    return response;
-            //}
-
             var response = await Client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}/recommendations?api_key=" + _keys.TMDB);
             return response;
         }
@@ -97,6 +86,19 @@ namespace MediaRequest.Application
             var response = await Client.GetAsync(_path.Radarr + $"/api/calendar?end={span}&apikey=" + _keys.Radarr);
             return response;
         }
+
+        public async Task<HttpResponseMessage> GetDetails(string actorid)
+        {
+            var response = await Client.GetAsync(_path.TMDB + "/person/" + actorid + "?api_key=" + _keys.TMDB);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> GetCombinedMedia(string actorid)
+        {
+            var response = await Client.GetAsync(_path.TMDB + "/person/" + actorid + "/movie_credits?api_key=" + _keys.TMDB);
+            return response;
+        }
+
         #endregion
     }
 }

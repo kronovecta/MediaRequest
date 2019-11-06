@@ -9,11 +9,11 @@ html, * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+    font-family: 'Segoe UI', sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 p {
@@ -110,15 +110,24 @@ nav.navbar {
     display: flex;
     justify-content: center;
     z-index: 999;
-    position:fixed;
-    top:0;
+    position: fixed;
+    top: 0;
+
+    i {
+        color: inherit;
+    }
+
+    li.nav-divider {
+        border-left: 1px solid lightgrey;
+        height: 100%,
+    }
 
     .nav-container {
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        max-width: 1100px;
+        padding: 0 5rem;
         align-items: center;
         height: 100%;
 
@@ -138,6 +147,7 @@ nav.navbar {
                 height: 100%;
 
                 li {
+                    color: inherit;
                     height: 100%;
                     display: block;
                     list-style: none;
@@ -145,18 +155,62 @@ nav.navbar {
                     padding: 1.5rem 0;
 
                     &:hover {
-                        background:$red-main;
+                        background: $red-main;
                     }
 
                     &:not(:last-child) {
                         margin-right: -5px;
                     }
+
+                    div.submenu {
+                        display: none;
+                        position: absolute;
+                        background: #121212;
+                        padding: 0.3rem 0;
+                        top: 72px;
+                        right: 5rem;
+                        border-radius: 0 0 3px 3px;
+
+                        a.submenu-item {
+                            padding: 0;
+                            display: block;
+                            width: 100%;
+                            padding: 0.3rem 3rem;
+
+                            &:hover {
+                                background: $red-main;
+                            }
+                        }
+                    }
+                }
+
+                li:hover div.submenu {
+                    display: block;
                 }
             }
         }
     }
 }
 
+nav.submenu {
+    margin-bottom:2rem;
+    padding:0 5rem;
+    flex-direction: row;
+    text-align: left;
+    border-bottom:1px solid lightgrey;
+    background:#121212;
+
+    .submenu-item {
+        display:inline-block;
+        color: white;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+
+        &:hover {
+            background:#222;
+        }
+    }
+}
 
 .SearchPartialContainer {
     display: flex;
@@ -406,7 +460,7 @@ main {
         z-index: 999;
 
         section.container {
-            margin-top: 10rem;
+            margin-top: 8rem;
             max-width: 1080px;
             width: 100%;
             z-index: 999;
@@ -532,6 +586,7 @@ main {
                         flex-grow: 1;
 
                         a {
+                            font-weight:600;
                             color: inherit;
                             width: 100%;
                             padding: 1rem 0;

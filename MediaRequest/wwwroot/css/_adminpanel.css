@@ -9,24 +9,36 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between; }
-  .admin-container .card {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    text-align: center;
-    background: #f8f8f8; }
-    .admin-container .card h1 {
-      display: inline-block;
-      font-size: 1.4rem; }
-    .admin-container .card h2 {
-      display: inline-block;
-      font-size: 2.4rem; }
-  .admin-container .card-sm {
-    width: 30%; }
-  .admin-container .card-lg {
-    width: 100%; }
+    .admin-container .row > a {
+      text-decoration: none;
+      width: 33%; }
+      .admin-container .row > a .card-sm {
+        width: 100%; }
+      .admin-container .row > a .card-lg {
+        width: 100%; }
+    .admin-container .row .card {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      /*border: 1px solid lightgrey;*/
+      border-radius: 5px;
+      text-align: center;
+      background: #f8f8f8;
+      transition: 0.2s;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
+      .admin-container .row .card:hover {
+        transition: 0.2s;
+        background: #f0f0f0; }
+      .admin-container .row .card h1 {
+        display: inline-block;
+        font-size: 1.4rem; }
+      .admin-container .row .card h2 {
+        display: inline-block;
+        font-size: 2.4rem; }
+    .admin-container .row .card-sm {
+      width: 30%; }
+    .admin-container .row .card-lg {
+      width: 100%; }
 
 .invite-form {
   color: #222;

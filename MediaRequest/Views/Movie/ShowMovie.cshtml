@@ -50,7 +50,8 @@
             <div id="trailer-container"></div>
             <nav class="page-nav">
                 <ul class="body-nav">
-                    <li><a asp-action="Details" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Details</a></li>
+                    @*<li><a asp-action="Details" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Details</a></li>*@
+                    <li><a href="#">Details</a></li>
                     <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Cast</a></li>
                     <li><a asp-action="Recommendations" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Recommended</a></li>
                 </ul>
@@ -59,8 +60,17 @@
                 <section class="details">
 
                 </section>
-                <div class="hidden loading"><img src="~/img/loading.gif" /></div>
             </div>
+            <div hidden class="loading"><img src="~/img/loading.gif" /></div>
         </div>
     </section>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.page-nav > .body-nav > li > a').on('click', function () {
+            $('.loading').show();
+            $('#container > section').hide();
+        });
+    });
+</script>
