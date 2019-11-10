@@ -114,14 +114,22 @@ namespace MediaRequest.Application.Queries.Movies
                 var res = await _http.GetMovie();
                 res.EnsureSuccessStatusCode();
                 var result = await res.Content.ReadAsStringAsync();
-                var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result)
-                        .Where(x => x.Title.ToLower().Contains(request.Input.ToLower()) || x.AlternativeTitles.Any(y => y.title.ToLower().Contains(request.Input.ToLower()))).ToList();
+                var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result);
+                var filtered = new List<Movie>();
+
+                var latestMovie = movies.Where(x => x.Downloaded == true).First();
+
+                if(request.Input != null)
+                {
+                    movies = movies.Where(x => x.Title.ToLower().Contains(request.Input.ToLower()) || x.AlternativeTitles.Any(y => y.title.ToLower().Contains(request.Input.ToLower())) || x.Studio.ToLower().Contains(request.Input.ToLower())).ToList();
+                }
 
                 if (request.FilterMode == 1)
                 {
                     movies = movies.Where(x => x.Downloaded == true).ToList();
-                    
-                } else if(request.FilterMode == 2)
+
+                }
+                else if (request.FilterMode == 2)
                 {
                     movies = movies.Where(x => x.Downloaded == false).ToList();
                 }
@@ -138,7 +146,7 @@ namespace MediaRequest.Application.Queries.Movies
                         movie.FanartUrl = _path.Radarr + movie.Images.SingleOrDefault(x => x.CoverType == "fanart").URL.Split(new string[] { "/radarr" }, StringSplitOptions.None)[1];
                     }
 
-                    var latestMovie = movies.Where(x => x.Downloaded == true).First();
+                    //var latestMovie = movies.Where(x => x.Downloaded == true).First();
                     // TODO: NO MOVIE DOWNLOADED == CRASHES
                     
                     response.Movies = movies;

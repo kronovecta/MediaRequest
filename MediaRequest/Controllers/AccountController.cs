@@ -34,7 +34,7 @@ namespace MediaRequest.WebUI.Controllers
 
                 if (result.Succeeded)
                 {
-                    return Redirect(ReturnUrl);
+                    return RedirectToAction("Index", "Home");
                 }
             }
 

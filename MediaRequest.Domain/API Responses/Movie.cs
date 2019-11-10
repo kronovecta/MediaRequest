@@ -41,6 +41,7 @@ namespace MediaRequest.Domain.Radarr
         public DateTime lastInfoSync { get; set; }
         public string youTubeTrailerId { get; set; }
         public int LocalScore { get; set; }
+        public string Studio { get; set; }
     }
 
     public class Genre

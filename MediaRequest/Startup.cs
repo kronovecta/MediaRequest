@@ -107,7 +107,7 @@ namespace MediaRequest
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{term?}");
+                    template: "{controller=Home}/{action=Index}");
                     //template: "{controller=Movie}/{action=ShowMovie}/{id?}");
             });
         }

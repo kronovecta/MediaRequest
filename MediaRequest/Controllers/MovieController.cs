@@ -19,14 +19,10 @@ namespace MediaRequest.Controllers
 {
     public class MovieController : Controller
     {
-        private readonly ApiKeys _apikeys;
         private readonly IMediator _mediator;
-        private readonly IConfiguration _configuration;
 
-        public MovieController(IOptions<ApiKeys> apikeys, IMediator mediator, IConfiguration configuration)
+        public MovieController(IMediator mediator)
         {
-            _configuration = configuration;
-            _apikeys = apikeys.Value;
             _mediator = mediator;
         }
 
@@ -73,5 +69,7 @@ namespace MediaRequest.Controllers
 
             return View(model);
         }
+
+
     }
 }

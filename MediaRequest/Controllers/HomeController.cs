@@ -60,12 +60,22 @@ namespace MediaRequest.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string term, int filter)
         {
-            if(term == null)
+            if(term == null && filter == 0)
             {
                 var response = await _mediator.Send(new GetExistingMoviesRequest());
-                var model = response.Movies;
 
-                return PartialView("_MovieListPartial", model);
+                var model = new IndexViewModel()
+                {
+                    LatestMovie = response.LatestMovie,
+                    PartialView = new IndexListPartialViewModel
+                    {
+                        Term = term,
+                        FilterMode = filter,
+                        Movies = response.Movies
+                    }
+                };
+
+                return PartialView("_MovieListPartial", model.PartialView);
             } 
             else
             {
@@ -88,55 +98,11 @@ namespace MediaRequest.Controllers
 
         public IActionResult Search()
         {
-            //var isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
-
             var model = new SearchResultViewModel();
 
             return View(model);
         }
 
-        //public async Task<IActionResult> SearchMoviesByName(SearchResultViewModel inputModel)
-        //{
-        //    var request = new SearchMovieByNameRequest
-        //    {
-        //        SearchTerm = inputModel.SearchTerm,
-        //        ApiKey_Radarr = _apikeys.Radarr,
-        //        ApiKey_TMDB = _apikeys.TMDB
-        //    };
-
-        //    var results = await _mediator.Send(request);
-
-        //    var existingMovies = await _mediator.Send(new GetExistingMoviesRequest { ApiKey_Radarr = _apikeys.Radarr });
-
-        //    var model = new SearchResultViewModel();
-
-        //    foreach (var item in results.Movies)
-        //    {
-        //        var movieExists = new MovieExists();
-        //        var existingMovie = existingMovies.Movies.SingleOrDefault(x => x.TMDBId == item.TMDBId);
-
-        //        if (/*existingMovies.Movies.Any(x => x.Title == item.Title)*/ existingMovie != null)
-        //        {
-        //            movieExists.Downloaded = existingMovie.Downloaded;
-        //            movieExists.Monitored = existingMovie.Monitored;
-        //            movieExists.Exists = true;
-        //            movieExists.Movie = item;
-        //        }
-        //        else
-        //        {
-        //            movieExists.Exists = false;
-        //            movieExists.Movie = item;
-        //        }
-
-        //        model.Movies.Add(movieExists);
-        //    }
-
-        //    model.LatestMovie = existingMovies.LatestMovie;
-
-        //    return View(model);
-        //}
-
-        //[HttpPost]
         public async Task<IActionResult> SearchMoviesByName(string term)
         {
             var request = new SearchMovieByNameRequest
@@ -155,7 +121,7 @@ namespace MediaRequest.Controllers
                 var movieExists = new MovieExists();
                 var existingMovie = existingMovies.Movies.SingleOrDefault(x => x.TMDBId == item.TMDBId);
 
-                if (/*existingMovies.Movies.Any(x => x.Title == item.Title)*/ existingMovie != null)
+                if (existingMovie != null)
                 {
                     movieExists.Downloaded = existingMovie.Downloaded;
                     movieExists.Monitored = existingMovie.Monitored;
@@ -174,26 +140,6 @@ namespace MediaRequest.Controllers
             model.LatestMovie = existingMovies.LatestMovie;
 
             return PartialView("_MovieSearchResultPartial", model);
-        }
-
-        public async Task<IActionResult> Request(string tmdbid)
-        {
-            var requests = await _context.Request.ToListAsync();
-            bool valid = false;
-
-            if (!requests.Any(x => x.MovieId == tmdbid)) valid = true;
-
-            if (valid)
-            {
-                var currentUser = await _userManager.GetUserAsync(User);
-                var request = new UserRequest() { Status = false, MovieId = tmdbid, UserId = currentUser.Id };
-
-                var command = new AddRequestCommand { Request = request };
-
-                await _mediator.Send(command);
-            }
-
-            return RedirectToAction("Search", "Home");
         }
 
 

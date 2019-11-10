@@ -1,19 +1,28 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexListPartialViewModel
+
 <div class="movie-list-header">
     <h1>Existing movies</h1>
     <form asp-action="Index" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">
         <div class="input-container">
             <i class="fas fa-search"></i>
-            <input name="term" placeholder="Search.." />
+            @*<input name="term" placeholder="Search.." />*@
+            @if (Model.Term != null)
+            {
+                <input name="term" placeholder="Search.." value="@Model.Term" />
+            }
+            else
+            {
+                <input name="term" placeholder="Search.." />
+            }
         </div>
     </form>
 </div>
 
 <div class="movie-list-filter">
     <ul>
-        <li><a asp-action="Index" asp-controller="Home" asp-route-filter="0" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">All</a></li>
-        <li><a asp-action="Index" asp-controller="Home" asp-route-filter="1" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Downloaded</a></li>
-        <li><a asp-action="Index" asp-controller="Home" asp-route-filter="2" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Missing</a></li>
+        <li class="filter-0"><a asp-action="Index" asp-controller="Home" asp-route-filter="0" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">All</a></li>
+        <li class="filter-1"><a asp-action="Index" asp-controller="Home" asp-route-filter="1" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Downloaded</a></li>
+        <li class="filter-2"><a asp-action="Index" asp-controller="Home" asp-route-filter="2" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Missing</a></li>
     </ul>
 </div>
 
