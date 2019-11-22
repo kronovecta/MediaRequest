@@ -41,7 +41,7 @@
                 <div class="button-block">
                     <ul>
                         <li><a class="btn btn-primary" asp-action="Trailer" asp-controller="Movie" asp-route-ytid="@Model.youTubeTrailerId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#trailer-container" data-ajax-method="get" data-ajax-loading=".loading">Watch trailer <i class="fab fa-youtube"></i></a></li>
-                        <li><a class="btn btn-default" href="#">Request movie <i class="fas fa-plus"></i></a></li>
+                        <li><a class="btn btn-default" asp-action="Request" asp-controller="Request" asp-route-tmdbid="@Model.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
                     </ul>
                 </div>
             </div>

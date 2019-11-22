@@ -1,5 +1,10 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexListPartialViewModel
 
+@{ 
+    var nextPage = Model.CurrentPage + 1;
+    var prevPage = Model.CurrentPage - 1;
+}
+
 <div class="movie-list-header">
     <h1>Existing movies</h1>
     <form asp-action="Index" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">
@@ -104,6 +109,13 @@
                 </div>
             </div>
         }
+
+        <div class="pagination">
+            @for (int i = 1; i < Model.TotalPages+1; i++)
+            {
+                <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@i" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">@i</a>
+			}
+        </div>
     }
     else
     {

@@ -12,6 +12,10 @@ using MediatR;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Commands;
 using MediaRequest.Domain.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using MediaRequest.WebUI.Models.IdentityModels;
 //using MediaRequest.WebUI.Models.Configuration;
 
 namespace MediaRequest
@@ -67,13 +71,13 @@ namespace MediaRequest
             services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlite(conn));
             services.AddDbContext<IdentityContext>(opt => opt.UseSqlite(conn));
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {

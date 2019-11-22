@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediaRequest.WebUI.Models
+namespace MediaRequest.WebUI.Models.IdentityModels
 {
     public class ApplicationUser : IdentityUser
     {
-        public string Avatar { get; set; }
+        public byte[] Avatar { get; set; }
     }
 }

@@ -15,6 +15,23 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Application.Queries.Movies
 {
+    static class Functions
+    {
+        public static int GetTotalPages(List<Movie> movies, int results)
+        {
+            var amount = 0;
+            if(movies.Count() % results != 0)
+            {
+                amount = (movies.Count() / results) + 1;
+            } else
+            {
+                amount = movies.Count() / results;
+            }
+            
+            return amount;
+        }
+    }
+
     public class GetExistingMoviesHandler : IRequestHandler<GetExistingMoviesRequest, GetExistingMoviesResponse>
     {
         private readonly IMediaDbContext _context;
@@ -32,6 +49,7 @@ namespace MediaRequest.Application.Queries.Movies
 
         public async Task<GetExistingMoviesResponse> Handle(GetExistingMoviesRequest request, CancellationToken cancellationToken)
         {
+            var results = request.Amount;
 
             using (var client = new HttpClient())
             {
@@ -39,7 +57,17 @@ namespace MediaRequest.Application.Queries.Movies
                 res.EnsureSuccessStatusCode();
 
                 var result = await res.Content.ReadAsStringAsync();
-                var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).Reverse();
+                var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).Reverse().ToList();
+
+                var totalPages = 0;
+
+                if(request.Amount > 0)
+                {
+                    totalPages = Functions.GetTotalPages(movies, request.Amount);
+                    movies = movies.Skip(request.Amount * (request.CurrentPage - 1)).Take(request.Amount).ToList();
+                }
+                
+                //movies = movies.GetRange((results * request.CurrentPage), results);
 
                 var moviePosters = await _context.MoviePoster.ToListAsync<MoviePoster>();
 
@@ -86,7 +114,9 @@ namespace MediaRequest.Application.Queries.Movies
                 var response = new GetExistingMoviesResponse
                 {
                     Movies = movies,
-                    LatestMovie = latestMovie
+                    LatestMovie = latestMovie,
+                    TotalPages = totalPages,
+                    CurrentPage = request.CurrentPage
                 };
 
                 return response;
@@ -109,15 +139,18 @@ namespace MediaRequest.Application.Queries.Movies
 
         public async Task<GetExistingMoviesResponse> Handle(GetExistingMoviesFilteredRequest request, CancellationToken cancellationToken)
         {
+            var results = 10;
+
             using (var client = new HttpClient())
             {
                 var res = await _http.GetMovie();
                 res.EnsureSuccessStatusCode();
                 var result = await res.Content.ReadAsStringAsync();
-                var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result);
-                var filtered = new List<Movie>();
-
+                var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).ToList();
                 var latestMovie = movies.Where(x => x.Downloaded == true).First();
+
+                //var totalPages = Functions.GetTotalPages(movies, results);
+                //movies = movies.GetRange((results * request.CurrentPage), results);
 
                 if(request.Input != null)
                 {
@@ -126,15 +159,18 @@ namespace MediaRequest.Application.Queries.Movies
 
                 if (request.FilterMode == 1)
                 {
-                    movies = movies.Where(x => x.Downloaded == true).ToList();
-
+                    movies = movies.Where(x => x.Downloaded == true).Reverse().ToList();
                 }
+
                 else if (request.FilterMode == 2)
                 {
-                    movies = movies.Where(x => x.Downloaded == false).ToList();
+                    movies = movies.Where(x => x.Downloaded == false).Reverse().ToList();
                 }
 
-                var response = new GetExistingMoviesResponse();
+                var totalPages = Functions.GetTotalPages(movies, results);
+                movies = movies.Skip(results * request.CurrentPage-1).Take(results).ToList();
+                //movies = movies.GetRange((results * request.CurrentPage), results);
+
 
                 if (movies.Count() > 0)
                 {
@@ -148,14 +184,23 @@ namespace MediaRequest.Application.Queries.Movies
 
                     //var latestMovie = movies.Where(x => x.Downloaded == true).First();
                     // TODO: NO MOVIE DOWNLOADED == CRASHES
-                    
-                    response.Movies = movies;
-                    response.LatestMovie = latestMovie;
+                    var response = new GetExistingMoviesResponse()
+                    {
+                        Movies = movies,
+                        LatestMovie = latestMovie,
+                        TotalPages = totalPages,
+                        CurrentPage = request.CurrentPage
+                    };
 
                     return response;
                 } else
                 {
-                    return new GetExistingMoviesResponse { Movies = new List<Movie>() };
+                    return new GetExistingMoviesResponse
+                    {
+                        Movies = new List<Movie>(),
+                        TotalPages = totalPages,
+                        CurrentPage = request.CurrentPage
+                    };
                 }
             }
         }

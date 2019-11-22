@@ -1,3 +1,19 @@
+input[type="text"], input[type="email"] {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border-radius: 3px;
+  border: 1px solid lightgrey; }
 
+input#User_UserName {
+  background: url(../img/user-regular.svg) no-repeat scroll;
+  padding-left: 2.5rem;
+  background-size: 16px;
+  background-position: 0.5rem; }
+
+input[type="email"] {
+  background: url(../img/envelope-regular.svg) no-repeat scroll;
+  padding-left: 2.5rem;
+  background-size: 20px;
+  background-position: 0.5rem; }
 
 /*# sourceMappingURL=_components.css.map */

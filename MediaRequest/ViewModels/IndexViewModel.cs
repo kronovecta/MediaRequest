@@ -17,5 +17,7 @@ namespace MediaRequest.WebUI.ViewModels
         public string Term { get; set; }
         public int FilterMode { get; set; }
         public IEnumerable<Movie> Movies { get; set; }
+        public int TotalPages { get; set; }
+        public int CurrentPage { get; set; }
     }
 }
