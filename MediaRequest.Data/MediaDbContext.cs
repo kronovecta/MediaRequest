@@ -26,9 +26,5 @@ namespace MediaRequest.Data
         {
             return base.SaveChangesAsync();
         }
-
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //}
     }
 }
