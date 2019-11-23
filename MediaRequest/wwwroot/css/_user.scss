@@ -65,21 +65,35 @@
 }
 
 .form-flex {
-    display:flex;
+    display: flex;
+
+    .form-section {
+        flex-grow: 1;
+    }
 }
-.form-section {
-    label {
-        display: block;
-    }
 
-    input {
-        width: 100%;
-    }
-
-    &:not(:last-child) {
+form {
+    .form-section {
         margin-right: 1rem;
+
+        label {
+            display: block;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .form-section .input-inline:last-child {
+        margin:0;
     }
 }
+
 
 .input-inline {
     display:inline-block;
@@ -128,9 +142,13 @@
         }
     }
 
-
-
     &:last-child {
         margin: 0;
+    }
+}
+
+.user-request-container {
+    .badge {
+        margin-left:0.5rem;
     }
 }

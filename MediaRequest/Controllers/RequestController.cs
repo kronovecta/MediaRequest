@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaRequest.Application;
 using MediaRequest.Application.Commands;
+using MediaRequest.Application.Commands.CancelRequest;
+using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediatR;
@@ -26,7 +28,7 @@ namespace MediaRequest.WebUI.Controllers
             _mediator = mediator;
         }
 
-        public async Task<IActionResult> Request(string tmdbid)
+        public async Task<IActionResult> AddRequest(string tmdbid)
         {
             var requests = await _context.Request.ToListAsync();
             bool valid = false;
@@ -50,7 +52,34 @@ namespace MediaRequest.WebUI.Controllers
                 await _mediator.Send(command);
             }
 
-            return Redirect(HttpContext.Request.Path);
+            var movie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = tmdbid });
+            var movieslug = movie.Movie.TitleSlug;
+
+            return RedirectToAction("ShowMovie", "Movie", new { slug = movieslug });
+        }
+
+        public async Task<IActionResult> CancelRequest(int requestid)
+        {
+            if(ModelState.IsValid)
+            {
+                var command = new CancelRequestCommand { RequestID = requestid };
+                try
+                {
+                    var response = await _mediator.Send(command);
+                }
+                catch (Exception ex)
+                {
+                    TempData["Error"] = ex.Message;
+                    return RedirectToAction("Profile", "User");
+                }
+
+                TempData["Success"] = "Request succesfully removed";
+                return RedirectToAction("Profile", "User");
+            } else
+            {
+                TempData["Error"] = "Invalid operation";
+                return RedirectToAction("Profile", "User");
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace MediaRequest.Data.Migrations.Identity
     [Migration("20190927160134_IdentitySqlite")]
     partial class IdentitySqlite
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected /*override*/ void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

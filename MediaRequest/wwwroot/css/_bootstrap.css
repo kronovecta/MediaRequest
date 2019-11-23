@@ -103,4 +103,11 @@
   color: #fff;
   background-color: #28a745; }
 
+.alert {
+  position: absolute;
+  top: 3rem;
+  margin: 0 auto;
+  width: 60%;
+  padding: 1rem; }
+
 /*# sourceMappingURL=_bootstrap.css.map */

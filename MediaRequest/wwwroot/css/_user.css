@@ -49,13 +49,19 @@
 
 .form-flex {
   display: flex; }
+  .form-flex .form-section {
+    flex-grow: 1; }
 
-.form-section label {
-  display: block; }
-.form-section input {
-  width: 100%; }
-.form-section:not(:last-child) {
+form .form-section {
   margin-right: 1rem; }
+  form .form-section label {
+    display: block; }
+  form .form-section input {
+    width: 100%; }
+  form .form-section:last-child {
+    margin-right: 0; }
+form .form-section .input-inline:last-child {
+  margin: 0; }
 
 .input-inline {
   display: inline-block; }
@@ -91,5 +97,8 @@
       vertical-align: middle; }
   .user-request-container:last-child {
     margin: 0; }
+
+.user-request-container .badge {
+  margin-left: 0.5rem; }
 
 /*# sourceMappingURL=_user.css.map */
