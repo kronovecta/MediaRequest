@@ -26,4 +26,7 @@ input[type="email"] {
   .flex-container .form-section {
     flex-grow: 1; }
 
+.align-right {
+  text-align: right; }
+
 /*# sourceMappingURL=_components.css.map */

@@ -39,6 +39,7 @@ a {
 
 .row {
     display:flex;
+    margin-bottom:1rem;
 
     > * {
         flex-grow:1;
@@ -460,6 +461,18 @@ main {
             }
         }
     }
+}
+
+#cookieConsent {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $blue-light;
+    padding: 1rem 2rem;
+    z-index: 1100;
+    border-radius: 0.25rem;
+    width:max-content;
 }
 
     .single-movie-container {

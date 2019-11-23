@@ -1,4 +1,6 @@
-﻿.profile-head {
+﻿@import "_colors.scss";
+
+.profile-head {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -80,7 +82,7 @@ form {
             display: block;
         }
 
-        input {
+        input[type="text"], input[type="email"] {
             width: 100%;
         }
 
@@ -131,6 +133,7 @@ form {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    transition: $transition-fast;
 
     .request-title {
         display: flex;
@@ -138,17 +141,24 @@ form {
 
         h3, h6 {
             display: inline-block;
-            vertical-align:middle;
+            vertical-align: middle;
         }
+    }
+
+    .badge {
+        margin-left: 0.5rem;
     }
 
     &:last-child {
         margin: 0;
     }
-}
 
-.user-request-container {
-    .badge {
-        margin-left:0.5rem;
+    &:hover {
+        /*background:$blue-light;
+        border:1px solid $blue-light;
+        transition:$transition-fast;*/
+        -webkit-box-shadow: 0px 3px 0px 0px lightgrey;
+        -moz-box-shadow: 0px 3px 0px 0px lightgrey;
+        box-shadow: 0px 3px 0px 0px lightgrey;
     }
 }

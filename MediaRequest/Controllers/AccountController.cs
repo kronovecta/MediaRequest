@@ -6,6 +6,7 @@ using MediaRequest.WebUI.Models.IdentityModels;
 using MediaRequest.WebUI.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MediaRequest.WebUI.Controllers
 {
@@ -13,11 +14,13 @@ namespace MediaRequest.WebUI.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IdentityContext _identityContext;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IdentityContext identityContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _identityContext = identityContext;
         }
 
         public IActionResult Login(string ReturnUrl)
@@ -51,6 +54,35 @@ namespace MediaRequest.WebUI.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(ApplicationUser input)
+        {
+            if(ModelState.IsValid)
+            {
+                var currentUser = await _userManager.GetUserAsync(User);
+
+                if (input.Email != currentUser.Email || input.UserName != currentUser.UserName)
+                {
+                    var contextUser = await _identityContext.AspNetUsers.SingleOrDefaultAsync(x => x.Id == currentUser.Id);
+
+                    if (input.Email != currentUser.Email)
+                    {
+                        contextUser.Email = input.Email;
+                    }
+
+                    if (input.UserName != currentUser.UserName)
+                    {
+                        contextUser.Email = input.Email;
+                    }
+
+                    await _identityContext.SaveChangesAsync();
+                }
+            }
+
+            TempData["Success"] = "Information updated succesfully!";
+            return RedirectToAction("Profile", "User");
         }
     }
 }

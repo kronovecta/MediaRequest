@@ -56,7 +56,7 @@ form .form-section {
   margin-right: 1rem; }
   form .form-section label {
     display: block; }
-  form .form-section input {
+  form .form-section input[type="text"], form .form-section input[type="email"] {
     width: 100%; }
   form .form-section:last-child {
     margin-right: 0; }
@@ -88,17 +88,24 @@ form .form-section .input-inline:last-child {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  transition: 0.2s; }
   .user-request-container .request-title {
     display: flex;
     align-self: center; }
     .user-request-container .request-title h3, .user-request-container .request-title h6 {
       display: inline-block;
       vertical-align: middle; }
+  .user-request-container .badge {
+    margin-left: 0.5rem; }
   .user-request-container:last-child {
     margin: 0; }
-
-.user-request-container .badge {
-  margin-left: 0.5rem; }
+  .user-request-container:hover {
+    /*background:$blue-light;
+    border:1px solid $blue-light;
+    transition:$transition-fast;*/
+    -webkit-box-shadow: 0px 3px 0px 0px lightgrey;
+    -moz-box-shadow: 0px 3px 0px 0px lightgrey;
+    box-shadow: 0px 3px 0px 0px lightgrey; }
 
 /*# sourceMappingURL=_user.css.map */

@@ -57,6 +57,7 @@ namespace MediaRequest
             });
 
             services.AddScoped<IHttpHelper, HttpHelper>();
+            services.AddSession();
 
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
@@ -96,6 +97,7 @@ namespace MediaRequest
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
