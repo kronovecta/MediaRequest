@@ -26,5 +26,10 @@ namespace MediaRequest.Data
         {
             return base.SaveChangesAsync();
         }
+
+        protected void OnModelCreation(ModelBuilder builder)
+        {
+            builder.Entity<UserRequest>().HasData(new UserRequest { UserId = "a4ab47cc-ddf1-419a-90eb-3e86dd8fa50c", MovieId = "181812", Status = false });
+        }
     }
 }

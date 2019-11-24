@@ -1,4 +1,6 @@
-﻿using MediaRequest.WebUI.Models.IdentityModels;
+﻿using MediaRequest.Application;
+using MediaRequest.Domain;
+using MediaRequest.WebUI.Models.IdentityModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -21,6 +23,11 @@ namespace MediaRequest
         {
             SeedRoles(roleManager);
             SeedUsers(userManager);
+        }
+
+        private void SeedRequests()
+        {
+            //var request = new UserRequest { UserId = "a4ab47cc-ddf1-419a-90eb-3e86dd8fa50c", MovieId =  }
         }
 
         public void SeedRoles(RoleManager<IdentityRole> roleManager)
