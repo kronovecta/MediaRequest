@@ -1,6 +1,12 @@
 ﻿@model MediaRequest.WebUI.ViewModels.Profile.ProfileViewModel
 
+
+
 <div class="container">
+    @{
+       <h1>@TempData.Keys.Count()</h1>
+    }
+
     <div class="profile-head">
         @if (Model.User.Avatar != null)
         {
@@ -12,7 +18,7 @@
         }
         else
         {
-            
+
             <div class="avatar">
                 <div class="avatar-background"></div>
                 <img src="http://all4ed.org/wp-content/themes/all4ed/assets/images/avatar-placeholder-generic.png" />
@@ -32,16 +38,7 @@
                 <h2>User info</h2>
             </div>
             <div class="content-right">
-                <form asp-action="UpdateProfile" asp-controller="User">
-                    <div class="form-section input-inline">
-                        <label asp-for="@Model.User.UserName">Username</label>
-                        <input asp-for="@Model.User.UserName" value="@Model.User.UserName" />
-                    </div>
-                    <div class="form-section input-inline">
-                        <label asp-for="@Model.User.Email">Email</label>
-                        <input type="email" asp-for="@Model.User.Email" value="@Model.User.Email" />
-                    </div>
-                </form>
+                <partial name="_UserInfoPartial" model="Model.User" />
             </div>
         </div>
         <div class="row">
@@ -51,20 +48,20 @@
             <div class="content-right">
                 @foreach (var request in Model.Requests)
                 {
-                <div class="user-request-container">
-                    <div class="request-title">
-                        <h3>@request.Movie.Title</h3>
-                        @if (request.Request.Status == true)
-                        {
-                            <h6><span class="badge badge-success">Accepted</span></h6>
-                        }
-                        else
-                        {
-                            <h6><span class="badge badge-danger">Not accepted</span></h6>
-                        }
+                    <div class="user-request-container">
+                        <div class="request-title">
+                            <h3><a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@request.Movie.TitleSlug">@request.Movie.Title</a></h3>
+                            @if (request.Request.Status == true)
+                            {
+                                <h6><span class="badge badge-success">Accepted</span></h6>
+                            }
+                            else
+                            {
+                                <h6><span class="badge badge-danger">Not accepted</span></h6>
+                            }
+                        </div>
+                        <a asp-action="CancelRequest" asp-controller="Request" asp-route-requestid="@request.Request.Id" class="btn-sm btn-primary">Cancel</a>
                     </div>
-                    <a href="#" class="btn-sm btn-primary">Cancel</a>
-                </div>
                 }
             </div>
         </div>

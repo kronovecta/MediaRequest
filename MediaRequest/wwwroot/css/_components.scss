@@ -1,8 +1,17 @@
-﻿input[type="text"], input[type="email"] {
-    flex-grow:1;
+﻿@import "_colors.scss";
+
+input[type="text"], input[type="email"] {
+    flex-grow: 1;
     padding: 0.5rem;
     border-radius: 3px;
-    border: 1px solid lightgrey;    
+    border: 1px solid lightgrey;
+    font-size: 1.1rem;
+
+    &:focus {
+        -webkit-box-shadow: inset 0px 0px 5px 0px #e0e4ea;
+        -moz-box-shadow: inset 0px 0px 5px 0px #e0e4ea;
+        box-shadow: inset 0px 0px 5px 0px #e0e4ea;
+    }
 }
 
 input#User_UserName {
@@ -17,4 +26,16 @@ input[type="email"] {
     padding-left: 2.5rem;
     background-size: 20px;
     background-position:0.5rem;
+}
+
+.flex-container {
+    display: flex;
+
+    .form-section {
+        flex-grow: 1;
+    }
+}
+
+.align-right {
+    text-align:right;
 }
