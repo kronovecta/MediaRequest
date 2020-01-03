@@ -1,8 +1,5 @@
-﻿@import "_colors.scss";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap');
-@import url(_bootstrap.css);
-@import url(_showmovie.css);
-@import url(_adminpanel.css);
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap');
+
 
 html, * {
     color:#313131;
@@ -35,6 +32,61 @@ a {
     }
 }
 
+.row {
+    display:flex;
+    margin-bottom:1rem;
+
+    > * {
+        flex-grow:1;
+    }
+}
+
+.dropdown-inline {
+    display: inline-block;
+    padding: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 0.5rem;
+
+    .dropdown-menu {
+        .dropdown-item {
+            display: block;
+        }
+    }
+}
+
+.pagination {
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+
+    .pagination-item {
+        padding:0.5rem 1rem;
+        border:1px solid lightgrey;
+        text-decoration:none;
+
+        &:not(:last-child) {
+            margin-right:-1px;
+        }
+
+        &:hover {
+            background:lightgrey;
+        }
+
+        &:first-child {
+            border-radius:3px 0 0 3px;
+        }
+
+        &:last-child {
+            border-radius:0 3px 3px 0;
+        }
+    }
+}
+
+.disabled {
+    opacity:0.7;
+    cursor:pointer;
+}
+
 body {
     font-size: 18px;
     margin-bottom:5rem;
@@ -62,6 +114,7 @@ body {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+    min-width:750px;
 }
 
 form {
@@ -109,7 +162,7 @@ nav.navbar {
     text-align: center;
     display: flex;
     justify-content: center;
-    z-index: 999;
+    z-index: 1000;
     position: fixed;
     top: 0;
 
@@ -226,6 +279,10 @@ nav.submenu {
 main {
     min-height: 100vh;
     background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
 
     .movie-hero {
         display: flex;
@@ -330,20 +387,20 @@ main {
             }
 
             > h1 {
-                flex-grow:1;
+                flex-grow: 1;
             }
 
             > form {
-                flex-grow:2;
+                flex-grow: 2;
             }
         }
 
         .movie-list-filter {
             ul {
-                list-style:none;
+                list-style: none;
 
                 li {
-                    display:inline-block;
+                    display: inline-block;
                 }
             }
         }
@@ -406,6 +463,18 @@ main {
     }
 }
 
+#cookieConsent {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $blue-light;
+    padding: 1rem 2rem;
+    z-index: 1100;
+    border-radius: 0.25rem;
+    width:max-content;
+}
+
     .single-movie-container {
         color: $white-main;
         width: 100%;
@@ -460,7 +529,7 @@ main {
         z-index: 999;
 
         section.container {
-            margin-top: 8rem;
+            margin-top: 5rem;
             max-width: 1080px;
             width: 100%;
             z-index: 999;

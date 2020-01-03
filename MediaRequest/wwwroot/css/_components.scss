@@ -1,2 +1,64 @@
-﻿body {
+﻿@import "_colors.scss";
+
+input[type="text"], input[type="email"] {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    font-size: 1.1rem;
+    background:white;
+
+    &:focus {
+        -webkit-box-shadow: inset 0px 0px 5px 0px #e0e4ea;
+        -moz-box-shadow: inset 0px 0px 5px 0px #e0e4ea;
+        box-shadow: inset 0px 0px 5px 0px #e0e4ea;
+    }
+}
+
+input#User_UserName {
+    background: url(../img/user-regular.svg) no-repeat scroll;
+    padding-left: 2.5rem;
+    background-size: 16px;
+    background-position: 0.5rem;
+}
+
+input[type="email"] {
+    background: white url(../img/envelope-regular.svg) no-repeat scroll;
+    padding-left: 2.5rem;
+    background-size: 20px;
+    background-position:0.5rem;
+}
+
+.flex-container {
+    display: flex;
+
+    .form-section {
+        flex-grow: 1;
+    }
+}
+
+.align-right {
+    text-align:right;
+}
+
+.container-no-padding {
+    padding: 0;
+    max-width: 1000px;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    background:$white-main;
+
+    .row {
+        padding:0;
+    }
+}
+
+.underline {
+    border-bottom:1px solid lightgrey;
+}
+
+.mb-1 {
+    margin-bottom:1rem;
 }

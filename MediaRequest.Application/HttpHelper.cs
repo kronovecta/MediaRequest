@@ -1,5 +1,6 @@
 ﻿using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
 using MediaRequest.Domain.Configuration;
 using Microsoft.Extensions.Options;
 using System;
@@ -46,7 +47,18 @@ namespace MediaRequest.Application
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}?api_key={_keys.TMDB}");
+                //var result = await client.GetAsync(_path.TMDB + $"/movie/{request.TMDBId}?api_key={_keys.TMDB}");
+                var result = await client.GetAsync($"{_path.Radarr}/api/movie/lookup/tmdb?apikey=fc2c71c89e9b42cf99c4bd4d215632b0&tmdbId={request.TMDBId}");
+
+                return result;
+            }
+        }
+
+        public async Task<HttpResponseMessage> GetMovie(GetSingleExistingMovieRequest request)
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetAsync($"{_path.Radarr}/api/movie/{request.RadarrMovieId}?apikey={_keys.Radarr}");
 
                 return result;
             }

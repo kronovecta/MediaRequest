@@ -1,0 +1,18 @@
+﻿@model MediaRequest.WebUI.Models.IdentityModels.ApplicationUser
+
+    <form asp-action="Update" asp-controller="Account" method="post">
+        <div class="row mb-1">
+            <div class="form-section input-inline">
+                <label asp-for="@Model.UserName">Username</label>
+                <input asp-for="@Model.UserName" value="@Model.UserName" />
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="form-section input-inline">
+                <label asp-for="@Model.Email">Email</label>
+                <input type="email" asp-for="@Model.Email" value="@Model.Email" />
+            </div>
+        </div>
+
+    </form>

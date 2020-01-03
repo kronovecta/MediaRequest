@@ -5,6 +5,7 @@ using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetUpcoming;
 using MediaRequest.Application.Queries.Requests;
 using MediaRequest.Domain.Configuration;
+using MediaRequest.WebUI.Models.IdentityModels;
 //using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediaRequest.WebUI.ViewModels.Admin;
@@ -23,11 +24,11 @@ namespace MediaRequest.WebUI.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMediaDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApiKeys _apikeys;
 
-        public AdminController(IMediator mediator, IMediaDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<ApiKeys> apikeys)
+        public AdminController(IMediator mediator, IMediaDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<ApiKeys> apikeys)
         {
             _mediator = mediator;
             _context = context;
@@ -38,45 +39,33 @@ namespace MediaRequest.WebUI.Controllers
 
         public async Task<IActionResult> AdminPanel()
         {
-            //var model = new AdminPanelViewModel();
-
             var upcomingResponse = await _mediator.Send(new GetUpcomingRequest());
             var requests = await _mediator.Send(new GetRequestsRequest());
             var members = await _userManager.Users.CountAsync();
             var existingMovies = await _mediator.Send(new GetExistingMoviesRequest());
-            var requestMovie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = requests.Requests.Last().MovieId });
-            var requestUser = await _userManager.FindByIdAsync(requests.Requests.Last().UserId);
-
+                
             var model = new AdminPanelViewModel
             {
                 NextUpcomingMovie = upcomingResponse.Movies.First(),
                 Requests = requests.Requests.Count(),
                 Members = members,
                 Reminders = 0,
-                TotalMovies = existingMovies.Movies.Count(),
-                LatestRequest = new AdminPanelRquestMovieViewModel
-                {
-                    Movie = requestMovie.Movie,
-                    User = requestUser
-                }
+                TotalMovies = existingMovies.Movies.Count()
             };
 
-            //model.Requests = requests.Requests.Count();
-            //model.Members = members;
+            if (requests.Requests.Count() > 0)
+            {
+                var latestRequestedMovie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = requests.Requests.Last().MovieId });
+                var requestUser = await _userManager.FindByIdAsync(requests.Requests.Last().UserId);
 
-            //model.LatestRequest.Movie = requestMovie.Movie;
-            //model.LatestRequest.User = requestUser;
+                var latestRequestViewModel = new AdminPanelRquestMovieViewModel
+                {
+                    Movie = latestRequestedMovie.Movie,
+                    User = requestUser
+                };
 
-            //model.Reminders = 0;
-            //model.TotalMovies = existingMovies.Movies.Count();
-
-            //if (upcomingResponse.Movies.Count() > 0)
-            //{
-            //    model.NextUpcomingMovie = upcomingResponse.Movies.First();
-            //} else
-            //{
-            //    model.NextUpcomingMovie = null;
-            //}
+                model.LatestRequest = latestRequestViewModel;
+            }
 
             return View(model);
         }

@@ -1,36 +1,48 @@
 ﻿@model MediaRequest.WebUI.ViewModels.Admin.AdminPanelViewModel
 
-<div class="admin-container">
-    <div class="row">
-        <a class="card card-sm" asp-action="Requests" asp-controller="Admin">
-            <h1>Active requests</h1>
-            <h2>@Model.Requests</h2>
-        </a>
+    <div class="admin-container">
+        <div class="row">
+            <a class="card card-sm" asp-action="Requests" asp-controller="Admin">
+                <h1>Active requests</h1>
+                <h2>@Model.Requests</h2>
+            </a>
 
-        <a class="card card-sm" asp-action="UserManager" asp-controller="Admin">
-            <h1>Members</h1>
-            <h2>@Model.Members</h2>
-        </a>
+            <a class="card card-sm" asp-action="UserManager" asp-controller="Admin">
+                <h1>Members</h1>
+                <h2>@Model.Members</h2>
+            </a>
 
-        <a asp-action="Index" asp-controller="Home">
-            <div class="card card-sm">
-                <h1>Total Movies</h1>
-                <h2>@Model.TotalMovies</h2>
-            </div>
-        </a>
+            <a asp-action="Index" asp-controller="Home">
+                <div class="card card-sm">
+                    <h1>Total Movies</h1>
+                    <h2>@Model.TotalMovies</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="row">
+            @if (Model.LatestRequest != null)
+            {
+                <a class="card card-lg" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.LatestRequest.Movie.TitleSlug">
+                    <h1>Latest request</h1>
+                    <h2>@Model.LatestRequest.Movie.Title <span style="display:block;font-size:1.5rem; opacity:0.7;">requested by @Model.LatestRequest.User.UserName</span></h2>
+                </a>
+            } else
+            {
+                <div class="card card-lg disabled">
+                    <h1>Latest request</h1>
+                    <h2>No existing requests</h2>
+                </div>
+            }
+
+        </div>
+
+        
+
+        <div class="row">
+            <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.NextUpcomingMovie.TitleSlug" class="card card-lg">
+                <h1>Next upcoming (30 days)</h1>
+                <h2>@Model.NextUpcomingMovie.Title</h2>
+            </a>
+        </div>
     </div>
-
-    <div class="row">
-        <a class="card card-lg" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.LatestRequest.Movie.TitleSlug">
-            <h1>Latest request</h1>
-            <h2>@Model.LatestRequest.Movie.Title <span style="display:block;font-size:1.5rem; opacity:0.7;">requested by @Model.LatestRequest.User.UserName</span></h2>
-        </a>
-    </div>
-
-    <div class="row">
-        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.NextUpcomingMovie.TitleSlug" class="card card-lg">
-            <h1>Next upcoming (30 days)</h1>
-            <h2>@Model.NextUpcomingMovie.Title</h2>
-        </a>
-    </div>
-</div>

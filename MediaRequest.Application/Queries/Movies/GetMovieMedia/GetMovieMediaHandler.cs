@@ -1,4 +1,5 @@
 ﻿using MediaRequest.Domain.Configuration;
+using MediaRequest.Domain.Radarr;
 using MediaRequest.Domain.TMDB;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -29,7 +30,7 @@ namespace MediaRequest.Application.Queries.Movies
                 result.EnsureSuccessStatusCode();
 
                 var resultString = await result.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject<TMDBMovie>(resultString);
+                var json = JsonConvert.DeserializeObject<Movie>(resultString);
 
                 var response = new GetMovieMediaResponse() { Movie = json };
 

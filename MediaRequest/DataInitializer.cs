@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using MediaRequest.Application;
+using MediaRequest.Domain;
+using MediaRequest.WebUI.Models.IdentityModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -16,10 +19,15 @@ namespace MediaRequest
             _config = config;
         }
 
-        public void SeedData(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
             SeedUsers(userManager);
+        }
+
+        private void SeedRequests()
+        {
+            //var request = new UserRequest { UserId = "a4ab47cc-ddf1-419a-90eb-3e86dd8fa50c", MovieId =  }
         }
 
         public void SeedRoles(RoleManager<IdentityRole> roleManager)
@@ -36,13 +44,13 @@ namespace MediaRequest
             }
         }
 
-        public void SeedUsers(UserManager<IdentityUser> userManager)
+        public void SeedUsers(UserManager<ApplicationUser> userManager)
         {
             foreach (var employee in _config.GetSection("seedusers").GetChildren().ToList())
             {
                 if (userManager.FindByNameAsync(employee.Key).Result == null)
                 {
-                    var user = new IdentityUser
+                    var user = new ApplicationUser
                     {
                         UserName = _config[$"seedusers:{employee.Key}:username"],
                         Email = _config[$"seedusers:{employee.Key}:email"],
