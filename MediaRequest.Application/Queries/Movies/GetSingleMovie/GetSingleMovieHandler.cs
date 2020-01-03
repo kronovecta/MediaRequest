@@ -40,9 +40,12 @@ namespace MediaRequest.Application.Queries
                 json.FanartUrl = existingMovie.FanartUrl;
             } else
             {
-                var tmdbResponse = await _mediator.Send(new GetMovieMediaRequest { TMDBId = request.TmdbId });
-                json.PosterUrl = $"https://image.tmdb.org/t/p/w500{tmdbResponse.Movie.poster_path}";
-                json.FanartUrl = $"https://image.tmdb.org/t/p/original{tmdbResponse.Movie.backdrop_path}";
+                var tmdbmovie = await _mediator.Send(new GetMovieMediaRequest { TMDBId = request.TmdbId });
+                //json.PosterUrl = $"https://image.tmdb.org/t/p/w500{tmdbResponse.Movie.poster_path}";
+                //json.FanartUrl = $"https://image.tmdb.org/t/p/original{tmdbResponse.Movie.backdrop_path}";
+
+                json.PosterUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "poster").First().URL;
+                json.FanartUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "fanart").First().URL;
             }
 
             var responseObject = new GetSingleMovieResponse()

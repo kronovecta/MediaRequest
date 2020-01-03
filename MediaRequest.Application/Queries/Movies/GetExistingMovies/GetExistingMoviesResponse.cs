@@ -8,5 +8,7 @@ namespace MediaRequest.Application.Queries.Movies
     {
         public IEnumerable<Movie> Movies { get; set; }
         public Movie LatestMovie { get; set; }
+        public int TotalPages { get; set; }
+        public int CurrentPage { get; set; }
     }
 }

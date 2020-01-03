@@ -8,6 +8,8 @@ namespace MediaRequest.Application.Queries.Movies
 {
     public class GetExistingMoviesRequest : IRequest<GetExistingMoviesResponse>
     {
+        public int CurrentPage { get; set; }
+        public int Amount { get; set; }
     }
 
     public class GetExistingMoviesFilteredRequest : IRequest<GetExistingMoviesResponse>
@@ -28,5 +30,7 @@ namespace MediaRequest.Application.Queries.Movies
 
         public string Input { get; set; }
         public int FilterMode { get; set; }
+        public int CurrentPage { get; set; }
+        public int Amount { get; set; }
     }
 }
