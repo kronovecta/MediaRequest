@@ -1,12 +1,20 @@
 ﻿@model MediaRequest.WebUI.ViewModels.Profile.ProfileViewModel
 
-
-
-<div class="container">
-    @{
-       <h1>@TempData.Keys.Count()</h1>
+@{
+    if (TempData["success"] != null)
+    {
+        var msg = TempData["success"].ToString();
+        <span class="alert">@msg</span>
     }
 
+    if (TempData["error"] != null)
+    {
+        var msg = TempData["error"].ToString();
+        <span class="alert">@msg</span>
+    }
+}
+
+<div class="container h-100">
     <div class="profile-head">
         @if (Model.User.Avatar != null)
         {
@@ -33,40 +41,48 @@
         </form>
     </div>
     <div class="profile-body">
+        <h2 class="pb-2">User info</h2>
         <div class="row">
-            <div class="legend-left">
-                <h2>User info</h2>
-            </div>
-            <div class="content-right">
-                <partial name="_UserInfoPartial" model="Model.User" />
-            </div>
+            <partial name="_UserInfoPartial" model="Model.User" />
         </div>
-        <div class="row">
-            <div class="legend-left">
-                <h2>Requests</h2>
-            </div>
-            <div class="content-right">
-                @foreach (var request in Model.Requests)
-                {
-                    <div class="user-request-container">
-                        <div class="request-title">
-                            <h3><a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@request.Movie.TitleSlug">@request.Movie.Title</a></h3>
-                            @if (request.Request.Status == true)
-                            {
-                                <h6><span class="badge badge-success">Accepted</span></h6>
-                            }
-                            else
-                            {
-                                <h6><span class="badge badge-danger">Not accepted</span></h6>
-                            }
-                        </div>
-                        <a asp-action="CancelRequest" asp-controller="Request" asp-route-requestid="@request.Request.Id" class="btn-sm btn-primary">Cancel</a>
-                    </div>
-                }
+
+        <div class="row pb-2 mb-0 underline">
+            <div class="form-section align-right">
+                <a class="btn-sm btn-primary" type="submit" asp-action="UpdatePassword" asp-controller="User">Change password</a>
+                <input class="btn-sm btn-default" type="submit" value="Save" />
             </div>
         </div>
 
-        @*<a class="btn btn-primary">Change password</a>*@
+        <div class="row pt-2">
+            <h2>Requests</h2>
+        </div>
+        @if (Model.Requests.Count() > 0)
+        {
+            foreach (var request in Model.Requests)
+            {
+                <div class="row">
+                    <div class="user-request-container">
+                        <div class="request-title">
+                            <h3>
+                                @if (request.Request.Status == true)
+                                {
+                                    <span class="badge badge-xsm badge-success">✓</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-xsm badge-danger">🗙</span>
+                                }
+                                <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@request.Movie.TitleSlug">@request.Movie.Title</a>
+                            </h3>
+                        </div>
+                        <a asp-action="CancelRequest" asp-controller="Request" asp-route-requestid="@request.Request.Id" class="btn-sm btn-primary">Cancel</a>
+                    </div>
+                </div>
+            }
+        } else
+        {
+            <p>No requests made. Why not <a asp-action="Search" asp-controller="Home">Search for one?</a></p>
+        }
     </div>
 </div>
 

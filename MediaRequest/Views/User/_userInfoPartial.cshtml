@@ -1,19 +1,18 @@
 ﻿@model MediaRequest.WebUI.Models.IdentityModels.ApplicationUser
 
-<form asp-action="Update" asp-controller="Account" method="post">
-    <div class="row">
-        <div class="form-section input-inline">
-            <label asp-for="@Model.UserName">Username</label>
-            <input asp-for="@Model.UserName" value="@Model.UserName" />
+    <form asp-action="Update" asp-controller="Account" method="post">
+        <div class="row mb-1">
+            <div class="form-section input-inline">
+                <label asp-for="@Model.UserName">Username</label>
+                <input asp-for="@Model.UserName" value="@Model.UserName" />
+            </div>
         </div>
-        <div class="form-section input-inline">
-            <label asp-for="@Model.Email">Email</label>
-            <input type="email" asp-for="@Model.Email" value="@Model.Email" />
+
+        <div class="row mb-1">
+            <div class="form-section input-inline">
+                <label asp-for="@Model.Email">Email</label>
+                <input type="email" asp-for="@Model.Email" value="@Model.Email" />
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="form-section align-right">
-            <input class="btn btn-default" type="submit" value="Save" />
-        </div>
-    </div>
-</form>
+
+    </form>

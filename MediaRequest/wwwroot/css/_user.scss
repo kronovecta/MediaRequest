@@ -6,6 +6,7 @@
     flex-direction: row;
     align-items: center;
     margin-bottom:2rem;
+    padding:2rem;
 
     h1 {
         font-size: 3rem;
@@ -101,25 +102,22 @@ form {
     display:inline-block;
 }
 
-
-
 .profile-body {
-    > .row:not(:last-child) {
-        border-bottom: 1px solid lightgrey;
-        padding-bottom: 2rem;
-        margin-bottom: 2rem;
-    }
-
     .legend-left {
         display: flex;
         align-items: center;
         width: 20%;
         border-right: 1px solid lightgrey;
-        padding-right: 1rem;
-        margin-right: 1rem;
+        padding: 1rem 2rem 1rem 1rem;
+
+        h2 {
+            text-align: right;
+            width: 100%;
+        }
     }
 
     .content-right {
+        padding: 1rem;
         width: 80%;
     }
 }

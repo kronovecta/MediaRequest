@@ -6,6 +6,25 @@
     <UserSecretsId>16420ac2-2938-40e6-ade0-e700111f68a3</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="wwwroot\css\\**" />
+    <Content Remove="wwwroot\css\\**" />
+    <EmbeddedResource Remove="wwwroot\css\\**" />
+    <None Remove="wwwroot\css\\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="7.0.0" />

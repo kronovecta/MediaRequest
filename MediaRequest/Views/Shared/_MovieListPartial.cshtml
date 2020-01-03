@@ -39,11 +39,15 @@
             <div class="movie-container">
                 <div class="movie-poster">
                     @if (item.RemotePoster != null)
-                    {<img src="@item.RemotePoster" /> }
+                    {
+                        <img src="@item.PosterUrl" /> 
+                    }
                     else
-                    { <img src="@item.PosterUrl" />}
-
+                    { 
+                        <img src="@item.PosterUrl" />
+                    }
                 </div>
+
                 <div class="movie-info">
                     <div class="info">
                         <h2>

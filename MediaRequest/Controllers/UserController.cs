@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaRequest.Application;
 using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
 using MediaRequest.Data;
 using MediaRequest.WebUI.Exceptions;
 using MediaRequest.WebUI.Models;
 using MediaRequest.WebUI.Models.IdentityModels;
+using MediaRequest.WebUI.ViewModels.Account;
 using MediaRequest.WebUI.ViewModels.Profile;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -90,6 +92,44 @@ namespace MediaRequest.WebUI.Controllers
             }
             
             return RedirectToAction("Profile", "User");
+        }
+
+        [Route("Profile/UpdatePassword")]
+        public IActionResult UpdatePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("Profile/UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword(UpdatePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.NewPassword == model.ConfirmPassword)
+                {
+                    var result = await _userManager.ChangePasswordAsync(await _userManager.GetUserAsync(User), model.CurrentPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        TempData["success"] = "Password updated!";
+                        return RedirectToAction("Profile");
+                    } else
+                    {
+                        TempData["error"] = $"Error: ";
+                        foreach (var error in result.Errors)
+                        {
+                            TempData["error"] += $"{error.Description}. ";
+                        }
+                        return View();
+                    }
+                } else
+                {
+                    TempData["error"] = $"Passwords do not match";
+                    return RedirectToAction("UpdatePassword");
+                }
+            }
+
+            return RedirectToAction("Profile");
         }
     }
 }
