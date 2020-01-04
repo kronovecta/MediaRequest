@@ -1,6 +1,4 @@
-﻿@import "_colors.scss";
-
-.btn {
+﻿.btn {
     display: inline-flex;
     padding: 0.9rem 1.3rem;
     border-radius: 3px;
@@ -110,6 +108,12 @@
     }
 }
 
+.btn-disabled {
+    background:$grey-light;
+    color:$dark-main;
+    cursor:default;
+}
+
 .badge {
     display: inline-block;
     padding: .25rem .4rem;
@@ -200,3 +204,9 @@
 .mb-2 { margin-bottom:2rem; }
 .mb-3 { margin-bottom:3rem; }
 .mb-4 { margin-bottom:4rem; }
+
+.mt-0 { margin-top:0rem; }
+.mt-1 { margin-top:1rem; }
+.mt-2 { margin-top:2rem; }
+.mt-3 { margin-top:3rem; }
+.mt-4 { margin-top:4rem; }

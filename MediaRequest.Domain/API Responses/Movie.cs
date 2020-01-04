@@ -42,6 +42,7 @@ namespace MediaRequest.Domain.Radarr
         public string youTubeTrailerId { get; set; }
         public int LocalScore { get; set; }
         public string Studio { get; set; }
+        public bool AlreadyAdded { get; set; } = false;
     }
 
     public class Genre

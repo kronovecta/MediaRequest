@@ -1,17 +1,16 @@
-﻿@model MediaRequest.WebUI.ViewModels.SearchResultViewModel
+﻿
+@model MediaRequest.WebUI.ViewModels.SearchResultViewModel
 
-    <div class="container">
-        <div class="SearchPartialContainer">
-            <form asp-action="SearchMoviesByName" asp-controller="Home" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="get" data-ajax-loading=".loading">
-                <div class="input-container">
-                    <i class="fas fa-search"></i>
-                    <input placeholder="Search movie..." class="form-control" name="term" />
-                </div>
-            </form>
-        </div>
-
-        @*<partial name="_SearchPartial" model="Model" />*@
-
-        <div id="Results"></div>
-        <div hidden class="loading"><img src="~/img/loading.gif" /></div>
+<div class="container">
+    <div class="SearchPartialContainer">
+        <form asp-action="SearchMoviesByName" asp-controller="Home" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Results" data-ajax-method="get" data-ajax-loading=".loading">
+            <div class="input-container">
+                <i class="fas fa-search"></i>
+                <input placeholder="Search movie..." class="form-control" name="term" />
+            </div>
+        </form>
     </div>
+
+    <div id="Results"></div>
+    <div class="loading"><img src="~/img/loading.gif" /></div>
+</div>
