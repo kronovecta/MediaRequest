@@ -63,6 +63,8 @@ namespace MediaRequest.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string term, int filter, int? pagenr)
         {
+            pagenr = pagenr - 1;
+
             if(term == null && filter == 0)
             {
                 var response = await _mediator.Send(new GetExistingMoviesRequest() { CurrentPage = pagenr ?? 0, Amount = 10 } );

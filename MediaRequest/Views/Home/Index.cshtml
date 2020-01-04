@@ -10,7 +10,7 @@
                 <h1>@Model.LatestMovie.Title </h1>
                 <p>@Model.LatestMovie.Overview</p>
                 <div class="button-container">
-                    <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.LatestMovie.TitleSlug" class="btn btn-primary btn-shadow">Go to movie page <i class="fas fa-film"></i></a>
+                    <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.LatestMovie.TitleSlug" class="btn btn-primary btn-shadow"><span>Go to movie page <i class="fas fa-film"></i></span></a>
                 </div>
             </div>
             <div class="movie-hero-poster">
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="container movies-partial-container">
+    <div class="container movies-partial-container" id="movies-partial-container">
         <partial name="_MovieListPartial" model="Model.PartialView" />
     </div>
 }
@@ -30,3 +30,4 @@ else
 {
     <h1>No movies added</h1>
 }
+

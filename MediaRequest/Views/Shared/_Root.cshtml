@@ -18,7 +18,14 @@
     <script>
         $(document).ready(function () {
             let navheight = $('nav.navbar').outerHeight();
-            $('main').css('padding-top', navheight);
+            let mobileNavHeight = $('.mobile-top-nav').outerHeight();
+
+            if (navheight != 0) {
+                $('main').css('margin-top', navheight);
+            } else {
+                $('main').css('margin-top', mobileNavHeight);
+            }
+            
         });
     </script>
     <script src="~/js/jquery.unobtrusive-ajax-edited.js"></script>

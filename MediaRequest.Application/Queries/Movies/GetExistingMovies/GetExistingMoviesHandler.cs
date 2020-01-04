@@ -22,10 +22,10 @@ namespace MediaRequest.Application.Queries.Movies
             var amount = 0;
             if(movies.Count() % results != 0)
             {
-                amount = (movies.Count() / results) + 1;
+                amount = (movies.Count() / results);
             } else
             {
-                amount = movies.Count() / results;
+                amount = movies.Count() / results - 1;
             }
             
             return amount;
@@ -60,13 +60,14 @@ namespace MediaRequest.Application.Queries.Movies
 
                 var result = await res.Content.ReadAsStringAsync();
                 var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).Reverse().ToList();
+                var latestMovie = movies.Where(x => x.Downloaded == true).First();
 
                 var totalPages = 0;
 
                 if(request.Amount > 0)
                 {
                     totalPages = Functions.GetTotalPages(movies, request.Amount);
-                    movies = movies.Skip(request.Amount * (request.CurrentPage - 1)).Take(request.Amount).ToList();
+                    movies = movies.Skip(request.Amount * request.CurrentPage).Take(request.Amount).ToList();
                 }
                 
                 foreach (var movie in movies)
@@ -91,7 +92,6 @@ namespace MediaRequest.Application.Queries.Movies
                     }
                 }
 
-                var latestMovie = movies.Where(x => x.Downloaded == true).First();
 
                 var response = new GetExistingMoviesResponse
                 {
