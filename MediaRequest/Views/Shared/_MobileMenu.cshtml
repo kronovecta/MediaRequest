@@ -1,0 +1,21 @@
+﻿<div class="mobilenav">
+    <div class="nav-item-container">
+        <ul>
+            <li><a asp-action="Index" asp-controller="Home"><span>Home</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
+            <li><a asp-action="Search" asp-controller="Home"><span>Search</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
+            <li><a asp-action="Profile" asp-controller="User"><span>Profile</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
+            @if (this.User.IsInRole("admin"))
+            {
+                <li class="dropdown">
+                    <a asp-action="AdminPanel" asp-controller="Admin"><span>Admin</span> <span><img class="icon rotated" src="~/img/chevron-right-solid.svg" /></span></a>
+                    <div class="submenu">
+                        <a class="submenu-item" asp-action="Requests" asp-controller="Admin">Requests</a>
+                        <a class="submenu-item" asp-action="UserManager" asp-controller="Admin">Users</a>
+                        <a class="submenu-item">Settings</a>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="backdrop"></div>
+</div>

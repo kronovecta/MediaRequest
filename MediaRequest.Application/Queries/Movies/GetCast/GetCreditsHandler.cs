@@ -31,6 +31,8 @@ namespace MediaRequest.Application.Queries.Movies
                     var credits = JsonConvert.DeserializeObject<Credits>(result);
 
                     credits.Cast.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
+
+                    credits.Crew = credits.Crew.Take(20).ToList();
                     credits.Crew.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
                     
                     credits.TopBilled = credits.Cast.Take(5).ToList();
