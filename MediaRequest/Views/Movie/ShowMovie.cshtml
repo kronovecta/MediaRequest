@@ -33,7 +33,7 @@
                 <div class="ratings">
                     <span title="The Movie Database rating">
                         <i class="fas fa-star"></i>
-                        <span class="rating">@Model.Ratings.Value.</span>
+                        <span class="rating">@(Model.Ratings.Value % 1 != 0 ? Model.Ratings.Value.ToString() : Model.Ratings.Value.ToString() + ",0")</span>
                         <span class="totalvotes">/ @Model.Ratings.Votes votes</span>
                     </span>
                 </div>
@@ -47,12 +47,11 @@
             </div>
         </div>
         <div class="body">
+
             <div id="trailer-container"></div>
             <nav class="page-nav">
                 <ul class="body-nav">
-                    @*<li><a asp-action="Details" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Details</a></li>*@
-                    <li><a href="#">Details</a></li>
-                    <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Cast</a></li>
+                    <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" id="credits" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Cast</a></li>
                     <li><a asp-action="Recommendations" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Recommended</a></li>
                 </ul>
             </nav>
@@ -68,9 +67,15 @@
 
 <script>
     $(document).ready(function () {
-        $('.page-nav > .body-nav > li > a').on('click', function () {
+        let navBtn = $('.page-nav > .body-nav > li');
+        navBtn.first().children('a').toggleClass('active');
+        navBtn.first().children('a').click();
+
+        navBtn.on('click', function () {
+            $('#container').children().first().remove();
             $('.loading').show();
-            $('#container > section').hide();
-        });
+            navBtn.children('a').removeClass('active');
+            $(this).children('a').addClass('active');
+        })
     });
 </script>

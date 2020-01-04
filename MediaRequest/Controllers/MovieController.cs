@@ -48,10 +48,11 @@ namespace MediaRequest.Controllers
             return PartialView("_CreditsPartial", model);
         }
 
-        public async Task<IActionResult> Recommendations(string tmdbid, int? page)
+        public async Task<IActionResult> Recommendations(string tmdbid)
         {
-            var response = await _mediator.Send(new GetRecommendedRequest { TMDBId = tmdbid, Page = page ?? 1 });
+            var response = await _mediator.Send(new GetRecommendedRequest { TMDBId = tmdbid, Page = 1 });
             var model = response.Recommendations;
+            model.TmdbId = tmdbid;
 
             return PartialView("_RecommendationsPartial", model);
         }
@@ -59,7 +60,6 @@ namespace MediaRequest.Controllers
         public async Task<IActionResult> Actor(string actorid)
         {
             var response = await _mediator.Send(new GetCombinedMediaRequest { ActorID = actorid });
-            //var model = response.Movies;
 
             var model = new ActorViewModel
             {

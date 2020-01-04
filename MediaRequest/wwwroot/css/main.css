@@ -1,6 +1,17 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
 @import url(_bootstrap.css);
+.icon {
+  width: 15px;
+  height: 15px; }
+  .icon > img {
+    vertical-align: middle;
+    padding-bottom: 4px; }
+
+.icon-key {
+  margin-right: 0.5rem;
+  fill: #ffffff; }
+
 html, * {
   color: #313131;
   margin: 0;
@@ -73,7 +84,10 @@ body {
 .loading {
   width: 100%;
   padding: 4rem 0;
-  text-align: center; }
+  text-align: center;
+  display: none;
+  transition: ease-in 1s;
+  opacity: 1; }
 
 .container {
   padding: 3rem 2rem;
@@ -395,8 +409,7 @@ main {
       z-index: 3;
       align-items: flex-start;
       padding-bottom: 3rem;
-      width: 100%;
-      border-bottom: 1px solid lightgrey; }
+      width: 100%; }
       .single-movie-container section.container > .head .info {
         padding-top: 1rem;
         max-width: 600px;
@@ -447,7 +460,6 @@ main {
           -moz-box-shadow: 0px 14px 10px -5px rgba(0, 0, 0, 0.75);
           box-shadow: 0px 14px 10px -5px rgba(0, 0, 0, 0.75); }
     .single-movie-container section.container nav.page-nav {
-      background: lightgrey;
       border-radius: 0.25rem 0.25rem 0 0;
       width: 100%; }
       .single-movie-container section.container nav.page-nav ul {
@@ -457,15 +469,28 @@ main {
         flex-direction: row;
         justify-content: space-around; }
         .single-movie-container section.container nav.page-nav ul li {
-          flex-grow: 1; }
+          flex-grow: 1;
+          transition: 0.5s; }
           .single-movie-container section.container nav.page-nav ul li a {
+            background: #e6e6e6;
             font-weight: 600;
             color: inherit;
             width: 100%;
             padding: 1rem 0;
             display: block;
             text-align: center;
-            text-decoration: none; }
+            text-decoration: none;
+            transition: 0.25s; }
+            .single-movie-container section.container nav.page-nav ul li a:hover {
+              background: #d4d4d4;
+              transition: 0.25s; }
+            .single-movie-container section.container nav.page-nav ul li a.active {
+              background: #d4d4d4;
+              transition: 0.5s; }
+          .single-movie-container section.container nav.page-nav ul li:first-child > a {
+            border-radius: 0.25rem 0 0 0.25rem; }
+          .single-movie-container section.container nav.page-nav ul li:last-child > a {
+            border-radius: 0 0.25rem 0.25rem 0; }
   .single-movie-container .recommended {
     padding: 2rem; }
     .single-movie-container .recommended .movie-sm {
@@ -843,16 +868,45 @@ main {
 .mb-4 {
   margin-bottom: 4rem; }
 
-.cast .loadmore {
-  width: 100%;
-  background: #f9f9f9;
+.mt-0 {
+  margin-top: 0rem; }
+
+.mt-1 {
+  margin-top: 1rem; }
+
+.mt-2 {
+  margin-top: 2rem; }
+
+.mt-3 {
+  margin-top: 3rem; }
+
+.mt-4 {
+  margin-top: 4rem; }
+
+.actor {
+  transition: 0.15s; }
+
+.actor:hover {
+  background: #e6e6e6 !important;
+  transition: 0.15s; }
+
+.loadmore {
+  width: 100% !important;
+  background: #e6e6e6;
   border-radius: 3px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
-  .cast .loadmore a {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+  transition: 0.2s; }
+  .loadmore:hover {
+    background: #d4d4d4;
+    transition: 0.2s; }
+  .loadmore > a {
     display: block;
-    width: 100%;
+    width: 100% !important;
     text-align: center;
     padding: 1rem; }
+
+.cast a:hover {
+  text-decoration: none; }
 
 .cast .actor h1 {
   font-size: 1.2rem; }
@@ -872,53 +926,61 @@ main {
 
 .cast .top-billed {
   flex-wrap: nowrap; }
-  .cast .top-billed .actor {
-    flex-direction: column;
-    height: auto;
-    width: 20%;
-    padding: 1rem;
-    border-radius: 3px;
-    background: #f9f9f9;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
-    .cast .top-billed .actor:not(:last-child) {
-      margin-right: 1rem; }
-    .cast .top-billed .actor img {
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 1rem;
-      height: 228px;
-      object-fit: cover;
-      object-position: center; }
+  .cast .top-billed a {
+    flex: 1; }
+    .cast .top-billed a .actor {
+      flex-direction: column;
+      height: 100%;
+      /*width: 100%;*/
+      padding: 1rem;
+      border-radius: 3px;
+      background: #f9f9f9;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
+      .cast .top-billed a .actor:not(:last-child) {
+        margin-right: 1rem; }
+      .cast .top-billed a .actor img {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+        height: 228px;
+        object-fit: cover;
+        object-position: center; }
+      .cast .top-billed a .actor:hover {
+        background: #e6e6e6; }
+    .cast .top-billed a:not(:last-child) {
+      margin-right: 0.5rem; }
 
 .cast .cast-list {
-  justify-content: flex-start; }
-  .cast .cast-list .actor {
-    height: 105px;
-    width: 32%;
-    margin-bottom: 1rem;
-    background: #f9f9f9;
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
-    .cast .cast-list .actor:not(:nth-child(3n)) {
-      margin-right: 0.5rem; }
-    .cast .cast-list .actor > .info {
-      display: inline-block; }
-      .cast .cast-list .actor > .info h1 {
-        font-size: 1.1rem; }
-      .cast .cast-list .actor > .info h2 {
-        font-size: 0.9rem; }
-      .cast .cast-list .actor > .info > * {
-        display: block; }
-    .cast .cast-list .actor > img {
-      margin-right: 2rem;
-      height: 60px;
-      width: 60px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%; }
+  /*justify-content: flex-start;*/ }
+  .cast .cast-list a {
+    width: 32%; }
+    .cast .cast-list a .actor {
+      height: 105px;
+      width: 100%;
+      margin-bottom: 1rem;
+      background: #f9f9f9;
+      padding: 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16); }
+      .cast .cast-list a .actor:not(:nth-child(3n)) {
+        margin-right: 0.5rem; }
+      .cast .cast-list a .actor > .info {
+        display: inline-block; }
+        .cast .cast-list a .actor > .info h1 {
+          font-size: 1.1rem; }
+        .cast .cast-list a .actor > .info h2 {
+          font-size: 0.9rem; }
+        .cast .cast-list a .actor > .info > * {
+          display: block; }
+      .cast .cast-list a .actor > img {
+        margin-right: 2rem;
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%; }
 
 .cast .crew-list {
   display: flex;
@@ -927,7 +989,8 @@ main {
     width: 48%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between; }
+    justify-content: space-between;
+    padding-bottom: 0.3rem; }
     .cast .crew-list li:nth-child(2n) {
       margin-left: 2rem; }
     .cast .crew-list li h2, .cast .crew-list li h3 {
@@ -947,7 +1010,7 @@ section.recommended {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    width: 20%;
     margin: 0;
     padding: 1rem; }
     section.recommended .recommended-movie-container:hover {
@@ -960,21 +1023,19 @@ section.recommended {
     section.recommended .recommended-movie-container .info {
       flex-grow: 1; }
 
-#trailer-container {
-  padding: 1rem; }
-  #trailer-container .video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 2rem; }
-    #trailer-container .video-container iframe, #trailer-container .video-container object, #trailer-container .video-container embed {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%; }
+#trailer-container .video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 2rem; }
+  #trailer-container .video-container iframe, #trailer-container .video-container object, #trailer-container .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
 
 @media (max-width: 1000px) {
   .cast .cast-list {
