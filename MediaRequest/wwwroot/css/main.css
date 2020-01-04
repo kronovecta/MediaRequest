@@ -80,12 +80,13 @@ nav.navbar {
   left: 0;
   width: 100%;
   background: #121212;
-  display: flex;
+  /*display: flex;*/
   flex-direction: row;
   padding: 1rem;
   justify-content: space-between;
   align-items: center;
-  z-index: 1999; }
+  z-index: 1999;
+  display: none; }
   .mobile-top-nav .navbar-brand {
     color: #f8f9fc; }
     .mobile-top-nav .navbar-brand:hover > a {
@@ -184,9 +185,11 @@ nav.navbar {
     height: 100%;
     overflow: hidden; }
 
-@media (max-width: 992px) {
+@media (max-width: 1080px) {
   .navbar {
-    display: none !important; } }
+    display: none !important; }
+  .mobile-top-nav {
+    display: flex !important; } }
 
 html, * {
   color: #313131;
@@ -794,6 +797,11 @@ main {
   .btn-accept:hover {
     background: #45a154; }
 
+.btn-disabled {
+  background: #e6e6e6;
+  color: #121212;
+  cursor: default; }
+
 .badge {
   display: inline-block;
   padding: .25rem .4rem;
@@ -1009,10 +1017,10 @@ main {
   background: #e6e6e6;
   border-radius: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
-  transition: 0.2s; }
+  transition: 0.25s; }
   .loadmore:hover {
     background: #d4d4d4;
-    transition: 0.2s; }
+    transition: 0.25s; }
   .loadmore > a {
     display: block;
     width: 100% !important;

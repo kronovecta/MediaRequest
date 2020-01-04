@@ -30,6 +30,12 @@ namespace MediaRequest.Controllers
         public async Task<IActionResult> ShowMovie(string slug)
         {
             var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = slug.Split('-').Last() });
+            var existing = await _mediator.Send(new GetExistingMoviesRequest());
+
+            if (existing.Movies.Any(x => x.TMDBId == result.Movie.TMDBId))
+            {
+                result.Movie.AlreadyAdded = true;
+            }
 
             return View(result.Movie);
         }

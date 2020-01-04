@@ -1,6 +1,4 @@
-﻿@import "_colors.scss";
-
-.btn {
+﻿.btn {
     display: inline-flex;
     padding: 0.9rem 1.3rem;
     border-radius: 3px;
@@ -108,6 +106,12 @@
     &:hover {
         background:$green-dark;
     }
+}
+
+.btn-disabled {
+    background:$grey-light;
+    color:$dark-main;
+    cursor:default;
 }
 
 .badge {

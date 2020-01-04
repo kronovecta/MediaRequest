@@ -41,7 +41,14 @@
                 <div class="button-block">
                     <ul>
                         <li><a class="btn btn-primary" asp-action="Trailer" asp-controller="Movie" asp-route-ytid="@Model.youTubeTrailerId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#trailer-container" data-ajax-method="get" data-ajax-loading=".loading">Watch trailer <i class="fab fa-youtube"></i></a></li>
-                        <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+                        @if (Model.AlreadyAdded != true)
+                        {
+                            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+                        }
+                        else
+                        {
+                            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -68,7 +75,14 @@
 <div class="mobile-button-block">
     <ul>
         <li><a class="btn btn-primary" href="@("https://www.youtube.com/watch?v=" + Model.youTubeTrailerId)">Watch trailer <i class="fab fa-youtube"></i></a></li>
-        <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+        @if (Model.AlreadyAdded != true)
+        {
+            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+        }
+        else
+        {
+            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
+        }
     </ul>
 </div>
 
