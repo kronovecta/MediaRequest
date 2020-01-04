@@ -15,7 +15,7 @@
         text-decoration:none;
     }
 
-    i {
+    i, span i {
         margin-left: 5px;
         vertical-align: middle;
         color:inherit;
@@ -83,6 +83,11 @@
     background: linear-gradient($purple-main, $purple-dark);
     background: $red-main;
     color: $purple-superlight;
+
+    span {
+        color:$white-main;
+        width:100%;
+    }
 
     &:hover {
         background: $red-dark;
