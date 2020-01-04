@@ -157,97 +157,6 @@ form {
     }
 }
 
-nav.navbar {
-    width: 100%;
-    background: $dark-main;
-    /*padding: 1.5rem 0;*/
-    margin: 0 auto;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-
-    i {
-        color: inherit;
-    }
-
-    li.nav-divider {
-        border-left: 1px solid lightgrey;
-        height: 100%,
-    }
-
-    .nav-container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 5rem;
-        align-items: center;
-        height: 100%;
-
-        a {
-            padding: 1.5rem;
-        }
-
-        a, span {
-            text-decoration: none;
-            color: white;
-        }
-
-        .nav-item-container {
-            ul {
-                display: flex;
-                flex-direction: row;
-                height: 100%;
-
-                li {
-                    color: inherit;
-                    height: 100%;
-                    display: block;
-                    list-style: none;
-                    /*display: inline-block;*/
-                    padding: 1.5rem 0;
-
-                    &:hover {
-                        background: $red-main;
-                    }
-
-                    &:not(:last-child) {
-                        margin-right: -5px;
-                    }
-
-                    div.submenu {
-                        display: none;
-                        position: absolute;
-                        background: #121212;
-                        padding: 0.3rem 0;
-                        top: 72px;
-                        right: 5rem;
-                        border-radius: 0 0 3px 3px;
-
-                        a.submenu-item {
-                            padding: 0;
-                            display: block;
-                            width: 100%;
-                            padding: 0.3rem 3rem;
-
-                            &:hover {
-                                background: $red-main;
-                            }
-                        }
-                    }
-                }
-
-                li:hover div.submenu {
-                    display: block;
-                }
-            }
-        }
-    }
-}
-
 nav.submenu {
     margin-bottom:2rem;
     padding:0 5rem;
@@ -653,7 +562,7 @@ main {
                 justify-content: space-around;
 
                 li {
-                    flex-grow: 1;
+                    flex: 1;
                     transition: 0.5s;
 
                     a {
@@ -786,7 +695,7 @@ main {
         }
     }
 
-    @media screen and (max-width:375px) {
+    @media screen and (max-width:1080px) {
         nav.navbar {
             display: none;
         }

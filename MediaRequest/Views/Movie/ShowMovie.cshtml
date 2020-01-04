@@ -65,6 +65,13 @@
     </section>
 </div>
 
+<div class="mobile-button-block">
+    <ul>
+        <li><a class="btn btn-primary" href="@("https://www.youtube.com/watch?v=" + Model.youTubeTrailerId)">Watch trailer <i class="fab fa-youtube"></i></a></li>
+        <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+    </ul>
+</div>
+
 <script>
     $(document).ready(function () {
         let navBtn = $('.page-nav > .body-nav > li');
@@ -76,6 +83,20 @@
             $('.loading').show();
             navBtn.children('a').removeClass('active');
             $(this).children('a').addClass('active');
+        })
+
+        let btnBlock = $('.mobile-button-block > ul > li');
+
+        $(document).scroll(function () {
+            if (window.scrollY >= 150) {
+                btnBlock.children().removeClass('btn')
+                btnBlock.children().addClass('btn-sm')
+            }
+
+            if (window.scrollY < 150) {
+                btnBlock.children().removeClass('btn-sm')
+                btnBlock.children().addClass('btn')
+            }
         })
     });
 </script>

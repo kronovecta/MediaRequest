@@ -1,4 +1,29 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿let mobilenav = $('.mobilenav');
+let mobilemenu = $('.mobilenav > .nav-item-container');
+let mobilebackdrop = $('.mobilenav > .backdrop');
+let mobileMenuWidth = mobilemenu.outerWidth(true);
+let mobileMenuIcon = $('.mobile-menu-icon');
 
-// Write your JavaScript code.
+$(mobilebackdrop).on('click', function () {
+    mobileMenuHide();
+})
+
+$(mobileMenuIcon).on('click', function () {
+    mobileMenuShow();
+})
+
+//$(mobileMenuIcon).on('click', mobileMenuShow());
+
+function mobileMenuShow() {
+    $(mobilenav).show();
+    $(mobilemenu).animate({ 'left': '0' }, 'fast');
+    $(mobilebackdrop).show();
+}
+
+function mobileMenuHide() {
+    $(mobilemenu).animate({ 'left': '-300px' }, 'fast', function () {
+        $(mobilebackdrop).fadeOut('fast')
+        $(mobilenav).hide();
+    });
+    
+}
