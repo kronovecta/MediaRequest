@@ -46,7 +46,7 @@ namespace MediaRequest.WebUI.Controllers
                 
             var model = new AdminPanelViewModel
             {
-                NextUpcomingMovie = upcomingResponse.Movies.First(),
+                NextUpcomingMovie = upcomingResponse.Movies.Count() > 0 ? upcomingResponse.Movies.First() : null,
                 Requests = requests.Requests.Count(),
                 Members = members,
                 Reminders = 0,
@@ -96,39 +96,6 @@ namespace MediaRequest.WebUI.Controllers
             }
 
             return View(modelList);
-        }
-
-        public async Task<IActionResult> ApproveRequest(int requestId)
-        {
-            var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.Id == requestId);
-
-            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = userRequest.MovieId });
-
-            var request = new Domain.MovieRequestObject()
-            {
-                title = movie.Movie.Title,
-                path = $"/home17/robert/downloads/movies/{movie.Movie.Title} ({movie.Movie.Year})".Replace(":", ""),
-                qualityProfileId = 7,
-                year = movie.Movie.Year,
-                tmdbId = movie.Movie.TMDBId,
-                titleSlug = movie.Movie.TitleSlug,
-                images = movie.Movie.Images
-            };
-
-            var command = new ApproveRequestCommand { ApiKey = _apikeys.Radarr, RequestObject = request };
-            var result = await _mediator.Send(command);
-
-            if (result == true)
-            {
-                userRequest.Status = true;
-                await _context.SaveChangesAsync();
-            } else
-            {
-                userRequest.Status = false;
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction("AdminPanel", "Admin");
         }
 
         //[Route("/user/manage")]

@@ -12,7 +12,7 @@
         @if (Model.Request.Status == false)
         {
             <ul class="button-container">
-                <li><a class="btn btn-accept" href="#">Accept <i class="fas fa-check-circle"></i></a></li>
+                <li><a class="btn btn-accept" asp-action="ApproveRequest" asp-controller="Request" asp-route-requestId="@Model.Request.Id">Accept <i class="fas fa-check-circle"></i></a></li>
                 <li><a class="btn btn-primary" href="#">Decline <i class="fas fa-check-circle"></i></a></li>
             </ul>
         }
