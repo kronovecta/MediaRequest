@@ -1,10 +1,10 @@
-﻿@model List<MediaRequest.WebUI.ViewModels.MovieUserRequestViewModel>
+﻿@model List<MediaRequest.WebUI.ViewModels.DistinctMovieUserRequestViewModel>
 
 <div class="container">
     <h1>Active requests</h1>
     @foreach (var request in Model)
     {
-        if (request.Request.Status == false)
+        if (request.Requests.All(x => x.Request.Status == false))
         {
             <partial name="_RequestMoviePartial" model="request" />
 
@@ -20,7 +20,7 @@
     <h1>Previous requests</h1>
     @foreach (var request in Model)
     {
-        if (request.Request.Status == true)
+        if (request.Requests.Any(x => x.Request.Status == true))
         {
             <partial name="_RequestMoviePartial" model="request" />
 

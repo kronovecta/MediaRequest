@@ -56,13 +56,14 @@ namespace MediaRequest.WebUI.Controllers
             return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
         }
 
-        public async Task<IActionResult> ApproveRequest(int requestId)
+        public async Task<IActionResult> ApproveRequest(string id)
         {
-            var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.Id == requestId);
+            //var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.Id == requestId);
+            var requests = _context.Request.Where(x => x.MovieId == id);
 
-            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = userRequest.MovieId });
+            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = id });
 
-            var request = new Domain.MovieRequestObject()
+            var request = new MovieRequestObject()
             {
                 title = movie.Movie.Title,
                 path = $"/home17/robert/downloads/movies/{movie.Movie.Title} ({movie.Movie.Year})".Replace(":", ""),
@@ -78,16 +79,18 @@ namespace MediaRequest.WebUI.Controllers
 
             if (result == true)
             {
-                userRequest.Status = true;
+                //userRequest.Status = true;
+                await requests.ForEachAsync(x => x.Status = true);
                 await _context.SaveChangesAsync();
             }
             else
             {
-                userRequest.Status = false;
+                //userRequest.Status = false;
+                await requests.ForEachAsync(x => x.Status = false);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("AdminPanel", "Admin");
+            return RedirectToAction("Requests", "Admin");
         }
 
         public async Task<IActionResult> CancelRequest(int requestid)

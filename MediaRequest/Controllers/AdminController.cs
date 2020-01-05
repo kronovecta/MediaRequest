@@ -70,31 +70,53 @@ namespace MediaRequest.WebUI.Controllers
             return View(model);
         }
 
+        [Route("Requests")]
         public async Task<IActionResult> Requests()
         {
-            var modelList = new List<MovieUserRequestViewModel>();
-
+            var modelList = new List<DistinctMovieUserRequestViewModel>();
             var requests = await _mediator.Send(new GetRequestsRequest());
 
             foreach (var request in requests.Requests)
             {
-                var movieRequest = new GetSingleMovieRequest()
+                var movie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = request.MovieId });
+                var movieRequests = _context.Request.Where(x => x.MovieId == request.MovieId);
+
+                var distinctrequest = new DistinctMovieUserRequestViewModel();
+                distinctrequest.Movie = movie.Movie;
+
+                foreach (var req in movieRequests)
                 {
-                    TmdbId = request.MovieId
-                };
+                    distinctrequest.Requests.Add(new MovieUserRequestViewModel()
+                    {
+                        User = await _userManager.FindByIdAsync(req.UserId),
+                        Request = req
+                    });
+                }
 
-                var response = await _mediator.Send(movieRequest);
-
-                var model = new MovieUserRequestViewModel()
-                {
-                    Movie = response.Movie,
-                    User = await _userManager.FindByIdAsync(request.UserId.ToString()),
-                    Request = request
-                };
-
-                modelList.Add(model);
+                modelList.Add(distinctrequest);
             }
 
+            //foreach (var request in requests.Requests)
+            //{
+            //    var movieRequest = new GetSingleMovieRequest()
+            //    {
+            //        TmdbId = request.MovieId
+            //    };
+
+            //    var response = await _mediator.Send(movieRequest);
+
+            //    var model = new MovieUserRequestViewModel()
+            //    {
+            //        Movie = response.Movie,
+            //        User = await _userManager.FindByIdAsync(request.UserId.ToString()),
+            //        Request = request
+            //    };
+
+
+            //    modelList.Add(model);
+            //}
+
+            modelList = modelList.GroupBy(x => x.Movie.TMDBId).Select(y => y.First()).ToList();
             return View(modelList);
         }
 
