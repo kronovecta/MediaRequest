@@ -6,7 +6,7 @@
     </div>
     <div class="movie-info">
         <h2>
-            @Model.Movie.Title
+            <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug">@Model.Movie.Title</a>
             <span style="opacity:0.7">(@Model.Movie.Year)</span>
         </h2>
         @if (Model.Requests.All(x => x.Request.Status != true))
@@ -17,9 +17,32 @@
             </ul>
         }
 
-        @foreach (var request in Model.Requests)
+        <div class="avatar-container">
+            @for (int i = 0; i < Model.Requests.Count() &&   i < 3; i++)
+            {
+                <div class="avatar-user-container">
+                    <img class="avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Requests[i].User.Avatar)" />
+                    <span id="" class="username">@Model.Requests[i].User.UserName</span>
+                </div>
+            }
+
+            @if (Model.Requests.Count() > 3)
+            {
+                <div class="avatar-user-container overflow">
+                    <span class="overflow-amount">+@(Model.Requests.Count() - 3)</span>
+                </div>
+            }
+        </div>
+        @if (Model.Requests.Count() > 3)
         {
-            <h3>@request.User.UserName</h3>
+            <div class="overflow-users">
+                <ul>
+                    @foreach (var user in Model.Requests)
+                    {
+                        <li>@user.User.UserName</li>
+                    }
+                </ul>
+            </div>
         }
     </div>
 </div>

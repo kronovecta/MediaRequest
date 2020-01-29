@@ -259,10 +259,71 @@
 
         > .button-container {
             margin-top: 1em;
-            
+
             li {
-                display:inline-block;
+                display: inline-block;
                 list-style: none;
+            }
+        }
+
+        > .avatar-container {
+            margin-top: 1rem;
+            display: flex;
+
+            .avatar-user-container {
+                display: inline-flex;
+                flex-direction: row;
+                align-items: center;
+                overflow: hidden;
+                border-radius: 3rem;
+                background: $grey-light;
+                margin-right: 0.5rem;
+
+                > .avatar {
+                    display: inline-block;
+                    width: 3rem;
+                    height: 3rem;
+                    border-radius: 3rem;
+                }
+
+                > .username {
+                    margin-left: 0.5rem;
+                    display: none;
+                    padding-right: 1rem;
+                    padding-left: 0.5rem;
+                }
+
+                &.overflow {
+                    cursor: pointer;
+                    display: inline-flex;
+                    width: 3rem;
+                    height: 3rem;
+                    justify-content: center;
+                    align-items: center;
+
+                    .overflow-amount {
+                        background: $grey-light;
+                        font-weight:bold;
+                        color:$grey-dark;
+                    }
+                }
+            }
+        }
+
+        .overflow-users {
+            border-radius:0.15rem;
+            padding: 1rem;
+            position: absolute;
+            background: black;
+            opacity: 0.9;
+            display:none;
+
+            > ul {
+                list-style:none;
+
+                li {
+                    color: white;
+                }
             }
         }
     }

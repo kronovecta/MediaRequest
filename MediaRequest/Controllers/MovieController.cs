@@ -13,6 +13,7 @@ using MediaRequest.WebUI.Models.IdentityModels;
 using MediaRequest.WebUI.ViewModels;
 using MediaRequest.WebUI.ViewModels.SingleMovie;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,7 @@ using Newtonsoft.Json;
 
 namespace MediaRequest.Controllers
 {
+    [Authorize]
     public class MovieController : Controller
     {
         private readonly IMediator _mediator;

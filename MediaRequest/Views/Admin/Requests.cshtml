@@ -23,11 +23,6 @@
         if (request.Requests.Any(x => x.Request.Status == true))
         {
             <partial name="_RequestMoviePartial" model="request" />
-
-            @*<div style="border:1px solid lightgrey;padding:1em;">
-                    <h1>@request.Movie.Title</h1>
-                    <h3 style="opacity:0.7">@request.User.UserName</h3>
-                </div>*@
         }
     }
 </div>

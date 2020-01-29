@@ -1,6 +1,4 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
-@import url(_bootstrap.css);
 .icon {
   width: 15px;
   height: 15px; }
@@ -1512,6 +1510,49 @@ section.recommended {
       .movie-container > .movie-info > .button-container li {
         display: inline-block;
         list-style: none; }
+    .movie-container > .movie-info > .avatar-container {
+      margin-top: 1rem;
+      display: flex; }
+      .movie-container > .movie-info > .avatar-container .avatar-user-container {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 3rem;
+        background: #e6e6e6;
+        margin-right: 0.5rem; }
+        .movie-container > .movie-info > .avatar-container .avatar-user-container > .avatar {
+          display: inline-block;
+          width: 3rem;
+          height: 3rem;
+          border-radius: 3rem; }
+        .movie-container > .movie-info > .avatar-container .avatar-user-container > .username {
+          margin-left: 0.5rem;
+          display: none;
+          padding-right: 1rem;
+          padding-left: 0.5rem; }
+        .movie-container > .movie-info > .avatar-container .avatar-user-container.overflow {
+          cursor: pointer;
+          display: inline-flex;
+          width: 3rem;
+          height: 3rem;
+          justify-content: center;
+          align-items: center; }
+          .movie-container > .movie-info > .avatar-container .avatar-user-container.overflow .overflow-amount {
+            background: #e6e6e6;
+            font-weight: bold;
+            color: #8c8c8c; }
+    .movie-container > .movie-info .overflow-users {
+      border-radius: 0.15rem;
+      padding: 1rem;
+      position: absolute;
+      background: black;
+      opacity: 0.9;
+      display: none; }
+      .movie-container > .movie-info .overflow-users > ul {
+        list-style: none; }
+        .movie-container > .movie-info .overflow-users > ul li {
+          color: white; }
   .movie-container:hover {
     background: #f8f9fc; }
 

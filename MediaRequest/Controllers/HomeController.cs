@@ -36,7 +36,7 @@ namespace MediaRequest.Controllers
         public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<ApplicationUser> userManager)
         {
             _mediator = mediator;
-            _userManager = userManager;
+            _userManager = userManager; 
             _context = context;
         }
 
