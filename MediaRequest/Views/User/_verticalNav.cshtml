@@ -1,0 +1,28 @@
+﻿<div class="vertical-nav">
+    <div class="vertical-nav-head">
+        @if (Model.User.Avatar != null)
+        {
+            <div class="avatar">
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.User.Avatar)" />
+            </div>
+        }
+        else
+        {
+
+            <div class="avatar">
+                <div class="avatar-background"></div>
+                <img src="http://all4ed.org/wp-content/themes/all4ed/assets/images/avatar-placeholder-generic.png" />
+                <i class="fas fa-camera"></i>
+            </div>
+        }
+
+        <p class="username">Admin</p>
+    </div>
+    <ul class="vertical-nav-list">
+        <li class="list-item"><a href="#">Profile</a></li>
+        <li class="list-item"><a href="#">Requests</a></li>
+        <li class="list-item"><a href="#">Calendar</a></li>
+        <li class="list-item"><a href="#">Settings</a></li>
+        <li class="list-item"><a href="#">Admin</a></li>
+    </ul>
+</div>
