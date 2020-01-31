@@ -1,8 +1,9 @@
 ﻿.vertical-nav {
     min-width: 150px;
-    background: $white-main;
+    background: white;
     padding: 3rem 0;
     height: 100%;
+
 
     .vertical-nav-head {
         display: flex;
@@ -20,8 +21,8 @@
         }
 
         .username {
-            font-size:1.2rem;
-            font-weight:bold;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
     }
 
@@ -35,11 +36,20 @@
                 display: block;
                 width: 100%;
                 height: 100%;
-                padding: 1rem 2rem;
+                padding: 1rem 1.5rem;
+                border-right: 5px solid rgba(255,255,255,0);
+
+                > .icon {
+                    margin-left: 0.5rem;
+                }
 
                 &:hover {
-                    background: $grey-light;
+                    transition: $transition-superfast;
+                    border-right: 5px solid $blue-main;
+                    background: #f5eeed;
                     text-decoration: none;
+
+
                 }
             }
         }
