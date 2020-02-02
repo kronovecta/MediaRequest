@@ -9,14 +9,14 @@
             <div class="user-request-container">
                 <div class="request-title">
                     <h3>
-                        @if (request.Request.Status == true)
+                        @*@if (request.Request.Status == true)
                         {
                             <span class="badge badge-xsm badge-success">✓</span>
                         }
                         else
                         {
                             <span class="badge badge-xsm badge-danger">🗙</span>
-                        }
+                        }*@
                         <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@request.Movie.TitleSlug">@request.Movie.Title</a>
                     </h3>
                 </div>

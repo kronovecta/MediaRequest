@@ -26,7 +26,7 @@ namespace MediaRequest.Application.Commands.ApproveRequest
             {
                 var content = new StringContent(JsonConvert.SerializeObject(request.RequestObject), Encoding.UTF8, "application/json");
 
-                var parameters = $"&title={request.RequestObject.title}&qualityProfileId={request.RequestObject.qualityProfileId}&titleSlug={request.RequestObject.titleSlug}&tmdbId={request.RequestObject.tmdbId}&year={request.RequestObject.year}&path={request.RequestObject.path}&images={request.RequestObject.images}";
+                //var parameters = $"&title={request.RequestObject.title}&qualityProfileId={request.RequestObject.qualityProfileId}&titleSlug={request.RequestObject.titleSlug}&tmdbId={request.RequestObject.tmdbId}&year={request.RequestObject.year}&path={request.RequestObject.path}&images={request.RequestObject.images}";
 
                 var response = await client.PostAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={_apikeys.Radarr}", content);
 

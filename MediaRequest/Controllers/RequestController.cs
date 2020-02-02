@@ -71,7 +71,8 @@ namespace MediaRequest.WebUI.Controllers
                 year = movie.Movie.Year,
                 tmdbId = movie.Movie.TMDBId,
                 titleSlug = movie.Movie.TitleSlug,
-                images = movie.Movie.Images
+                images = movie.Movie.Images,
+                addOptions = { searchForMovie = "true" }
             };
 
             var command = new ApproveRequestCommand { RequestObject = request };
