@@ -134,24 +134,63 @@ form {
 }
 
 .user-request-container {
-    padding: 1rem;
-    border: 1px solid lightgrey;
-    border-radius: 3px;
+    border: 1px solid #e8e8e8;
+    border-radius: 0.25rem;
     margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     transition: $transition-fast;
+
+    &:hover {
+        background: #f9f9f9;
+        border-radius: 0.25rem;
+        -webkit-box-shadow: 0px 3px 0px 0px lightgrey;
+        -moz-box-shadow: 0px 3px 0px 0px lightgrey;
+        -webkit-box-shadow: 0px 3px 5px 0px rgba(204,204,204,1);
+        -moz-box-shadow: 0px 3px 5px 0px rgba(204,204,204,1);
+        box-shadow: 0px 3px 5px 0px rgba(204,204,204,1);
+    }
+
+    .urc-left {
+        flex: 1;
+        display: inline-flex;
+        align-items: center;
+
+        .request-icon, .request-title {
+            display: inline-block;
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .urc-right {
+        align-self: center;
+        margin-right: 1rem;
+    }
+
+    .request-icon {
+        padding: 0.7rem;
+        border-radius: 50%;
+        background: $blue-main;
+        width: 50px;
+        height: 50px;
+        margin: 1rem;
+    }
 
     .request-title {
         display: flex;
-        align-self: center;
 
         h3, h6 {
             display: inline-block;
             vertical-align: middle;
         }
+    }
+
+    .btn, .btn-sm {
+        margin-left: auto;
     }
 
     .badge {
@@ -161,13 +200,53 @@ form {
     &:last-child {
         margin: 0;
     }
+}
 
-    &:hover {
-        /*background:$blue-light;
-        border:1px solid $blue-light;
-        transition:$transition-fast;*/
-        -webkit-box-shadow: 0px 3px 0px 0px lightgrey;
-        -moz-box-shadow: 0px 3px 0px 0px lightgrey;
-        box-shadow: 0px 3px 0px 0px lightgrey;
+.calendar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .calendar-event {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+
+        .calendar-date {
+            text-align:center;
+            flex: 1;
+            padding: 1rem;
+            border-radius: 0.25rem 0 0 0.25rem;
+
+            > p {
+                font-weight: 700;
+                color: inherit;
+            }
+
+            &.blue {
+                border-color: $blue-main;
+                background: $blue-main;
+                color: $white-main;
+            }
+
+            &.green {
+                border-color: $green-main;
+                background: $green-main;
+                color: $white-main;
+            }
+        }
+
+        .calendar-info {
+            border-radius: 0 0.25rem 0.25rem 0;
+            flex: 10;
+            padding: 1rem;
+            border: 1px solid #e6e6e6;
+            border-left:none;
+        }
+    }
+
+    .calendar-week td {
+        border: 1px solid #f5f5f5;
     }
 }

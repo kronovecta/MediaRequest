@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MediaRequest.Application;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
+using MediaRequest.Application.Queries.Movies.GetUpcoming;
 using MediaRequest.Data;
 using MediaRequest.WebUI.Exceptions;
 using MediaRequest.WebUI.Models;
@@ -43,13 +44,6 @@ namespace MediaRequest.WebUI.Controllers
                 User = await _userManager.GetUserAsync(User),
                 Requests = new List<RequestViewModel>()
             };
-
-            var requests = _mediaContext.Request.Where(x => x.UserId == user.Id).ToList();
-            foreach (var request in requests)
-            {
-                var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = request.MovieId });
-                model.Requests.Add(new RequestViewModel { Movie = result.Movie, Request = request });
-            }
 
             return View(model);
         }
@@ -130,6 +124,31 @@ namespace MediaRequest.WebUI.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+
+        [Route("Profile/Calendar")]
+        public async Task<IActionResult> Upcoming()
+        {
+            var result = await _mediator.Send(new GetUpcomingRequest { Days = 365 });
+            var model = new CalendarViewModel() { Events = result.Movies };
+
+            return View(model);
+        }
+
+        [Route("Profile/Requests")]
+        public async Task<IActionResult> Requests()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var model = new List<RequestViewModel>();
+
+            var requests = _mediaContext.Request.Where(x => x.UserId == user.Id).ToList();
+            foreach (var request in requests)
+            {
+                var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = request.MovieId });
+                model.Add(new RequestViewModel { Movie = result.Movie, Request = request });
+            }
+
+            return View(model);
         }
     }
 }

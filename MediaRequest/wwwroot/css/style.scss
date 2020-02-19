@@ -1,5 +1,12 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap');
 
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
 
 html, * {
     color:#313131;
