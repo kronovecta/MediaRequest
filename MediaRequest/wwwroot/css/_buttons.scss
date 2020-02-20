@@ -97,7 +97,11 @@
 .btn-default {
     background: linear-gradient($blue-main, $blue-dark);
     background: $blue-main;
-    color: $blue-light;
+
+    span {
+        color: $white-main;
+        width: 100%;
+    }
 
     &:hover {
         background: $blue-dark;

@@ -140,7 +140,7 @@
             <p class="pagination-item disabled">Previous</p>
         }
 
-        <p class="pagination-item disabled">@(Model.CurrentPage + 1)</p>
+        <p class="pagination-item disabled">@(Model.CurrentPage + 1) of @(Model.TotalPages+1)</p>
 
         if (nextPage != (Model.TotalPages + 1))
         {

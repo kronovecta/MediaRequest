@@ -1851,8 +1851,10 @@ footer {
 
 .btn-default {
   background: linear-gradient(#325ff5, #18399a);
-  background: #325ff5;
-  color: #e9eefc; }
+  background: #325ff5; }
+  .btn-default span {
+    color: #f8f9fc;
+    width: 100%; }
   .btn-default:hover {
     background: #18399a; }
 
