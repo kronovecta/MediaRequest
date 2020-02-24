@@ -1,17 +1,20 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿@*@using Microsoft.AspNetCore.Identity;
 @using MediaRequest.WebUI.Models.IdentityModels
 @inject UserManager<ApplicationUser> userManager;
 
-@{ 
+@{
     var user = await userManager.GetUserAsync(User);
-}
+}*@
+
+@using MediaRequest.WebUI.Models.IdentityModels
+@model ApplicationUser
 
 <div class="vertical-nav">
     <div class="vertical-nav-head">
-        @if (user.Avatar != null)
+        @if (Model.Avatar != null)
         {
             <div class="avatar">
-                <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.Avatar)" />
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Avatar)" />
             </div>
         }
         else
@@ -25,7 +28,7 @@
         }
 
         <form hidden enctype="multipart/form-data" asp-controller="User" asp-action="UploadAvatar" method="post">
-            <label asp-for="@user.Avatar">Avatar</label>
+            <label asp-for="@Model.Avatar">Avatar</label>
             <input class="filebtn" type="file" name="image" />
             <input class="filesubmit" type="submit" value="Upload" />
         </form>

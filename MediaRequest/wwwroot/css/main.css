@@ -1390,6 +1390,72 @@ section.recommended {
   .user-list > h1 {
     margin: 0 0.5rem 1rem 0.5rem; }
 
+.request-container {
+  margin-top: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 250px 250px 250px;
+  grid-column-gap: 40px;
+  grid-row-gap: 40px; }
+  .request-container .request-card {
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    -webkit-box-shadow: 0px 0px 18px 0px #bfbfbf;
+    -moz-box-shadow: 0px 0px 18px 0px #bfbfbf;
+    box-shadow: 0px 0px 18px 0px #bfbfbf; }
+    .request-container .request-card .request-card-head {
+      width: 100%; }
+      .request-container .request-card .request-card-head > img {
+        width: 100%;
+        border-radius: 0.25rem 0.25rem 0 0; }
+    .request-container .request-card .request-card-body {
+      padding: 1rem 1rem 2rem 1rem;
+      flex: 1; }
+      .request-container .request-card .request-card-body > .title {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem; }
+      .request-container .request-card .request-card-body > .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: normal; }
+    .request-container .request-card .avatar-container {
+      padding: 0 1rem 1rem 1rem;
+      display: flex; }
+      .request-container .request-card .avatar-container .avatar-user-container {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 3rem;
+        background: #e6e6e6;
+        margin-right: 0.5rem; }
+        .request-container .request-card .avatar-container .avatar-user-container > .avatar {
+          display: inline-block;
+          width: 3rem;
+          height: 3rem;
+          border-radius: 3rem; }
+        .request-container .request-card .avatar-container .avatar-user-container > .username {
+          margin-left: 0.5rem;
+          display: none;
+          padding-right: 1rem;
+          padding-left: 0.5rem; }
+        .request-container .request-card .avatar-container .avatar-user-container.overflow {
+          cursor: pointer;
+          display: inline-flex;
+          width: 3rem;
+          height: 3rem;
+          justify-content: center;
+          align-items: center; }
+          .request-container .request-card .avatar-container .avatar-user-container.overflow .overflow-amount {
+            background: #e6e6e6;
+            font-weight: bold;
+            color: #8c8c8c; }
+
 .movie-container {
   padding: 1.5em;
   display: flex;
