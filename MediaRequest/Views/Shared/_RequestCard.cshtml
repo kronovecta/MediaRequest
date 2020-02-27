@@ -1,11 +1,13 @@
 ﻿@model MediaRequest.Domain.Radarr.Movie
 
 <div class="request-card">
-    <div class="request-card-head">
-        <img src="@Model.FanartUrl" />
-    </div>
-    <div class="request-card-body">
-        <h2 class="title">@Model.Title</h2>
-        <p class="description">@Model.Overview</p>
-    </div>
+    <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.TitleSlug">
+        <div class="request-card-head">
+            <img src="@Model.FanartUrl" />
+        </div>
+        <div class="request-card-body">
+            <h2 class="title">@Model.Title</h2>
+            <p class="description">@Model.Overview</p>
+        </div>
+    </a>
 </div>

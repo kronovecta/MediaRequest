@@ -1396,8 +1396,13 @@ section.recommended {
   display: grid;
   grid-template-columns: 250px 250px 250px;
   grid-column-gap: 40px;
-  grid-row-gap: 40px; }
+  grid-row-gap: 40px;
+  text-decoration: none; }
+  .request-container a, .request-container a:hover, .request-container a:focus {
+    transition: 0.15s;
+    text-decoration: none; }
   .request-container .request-card {
+    transition: 0.15s;
     border-radius: 0.25rem;
     display: flex;
     flex-direction: column;
@@ -1405,6 +1410,11 @@ section.recommended {
     -webkit-box-shadow: 0px 0px 18px 0px #bfbfbf;
     -moz-box-shadow: 0px 0px 18px 0px #bfbfbf;
     box-shadow: 0px 0px 18px 0px #bfbfbf; }
+    .request-container .request-card:hover {
+      margin: -5px 0 5px 0;
+      -webkit-box-shadow: 0px 6px 18px 0px #bfbfbf;
+      -moz-box-shadow: 0px 6px 18px 0px #bfbfbf;
+      box-shadow: 0px 6px 18px 0px #bfbfbf; }
     .request-container .request-card .request-card-head {
       width: 100%; }
       .request-container .request-card .request-card-head > img {
@@ -1413,10 +1423,10 @@ section.recommended {
     .request-container .request-card .request-card-body {
       padding: 1rem 1rem 2rem 1rem;
       flex: 1; }
-      .request-container .request-card .request-card-body > .title {
+      .request-container .request-card .request-card-body .title {
         margin-bottom: 0.5rem;
         font-size: 1.1rem; }
-      .request-container .request-card .request-card-body > .description {
+      .request-container .request-card .request-card-body .description {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
