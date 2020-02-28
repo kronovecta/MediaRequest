@@ -37,6 +37,7 @@ namespace MediaRequest.WebUI.Controllers
             _apikeys = apikeys.Value;
         }
 
+        [Route("Admin")]
         public async Task<IActionResult> AdminPanel()
         {
             var upcomingResponse = await _mediator.Send(new GetUpcomingRequest());
@@ -70,7 +71,7 @@ namespace MediaRequest.WebUI.Controllers
             return View(model);
         }
 
-        [Route("Requests")]
+        [Route("Admin/Requests")]
         public async Task<IActionResult> Requests()
         {
             var modelList = new List<DistinctMovieUserRequestViewModel>();
@@ -96,31 +97,11 @@ namespace MediaRequest.WebUI.Controllers
                 modelList.Add(distinctrequest);
             }
 
-            //foreach (var request in requests.Requests)
-            //{
-            //    var movieRequest = new GetSingleMovieRequest()
-            //    {
-            //        TmdbId = request.MovieId
-            //    };
-
-            //    var response = await _mediator.Send(movieRequest);
-
-            //    var model = new MovieUserRequestViewModel()
-            //    {
-            //        Movie = response.Movie,
-            //        User = await _userManager.FindByIdAsync(request.UserId.ToString()),
-            //        Request = request
-            //    };
-
-
-            //    modelList.Add(model);
-            //}
-
             modelList = modelList.GroupBy(x => x.Movie.TMDBId).Select(y => y.First()).ToList();
             return View(modelList);
         }
 
-        //[Route("/user/manage")]
+        [Route("Admin/Users")]
         public async Task<IActionResult> UserManager()
         {
             var users = _userManager.Users.ToList();

@@ -381,7 +381,7 @@ html, * {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif; }
 
-p {
+p, pre {
   line-height: 1.6rem;
   font-weight: 400; }
 
@@ -765,6 +765,39 @@ nav.submenu {
     .single-movie-container section.container .head .poster {
       max-width: 40%;
       margin: -10rem 0 2rem 0; } }
+
+.request-card {
+  transition: 0.15s;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  -webkit-box-shadow: 0px 0px 18px 0px #bfbfbf;
+  -moz-box-shadow: 0px 0px 18px 0px #bfbfbf;
+  box-shadow: 0px 0px 18px 0px #bfbfbf; }
+  .request-card:hover {
+    margin: -5px 0 5px 0;
+    -webkit-box-shadow: 0px 6px 18px 0px #bfbfbf;
+    -moz-box-shadow: 0px 6px 18px 0px #bfbfbf;
+    box-shadow: 0px 6px 18px 0px #bfbfbf; }
+  .request-card .request-card-head {
+    width: 100%; }
+    .request-card .request-card-head > img {
+      width: 100%;
+      border-radius: 0.25rem 0.25rem 0 0; }
+  .request-card .request-card-body {
+    padding: 1rem 1rem 2rem 1rem;
+    flex: 1; }
+    .request-card .request-card-body .title {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem; }
+    .request-card .request-card-body .description {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: normal; }
 
 .badge {
   display: inline-block;
@@ -1394,7 +1427,7 @@ section.recommended {
   margin-top: 1rem;
   width: 100%;
   display: grid;
-  grid-template-columns: 250px 250px 250px;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 40px;
   grid-row-gap: 40px;
   text-decoration: none; }
@@ -1944,3 +1977,32 @@ footer {
   background: #e6e6e6;
   color: #121212;
   cursor: default; }
+
+.actor-container {
+  display: flex;
+  flex-direction: column; }
+  .actor-container .actor-name {
+    margin-bottom: 2rem; }
+  .actor-container .actor-head {
+    margin-bottom: 5rem; }
+    .actor-container .actor-head > img {
+      width: 30%;
+      vertical-align: top;
+      box-shadow: 0px 14px 10px -5px rgba(0, 0, 0, 0.75); }
+    .actor-container .actor-head > .actor-info {
+      display: inline-block;
+      width: 69%;
+      vertical-align: top;
+      padding: 0 2rem;
+      margin-left: -4px; }
+      .actor-container .actor-head > .actor-info > pre {
+        white-space: pre-wrap;
+        /* css-3 */
+        white-space: -moz-pre-wrap;
+        /* Mozilla, since 1999 */
+        white-space: -pre-wrap;
+        /* Opera 4-6 */
+        white-space: -o-pre-wrap;
+        /* Opera 7 */
+        word-wrap: normal;
+        /* Internet Explorer 5.5+ */ }
