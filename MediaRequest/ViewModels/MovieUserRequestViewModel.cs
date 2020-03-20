@@ -16,6 +16,7 @@ namespace MediaRequest.WebUI.ViewModels
             Requests = new List<MovieUserRequestViewModel>();
         }
 
+        public bool Status { get; set; } = false;
         public Movie Movie { get; set; }
         public List<MovieUserRequestViewModel> Requests { get; set; }
     }

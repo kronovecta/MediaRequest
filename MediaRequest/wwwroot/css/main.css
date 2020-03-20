@@ -19,7 +19,7 @@ nav.navbar {
   display: flex;
   justify-content: center;
   z-index: 1000;
-  /*position: fixed;*/
+  position: relative;
   top: 0;
   box-shadow: 0 50px 100px rgba(65, 65, 73, 0.1), 0 29px 25px rgba(34, 34, 40, 0.06), 0 5px 15px rgba(0, 0, 0, 0.1); }
   nav.navbar i {
@@ -52,7 +52,7 @@ nav.navbar {
         /*display: inline-block;*/
         padding: 1.5rem 0; }
         nav.navbar .nav-container .nav-item-container ul li:hover {
-          background: #f5323f; }
+          background: #c4162a; }
         nav.navbar .nav-container .nav-item-container ul li:not(:last-child) {
           margin-right: -5px; }
         nav.navbar .nav-container .nav-item-container ul li div.submenu {
@@ -69,7 +69,7 @@ nav.navbar {
             width: 100%;
             padding: 0.3rem 3rem; }
             nav.navbar .nav-container .nav-item-container ul li div.submenu a.submenu-item:hover {
-              background: #f5323f; }
+              background: #c4162a; }
       nav.navbar .nav-container .nav-item-container ul li:hover div.submenu {
         display: block; }
 
@@ -776,7 +776,6 @@ nav.submenu {
   -moz-box-shadow: 0px 0px 18px 0px #bfbfbf;
   box-shadow: 0px 0px 18px 0px #bfbfbf; }
   .request-card:hover {
-    margin: -5px 0 5px 0;
     -webkit-box-shadow: 0px 6px 18px 0px #bfbfbf;
     -moz-box-shadow: 0px 6px 18px 0px #bfbfbf;
     box-shadow: 0px 6px 18px 0px #bfbfbf; }
@@ -1431,73 +1430,50 @@ section.recommended {
   grid-column-gap: 40px;
   grid-row-gap: 40px;
   text-decoration: none; }
+  .request-container:not(:last-child) {
+    margin-bottom: 2rem; }
   .request-container a, .request-container a:hover, .request-container a:focus {
     transition: 0.15s;
     text-decoration: none; }
-  .request-container .request-card {
-    transition: 0.15s;
-    border-radius: 0.25rem;
-    display: flex;
-    flex-direction: column;
-    background: #fafafa;
-    -webkit-box-shadow: 0px 0px 18px 0px #bfbfbf;
-    -moz-box-shadow: 0px 0px 18px 0px #bfbfbf;
-    box-shadow: 0px 0px 18px 0px #bfbfbf; }
-    .request-container .request-card:hover {
-      margin: -5px 0 5px 0;
-      -webkit-box-shadow: 0px 6px 18px 0px #bfbfbf;
-      -moz-box-shadow: 0px 6px 18px 0px #bfbfbf;
-      box-shadow: 0px 6px 18px 0px #bfbfbf; }
-    .request-container .request-card .request-card-head {
-      width: 100%; }
-      .request-container .request-card .request-card-head > img {
-        width: 100%;
-        border-radius: 0.25rem 0.25rem 0 0; }
-    .request-container .request-card .request-card-body {
-      padding: 1rem 1rem 2rem 1rem;
+  .request-container .request-card .request-button-container {
+    display: none;
+    padding: 0 0.25rem; }
+    .request-container .request-card .request-button-container > .btn {
       flex: 1; }
-      .request-container .request-card .request-card-body .title {
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem; }
-      .request-container .request-card .request-card-body .description {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        word-break: normal; }
-    .request-container .request-card .avatar-container {
-      padding: 0 1rem 1rem 1rem;
-      display: flex; }
-      .request-container .request-card .avatar-container .avatar-user-container {
+      .request-container .request-card .request-button-container > .btn:last-child {
+        margin-left: 1rem; }
+  .request-container .request-card .avatar-container {
+    padding: 0 1rem 1rem 1rem;
+    display: flex; }
+    .request-container .request-card .avatar-container .avatar-user-container {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 3rem;
+      background: #e6e6e6;
+      margin-right: 0.5rem; }
+      .request-container .request-card .avatar-container .avatar-user-container > .avatar {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 3rem; }
+      .request-container .request-card .avatar-container .avatar-user-container > .username {
+        margin-left: 0.5rem;
+        display: none;
+        padding-right: 1rem;
+        padding-left: 0.5rem; }
+      .request-container .request-card .avatar-container .avatar-user-container.overflow {
+        cursor: pointer;
         display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        overflow: hidden;
-        border-radius: 3rem;
-        background: #e6e6e6;
-        margin-right: 0.5rem; }
-        .request-container .request-card .avatar-container .avatar-user-container > .avatar {
-          display: inline-block;
-          width: 3rem;
-          height: 3rem;
-          border-radius: 3rem; }
-        .request-container .request-card .avatar-container .avatar-user-container > .username {
-          margin-left: 0.5rem;
-          display: none;
-          padding-right: 1rem;
-          padding-left: 0.5rem; }
-        .request-container .request-card .avatar-container .avatar-user-container.overflow {
-          cursor: pointer;
-          display: inline-flex;
-          width: 3rem;
-          height: 3rem;
-          justify-content: center;
-          align-items: center; }
-          .request-container .request-card .avatar-container .avatar-user-container.overflow .overflow-amount {
-            background: #e6e6e6;
-            font-weight: bold;
-            color: #8c8c8c; }
+        width: 3rem;
+        height: 3rem;
+        justify-content: center;
+        align-items: center; }
+        .request-container .request-card .avatar-container .avatar-user-container.overflow .overflow-amount {
+          background: #e6e6e6;
+          font-weight: bold;
+          color: #8c8c8c; }
 
 .movie-container {
   padding: 1.5em;
@@ -1705,7 +1681,7 @@ form .form-section .input-inline:last-child {
   .user-request-container .request-icon {
     padding: 0.7rem;
     border-radius: 50%;
-    background: #325ff5;
+    background: #1f60c4;
     width: 50px;
     height: 50px;
     margin: 1rem; }
@@ -1739,8 +1715,8 @@ form .form-section .input-inline:last-child {
         font-weight: 700;
         color: inherit; }
       .calendar .calendar-event .calendar-date.blue {
-        border-color: #325ff5;
-        background: #325ff5;
+        border-color: #1f60c4;
+        background: #1f60c4;
         color: #f8f9fc; }
       .calendar .calendar-event .calendar-date.green {
         border-color: #5eba6e;
@@ -1882,7 +1858,7 @@ footer {
           margin-left: 0.5rem; }
         .vertical-nav .vertical-nav-list .list-item > a:hover {
           transition: 0.15s;
-          border-right: 5px solid #325ff5;
+          border-right: 5px solid #1f60c4;
           background: #f5eeed;
           text-decoration: none; }
 
@@ -1895,7 +1871,9 @@ footer {
   background: none;
   font-weight: 400;
   text-decoration: none;
-  transition: 0.2s; }
+  transition: 0.2s;
+  text-align: center;
+  font-size: 1rem; }
   .btn:hover {
     transition: 0.2s;
     text-decoration: none; }
@@ -1949,9 +1927,8 @@ footer {
   box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.75); }
 
 .btn-primary {
-  background: linear-gradient(#5c1f7a, #4d1a66);
-  background: #f5323f;
-  color: #f5ebfa; }
+  background: #c4162a;
+  color: #f8f9fc; }
   .btn-primary span {
     color: #f8f9fc;
     width: 100%; }
@@ -1959,8 +1936,8 @@ footer {
     background: #b90914; }
 
 .btn-default {
-  background: linear-gradient(#325ff5, #18399a);
-  background: #325ff5; }
+  background: #1f60c4;
+  color: #f8f9fc; }
   .btn-default span {
     color: #f8f9fc;
     width: 100%; }

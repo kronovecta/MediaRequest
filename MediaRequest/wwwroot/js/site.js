@@ -73,11 +73,19 @@ $('.avatar-user-container.overflow').on('click', function (e) {
 })
 
 $(document).on('click', function (e) {
-    console.log(e.target)
     let activeOverflow = $('.overflow-users.open');
 
     if (/*!$(e.target).is(activeOverflow) || */!$(e.target).is('.avatar-user-container.overflow')/* || !$(e.target).is('.overflow-amount')*/) {
         //$('.overflow-users').hide();
-        console.log('closing')
     }  
-})  
+})
+
+$(document).on('mouseenter', '.request-card', function () {
+    $($(this).find('.description')).hide();
+    $($(this).find('.request-button-container')).css('display', 'flex');
+})
+
+$(document).on('mouseleave', '.request-card', function () {
+    $($(this).find('.description')).show();
+    $($(this).find('.request-button-container')).css('display', 'none');
+})

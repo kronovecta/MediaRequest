@@ -40,7 +40,10 @@
         <li class="list-item"><a asp-action="Requests"><span>Requests</span><img class="icon" src="~/img/icons/thumbs-up-solid.svg" /></a></li>
         <li class="list-item"><a asp-action="Upcoming" asp-controller="User"><span>Upcoming</span><img class="icon" src="~/img/icons/calendar-solid.svg"></a></li>
         <li class="list-item"><a href="#"><span>Settings</span><img class="icon" src="~/img/icons/cog-solid.svg"></a></li>
-        <li class="list-item"><a href="#"><span>Admin</span><img class="icon" src="~/img/icons/crown-solid.svg"></a></li>
+        @if(User.IsInRole("admin"))
+        {
+            <li class="list-item"><a asp-action="AdminPanel" asp-controller="Admin"><span>Admin</span><img class="icon" src="~/img/icons/crown-solid.svg"></a></li>
+        }
     </ul>
 </div>
 

@@ -95,7 +95,7 @@ namespace MediaRequest.Application
                 span = DateTime.Now.AddDays(30).ToShortDateString();
             }
             
-            var response = await Client.GetAsync(_path.Radarr + $"/api/calendar?start={DateTime.Now.Year}-01-01&end={span}&apikey=" + _keys.Radarr);
+            var response = await Client.GetAsync(_path.Radarr + $"/api/calendar?start={DateTime.Now.ToShortDateString()}&end={span}&apikey=" + _keys.Radarr);
             return response;
         }
 

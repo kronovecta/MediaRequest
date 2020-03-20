@@ -94,6 +94,7 @@ namespace MediaRequest.WebUI.Controllers
                     });
                 }
 
+                distinctrequest.Status = distinctrequest.Requests.First().Request.Status;
                 modelList.Add(distinctrequest);
             }
 

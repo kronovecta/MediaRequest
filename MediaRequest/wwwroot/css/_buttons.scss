@@ -8,7 +8,8 @@
     font-weight: 400;
     text-decoration: none;
     transition: 0.2s;
-
+    text-align:center;
+    font-size:1rem;
 
     &:hover {
         transition: 0.2s;
@@ -80,9 +81,8 @@
 }
 
 .btn-primary {
-    background: linear-gradient($purple-main, $purple-dark);
     background: $red-main;
-    color: $purple-superlight;
+    color: $white-main;
 
     span {
         color: $white-main;
@@ -95,8 +95,8 @@
 }
 
 .btn-default {
-    background: linear-gradient($blue-main, $blue-dark);
     background: $blue-main;
+    color: $white-main;
 
     span {
         color: $white-main;

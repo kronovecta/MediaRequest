@@ -2,33 +2,20 @@
 
 <div class="container">
     <h1>Active requests</h1>
+
+    <h2>Pending</h2>
     <div class="request-container">
-        @foreach (var request in Model)
+        @foreach (var request in Model.Where(x => x.Status == false))
         {
-
             <partial name="_RequestPartial" model="request" />
-            @*if (request.Requests.All(x => x.Request.Status == false))
-            {
-                <partial name="_RequestMoviePartial" model="request" />
-                <partial name="_RequestPartial" model="request" />
-
-                <div style="border:1px solid lightgrey;padding:1em;">
-                        <h1>@request.Movie.Title</h1>
-                        <h3 style="opacity:0.7">@request.User.UserName</h3>
-
-                        <a asp-action="ApproveRequest" asp-controller="Admin" asp-route-requestId="@request.Request.Id">Approve</a>
-                    </div>
-            }*@
         }
     </div>
 
-    @*<h1>Previous requests</h1>
-    @foreach (var request in Model)
-    {
-        if (request.Requests.Any(x => x.Request.Status == true))
+    <h2>Approved</h2>
+    <div class="request-container">
+        @foreach (var request in Model.Where(x => x.Status == true))
         {
-            <partial name="_RequestMoviePartial" model="request" />
-            <partial name="_RequestPartial"  model="request" />
+            <partial name="_RequestPartial" model="request" />
         }
-    }*@
+    </div>
 </div>

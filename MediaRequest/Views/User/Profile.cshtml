@@ -15,7 +15,7 @@
 }
 
 <div class="profile-container h-100">
-    <partial name="partials/_verticalNav" />
+    @await Component.InvokeAsync("VerticalNav", new { maxPriority = 1, isDone = false })
     <div class="container h-100">
         <div class="profile-body">
             <h2 class="pb-1">User info</h2>
