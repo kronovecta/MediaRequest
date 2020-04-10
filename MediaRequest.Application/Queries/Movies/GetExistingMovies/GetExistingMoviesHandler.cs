@@ -152,7 +152,7 @@ namespace MediaRequest.Application.Queries.Movies
                 }
 
                 var totalPages = Functions.GetTotalPages(movies, results);
-                movies = movies.Skip(results * request.CurrentPage-1).Take(results).ToList();
+                movies = movies.Skip(results * request.CurrentPage).Take(results).ToList();
 
 
                 if (movies.Count() > 0)

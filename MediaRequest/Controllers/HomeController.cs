@@ -86,7 +86,7 @@ namespace MediaRequest.Controllers
             } 
             else
             {
-                var response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter });
+                var response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0 });
 
                 var model = new IndexViewModel()
                 {
