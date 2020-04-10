@@ -14,84 +14,17 @@
     }
 }
 
-<div class="container h-100">
-    <div class="profile-head">
-        @if (Model.User.Avatar != null)
-        {
-            <div class="avatar">
-                <div class="avatar-background"></div>
-                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.User.Avatar)" />
-                <i class="fas fa-camera"></i>
-            </div>
-        }
-        else
-        {
+<div class="profile-container h-100">
+    @await Component.InvokeAsync("VerticalNav", new { maxPriority = 1, isDone = false })
+    <div class="container h-100">
+        <div class="profile-body">
+            <h2 class="pb-1">User info</h2>
+            <partial name="partials/_UserInfoPartial" model="Model.User" />
 
-            <div class="avatar">
-                <div class="avatar-background"></div>
-                <img src="http://all4ed.org/wp-content/themes/all4ed/assets/images/avatar-placeholder-generic.png" />
-                <i class="fas fa-camera"></i>
-            </div>
-        }
-        <h1>@Model.User.UserName</h1>
-        <form hidden enctype="multipart/form-data" asp-controller="User" asp-action="UploadAvatar" method="post">
-            <label asp-for="@Model.User.Avatar">Avatar</label>
-            <input class="filebtn" type="file" name="image" />
-            <input class="filesubmit" type="submit" value="Upload" />
-        </form>
-    </div>
-    <div class="profile-body">
-        <h2 class="pb-2">User info</h2>
-        <div class="row">
-            <partial name="_UserInfoPartial" model="Model.User" />
+            <h1>TO ADD:</h1>
+            <p>Latest user request</p>
+            <p>Nearest upcoming</p>
         </div>
-
-        <div class="row pb-2 mb-0 underline">
-            <div class="form-section align-right">
-                <a id="password" class="btn-sm btn-primary" type="submit" asp-action="UpdatePassword" asp-controller="User"><span class="icon icon-key"><img src="~/img/key-solid.svg" /></span> Change password</a>
-                <input class="btn-sm btn-default" type="submit" value="Save" />
-            </div>
-        </div>
-
-        <div class="row pt-2">
-            <h2>Requests</h2>
-        </div>
-        @if (Model.Requests.Count() > 0)
-        {
-            foreach (var request in Model.Requests)
-            {
-                <div class="row">
-                    <div class="user-request-container">
-                        <div class="request-title">
-                            <h3>
-                                @if (request.Request.Status == true)
-                                {
-                                    <span class="badge badge-xsm badge-success">✓</span>
-                                }
-                                else
-                                {
-                                    <span class="badge badge-xsm badge-danger">🗙</span>
-                                }
-                                <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@request.Movie.TitleSlug">@request.Movie.Title</a>
-                            </h3>
-                        </div>
-                        <a asp-action="CancelRequest" asp-controller="Request" asp-route-requestid="@request.Request.Id" class="btn-sm btn-primary">Cancel</a>
-                    </div>
-                </div>
-            }
-        } else
-        {
-            <p>No requests made. Why not <a asp-action="Search" asp-controller="Home">Search for one?</a></p>
-        }
     </div>
 </div>
 
-<script>
-    $('.avatar').on('click', function () {
-        $('.filebtn').click();
-    })
-
-    $('.filebtn').on('change', function () {
-        $('.filesubmit').click();
-    });
-</script>

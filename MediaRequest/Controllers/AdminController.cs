@@ -37,6 +37,7 @@ namespace MediaRequest.WebUI.Controllers
             _apikeys = apikeys.Value;
         }
 
+        [Route("Admin")]
         public async Task<IActionResult> AdminPanel()
         {
             var upcomingResponse = await _mediator.Send(new GetUpcomingRequest());
@@ -46,7 +47,7 @@ namespace MediaRequest.WebUI.Controllers
                 
             var model = new AdminPanelViewModel
             {
-                NextUpcomingMovie = upcomingResponse.Movies.First(),
+                NextUpcomingMovie = upcomingResponse.Movies.Count() > 0 ? upcomingResponse.Movies.First() : null,
                 Requests = requests.Requests.Count(),
                 Members = members,
                 Reminders = 0,
@@ -70,68 +71,38 @@ namespace MediaRequest.WebUI.Controllers
             return View(model);
         }
 
+        [Route("Admin/Requests")]
         public async Task<IActionResult> Requests()
         {
-            var modelList = new List<MovieUserRequestViewModel>();
-
+            var modelList = new List<DistinctMovieUserRequestViewModel>();
             var requests = await _mediator.Send(new GetRequestsRequest());
 
             foreach (var request in requests.Requests)
             {
-                var movieRequest = new GetSingleMovieRequest()
+                var movie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = request.MovieId });
+                var movieRequests = _context.Request.Where(x => x.MovieId == request.MovieId);
+
+                var distinctrequest = new DistinctMovieUserRequestViewModel();
+                distinctrequest.Movie = movie.Movie;
+
+                foreach (var req in movieRequests)
                 {
-                    TmdbId = request.MovieId
-                };
+                    distinctrequest.Requests.Add(new MovieUserRequestViewModel()
+                    {
+                        User = await _userManager.FindByIdAsync(req.UserId),
+                        Request = req
+                    });
+                }
 
-                var response = await _mediator.Send(movieRequest);
-
-                var model = new MovieUserRequestViewModel()
-                {
-                    Movie = response.Movie,
-                    User = await _userManager.FindByIdAsync(request.UserId.ToString()),
-                    Request = request
-                };
-
-                modelList.Add(model);
+                distinctrequest.Status = distinctrequest.Requests.First().Request.Status;
+                modelList.Add(distinctrequest);
             }
 
+            modelList = modelList.GroupBy(x => x.Movie.TMDBId).Select(y => y.First()).ToList();
             return View(modelList);
         }
 
-        public async Task<IActionResult> ApproveRequest(int requestId)
-        {
-            var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.Id == requestId);
-
-            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = userRequest.MovieId });
-
-            var request = new Domain.MovieRequestObject()
-            {
-                title = movie.Movie.Title,
-                path = $"/home17/robert/downloads/movies/{movie.Movie.Title} ({movie.Movie.Year})".Replace(":", ""),
-                qualityProfileId = 7,
-                year = movie.Movie.Year,
-                tmdbId = movie.Movie.TMDBId,
-                titleSlug = movie.Movie.TitleSlug,
-                images = movie.Movie.Images
-            };
-
-            var command = new ApproveRequestCommand { ApiKey = _apikeys.Radarr, RequestObject = request };
-            var result = await _mediator.Send(command);
-
-            if (result == true)
-            {
-                userRequest.Status = true;
-                await _context.SaveChangesAsync();
-            } else
-            {
-                userRequest.Status = false;
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction("AdminPanel", "Admin");
-        }
-
-        //[Route("/user/manage")]
+        [Route("Admin/Users")]
         public async Task<IActionResult> UserManager()
         {
             var users = _userManager.Users.ToList();

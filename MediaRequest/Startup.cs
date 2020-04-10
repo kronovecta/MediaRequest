@@ -1,28 +1,25 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediaRequest.Application;
+using MediaRequest.Application.Commands;
+using MediaRequest.Application.Queries;
+using MediaRequest.Data;
+using MediaRequest.Domain.Configuration;
+using MediaRequest.WebUI.Models.IdentityModels;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using MediaRequest.Application;
-using MediaRequest.Data;
-using MediatR;
-using MediaRequest.Application.Queries;
-using MediaRequest.Application.Commands;
-using MediaRequest.Domain.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using MediaRequest.WebUI.Models.IdentityModels;
-//using MediaRequest.WebUI.Models.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace MediaRequest
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -74,11 +71,12 @@ namespace MediaRequest
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, /*IHostingEnvironment env,*/ IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -99,23 +97,33 @@ namespace MediaRequest
             app.UseCookiePolicy();
             app.UseSession();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute("Search", "{action}/{term?}", new { controller = "Home" });
-
-                //routes.MapRoute("Movies", "{action}", new { controller = "Movie" });
-                routes.MapRoute("ShowMovie", "{action}/{slug}", new { controller = "Movie" });
-
-                routes.MapRoute(
-                    name: "Short",
-                    template: "{action}",
-                    defaults: new { controller = "Home" });
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}");
-                    //template: "{controller=Movie}/{action=ShowMovie}/{id?}");
+                endpoints.MapControllerRoute("ShowMovie", "{{action}}/{{slug}}", new { controller = "Home" });
+                endpoints.MapControllerRoute("Search", "{{action}}/{term?}", new { controller = "Home" });
+                endpoints.MapControllerRoute("default", "{{action}}", new { controller = "Home" });
+                endpoints.MapDefaultControllerRoute();
             });
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute("Search", "{action}/{term?}", new { controller = "Home" });
+
+            //    //routes.MapRoute("Movies", "{action}", new { controller = "Movie" });
+            //    routes.MapRoute("ShowMovie", "{action}/{slug}", new { controller = "Movie" });
+
+            //    routes.MapRoute(
+            //        name: "Short",
+            //        template: "{action}",
+            //        defaults: new { controller = "Home" });
+
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}");
+            //        //template: "{controller=Movie}/{action=ShowMovie}/{id?}");
+            //});
         }
     }
 }
