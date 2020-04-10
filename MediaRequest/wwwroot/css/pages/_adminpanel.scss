@@ -232,8 +232,9 @@
     .request-card {
 
         .request-button-container {
-            display: none;
-            padding: 0 0.25rem;
+            display: flex;
+            justify-content:space-around;
+            margin-top:1rem;
 
             > .btn {
                 flex: 1;

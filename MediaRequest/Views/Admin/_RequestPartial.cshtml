@@ -2,15 +2,19 @@
 
 <div class="request-card">
     <div class="request-card-head">
-        <img src="@Model.Movie.FanartUrl" />
+        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><img src="@Model.Movie.FanartUrl" /></a>
     </div>
     <div class="request-card-body">
-        <h2 class="title">@Model.Movie.Title</h2>
+        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><h2 class="title">@Model.Movie.Title</h2></a>
         <p class="description">@Model.Movie.Overview</p>
-        <div class="request-button-container">
-            <button class="btn btn-default"><span>Accept</span></button>
-            <button class="btn btn-primary"><span>Decline</span></button>
-        </div>
+        @if (Model.Status != true)
+        {
+            <div class="request-button-container">
+                <a class="btn btn-default" asp-action="ApproveRequest" asp-controller="Request" asp-route-id="@Model.Movie.TMDBId"><span>Accept</span></a>
+                <button class="btn btn-primary"><span>Decline</span></button>
+            </div>
+        }
+
     </div>
 
     <div class="avatar-container">

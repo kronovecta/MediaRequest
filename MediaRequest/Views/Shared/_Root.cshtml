@@ -16,19 +16,20 @@
     </main>
 
     @*<script>
-        $(document).ready(function () {
-            let navheight = $('nav.navbar').outerHeight();
-            let mobileNavHeight = $('.mobile-top-nav').outerHeight();
+            $(document).ready(function () {
+                let navheight = $('nav.navbar').outerHeight();
+                let mobileNavHeight = $('.mobile-top-nav').outerHeight();
 
-            if (navheight != 0) {
-                $('main').css('margin-top', navheight);
-            } else {
-                $('main').css('margin-top', mobileNavHeight);
-            }
-            
-        });
-    </script>*@
+                if (navheight != 0) {
+                    $('main').css('margin-top', navheight);
+                } else {
+                    $('main').css('margin-top', mobileNavHeight);
+                }
+
+            });
+        </script>*@
     <script src="~/js/jquery.unobtrusive-ajax-edited.js"></script>
+    <script src="~/js/enhancers/dropdown.js"></script>
 </body>
 <partial name="_Footer" />
 <partial name="_MobileNav" />

@@ -625,7 +625,7 @@ nav.submenu {
     .request-card-head {
         width: 100%;
 
-        > img {
+        > img, a > img {
             width: 100%;
             border-radius: 0.25rem 0.25rem 0 0;
         }

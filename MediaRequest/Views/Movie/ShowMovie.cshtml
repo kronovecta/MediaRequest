@@ -47,11 +47,23 @@
                         }
                         else if (Model.Requested)
                         {
-                            <li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li>
+                            <li class="dropdown-btn">
+                                <a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Accept Request</a></li>
+                                    <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Deny Request</a></li>
+                                </ul>
+                            </li>
                         }
                         else
                         {
-                            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+                            if(User.IsInRole("admin"))
+                            {
+                                <li><a class="btn btn-default">Add Movie</a></li>
+                            } else
+                            {
+                                <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+                            }
                         }
                     </ul>
                 </div>

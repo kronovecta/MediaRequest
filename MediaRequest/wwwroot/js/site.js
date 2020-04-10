@@ -80,12 +80,15 @@ $(document).on('click', function (e) {
     }  
 })
 
-$(document).on('mouseenter', '.request-card', function () {
-    $($(this).find('.description')).hide();
-    $($(this).find('.request-button-container')).css('display', 'flex');
-})
+let requestCardOuterHeight = 0;
 
-$(document).on('mouseleave', '.request-card', function () {
-    $($(this).find('.description')).show();
-    $($(this).find('.request-button-container')).css('display', 'none');
-})
+//$(document).on('click', '.request-card', function () {
+//    $(this).outerHeight($(this).outerHeight());
+//    $($(this).find('.description')).hide();
+//    $($(this).find('.request-button-container')).css('display', 'flex');
+//})
+
+//$(document).on('mouseleave', '.request-card', function () {
+//    $($(this).find('.description')).show();
+//    $($(this).find('.request-button-container')).css('display', 'none');
+//})
