@@ -7,7 +7,7 @@
             <ul>
                 <li><a asp-action="Index" asp-controller="Home">Home</a></li>
                 <li><a asp-action="Search" asp-controller="Home">Search</a></li>
-                <li><a asp-action="Profile" asp-controller="User">Profile</a></li>
+                <li><a asp-action="Requests" asp-controller="User">Profile</a></li>
                 @if (this.User.IsInRole("admin"))
                 {
                     <li class="dropdown"><a asp-action="AdminPanel" asp-controller="Admin">Admin</a>

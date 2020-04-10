@@ -1,0 +1,33 @@
+﻿@using MediaRequest.WebUI.ViewModels.Profile
+@model List<RequestViewModel>
+
+@if (Model.Count() > 0)
+{
+    @foreach (var request in Model)
+    {
+        <div class="row">
+            <div class="user-request-container">
+                <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@request.Movie.TitleSlug" class="urc-left">
+                    <div class="request-icon">
+                        <img src="~/img/icons/film-solid.svg" alt="" />
+                    </div>
+                    <h3 class="request-title">@request.Movie.Title</h3>
+                </a>
+                <div class="urc-right">
+                    @if (!request.Request.Status)
+                    {
+                        <a asp-action="CancelRequest" asp-controller="Request" asp-route-requestid="@request.Request.Id" class="btn-sm btn-primary">Cancel</a>
+                    }
+                    else
+                    {
+                        <p class="btn-sm btn-disabled">Accepted</p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>No requests made. Why not <a asp-action="Search" asp-controller="Home">Search for one?</a></p>
+}

@@ -1,5 +1,12 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap');
 
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
 
 html, * {
     color:#313131;
@@ -13,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-p {
+p, pre {
     line-height: 1.6rem;
     font-weight: 400;
 }
@@ -598,3 +605,48 @@ nav.submenu {
             }
         }
     }
+
+.request-card {
+    transition: 0.15s;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    background: $grey-superlight;
+    -webkit-box-shadow: 0px 0px 18px 0px hsl(0, 0%, 75%);
+    -moz-box-shadow: 0px 0px 18px 0px hsl(0, 0%, 75%);
+    box-shadow: 0px 0px 18px 0px hsl(0, 0%, 75%);
+
+    &:hover {
+        -webkit-box-shadow: 0px 6px 18px 0px hsl(0, 0%, 75%);
+        -moz-box-shadow: 0px 6px 18px 0px hsl(0, 0%, 75%);
+        box-shadow: 0px 6px 18px 0px hsl(0, 0%, 75%);
+    }
+
+    .request-card-head {
+        width: 100%;
+
+        > img, a > img {
+            width: 100%;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+    }
+
+    .request-card-body {
+        padding: 1rem 1rem 2rem 1rem;
+        flex: 1;
+
+        .title {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: normal;
+        }
+    }
+}

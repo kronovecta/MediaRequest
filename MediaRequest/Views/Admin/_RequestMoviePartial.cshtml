@@ -1,4 +1,4 @@
-﻿@model MediaRequest.WebUI.ViewModels.MovieUserRequestViewModel
+﻿@model MediaRequest.WebUI.ViewModels.DistinctMovieUserRequestViewModel
 
 <div class="movie-container">
     <div class="movie-poster">
@@ -6,17 +6,43 @@
     </div>
     <div class="movie-info">
         <h2>
-            @Model.Movie.Title
+            <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug">@Model.Movie.Title</a>
             <span style="opacity:0.7">(@Model.Movie.Year)</span>
         </h2>
-        @if (Model.Request.Status == false)
+        @if (Model.Requests.All(x => x.Request.Status != true))
         {
             <ul class="button-container">
-                <li><a class="btn btn-accept" href="#">Accept <i class="fas fa-check-circle"></i></a></li>
+                <li><a class="btn btn-accept" asp-action="ApproveRequest" asp-controller="Request" asp-route-id="@Model.Movie.TMDBId">Accept <i class="fas fa-check-circle"></i></a></li>
                 <li><a class="btn btn-primary" href="#">Decline <i class="fas fa-check-circle"></i></a></li>
             </ul>
         }
 
-        <h3>@Model.User.UserName</h3>
+        <div class="avatar-container">
+            @for (int i = 0; i < Model.Requests.Count() &&   i < 3; i++)
+            {
+                <div class="avatar-user-container">
+                    <img class="avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Requests[i].User.Avatar)" />
+                    <span id="" class="username">@Model.Requests[i].User.UserName</span>
+                </div>
+            }
+
+            @if (Model.Requests.Count() > 3)
+            {
+                <div class="avatar-user-container overflow">
+                    <span class="overflow-amount">+@(Model.Requests.Count() - 3)</span>
+                </div>
+            }
+        </div>
+        @if (Model.Requests.Count() > 3)
+        {
+            <div class="overflow-users">
+                <ul>
+                    @foreach (var user in Model.Requests)
+                    {
+                        <li>@user.User.UserName</li>
+                    }
+                </ul>
+            </div>
+        }
     </div>
 </div>

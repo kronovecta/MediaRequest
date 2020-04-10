@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaRequest.Application;
 using MediaRequest.Application.Commands;
+using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Commands.CancelRequest;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain;
@@ -28,34 +29,69 @@ namespace MediaRequest.WebUI.Controllers
             _mediator = mediator;
         }
 
+
         public async Task<IActionResult> AddRequest(string tmdbid)
         {
             var requests = await _context.Request.ToListAsync();
-            bool valid = false;
+            var currentUser = await _userManager.GetUserAsync(User);
+            
+            var movie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = tmdbid });
 
-            if (!requests.Any(x => x.MovieId == tmdbid)) valid = true;
-
-            if (valid)
+            if (await _context.Request.Where(x => x.UserId == currentUser.Id && x.MovieId == tmdbid).CountAsync() > 0)
             {
-                var currentUser = await _userManager.GetUserAsync(User);
+                return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+            }
                 
-                var command = new AddRequestCommand
+            var command = new AddRequestCommand
+            {
+                Request = new UserRequest()
                 {
-                    Request = new UserRequest()
-                    {
-                        Status = false,
-                        MovieId = tmdbid,
-                        UserId = currentUser.Id
-                    }
-                };
+                    Status = false,
+                    MovieId = tmdbid,
+                    UserId = currentUser.Id
+                }
+            };
 
-                await _mediator.Send(command);
+            await _mediator.Send(command);
+            return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+        }
+
+        public async Task<IActionResult> ApproveRequest(string id)
+        {
+            //var userRequest = await _context.Request.SingleOrDefaultAsync(x => x.Id == requestId);
+            var requests = _context.Request.Where(x => x.MovieId == id);
+
+            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = id });
+
+            var request = new MovieRequestObject()
+            {
+                title = movie.Movie.Title,
+                path = $"/home17/robert/downloads/movies/{movie.Movie.Title} ({movie.Movie.Year})".Replace(":", ""),
+                qualityProfileId = 7,
+                year = movie.Movie.Year,
+                tmdbId = movie.Movie.TMDBId,
+                titleSlug = movie.Movie.TitleSlug,
+                images = movie.Movie.Images,
+                addOptions = { searchForMovie = "true" }
+            };
+
+            var command = new ApproveRequestCommand { RequestObject = request };
+            var result = await _mediator.Send(command);
+
+            if (result == true)
+            {
+                //userRequest.Status = true;
+                await requests.ForEachAsync(x => x.Status = true);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                //userRequest.Status = false;
+                await requests.ForEachAsync(x => x.Status = false);
+                await _context.SaveChangesAsync();
             }
 
-            var movie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = tmdbid });
-            var movieslug = movie.Movie.TitleSlug;
-
-            return RedirectToAction("ShowMovie", "Movie", new { slug = movieslug });
+            return RedirectToAction("Requests", "Admin");
         }
 
         public async Task<IActionResult> CancelRequest(int requestid)
