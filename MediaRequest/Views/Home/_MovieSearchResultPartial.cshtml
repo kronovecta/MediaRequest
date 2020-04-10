@@ -1,6 +1,6 @@
 ﻿@model MediaRequest.WebUI.ViewModels.SearchResultViewModel
 
-    <div class="movie-list-container">
+    <div class="movie-list-container pt-2">
         @foreach (var item in Model.Movies)
         {
             <div class="movie-container">
@@ -59,6 +59,7 @@
 
 
                     <section class="button-container">
+
                         <a class="btn btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.Movie.TitleSlug"><i class="fas fa-film"></i> Go to movie page</a>
                         @if (item.Exists)
                         {

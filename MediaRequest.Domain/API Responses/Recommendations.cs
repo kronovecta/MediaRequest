@@ -26,6 +26,7 @@ namespace MediaRequest.Domain.API_Responses
 
     public class Recommendations
     {
+        public string TmdbId { get; set; }
         public int Page { get; set; }
         public List<Recommendation> Results { get; set; }
         public int Total_pages { get; set; }
