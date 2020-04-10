@@ -322,7 +322,11 @@ main {
   padding: 0rem 2rem;
   flex-grow: 10 !important; }
   .SearchPartialContainer form {
-    width: 100%; }
+    width: 100%;
+    display: flex;
+    flex-direction: row; }
+    .SearchPartialContainer form > input[type="submit"] {
+      margin-left: 1rem; }
 
 @media screen and (max-width: 768px) {
   .movie-hero {
@@ -455,13 +459,13 @@ body {
 
 .container {
   padding: 3rem 2rem;
-  max-width: 1000px;
+  width: 1000px;
+  min-height: 100vh;
   margin: 0 auto;
   background: white;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  min-width: 750px; }
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); }
 
 form .input-container {
   position: relative;
