@@ -1,4 +1,5 @@
 ﻿using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -13,6 +14,7 @@ namespace MediaRequest.Application
         // Retrieves all existing movies
         Task<HttpResponseMessage> GetMovie(GetSingleMovieRequest request);
         Task<HttpResponseMessage> GetMovie(GetMovieMediaRequest request);
+        Task<HttpResponseMessage> GetMovie(GetSingleExistingMovieRequest request);
         Task<HttpResponseMessage> GetDetails(GetMovieDetailsRequest request);
         Task<HttpResponseMessage> GetCast(GetCreditsRequest request);
         Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request);

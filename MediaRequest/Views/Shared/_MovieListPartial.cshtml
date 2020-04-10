@@ -1,5 +1,10 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexListPartialViewModel
 
+@{ 
+    var nextPage = Model.CurrentPage + 1;
+    var prevPage = Model.CurrentPage - 1;
+}
+
 <div class="movie-list-header">
     <h1>Existing movies</h1>
     <form asp-action="Index" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">
@@ -29,16 +34,25 @@
 <div class="movie-list-container">
     @if (Model.Movies.Count() > 0)
     {
+        <div class="loading mb-3"><img src="~/img/loading.gif" /></div>
         @foreach (var item in Model.Movies)
         {
             <div class="movie-container">
                 <div class="movie-poster">
                     @if (item.RemotePoster != null)
-                    {<img src="@item.RemotePoster" /> }
+                    {
+                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug">
+                            <img src="@item.PosterUrl" />
+                        </a>
+                    }
                     else
-                    { <img src="@item.PosterUrl" />}
-
+                    { 
+                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug">
+                            <img src="@item.PosterUrl" />
+                        </a>
+                    }
                 </div>
+
                 <div class="movie-info">
                     <div class="info">
                         <h2>
@@ -92,22 +106,66 @@
                     </div>
 
                     <div class="button-container">
-                        <a class="btn-sm btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug"><i class="fas fa-film"></i> Go to movie page</a>
+                        <a class="btn-sm btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug"><span><i class="fas fa-film"></i> Go to movie page</span></a>
                         @if (item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
                         {
                             if ((!item.Monitored && !item.Downloaded) || !item.Downloaded)
                             {
-                                <a class="btn-sm btn-default" href="#"><i class="fas fa-redo"></i> Request re-download</a>
+                                <a class="btn-sm btn-default" href="#"><span><i class="fas fa-redo"></i> Request re-download</span></a>
                             }
                         }
                     </div>
                 </div>
             </div>
         }
+
+<div class="pagination">
+    @if (Model.TotalPages > 1)
+    {
+        if (prevPage >= 0)
+        {
+            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="1" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">First</a>
+        }
+        else
+        {
+            <p class="pagination-item disabled">First</p>
+        }
+
+        if (prevPage != -1)
+        {
+            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(prevPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Previous</a>
+        }
+        else
+        {
+            <p class="pagination-item disabled">Previous</p>
+        }
+
+        <p class="pagination-item disabled">@(Model.CurrentPage + 1) of @(Model.TotalPages+1)</p>
+
+        if (nextPage != (Model.TotalPages + 1))
+        {
+            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(nextPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Next</a>
+        }
+        else
+        {
+            <p class="pagination-item disabled">Next</p>
+        }
+
+        if (nextPage < Model.TotalPages)
+        {
+            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(Model.TotalPages + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Last</a>
+        }
+        else
+        {
+            <p class="pagination-item disabled">Last</p>
+        }
+
+
+    }
+</div>
     }
     else
     {
         <h1>No movies found</h1>
     }
-
 </div>

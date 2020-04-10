@@ -6,6 +6,7 @@ using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Models;
+using MediaRequest.WebUI.Models.IdentityModels;
 //using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
@@ -30,18 +31,18 @@ namespace MediaRequest.Controllers
     {
         private readonly IMediaDbContext _context;
         private readonly IMediator _mediator;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<IdentityUser> userManager)
+        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<ApplicationUser> userManager)
         {
             _mediator = mediator;
-            _userManager = userManager;
+            _userManager = userManager; 
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetExistingMoviesRequest());
+            var movies = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
 
             var model = new IndexViewModel()
             {
@@ -50,7 +51,9 @@ namespace MediaRequest.Controllers
                 {
                     Term = "",
                     FilterMode = 0,
-                    Movies = movies.Movies
+                    Movies = movies.Movies,
+                    TotalPages = movies.TotalPages,
+                    CurrentPage = movies.CurrentPage
                 }
             };
 
@@ -58,11 +61,13 @@ namespace MediaRequest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string term, int filter)
+        public async Task<IActionResult> Index(string term, int filter, int? pagenr)
         {
+            pagenr = pagenr - 1;
+
             if(term == null && filter == 0)
             {
-                var response = await _mediator.Send(new GetExistingMoviesRequest());
+                var response = await _mediator.Send(new GetExistingMoviesRequest() { CurrentPage = pagenr ?? 0, Amount = 10 } );
 
                 var model = new IndexViewModel()
                 {
@@ -71,7 +76,9 @@ namespace MediaRequest.Controllers
                     {
                         Term = term,
                         FilterMode = filter,
-                        Movies = response.Movies
+                        Movies = response.Movies,
+                        TotalPages = response.TotalPages,
+                        CurrentPage = response.CurrentPage
                     }
                 };
 
@@ -79,16 +86,18 @@ namespace MediaRequest.Controllers
             } 
             else
             {
-                var movies = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter });
+                var response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter });
 
                 var model = new IndexViewModel()
                 {
-                    LatestMovie = movies.LatestMovie,
+                    LatestMovie = response.LatestMovie,
                     PartialView = new IndexListPartialViewModel
                     {
                         Term = term,
                         FilterMode = filter,
-                        Movies = movies.Movies
+                        Movies = response.Movies,
+                        TotalPages = response.TotalPages,
+                        CurrentPage = response.CurrentPage
                     }
                 };
 
