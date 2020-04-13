@@ -9,14 +9,10 @@
         </div>
     </div>
     <div class="actor-body">
-        @*@foreach (var item in Model.Movies.cast)
-        {
-            @await Component.InvokeAsync("MovieCard", new { maxPriority = 1, isDone = false, movieId = item.id.ToString() });
-        }*@
         <div class="request-container">
-            @for (int i = 1; i <= 3; i++)
+            @foreach (var movie in Model.PopularMovies)
             {
-                @await Component.InvokeAsync("MovieCard", new { maxPriority = 1, isDone = false, movieId = Model.Movies.cast[i].id.ToString() });
+                @await Component.InvokeAsync("MovieCard", new { maxPriority = 1, isDone = false, movieId = movie.Id.ToString() });
             }
         </div>
     </div>

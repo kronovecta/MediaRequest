@@ -626,6 +626,7 @@ nav.submenu {
         width: 100%;
 
         > img, a > img {
+            max-height:160px;
             width: 100%;
             border-radius: 0.25rem 0.25rem 0 0;
         }
@@ -648,5 +649,16 @@ nav.submenu {
             text-overflow: ellipsis;
             word-break: normal;
         }
+    }
+}
+
+@mixin container {
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.16);
+    border-radius: 3px;
+    background: white;
+
+    &:hover {
+        cursor: pointer;
+        background: $white-main;
     }
 }

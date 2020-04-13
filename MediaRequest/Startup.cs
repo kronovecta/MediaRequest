@@ -1,4 +1,5 @@
 ﻿using MediaRequest.Application;
+using MediaRequest.Application.Clients;
 using MediaRequest.Application.Commands;
 using MediaRequest.Application.Queries;
 using MediaRequest.Data;
@@ -14,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace MediaRequest
 {
@@ -56,6 +58,11 @@ namespace MediaRequest
             services.AddScoped<IHttpHelper, HttpHelper>();
             services.AddSession();
 
+            // HTTP Clients
+            services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
+            services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
+
+            // Configuration classes
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
 

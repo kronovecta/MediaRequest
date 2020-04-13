@@ -69,7 +69,7 @@ namespace MediaRequest.WebUI.Controllers
                 path = $"/home17/robert/downloads/movies/{movie.Movie.Title} ({movie.Movie.Year})".Replace(":", ""),
                 qualityProfileId = 7,
                 year = movie.Movie.Year,
-                tmdbId = movie.Movie.TMDBId,
+                tmdbId = movie.Movie.TMDBId.ToString(),
                 titleSlug = movie.Movie.TitleSlug,
                 images = movie.Movie.Images,
                 addOptions = { searchForMovie = "true" }

@@ -12,6 +12,7 @@ namespace MediaRequest.WebUI.ViewModels.Profile
     {
         public ApplicationUser User { get; set; }
         public List<RequestViewModel> Requests { get; set; }
+        public Movie Upcoming { get; set; }
     }
 
     public class RequestViewModel

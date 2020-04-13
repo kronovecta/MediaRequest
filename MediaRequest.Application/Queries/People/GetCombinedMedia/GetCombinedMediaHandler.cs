@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Linq;
 
 namespace MediaRequest.Application.Queries.People.GetCombinedMedia
 {
@@ -27,27 +28,23 @@ namespace MediaRequest.Application.Queries.People.GetCombinedMedia
         }
         public async Task<GetCombinedMediaResponse> Handle(GetCombinedMediaRequest request, CancellationToken cancellationToken)
         {
-            var res = await _http.GetCombinedMedia(request.ActorID);
             var actorRes = await _http.GetDetails(request.ActorID);
 
-            if(res.IsSuccessStatusCode && actorRes.IsSuccessStatusCode)
-            {
-                var result = await res.Content.ReadAsStringAsync();
-                var movies = JsonConvert.DeserializeObject<OtherWorks>(result);
-                
+            if(actorRes.IsSuccessStatusCode)
+            {                
                 var actorResult = await actorRes.Content.ReadAsStringAsync();
                 var actor = JsonConvert.DeserializeObject<Actor>(actorResult);
 
                 actor.profile_path = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + actor.profile_path;
 
-                var response = new GetCombinedMediaResponse { Actor = actor, Movies = movies };
+                var response = new GetCombinedMediaResponse { Actor = actor };
 
                 return response;
-            } else
+            } 
+            else
             {
                 throw new GetCombinedMediaException("Error fetching related movies");
             }
-            
         }
     }
 }
