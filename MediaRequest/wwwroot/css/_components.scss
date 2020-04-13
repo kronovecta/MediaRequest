@@ -32,6 +32,14 @@ input[type="email"] {
 .flex-container {
     display: flex;
 
+    &.flex-column {
+        flex-direction:column;
+    }
+
+    &.flex-row {
+        flex-direction:row;
+    }
+
     .form-section {
         flex-grow: 1;
     }

@@ -7,6 +7,8 @@ using MediaRequest.Application;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
 using MediaRequest.Application.Queries.Movies.GetUpcoming;
+using MediaRequest.Application.Queries.Requests;
+using MediaRequest.Application.Queries.Requests.GetUserRequests;
 using MediaRequest.Data;
 using MediaRequest.WebUI.Exceptions;
 using MediaRequest.WebUI.Models;
@@ -39,10 +41,14 @@ namespace MediaRequest.WebUI.Controllers
         public async Task<IActionResult> Profile()
         {
             var user = await _userManager.GetUserAsync(User);
+            var requests = await _mediator.Send(new GetUserRequestRequest(user.Id));
+            var upcoming = await _mediator.Send(new GetUpcomingRequest(90));
+
             var model = new ProfileViewModel()
             {
                 User = await _userManager.GetUserAsync(User),
-                Requests = new List<RequestViewModel>()
+                Requests = await GetRequestViewModel(),
+                Upcoming = upcoming.Movies.OrderByDescending(x => x.InCinemas).FirstOrDefault()
             };
 
             return View(model);
@@ -149,6 +155,21 @@ namespace MediaRequest.WebUI.Controllers
             }
 
             return View(model);
+        }
+
+        private async Task<List<RequestViewModel>> GetRequestViewModel()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var model = new List<RequestViewModel>();
+
+            var requests = _mediaContext.Request.Where(x => x.UserId == user.Id);
+            foreach (var request in requests)
+            {
+                var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = request.MovieId });
+                model.Add(new RequestViewModel { Movie = result.Movie, Request = request });
+            }
+
+            return model;
         }
     }
 }

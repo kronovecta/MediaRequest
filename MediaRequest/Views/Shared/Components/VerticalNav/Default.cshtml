@@ -27,12 +27,6 @@
             </div>
         }
 
-        <form hidden enctype="multipart/form-data" asp-controller="User" asp-action="UploadAvatar" method="post">
-            <label asp-for="@Model.Avatar">Avatar</label>
-            <input class="filebtn" type="file" name="image" />
-            <input class="filesubmit" type="submit" value="Upload" />
-        </form>
-
         <p class="username">Admin</p>
     </div>
     <ul class="vertical-nav-list">

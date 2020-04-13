@@ -1,4 +1,5 @@
-﻿using MediaRequest.Domain.Configuration;
+﻿using MediaRequest.Application.Parsers;
+using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Domain.TMDB;
 using MediatR;
@@ -24,14 +25,12 @@ namespace MediaRequest.Application.Queries.Movies
 
         public async Task<GetMovieMediaResponse> Handle(GetMovieMediaRequest request, CancellationToken cancellationToken)
         {
-            using (var client = new HttpClient())
+            var result = await _http.GetMovie(request);
+            result.EnsureSuccessStatusCode();
+
+            using(var stream = await result.Content.ReadAsStreamAsync())
             {
-                var result = await _http.GetMovie(request);
-                result.EnsureSuccessStatusCode();
-
-                var resultString = await result.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject<Movie>(resultString);
-
+                var json = await System.Text.Json.JsonSerializer.DeserializeAsync<Movie>(stream, DefaultJsonSettings.Settings);
                 var response = new GetMovieMediaResponse() { Movie = json };
 
                 return response;

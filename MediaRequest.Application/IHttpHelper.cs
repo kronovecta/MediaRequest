@@ -21,5 +21,6 @@ namespace MediaRequest.Application
         Task<HttpResponseMessage> GetUpcoming(int? days);
         Task<HttpResponseMessage> GetDetails(string actorid);
         Task<HttpResponseMessage> GetCombinedMedia(string actorid);
+        Task<HttpResponseMessage> GetPopularMovies(string actorid);
     }
 }

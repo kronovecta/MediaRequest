@@ -6,31 +6,15 @@
         <div class="container">
             <div class="profile-body">
                 <div class="row">
-                    <h2 class="pb-1">Upcoming (@Model.Events.Count())</h2>
+                    <h1 class="pb-1">Upcoming (@Model.Events.Count())</h1>
                 </div>
                 <div class="calendar">
                     @foreach (var item in Model.Events)
                     {
-                        <div class="calendar-event">
-                            @{
-                                var date = item.InCinemas.ToString("MMM d", CultureInfo.CurrentCulture);
-                                string dateFormatted = char.ToUpper(date.First()) + date.Substring(1).ToLower();
-                            }
-                            <div class="calendar-date @(item.Downloaded != true ? "blue" : "green")">
-                                <p>@dateFormatted</p>
-                            </div>
-                            <div class="calendar-info">
-                                <p>@item.Title</p>
-                            </div>
-                        </div>
+                        @*<partial name="Partials/_calendarView" model="item" />*@
+                        @await Component.InvokeAsync("CalendarEvent", new { maxPriority = 1, isDone = false, movie = item });
                     }
                 </div>
-                <select>
-                    <option>1 month</option>
-                    <option>3 months</option>
-                    <option>6 months</option>
-                    <option>12 months</option>
-                </select>
             </div>
         </div>
     </div>

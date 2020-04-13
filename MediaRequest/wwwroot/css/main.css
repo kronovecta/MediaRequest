@@ -786,6 +786,7 @@ nav.submenu {
   .request-card .request-card-head {
     width: 100%; }
     .request-card .request-card-head > img, .request-card .request-card-head a > img {
+      max-height: 160px;
       width: 100%;
       border-radius: 0.25rem 0.25rem 0 0; }
   .request-card .request-card-body {
@@ -1004,6 +1005,21 @@ nav.submenu {
 
 .mt-4 {
   margin-top: 4rem; }
+
+.mr-0 {
+  margin-right: 0rem; }
+
+.mr-1 {
+  margin-right: 1rem; }
+
+.mr-2 {
+  margin-right: 2rem; }
+
+.mr-3 {
+  margin-right: 3rem; }
+
+.mr-4 {
+  margin-right: 4rem; }
 
 .actor {
   transition: 0.15s; }
@@ -1442,7 +1458,7 @@ section.recommended {
   .request-container .request-card .request-button-container {
     display: flex;
     justify-content: space-around;
-    margin-top: 1rem; }
+    padding: 1rem; }
     .request-container .request-card .request-button-container > .btn {
       flex: 1; }
       .request-container .request-card .request-button-container > .btn:last-child {
@@ -1573,7 +1589,6 @@ section.recommended {
     box-shadow: -5px 0px 10px 0px rgba(0, 0, 0, 0.1); }
 
 .profile-head {
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1582,7 +1597,6 @@ section.recommended {
   .profile-head h1 {
     font-size: 3rem; }
   .profile-head .avatar {
-    margin-right: 2rem;
     max-width: 300px;
     max-height: 300px;
     height: 15vh;
@@ -1628,7 +1642,7 @@ section.recommended {
     flex-grow: 1; }
 
 form .form-section {
-  margin-right: 1rem; }
+  /*margin-right: 1rem;*/ }
   form .form-section label {
     display: block; }
   form .form-section input[type="text"], form .form-section input[type="email"] {
@@ -1702,40 +1716,6 @@ form .form-section .input-inline:last-child {
   .user-request-container:last-child {
     margin: 0; }
 
-.calendar {
-  width: 100%;
-  display: flex;
-  flex-direction: column; }
-  .calendar .calendar-event {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1rem; }
-    .calendar .calendar-event .calendar-date {
-      text-align: center;
-      flex: 1;
-      padding: 1rem;
-      border-radius: 0.25rem 0 0 0.25rem; }
-      .calendar .calendar-event .calendar-date > p {
-        font-weight: 700;
-        color: inherit; }
-      .calendar .calendar-event .calendar-date.blue {
-        border-color: #1f60c4;
-        background: #1f60c4;
-        color: #f8f9fc; }
-      .calendar .calendar-event .calendar-date.green {
-        border-color: #5eba6e;
-        background: #5eba6e;
-        color: #f8f9fc; }
-    .calendar .calendar-event .calendar-info {
-      border-radius: 0 0.25rem 0.25rem 0;
-      flex: 10;
-      padding: 1rem;
-      border: 1px solid #e6e6e6;
-      border-left: none; }
-  .calendar .calendar-week td {
-    border: 1px solid #f5f5f5; }
-
 /*$blue-main: hsl(225, 73%, 52%);*/
 input[type="text"], input[type="email"] {
   flex-grow: 1;
@@ -1763,6 +1743,10 @@ input[type="email"] {
 
 .flex-container {
   display: flex; }
+  .flex-container.flex-column {
+    flex-direction: column; }
+  .flex-container.flex-row {
+    flex-direction: row; }
   .flex-container .form-section {
     flex-grow: 1; }
 
@@ -2007,3 +1991,39 @@ footer {
     display: block; }
     .dropdown-btn .dropdown-menu > li > a {
       width: 100%; }
+
+.calendar-event-container {
+  margin-bottom: 1rem;
+  display: block; }
+  .calendar-event-container .calendar-event {
+    display: flex;
+    flex-direction: row;
+    height: 25vh;
+    max-height: 200px;
+    padding: 1rem;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 3px;
+    background: white; }
+    .calendar-event-container .calendar-event:hover {
+      cursor: pointer;
+      background: #f8f9fc; }
+    .calendar-event-container .calendar-event > .poster-container {
+      height: 100%;
+      margin-right: 1rem; }
+      .calendar-event-container .calendar-event > .poster-container > img {
+        height: 100%; }
+    .calendar-event-container .calendar-event > .event-movie-container .event-movie-head {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 0.5rem; }
+      .calendar-event-container .calendar-event > .event-movie-container .event-movie-head .title {
+        margin-right: 0.5rem; }
+    .calendar-event-container .calendar-event > .event-movie-container .description {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+  .calendar-event-container:hover {
+    text-decoration: none; }

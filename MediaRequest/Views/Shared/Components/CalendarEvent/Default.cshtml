@@ -1,0 +1,25 @@
+﻿@model MediaRequest.Domain.Radarr.Movie
+
+<a class="calendar-event-container" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.TitleSlug">
+    <div class="calendar-event">
+        <div class="poster-container">
+            @*<img src="@Model.Images.SingleOrDefault(x => x.CoverType == "poster").URL" />*@
+            <img src="@Model.PosterUrl" />
+        </div>
+        <div class="event-movie-container">
+            <div class="event-movie-head">
+                <h2 class="title">@Model.Title</h2>
+                @if (Model.InCinemas > DateTime.Now && Model.InCinemas > new DateTime())
+                {
+                    <h4 class="badge-container"><span class="badge badge-secondary">In Cinemas: @Model.InCinemas.ToShortDateString()</span></h4>
+                }
+
+                @{
+                    var date = Model.InCinemas.ToString("MMM d", System.Globalization.CultureInfo.CurrentCulture);
+                    string dateFormatted = char.ToUpper(date.First()) + date.Substring(1).ToLower();
+                }
+            </div>
+            <p class="description">@Model.Overview</p>
+        </div>
+    </div>
+</a>
