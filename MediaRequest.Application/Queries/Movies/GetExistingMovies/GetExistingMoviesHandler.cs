@@ -120,7 +120,7 @@ namespace MediaRequest.Application.Queries.Movies
             {
                 var json = await JsonSerializer.DeserializeAsync<IEnumerable<Movie>>(stream, DefaultJsonSettings.Settings);
                 model.Movies = json;
-                model.LatestMovie = model.Movies.Where(x => x.Downloaded == true).First();
+                model.LatestMovie = model.Movies.Where(x => x.Downloaded == true).OrderByDescending(x => x.Added).First();
             }
 
             if(request.Input != null)
