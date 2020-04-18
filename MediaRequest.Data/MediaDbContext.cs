@@ -1,4 +1,5 @@
 ﻿using MediaRequest.Application;
+using MediaRequest.Data.Notifications;
 using MediaRequest.Domain;
 using MediaRequest.Domain.Radarr;
 using Microsoft.AspNetCore.Identity;
@@ -21,6 +22,7 @@ namespace MediaRequest.Data
 
         public DbSet<UserRequest> Request { get; set; }
         public DbSet<MoviePoster> MoviePoster { get; set; }
+        public DbSet<UserNotification> NotificationProvider { get; set; }
 
         public Task<int> SaveChangesAsync()
         {
@@ -30,6 +32,14 @@ namespace MediaRequest.Data
         protected void OnModelCreation(ModelBuilder builder)
         {
             builder.Entity<UserRequest>().HasData(new UserRequest { UserId = "a4ab47cc-ddf1-419a-90eb-3e86dd8fa50c", MovieId = "181812", Status = false });
+
+            builder.Entity<UserNotification>(opt =>
+            {
+                opt.Property("UserId").IsRequired();
+                opt.Property("WebhookURL").IsRequired();
+
+                opt.Property("Username").HasDefaultValue("Apollo");
+            });
         }
     }
 }

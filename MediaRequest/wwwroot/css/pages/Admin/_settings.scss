@@ -1,0 +1,22 @@
+﻿.settings-notification-selection-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 1rem;
+
+    .notification-provider-link {
+        @include container;
+
+        .notification-provider-container {
+            padding: 1rem;
+            align-items: center;
+        }
+
+        .provider {
+            text-align: center;
+        }
+
+        .provider-logo {
+            max-width: 150px;
+        }
+    }
+}

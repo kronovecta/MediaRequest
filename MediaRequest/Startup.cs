@@ -4,6 +4,9 @@ using MediaRequest.Application.Commands;
 using MediaRequest.Application.Queries;
 using MediaRequest.Data;
 using MediaRequest.Domain.Configuration;
+using MediaRequest.Infrastructure.Notifications;
+using MediaRequest.Infrastructure.Notifications.Discord;
+using MediaRequest.Services;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -61,6 +64,7 @@ namespace MediaRequest
             // HTTP Clients
             services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
             services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
+            
 
             // Configuration classes
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
@@ -70,8 +74,12 @@ namespace MediaRequest
                 typeof(GetSingleMovieHandler).Assembly,
                 typeof(AddRequestHandler).Assembly);
 
-            //services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlServer(conn));
-            //services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(conn));
+            // Notification Providers
+            services.AddHttpClient<DiscordClient>();
+            services.AddTransient<INotificationBase, DiscordProvider>();
+
+            // Services
+            services.AddTransient<RequestServices>();
 
             services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlite(conn));
             services.AddDbContext<IdentityContext>(opt => opt.UseSqlite(conn));
@@ -88,7 +96,7 @@ namespace MediaRequest
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                new DataInitializer(Configuration).SeedData(userManager, roleManager);
+                //new DataInitializer(Configuration).SeedData(userManager, roleManager);
             }
             else
             {

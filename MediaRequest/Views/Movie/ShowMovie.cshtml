@@ -57,13 +57,15 @@
                         }
                         else
                         {
-                            if(User.IsInRole("admin"))
+                            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+
+                            @*if(User.IsInRole("admin"))
                             {
                                 <li><a class="btn btn-default">Add Movie</a></li>
                             } else
                             {
                                 <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
-                            }
+                            }*@
                         }
                     </ul>
                 </div>

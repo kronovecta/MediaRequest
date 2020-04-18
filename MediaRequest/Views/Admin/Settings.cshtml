@@ -1,0 +1,45 @@
+﻿@model MediaRequest.WebUI.ViewModels.Admin.SettingsViewModel  
+
+    <div class="container">
+        <h1>Settings</h1>
+
+        <h2>Paths</h2>
+        <form class="w-100" asp-action="Update" asp-controller="Account" method="post">
+            <div class="flex-container flex-column">
+                <div class="form-section input-inline">
+                    <label>Root path</label>
+                    <input value="@Model.RootPath" />
+                </div>
+                <div class="form-section input-inline">
+                    <label>Radarr path</label>
+                    <input value="@Model.RadarrPath" />
+                </div>
+            </div>
+        </form>
+
+        <h2>API Keys</h2>
+        <form class="w-100" asp-action="Update" asp-controller="Account" method="post">
+            <div class="flex-container flex-column">
+                <div class="form-section input-inline">
+                    <label>TMDb API Key</label>
+                    <input value="@Model.TMDB_APIKey" />
+                </div>
+
+                <div class="form-section input-inline">
+                    <label>Radarr API Key</label>
+                    <input value="@Model.Radarr_APIKey" />
+                </div>
+            </div>
+        </form>
+
+
+        <h2>Notifications</h2>
+        <div class="settings-notification-selection-container">
+            <a href="#" class="notification-provider-link">
+                <div class="flex-container flex-column notification-provider-container">
+                    <h3 class="provider">Discord</h3>
+                    <img class="provider-logo" src="~/img/discord-logo-color.png" />
+                </div>
+            </a>
+        </div>
+    </div>

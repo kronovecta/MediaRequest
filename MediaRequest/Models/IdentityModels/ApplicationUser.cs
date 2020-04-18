@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using MediaRequest.Application;
+using MediaRequest.Data.Notifications;
+using MediaRequest.Infrastructure.Notifications;
+using MediaRequest.Infrastructure.Notifications.Discord;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +12,9 @@ namespace MediaRequest.WebUI.Models.IdentityModels
 {
     public class ApplicationUser : IdentityUser
     {
+
         public byte[] Avatar { get; set; }
+
+        
     }
 }

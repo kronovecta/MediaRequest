@@ -50,15 +50,15 @@ namespace MediaRequest
             {
                 if (userManager.FindByNameAsync(employee.Key).Result == null)
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = _config[$"seedusers:{employee.Key}:username"],
-                        Email = _config[$"seedusers:{employee.Key}:email"],
-                        PhoneNumber = _config[$"seedusers:{employee.Key}:phone"]
-                    };
+                    //var user = new ApplicationUser
+                    //{
+                    //    UserName = _config[$"seedusers:{employee.Key}:username"],
+                    //    Email = _config[$"seedusers:{employee.Key}:email"],
+                    //    PhoneNumber = _config[$"seedusers:{employee.Key}:phone"]
+                    //};
 
-                    userManager.CreateAsync(user, _config[$"seedusers:{employee.Key}:password"]).Wait();
-                    userManager.AddToRoleAsync(user, employee.Key).Wait();
+                    //userManager.CreateAsync(user, _config[$"seedusers:{employee.Key}:password"]).Wait();
+                    //userManager.AddToRoleAsync(user, employee.Key).Wait();
                 }
             }
         }

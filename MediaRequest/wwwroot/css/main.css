@@ -2027,3 +2027,22 @@ footer {
       text-overflow: ellipsis; }
   .calendar-event-container:hover {
     text-decoration: none; }
+
+.settings-notification-selection-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 1rem; }
+  .settings-notification-selection-container .notification-provider-link {
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 3px;
+    background: white; }
+    .settings-notification-selection-container .notification-provider-link:hover {
+      cursor: pointer;
+      background: #f8f9fc; }
+    .settings-notification-selection-container .notification-provider-link .notification-provider-container {
+      padding: 1rem;
+      align-items: center; }
+    .settings-notification-selection-container .notification-provider-link .provider {
+      text-align: center; }
+    .settings-notification-selection-container .notification-provider-link .provider-logo {
+      max-width: 150px; }

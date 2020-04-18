@@ -8,6 +8,7 @@ using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Commands.CancelRequest;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain;
+using MediaRequest.Services;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -21,39 +22,64 @@ namespace MediaRequest.WebUI.Controllers
         private readonly IMediator _mediator;
         private readonly IMediaDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RequestServices _requestServices;
 
-        public RequestController(IMediator mediator, IMediaDbContext context, UserManager<ApplicationUser> userManager)
+        public RequestController(IMediator mediator, IMediaDbContext context, UserManager<ApplicationUser> userManager, RequestServices requestServices)
         {
             _context = context;
             _userManager = userManager;
+            _requestServices = requestServices;
             _mediator = mediator;
         }
-
 
         public async Task<IActionResult> AddRequest(string tmdbid)
         {
             var requests = await _context.Request.ToListAsync();
             var currentUser = await _userManager.GetUserAsync(User);
+            var userWrapper = new ApplicationUserWrapper(_context, currentUser);
             
             var movie = await _mediator.Send(new GetSingleMovieRequest { TmdbId = tmdbid });
 
-            if (await _context.Request.Where(x => x.UserId == currentUser.Id && x.MovieId == tmdbid).CountAsync() > 0)
-            {
-                return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
-            }
-                
-            var command = new AddRequestCommand
-            {
-                Request = new UserRequest()
-                {
-                    Status = false,
-                    MovieId = tmdbid,
-                    UserId = currentUser.Id
-                }
-            };
+            var response = await _requestServices.AddRequestAsync(tmdbid, currentUser.Id);
 
-            await _mediator.Send(command);
+            if (response.Success)
+            {
+                
+                foreach (var provider in userWrapper.NotificationProviders)
+                {
+                    provider.OnRequest();
+                }
+            } else
+            {
+                TempData["Error"] = "Request failed - Movie already requested by user";
+            }
+
             return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+
+
+            //if (await _context.Request.Where(x => x.UserId == currentUser.Id && x.MovieId == tmdbid).CountAsync() > 0)
+            //{
+            //    return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+            //}
+
+            //var command = new AddRequestCommand
+            //{
+            //    Request = new UserRequest()
+            //    {
+            //        Status = false,
+            //        MovieId = tmdbid,
+            //        UserId = currentUser.Id
+            //    }
+            //};
+
+            //await _mediator.Send(command);
+
+            //foreach (var provider in currentUser.NotificationProviders)
+            //{
+            //    provider.OnRequest();
+            //}
+
+            //return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
         }
 
         public async Task<IActionResult> ApproveRequest(string id)
