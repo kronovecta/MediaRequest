@@ -1,5 +1,6 @@
 ﻿using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
+using MediaRequest.Application.Queries.Movies.GetTMDBContent;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -22,5 +23,6 @@ namespace MediaRequest.Application
         Task<HttpResponseMessage> GetDetails(string actorid);
         Task<HttpResponseMessage> GetCombinedMedia(string actorid);
         Task<HttpResponseMessage> GetPopularMovies(string actorid);
+        Task<HttpResponseMessage> GetTMDBMedia(GetTMDBMediaRequest request);
     }
 }

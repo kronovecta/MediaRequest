@@ -513,11 +513,16 @@ nav.submenu {
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #e9eefc;
+  background: white;
   padding: 1rem 2rem;
   z-index: 1100;
   border-radius: 0.25rem;
-  width: max-content; }
+  width: max-content;
+  box-shadow: 0px 3px 5px 0px rgba(212, 212, 212, 0.59); }
+  #cookieConsent .accept-policy {
+    margin-left: 1rem; }
+    #cookieConsent .accept-policy:hover {
+      background: #f8f9fc; }
 
 .single-movie-container {
   color: #f8f9fc;

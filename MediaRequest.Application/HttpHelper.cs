@@ -2,6 +2,7 @@
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
+using MediaRequest.Application.Queries.Movies.GetTMDBContent;
 using MediaRequest.Domain.Configuration;
 using Microsoft.Extensions.Options;
 using System;
@@ -86,6 +87,11 @@ namespace MediaRequest.Application
         public async Task<HttpResponseMessage> GetPopularMovies(string actorid)
         {
             return await _tmdbClient.Client.GetAsync($"discover/movie?with_cast={actorid}&sort_by=popularity.desc&api_key={_keys.TMDB}");
+        }
+
+        public async Task<HttpResponseMessage> GetTMDBMedia(GetTMDBMediaRequest request)
+        {
+            return await _tmdbClient.Client.GetAsync(string.Format("movie/{0}/images?api_key={1}", request.TMDB, _keys.TMDB));
         }
         #endregion
     }

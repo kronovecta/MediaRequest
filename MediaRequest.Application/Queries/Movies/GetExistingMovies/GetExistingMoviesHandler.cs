@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json;
 using MediaRequest.Application.Parsers;
+using MediaRequest.Application.Queries.Movies.GetTMDBContent;
 
 namespace MediaRequest.Application.Queries.Movies
 {
@@ -27,12 +28,14 @@ namespace MediaRequest.Application.Queries.Movies
     public class GetExistingMoviesHandler : IRequestHandler<GetExistingMoviesRequest, GetExistingMoviesResponse>
     {
         private readonly IMediator _mediator;
+        private readonly IMediaDbContext _mediaDbContext;
         private readonly ServicePath _path;
         private readonly IHttpHelper _http;
 
-        public GetExistingMoviesHandler(IHttpHelper http, IOptions<ServicePath> path, IMediator mediator)
+        public GetExistingMoviesHandler(IHttpHelper http, IOptions<ServicePath> path, IMediator mediator, IMediaDbContext mediaDbContext)
         {
             _mediator = mediator;
+            _mediaDbContext = mediaDbContext;
             _path = path.Value;
             _http = http;
         }
@@ -56,8 +59,6 @@ namespace MediaRequest.Application.Queries.Movies
                 model.LatestMovie = model.Movies.Where(x => x.Downloaded == true).First();
             }
 
-            var totalPages = 0;
-
             if(request.Amount > 0)
             {
                 model.TotalPages = Functions.GetTotalPages(model.Movies, request.Amount);
@@ -66,24 +67,50 @@ namespace MediaRequest.Application.Queries.Movies
                 
             foreach (var movie in model.Movies)
             {
-                if (movie.Images.Any(x => x.CoverType == "poster"))
+                var existingPoster = _mediaDbContext.MoviePoster.SingleOrDefault(x => x.MovieId == movie.TMDBId.ToString());
+
+                if (existingPoster == null)
                 {
-                    movie.PosterUrl = _path.BaseURL + movie.Images.Where(x => x.CoverType == "poster").First().URL;
+                    var media = await _mediator.Send(new GetTMDBMediaRequest(movie.TMDBId));
+                    var posterPrefix = "https://image.tmdb.org/t/p/w500/";
+                    var fanartPrefix = "https://image.tmdb.org/t/p/original/";
+                    var fanart = fanartPrefix + media.Backdrops.FirstOrDefault()?.FilePath;
+                    var poster = posterPrefix + media.Posters.FirstOrDefault(x => x.iso_639_1 == "en")?.FilePath;
+                    var moviePoster = new MoviePoster
+                    {
+                        MovieId = movie.TMDBId.ToString(),
+                        FanartUrl = fanart,
+                        PosterUrl = poster
+                    };
+
+                    _mediaDbContext.MoviePoster.Add(moviePoster);
+                    await _mediaDbContext.SaveChangesAsync();
+
+                    movie.FanartUrl = fanart;
+                    movie.PosterUrl = poster;
                 } else
                 {
-                    var tmdbmovie = await _mediator.Send(new GetMovieMediaRequest { TMDBId = movie.TMDBId.ToString() });
-                    movie.PosterUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "poster").First().URL;
+                    movie.FanartUrl = existingPoster.FanartUrl;
+                    movie.PosterUrl = existingPoster.PosterUrl;
                 }
+                //if (movie.Images.Any(x => x.CoverType == "poster"))
+                //{
+                //    movie.PosterUrl = _path.BaseURL + movie.Images.Where(x => x.CoverType == "poster").First().URL;
+                //} else
+                //{
+                //    var tmdbmovie = await _mediator.Send(new GetMovieMediaRequest { TMDBId = movie.TMDBId.ToString() });
+                //    movie.PosterUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "poster").First().URL;
+                //}
 
-                if (movie.Images.Any(x => x.CoverType == "fanart"))
-                {
-                    movie.FanartUrl = _path.BaseURL + movie.Images.Where(x => x.CoverType == "fanart").First().URL;
-                }
-                else
-                {
-                    var tmdbmovie = await _mediator.Send(new GetMovieMediaRequest { TMDBId = movie.TMDBId.ToString() });
-                    movie.FanartUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "fanart").First().URL;
-                }
+                //if (movie.Images.Any(x => x.CoverType == "fanart"))
+                //{
+                //    movie.FanartUrl = _path.BaseURL + movie.Images.Where(x => x.CoverType == "fanart").First().URL;
+                //}
+                //else
+                //{
+                //    var tmdbmovie = await _mediator.Send(new GetMovieMediaRequest { TMDBId = movie.TMDBId.ToString() });
+                //    movie.FanartUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "fanart").First().URL;
+                //}
             }
 
             return model;
