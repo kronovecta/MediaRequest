@@ -57,7 +57,7 @@ namespace MediaRequest
             });
 
             services.AddScoped<IHttpHelper, HttpHelper>();
-            services.AddSession();
+            services.AddSession(opt => opt.Cookie.IsEssential = true);
 
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
