@@ -1,0 +1,20 @@
+﻿@model MediaRequest.WebUI.ViewModels.Profile.CalendarViewModel
+@using System.Globalization
+
+    <div class="profile-container h-100">
+        @await Component.InvokeAsync("VerticalNav", new { maxPriority = 1, isDone = false })
+        <div class="container">
+            <div class="profile-body">
+                <div class="row">
+                    <h1 class="pb-1">Upcoming (@Model.Events.Count())</h1>
+                </div>
+                <div class="calendar">
+                    @foreach (var item in Model.Events)
+                    {
+                        @*<partial name="Partials/_calendarView" model="item" />*@
+                        @await Component.InvokeAsync("CalendarEvent", new { maxPriority = 1, isDone = false, movie = item });
+                    }
+                </div>
+            </div>
+        </div>
+    </div>

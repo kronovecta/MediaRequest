@@ -1,0 +1,50 @@
+﻿@model MediaRequest.WebUI.ViewModels.DistinctMovieUserRequestViewModel
+
+<div class="request-card">
+    <div class="request-card-head">
+        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><img src="@Model.Movie.FanartUrl" /></a>
+    </div>
+    <div class="request-card-body">
+        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><h2 class="title">@Model.Movie.Title</h2></a>
+        <p class="description">@Model.Movie.Overview</p>
+
+    </div>
+
+    <div class="avatar-container">
+        @for (int i = 0; i < Model.Requests.Count() && i < 3; i++)
+        {
+            <div class="avatar-user-container">
+                <img class="avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Requests[i].User.Avatar)" />
+                <span id="" class="username">@Model.Requests[i].User.UserName</span>
+            </div>
+        }
+
+        @if (Model.Requests.Count() > 3)
+        {
+            <div class="avatar-user-container overflow">
+                <span class="overflow-amount">+@(Model.Requests.Count() - 3)</span>
+            </div>
+        }
+    </div>
+
+    @if (Model.Requests.Count() > 3)
+    {
+        <div class="overflow-users">
+            <ul>
+                @foreach (var user in Model.Requests)
+                {
+                    <li>@user.User.UserName</li>
+                }
+            </ul>
+        </div>
+    }
+
+    
+    @if (Model.Status != true)
+    {
+        <div class="request-button-container">
+            <a class="btn btn-default" asp-action="ApproveRequest" asp-controller="Request" asp-route-id="@Model.Movie.TMDBId"><span>Accept</span></a>
+            <button class="btn btn-primary"><span>Decline</span></button>
+        </div>
+    }
+</div>

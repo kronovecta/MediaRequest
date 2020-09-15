@@ -1,5 +1,12 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap');
 
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
 
 html, * {
     color:#313131;
@@ -13,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-p {
+p, pre {
     line-height: 1.6rem;
     font-weight: 400;
 }
@@ -120,13 +127,13 @@ body {
 
 .container {
     padding: 3rem 2rem;
-    max-width: 1000px;
+    width: 1000px;
+    min-height:100vh;
     margin: 0 auto;
     background: white;
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
-    min-width:750px;
 }
 
 form {
@@ -191,55 +198,64 @@ nav.submenu {
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    background: $blue-light;
+    background: white;
     padding: 1rem 2rem;
     z-index: 1100;
     border-radius: 0.25rem;
-    width:max-content;
-}
+    width: max-content;
+    box-shadow: 0px 3px 5px 0px rgba(212,212,212,0.59);
 
-    .single-movie-container {
-        color: $white-main;
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 100vh;
+    .accept-policy {
+        margin-left:1rem;
 
-        > .head {
-            max-width: 400px;
-        }
-
-        .img-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            /*filter: brightness(30%);*/
-            z-index: -999;
-            height: 100%;
-
-            .gradient {
-                position: absolute;
-                left: 0;
-                width: 100%;
-                bottom: 0;
-                height: 50%;
-                background: -moz-linear-gradient(top, rgba(30,87,153,0) 0%, rgba(0,0,0,1) 100%);
-                background: -webkit-linear-gradient(top, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%);
-                background: linear-gradient(to bottom, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%);
-                opacity: 0.4;
-                z-index: -998;
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-position: center;
-                object-fit: cover;
-            }
+        &:hover {
+            background: #f8f9fc;
         }
     }
+}
+
+.single-movie-container {
+    color: $white-main;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+
+    > .head {
+        max-width: 400px;
+    }
+
+    .img-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        /*filter: brightness(30%);*/
+        z-index: -999;
+        height: 100%;
+
+        .gradient {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            height: 50%;
+            background: -moz-linear-gradient(top, rgba(30,87,153,0) 0%, rgba(0,0,0,1) 100%);
+            background: -webkit-linear-gradient(top, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%);
+            background: linear-gradient(to bottom, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%);
+            opacity: 0.4;
+            z-index: -998;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-position: center;
+            object-fit: cover;
+        }
+    }
+}
 
 .single-movie-container {
     height: 100%;
@@ -598,3 +614,60 @@ nav.submenu {
             }
         }
     }
+
+.request-card {
+    transition: 0.15s;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    background: $grey-superlight;
+    -webkit-box-shadow: 0px 0px 18px 0px hsl(0, 0%, 75%);
+    -moz-box-shadow: 0px 0px 18px 0px hsl(0, 0%, 75%);
+    box-shadow: 0px 0px 18px 0px hsl(0, 0%, 75%);
+
+    &:hover {
+        -webkit-box-shadow: 0px 6px 18px 0px hsl(0, 0%, 75%);
+        -moz-box-shadow: 0px 6px 18px 0px hsl(0, 0%, 75%);
+        box-shadow: 0px 6px 18px 0px hsl(0, 0%, 75%);
+    }
+
+    .request-card-head {
+        width: 100%;
+
+        > img, a > img {
+            max-height:160px;
+            width: 100%;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+    }
+
+    .request-card-body {
+        padding: 1rem 1rem 2rem 1rem;
+        flex: 1;
+
+        .title {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: normal;
+        }
+    }
+}
+
+@mixin container {
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.16);
+    border-radius: 3px;
+    background: white;
+
+    &:hover {
+        cursor: pointer;
+        background: $white-main;
+    }
+}

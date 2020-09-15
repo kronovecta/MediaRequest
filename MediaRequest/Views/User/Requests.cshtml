@@ -1,0 +1,27 @@
+﻿@model List<MediaRequest.WebUI.ViewModels.Profile.RequestViewModel>
+
+<div class="profile-container">
+    @*<partial name="partials/_verticalNav" />*@
+    @await Component.InvokeAsync("VerticalNav", new { maxPriority = 1, isDone = false })
+    <div class="container">
+        <div class="profile-body">
+            <h1 class="pb-1">Requests</h1>
+
+            <h2>Pending</h2>
+            <div class="request-container">
+                @foreach (var item in Model.Where(x => x.Request.Status == false))
+                {
+                <partial name="_RequestCard" model="item.Movie" />
+                }
+            </div>
+
+            <h2>Accepted</h2>
+            <div class="request-container mb-3">
+                @foreach (var item in Model.Where(x => x.Request.Status == true))
+                {
+                <partial name="_RequestCard" model="item.Movie" />
+                }
+            </div>
+        </div>
+    </div>
+</div>

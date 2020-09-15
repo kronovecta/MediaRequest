@@ -1,6 +1,6 @@
 ﻿using MediaRequest.Domain.TMDB;
 using MediatR;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MediaRequest.Application.Parsers;
 
 namespace MediaRequest.Application.Queries.Movies
 {
@@ -22,38 +23,39 @@ namespace MediaRequest.Application.Queries.Movies
 
         public async Task<GetCreditsResponse> Handle(GetCreditsRequest request, CancellationToken cancellationToken)
         {
-            using (var client = new HttpClient())
+            var response = await _http.GetCast(request);
+            if (response.IsSuccessStatusCode)
             {
-                var response = await _http.GetCast(request);
-                if (response.IsSuccessStatusCode)
+                var model = new GetCreditsResponse();
+
+                using (var stream = await response.Content.ReadAsStreamAsync())
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    var credits = JsonConvert.DeserializeObject<Credits>(result);
+                    model.Credits = await JsonSerializer.DeserializeAsync<Credits>(stream, DefaultJsonSettings.Settings);
+                }
 
-                    credits.Cast.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
+                model.Credits.Cast.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
 
-                    credits.Crew = credits.Crew.Take(20).ToList();
-                    credits.Crew.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
-                    
-                    credits.TopBilled = credits.Cast.Take(5).ToList();
+                model.Credits.Crew = model.Credits.Crew.Take(20).ToList();
+                model.Credits.Crew.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
 
-                    if (request.Amount > 0)
-                    {
-                        credits.Cast = credits.Cast.Skip(5).ToList();
-                    } else
-                    {
-                        credits.Cast = credits.Cast.Skip(5).Take(9).ToList();
-                    }
+                model.Credits.TopBilled = model.Credits.Cast.Take(5).ToList();
 
-                    return new GetCreditsResponse
-                    {
-                        Credits = credits
-                        
-                    };
+                if (request.Amount > 0)
+                {
+                    model.Credits.Cast = model.Credits.Cast.Skip(5).ToList();
                 } else
                 {
-                    throw new GetCreditsException("Error retrieving credits");
+                    model.Credits.Cast = model.Credits.Cast.Skip(5).Take(9).ToList();
                 }
+
+                return new GetCreditsResponse
+                {
+                    Credits = model.Credits
+
+                };
+            } else
+            {
+                throw new GetCreditsException("Error retrieving credits");
             }
         }
     }
