@@ -42,6 +42,8 @@ namespace MediaRequest.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var test = Environment.GetEnvironmentVariable("Apollo_Test");
+
             var movies = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
 
             var model = new IndexViewModel()
@@ -104,53 +106,6 @@ namespace MediaRequest.Controllers
                 return PartialView("_MovieListPartial", model.PartialView);
             }
         }
-
-        public IActionResult Search()
-        {
-            var model = new SearchResultViewModel();
-
-            return View(model);
-        }
-
-        public async Task<IActionResult> SearchMoviesByName(string term)
-        {
-            var request = new SearchMovieByNameRequest
-            {
-                SearchTerm = term,
-            };
-
-            var results = await _mediator.Send(request);
-
-            var existingMovies = await _mediator.Send(new GetExistingMoviesRequest());
-
-            var model = new SearchResultViewModel();
-
-            foreach (var item in results.Movies)
-            {
-                var movieExists = new MovieExists();
-                var existingMovie = existingMovies.Movies.SingleOrDefault(x => x.TMDBId == item.TMDBId);
-
-                if (existingMovie != null)
-                {
-                    movieExists.Downloaded = existingMovie.Downloaded;
-                    movieExists.Monitored = existingMovie.Monitored;
-                    movieExists.Exists = true;
-                    movieExists.Movie = item;
-                }
-                else
-                {
-                    movieExists.Exists = false;
-                    movieExists.Movie = item;
-                }
-
-                model.Movies.Add(movieExists);
-            }
-
-            model.LatestMovie = existingMovies.LatestMovie;
-
-            return PartialView("_MovieSearchResultPartial", model);
-        }
-
 
         public IActionResult Privacy()
         {

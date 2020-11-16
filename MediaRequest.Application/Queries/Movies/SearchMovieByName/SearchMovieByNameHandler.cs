@@ -30,13 +30,13 @@ namespace MediaRequest.Application.Queries.Movies.SearchMovieByName
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie/lookup?apikey={_apikeys.Radarr}&term={request.SearchTerm}");
+                var response = await client.GetAsync($"{_path.Radarr}/api/movie/lookup?apikey={_apikeys.Radarr}&term={request.SearchTerm}");
                 response.EnsureSuccessStatusCode();
 
                 var result = await response.Content.ReadAsStringAsync();
                 var moviesJson = JsonConvert.DeserializeObject<List<Movie>>(result);
 
-                var existingResponse = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={_apikeys.Radarr}");
+                var existingResponse = await client.GetAsync($"{_path.Radarr}/api/movie?apikey={_apikeys.Radarr}");
                 existingResponse.EnsureSuccessStatusCode();
 
                 var existingResponseResult = await existingResponse.Content.ReadAsStringAsync();

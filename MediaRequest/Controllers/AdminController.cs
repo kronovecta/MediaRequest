@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -117,6 +118,12 @@ namespace MediaRequest.WebUI.Controllers
             }
 
             return View(model);
+        }
+
+        [Route("Admin/Settings")]
+        public async Task<IActionResult> Settings()
+        { 
+            return View();
         }
     }
 }

@@ -81,9 +81,9 @@
                     }
                 }
 
-                li:hover div.submenu {
+                /*li:hover div.submenu {
                     display: block;
-                }
+                }*/
             }
         }
     }
@@ -254,8 +254,8 @@
 }
 
 @media (max-width:1080px) {
-    .navbar {
-        display:none!important;
+    nav.navbar {
+        display:none;
     }
 
     .mobile-top-nav {

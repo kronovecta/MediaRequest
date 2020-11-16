@@ -14,10 +14,12 @@ namespace MediaRequest.Application.Commands.ApproveRequest
     public class ApproveRequestHandler : IRequestHandler<ApproveRequestCommand, bool>
     {
         private readonly ApiKeys _apikeys;
+        private readonly ServicePath _path;
 
-        public ApproveRequestHandler(IOptions<ApiKeys> apikeys)
+        public ApproveRequestHandler(IOptions<ServicePath> path, IOptions<ApiKeys> apikeys)
         {
             _apikeys = apikeys.Value;
+            _path = path.Value;
         }
 
         public async Task<bool> Handle(ApproveRequestCommand request, CancellationToken cancellationToken)
@@ -28,7 +30,7 @@ namespace MediaRequest.Application.Commands.ApproveRequest
 
                 //var parameters = $"&title={request.RequestObject.title}&qualityProfileId={request.RequestObject.qualityProfileId}&titleSlug={request.RequestObject.titleSlug}&tmdbId={request.RequestObject.tmdbId}&year={request.RequestObject.year}&path={request.RequestObject.path}&images={request.RequestObject.images}";
 
-                var response = await client.PostAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={_apikeys.Radarr}", content);
+                var response = await client.PostAsync($"{_path.Radarr}api/movie?apikey={_apikeys.Radarr}", content);
 
                 if (response.StatusCode.ToString().StartsWith("C"))
                 {

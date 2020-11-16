@@ -27,14 +27,9 @@ namespace MediaRequest
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                .AddJsonFile($"settings.json", false, true)
+                .AddEnvironmentVariables(prefix: "Apollo_")
                 .AddUserSecrets<Startup>();
-
-            //builder.AddUserSecrets("16420ac2-2938-40e6-ade0-e700111f68a3");
-
-            //if (env.IsDevelopment())
-            //{
-            //    builder.AddUserSecrets<Startup>();
-            //}
 
             Configuration = builder.Build();
 
@@ -56,13 +51,14 @@ namespace MediaRequest
             });
 
             services.AddScoped<IHttpHelper, HttpHelper>();
-            services.AddSession(opt => opt.Cookie.IsEssential = true);
+            services.AddSession();
 
             // HTTP Clients
             services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
             services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
 
             // Configuration classes
+            
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
 
@@ -87,14 +83,18 @@ namespace MediaRequest
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(new DeveloperExceptionPageOptions
+                {
+                    SourceCodeLineCount = 2
+                });
+
                 new DataInitializer(Configuration).SeedData(userManager, roleManager);
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //app.UseExceptionHandler("/Home/Error");
+                //// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                //app.UseHsts();
             }
 
             app.UseAuthentication();

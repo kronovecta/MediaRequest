@@ -122,3 +122,10 @@
     color: $dark-main;
     cursor: default;
 }
+
+.btn-blank {
+    border:1px solid $grey-light;
+    color:$dark-main;
+    cursor: default;
+    box-shadow:none;
+}

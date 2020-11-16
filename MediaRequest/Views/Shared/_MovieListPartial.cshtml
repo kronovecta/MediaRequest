@@ -23,11 +23,11 @@
     </form>
 </div>
 
-<div class="movie-list-filter">
+<div class="movie-list-filter mb-1">
     <ul>
-        <li class="filter-0"><a asp-action="Index" asp-controller="Home" asp-route-filter="0" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">All</a></li>
-        <li class="filter-1"><a asp-action="Index" asp-controller="Home" asp-route-filter="1" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Downloaded</a></li>
-        <li class="filter-2"><a asp-action="Index" asp-controller="Home" asp-route-filter="2" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Missing</a></li>
+        <li class="btn-sm btn-blank filter-0"><a asp-action="Index" asp-controller="Home" asp-route-filter="0" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">All</a></li>
+        <li class="btn-sm btn-blank filter-1"><a asp-action="Index" asp-controller="Home" asp-route-filter="1" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Downloaded</a></li>
+        <li class="btn-sm btn-blank filter-2"><a asp-action="Index" asp-controller="Home" asp-route-filter="2" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Missing</a></li>
     </ul>
 </div>
 

@@ -43,7 +43,10 @@ nav.navbar {
     nav.navbar .nav-container .nav-item-container ul {
       display: flex;
       flex-direction: row;
-      height: 100%; }
+      height: 100%;
+      /*li:hover div.submenu {
+                    display: block;
+                }*/ }
       nav.navbar .nav-container .nav-item-container ul li {
         color: inherit;
         height: 100%;
@@ -70,8 +73,6 @@ nav.navbar {
             padding: 0.3rem 3rem; }
             nav.navbar .nav-container .nav-item-container ul li div.submenu a.submenu-item:hover {
               background: #c4162a; }
-      nav.navbar .nav-container .nav-item-container ul li:hover div.submenu {
-        display: block; }
 
 .mobile-top-nav {
   position: fixed;
@@ -185,8 +186,8 @@ nav.navbar {
     overflow: hidden; }
 
 @media (max-width: 1080px) {
-  .navbar {
-    display: none !important; }
+  nav.navbar {
+    display: none; }
   .mobile-top-nav {
     display: flex !important; } }
 
@@ -275,10 +276,12 @@ main {
       flex-grow: 1; }
     main .container .movie-list-header > form {
       flex-grow: 2; }
-  main .container .movie-list-filter ul {
-    list-style: none; }
-    main .container .movie-list-filter ul li {
-      display: inline-block; }
+  main .container .movie-list-filter {
+    text-align: right; }
+    main .container .movie-list-filter ul {
+      list-style: none; }
+      main .container .movie-list-filter ul li {
+        display: inline-block; }
   main .container .movie-container {
     padding: 1.5em;
     display: flex;
@@ -1823,8 +1826,7 @@ footer {
 .vertical-nav {
   min-width: 150px;
   background: white;
-  padding: 3rem 0;
-  height: 100%; }
+  padding: 3rem 0; }
   .vertical-nav .vertical-nav-head {
     display: flex;
     flex-direction: column;
@@ -1948,6 +1950,12 @@ footer {
   background: #e6e6e6;
   color: #121212;
   cursor: default; }
+
+.btn-blank {
+  border: 1px solid #e6e6e6;
+  color: #121212;
+  cursor: default;
+  box-shadow: none; }
 
 .actor-container {
   display: flex;

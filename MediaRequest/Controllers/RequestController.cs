@@ -8,7 +8,9 @@ using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Commands.CancelRequest;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain;
+using MediaRequest.Domain.Radarr;
 using MediaRequest.WebUI.Models.IdentityModels;
+using MediaRequest.WebUI.ViewModels.SingleMovie;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -62,18 +64,7 @@ namespace MediaRequest.WebUI.Controllers
             var requests = _context.Request.Where(x => x.MovieId == id);
 
             var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = id });
-
-            var request = new MovieRequestObject()
-            {
-                title = movie.Movie.Title,
-                path = $"/home17/robert/downloads/movies/{movie.Movie.Title} ({movie.Movie.Year})".Replace(":", ""),
-                qualityProfileId = 7,
-                year = movie.Movie.Year,
-                tmdbId = movie.Movie.TMDBId.ToString(),
-                titleSlug = movie.Movie.TitleSlug,
-                images = movie.Movie.Images,
-                addOptions = { searchForMovie = "true" }
-            };
+            var request = GenerateApproveRequest(movie.Movie);
 
             var command = new ApproveRequestCommand { RequestObject = request };
             var result = await _mediator.Send(command);
@@ -116,6 +107,56 @@ namespace MediaRequest.WebUI.Controllers
                 TempData["Error"] = "Invalid operation";
                 return RedirectToAction("Profile", "User");
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddMovie()
+        {
+            HttpContext.Response.StatusCode = 405;
+            return RedirectToAction("Error", "Home");
+        }
+
+        /// <summary>
+        ///     Lets admins add movies directly, bypassing the need for requests
+        /// </summary>
+        /// <param name="tmdb"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> AddMovie(string tmdbid)
+        {
+            var movie = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = tmdbid });
+            var request = GenerateApproveRequest(movie.Movie);
+
+
+            var command = new ApproveRequestCommand { RequestObject = request };
+            var result = await _mediator.Send(command);
+
+            var model = new MovieViewModel { Movie = movie.Movie, Accepted = result, Requested = result };
+
+            if (result)
+                TempData["Success"] = "Movie added";
+            else
+                TempData["Error"] = "There was an error adding the movie";
+
+            return PartialView("_RequestMovieButton", model);
+        }
+
+        private MovieRequestObject GenerateApproveRequest(Movie movie)
+        {
+            var request = new MovieRequestObject()
+            {
+                title = movie.Title,
+                qualityProfileId = 7,
+                titleSlug = movie.TitleSlug,
+                images = movie.Images,
+                tmdbId = movie.TMDBId.ToString(),
+                ProfileId = 4,
+                year = movie.Year,
+                path = $"/home34/robert/downloads/movies/{movie.Title} ({movie.Year})".Replace(":", ""),
+                addOptions = { searchForMovie = "true" }
+            };
+
+            return request;
         }
     }
 }

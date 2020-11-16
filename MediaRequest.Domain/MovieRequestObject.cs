@@ -7,6 +7,7 @@ namespace MediaRequest.Domain
 {
     public class MovieRequestObject
     {
+        public int ProfileId { get; set; }
         public string title { get; set; }
         public int qualityProfileId { get; set; }
         public string titleSlug { get; set; }
