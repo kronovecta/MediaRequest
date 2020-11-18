@@ -1,9 +1,14 @@
 ﻿@model MediaRequest.Domain.API_Responses.Recommendations
 
-
-<section class="recommended">
-    @foreach (var item in Model.Results)
+<section class="align-center recommended">
+    @if (Model.Results.Any())
     {
-        <partial name="_RecommendedMoviePartial" model="@item" />
+        foreach (var item in Model.Results)
+        {
+            <partial name="_RecommendedMoviePartial" model="@item" />
+        }
+    } else
+    {
+        <h2 class="w-100">No recommendations found</h2>
     }
 </section>

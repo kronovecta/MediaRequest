@@ -56,7 +56,7 @@ namespace MediaRequest.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Trailer(string ytid)
+        public IActionResult Trailer(string ytid)
         {
             return PartialView("_TrailerPartial", ytid);
         }

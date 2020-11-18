@@ -1,0 +1,17 @@
+[
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/jquery.min.js",
+      "wwwroot/js/jquery.unobtrusive-ajax-edited.js",
+      "wwwroot/js/site.js",
+      "wwwroot/js/enhancers/dropdown.js",
+      "wwwroot/js/enhancers/navbar.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

@@ -5,16 +5,16 @@
         </div>
         <div class="nav-item-container">
             <ul>
-                <li><a asp-action="Index" asp-controller="Home">Home</a></li>
-                <li><a asp-action="Index" asp-controller="Search">Search</a></li>
-                <li><a asp-action="Requests" asp-controller="User">Profile</a></li>
+                <li><a class="nav-link" asp-action="Index" asp-controller="Home">Home</a></li>
+                <li><a class="nav-link" asp-action="Index" asp-controller="Search">Search</a></li>
+                <li><a class="nav-link" asp-action="Requests" asp-controller="User">Profile</a></li>
                 @if (this.User.IsInRole("admin"))
                 {
-                    <li class="nav-dropdown"><a asp-action="AdminPanel" asp-controller="Admin">Admin</a>
+                    <li class="nav-link nav-dropdown"><a asp-action="AdminPanel" asp-controller="Admin">Admin</a>
                         <div class="submenu">
-                            <a class="submenu-item" asp-action="Requests" asp-controller="Admin">Requests</a>
-                            <a class="submenu-item" asp-action="UserManager" asp-controller="Admin">Users</a>
-                            <a class="submenu-item" asp-action="Settings" asp-controller="Admin">Settings</a>
+                            <a class="nav-link submenu-item" asp-action="Requests" asp-controller="Admin">Requests</a>
+                            <a class="nav-link submenu-item" asp-action="UserManager" asp-controller="Admin">Users</a>
+                            <a class="nav-link submenu-item" asp-action="Settings" asp-controller="Admin">Settings</a>
                         </div>
                     </li>
                 }

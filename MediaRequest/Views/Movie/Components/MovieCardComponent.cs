@@ -19,7 +19,7 @@ namespace MediaRequest.WebUI.Views.Movie.Components
             _mediator = mediator;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int maxPriority, bool isDone, string? movieId = "", string? tmdbId = "")
+        public async Task<IViewComponentResult> InvokeAsync(int maxPriority, bool isDone, string movieId = "", string tmdbId = "")
         {
             var movie = await GetMovie(movieId);
 

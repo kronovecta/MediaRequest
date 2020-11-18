@@ -38,7 +38,7 @@ namespace MediaRequest.Application.Queries.Movies.GetTMDBContent
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             var model = new GetTMDBMediaResponse();

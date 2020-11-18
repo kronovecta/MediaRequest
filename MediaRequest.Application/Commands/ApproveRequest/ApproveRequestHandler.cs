@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -15,6 +16,8 @@ namespace MediaRequest.Application.Commands.ApproveRequest
     {
         private readonly ApiKeys _apikeys;
         private readonly ServicePath _path;
+
+        private static List<HttpStatusCode> validStatusCodes = new List<HttpStatusCode>() { HttpStatusCode.OK, HttpStatusCode.Accepted, HttpStatusCode.Created };
 
         public ApproveRequestHandler(IOptions<ServicePath> path, IOptions<ApiKeys> apikeys)
         {
@@ -30,13 +33,18 @@ namespace MediaRequest.Application.Commands.ApproveRequest
 
                 var response = await client.PostAsync($"{_path.Radarr}api/movie?apikey={_apikeys.Radarr}", content);
 
-                if (response.StatusCode.ToString().StartsWith("C"))
+                if(ValidateStatusCode(response.StatusCode))
                 {
                     return true;
                 }
             }
 
             return false;
+        }
+
+        private bool ValidateStatusCode(HttpStatusCode status)
+        {
+            return validStatusCodes.Contains(status);
         }
     }
 }

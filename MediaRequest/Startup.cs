@@ -72,6 +72,7 @@ namespace MediaRequest
                 typeof(AddRequestHandler).Assembly);
 
             services.AddMemoryCache();
+            services.AddResponseCaching();
 
             services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlite(conn, x => x.MigrationsAssembly("MediaRequest.WebUI")));
             services.AddDbContext<IdentityContext>(opt => opt.UseSqlite(conn, x => x.MigrationsAssembly("MediaRequest.WebUI")));
@@ -113,6 +114,8 @@ namespace MediaRequest
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+
+            app.UseResponseCaching();
 
             app.UseRouting();
             app.UseAuthorization();

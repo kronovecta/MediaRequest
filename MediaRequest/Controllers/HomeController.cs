@@ -1,27 +1,16 @@
-﻿using MediaRequest.Application;
-using MediaRequest.Application.Commands;
-using MediaRequest.Application.Queries.Movies;
-using MediaRequest.Application.Queries.Movies.SearchMovieByName;
-using MediaRequest.Domain;
-using MediaRequest.Domain.Configuration;
+﻿using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Models;
-using MediaRequest.WebUI.Models.IdentityModels;
-//using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Caching.Memory;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
 namespace MediaRequest.Controllers
@@ -30,26 +19,38 @@ namespace MediaRequest.Controllers
     public class HomeController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMemoryCache _memoryCache;
 
-        public HomeController(IMediator mediator)
+        public HomeController(IMediator mediator, IMemoryCache memoryCache)
         {
+            
             _mediator = mediator;
+            _memoryCache = memoryCache;
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
+            GetExistingMoviesResponse response = new GetExistingMoviesResponse();
+
+            if (!_memoryCache.TryGetValue("_ExistingMovies", out response))
+            {
+                response = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(60));
+
+                _memoryCache.Set("_ExistingMovies", response, cacheEntryOptions);
+            }
 
             var model = new IndexViewModel()
             {
-                LatestMovie = movies.LatestMovie,
+                LatestMovie = response.LatestMovie,
                 PartialView = new IndexListPartialViewModel
                 {
                     Term = "",
                     FilterMode = 0,
-                    Movies = movies.Movies,
-                    TotalPages = movies.TotalPages,
-                    CurrentPage = movies.CurrentPage
+                    Movies = response.Movies,
+                    TotalPages = response.TotalPages,
+                    CurrentPage = response.CurrentPage
                 }
             };
 
@@ -60,10 +61,18 @@ namespace MediaRequest.Controllers
         public async Task<IActionResult> Index(string term, int filter, int? pagenr)
         {
             pagenr = pagenr - 1;
+            GetExistingMoviesResponse response = new GetExistingMoviesResponse();
 
             if(term == null && filter == 0)
             {
-                var response = await _mediator.Send(new GetExistingMoviesRequest() { CurrentPage = pagenr ?? 0, Amount = 10 } );
+                response = await _mediator.Send(new GetExistingMoviesRequest() { CurrentPage = pagenr ?? 0, Amount = 10 });
+
+                //if(!_memoryCache.TryGetValue("_ExistingMovies", out response))
+                //{
+                //    var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(60));
+
+                //    _memoryCache.Set("_ExistingMovies", response, cacheEntryOptions);
+                //}
 
                 var model = new IndexViewModel()
                 {
@@ -82,7 +91,7 @@ namespace MediaRequest.Controllers
             } 
             else
             {
-                var response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0 });
+                 response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0 });
 
                 var model = new IndexViewModel()
                 {

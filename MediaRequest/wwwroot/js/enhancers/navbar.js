@@ -1,31 +1,22 @@
-﻿//$(".dropdown").on('click', function (e) {
-//    e.preventDefault();
-//    let menu = $(this).children(".submenu");
-
-//    if (menu.hasClass('opened')) {
-//        menu.removeClass('opened')
-//        $(menu).hide();
-//    } else {
-//        menu.addClass('opened')
-//        $(menu).show();
-//    }
-//})
+﻿
 
 $(document).on('click', function (e) {
-    if ($(e.target).parent().is('.nav-dropdown') || $(e.target).parent().is('.nav-dropdown')) {
-        e.preventDefault()
+    let target = $(e.target);
+    let navbar = $('.navbar');
+    const targetClass = 'nav-dropdown';
+
+    if ($(target).hasClass(targetClass) || $(target).parent('li').hasClass(targetClass)) {
+        e.preventDefault();
         let menu = $(e.target).siblings('.submenu')
 
-        if (menu.hasClass('opened')) {
-            menu.removeClass('opened')
-            $(menu).hide();
-        } else {
-            menu.addClass('opened')
-            $(menu).show();
-        }
-    } else {
-        $(menu).removeClass('opened')
-        $(menu).hide();
+        $(menu).addClass('opened')
+        $(menu).show();
+
+    } else if (e.target != $('.submenu') && $('.nav-container').find('.submenu.opened').length > 0) {
+
+        let openedMenu = $(navbar).find('.submenu.opened');
+        openedMenu.hide();
+        openedMenu.removeClass('opened')
     }
 })
 

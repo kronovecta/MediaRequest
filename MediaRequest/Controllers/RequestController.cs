@@ -110,7 +110,7 @@ namespace MediaRequest.WebUI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddMovie()
+        public IActionResult AddMovie()
         {
             HttpContext.Response.StatusCode = 405;
             return RedirectToAction("Error", "Home");
@@ -149,6 +149,7 @@ namespace MediaRequest.WebUI.Controllers
                 qualityProfileId = 7,
                 images = movie.Images,
                 tmdbId = movie.TMDBId.ToString(),
+                titleSlug = movie.TitleSlug,
                 ProfileId = 4,
                 year = movie.Year,
                 path = $"/home34/robert/downloads/movies/{movie.Title} ({movie.Year})".Replace(":", ""),

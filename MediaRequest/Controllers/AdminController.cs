@@ -15,7 +15,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,17 +30,19 @@ namespace MediaRequest.WebUI.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApiKeys _apikeys;
+        private readonly ServicePath _path;
 
-        public AdminController(IMediator mediator, IMediaDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<ApiKeys> apikeys)
+        public AdminController(IOptions<ServicePath> path, IMediator mediator, IMediaDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<ApiKeys> apikeys)
         {
             _mediator = mediator;
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _apikeys = apikeys.Value;
+            _path = path.Value;
         }
 
-        [Route("Admin")]
+        [Route("admin")]
         public async Task<IActionResult> AdminPanel()
         {
             var upcomingResponse = await _mediator.Send(new GetUpcomingRequest());
@@ -72,7 +76,7 @@ namespace MediaRequest.WebUI.Controllers
             return View(model);
         }
 
-        [Route("Admin/Requests")]
+        [Route("admin/requests")]
         public async Task<IActionResult> Requests()
         {
             var modelList = new List<DistinctMovieUserRequestViewModel>();
@@ -103,7 +107,7 @@ namespace MediaRequest.WebUI.Controllers
             return View(modelList);
         }
 
-        [Route("Admin/Users")]
+        [Route("admin/users")]
         public async Task<IActionResult> UserManager()
         {
             var users = _userManager.Users.ToList();
@@ -120,10 +124,27 @@ namespace MediaRequest.WebUI.Controllers
             return View(model);
         }
 
-        [Route("Admin/Settings")]
-        public async Task<IActionResult> Settings()
-        { 
-            return View();
+        [Route("admin/settings")]
+        public IActionResult Settings()
+        {
+            var model = new AdminSettingsViewModel
+            {
+                RadarrAPIKey = _apikeys.Radarr,
+                RadarrUrl = _path.Radarr,
+
+                TmdbApiKey = _apikeys.TMDB,
+                BaseUrl = _path.BaseURL
+            };
+
+            return View(model);
         }
+
+        //[Route("Admin/Settings")]
+        //[HttpPost]
+        //public IActionResult Settings()
+        //{
+
+        //    return View();
+        //}
     }
 }
