@@ -2,16 +2,14 @@
 using MediaRequest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MediaRequest.Data.Migrations
+namespace MediaRequest.WebUI.Migrations.MediaDb
 {
     [DbContext(typeof(MediaDbContext))]
-    [Migration("20191122012538_SeedRequest")]
-    partial class SeedRequest
+    partial class MediaDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

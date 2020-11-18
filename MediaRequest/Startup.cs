@@ -12,10 +12,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Threading.Tasks;
 
 namespace MediaRequest
 {
@@ -50,7 +52,10 @@ namespace MediaRequest
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Service Classes
             services.AddScoped<IHttpHelper, HttpHelper>();
+            services.AddScoped<DataInitializer>();
+
             services.AddSession();
 
             // HTTP Clients
@@ -66,21 +71,27 @@ namespace MediaRequest
                 typeof(GetSingleMovieHandler).Assembly,
                 typeof(AddRequestHandler).Assembly);
 
-            //services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlServer(conn));
-            //services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(conn));
+            services.AddMemoryCache();
 
-            services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlite(conn));
-            services.AddDbContext<IdentityContext>(opt => opt.UseSqlite(conn));
+            services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlite(conn, x => x.MigrationsAssembly("MediaRequest.WebUI")));
+            services.AddDbContext<IdentityContext>(opt => opt.UseSqlite(conn, x => x.MigrationsAssembly("MediaRequest.WebUI")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
 
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, /*IHostingEnvironment env,*/ IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IMediaDbContext context, IdentityContext identityContext, DataInitializer initializer)
         {
+            var cx = context as MediaDbContext;
+            if (!cx.Database.CanConnect())
+            {
+                await cx.Database.MigrateAsync();
+                await identityContext.Database.MigrateAsync();
+                await initializer.SeedData();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage(new DeveloperExceptionPageOptions
@@ -88,13 +99,12 @@ namespace MediaRequest
                     SourceCodeLineCount = 2
                 });
 
-                new DataInitializer(Configuration).SeedData(userManager, roleManager);
             }
             else
             {
-                //app.UseExceptionHandler("/Home/Error");
-                //// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                //app.UseHsts();
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
             app.UseAuthentication();

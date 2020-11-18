@@ -10,7 +10,6 @@ namespace MediaRequest.Domain
         public int ProfileId { get; set; }
         public string title { get; set; }
         public int qualityProfileId { get; set; }
-        public string titleSlug { get; set; }
         public List<Image> images { get; set; }
         public string tmdbId { get; set; }
         public int year { get; set; }

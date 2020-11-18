@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MediaRequest.Data.Migrations
+namespace MediaRequest.WebUI.Migrations.MediaDb
 {
-    public partial class InitialMedia : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -147,7 +147,6 @@ namespace MediaRequest.WebUI.Controllers
             {
                 title = movie.Title,
                 qualityProfileId = 7,
-                titleSlug = movie.TitleSlug,
                 images = movie.Images,
                 tmdbId = movie.TMDBId.ToString(),
                 ProfileId = 4,

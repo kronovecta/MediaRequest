@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MediaRequest.Data.Migrations
+namespace MediaRequest.WebUI.Migrations.MediaDb
 {
     [DbContext(typeof(MediaDbContext))]
-    [Migration("20191122005540_InitialMedia")]
-    partial class InitialMedia
+    [Migration("20201118190823_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

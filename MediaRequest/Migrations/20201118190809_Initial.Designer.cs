@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaRequest.WebUI.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20191203212912_FirstLastName")]
-    partial class FirstLastName
+    [Migration("20201118190809_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,8 +35,6 @@ namespace MediaRequest.WebUI.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName");
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -54,8 +52,6 @@ namespace MediaRequest.WebUI.Migrations
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<string>("Surname");
 
                     b.Property<bool>("TwoFactorEnabled");
 

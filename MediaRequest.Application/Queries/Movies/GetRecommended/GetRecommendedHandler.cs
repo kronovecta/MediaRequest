@@ -34,8 +34,8 @@ namespace MediaRequest.Application.Queries.Movies
 
             foreach (var movie in recommendations.Results)
             {
-                movie.TitleSlug = Regex.Replace(movie.Title, "[^0-9a-zA-Z ]+", "");
-                movie.TitleSlug = movie.TitleSlug.Replace(" ", "-").ToString().ToLower() + ("-" + movie.Id);
+                //movie.TitleSlug = Regex.Replace(movie.Title, "[^0-9a-zA-Z ]+", "");
+                //movie.TitleSlug = movie.TitleSlug.Replace(" ", "-").ToString().ToLower() + ("-" + movie.Id);
                 movie.PosterUrl = "https://image.tmdb.org/t/p/w500" + movie.Poster_path;
             }
 

@@ -30,7 +30,7 @@ namespace MediaRequest.Application.Queries.People.GetPopularMovies
 
                 foreach (var movie in data.results)
                 {
-                    movie.backdrop_path = movie.backdrop_path != null ? movie.backdrop_path : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg";
+                    movie.BackdropPath = movie.BackdropPath != null ? movie.BackdropPath : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg";
                 };
 
                 model.Movies = data.results;

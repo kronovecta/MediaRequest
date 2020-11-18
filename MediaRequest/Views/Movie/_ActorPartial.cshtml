@@ -1,16 +1,16 @@
 ﻿@model MediaRequest.Domain.TMDB.Cast
 
-    <a asp-action="Actor" asp-controller="Movie" asp-route-actorid="@Model.ID">
-        <li class="actor">
-            @if (Model.Profile_path.Contains(".jpg") || Model.Profile_path.Contains(".png") || Model.Profile_path.Contains(".gif"))
-            {
-                <img src="@Model.Profile_path" alt="Portrait">
-            }
-            <div class="info">
-                <div>
-                    <h1>@Model.Name</h1>
-                    <h2>@Model.Character</h2>
-                </div>
+<a asp-action="Actor" asp-controller="Movie" asp-route-actorslug="@Model.Slug">
+    <li class="actor">
+        @if (Model.Profile_path.Contains(".jpg") || Model.Profile_path.Contains(".png") || Model.Profile_path.Contains(".gif"))
+        {
+            <img src="@Model.Profile_path" alt="Portrait">
+        }
+        <div class="info">
+            <div>
+                <h1>@Model.Name</h1>
+                <h2>@Model.Character</h2>
             </div>
-        </li>
-    </a>
+        </div>
+    </li>
+</a>

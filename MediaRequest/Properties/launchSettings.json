@@ -12,7 +12,6 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "Apollo_Test": "Environment Value",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

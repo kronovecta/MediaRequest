@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace MediaRequest.Domain.API_Responses
 {
@@ -18,10 +19,17 @@ namespace MediaRequest.Domain.API_Responses
         public string Overview { get; set; }
         public string Poster_path { get; set; }
         public double Popularity { get; set; }
-
         public string PosterUrl { get; set; }
         public string FanartUrl { get; set; }
-        public string TitleSlug { get; set; }
+
+        [JsonIgnore]
+        public string TitleSlug
+        {
+            get
+            {
+                return string.Format("{0}-{1}", Title.ToLower().Replace(" ", "-"), Id);
+            }
+        }
     }
 
     public class Recommendations

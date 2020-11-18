@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MediaRequest.Domain.Radarr
@@ -30,7 +31,6 @@ namespace MediaRequest.Domain.Radarr
         public string FolderName { get; set; }
         public int Runtime { get; set; }
         public int TMDBId { get; set; }
-        public string TitleSlug { get; set; }
         public List<string> Genres { get; set; }
         public List<object> Tags { get; set; }
         public DateTime Added { get; set; }
@@ -43,6 +43,16 @@ namespace MediaRequest.Domain.Radarr
         public int LocalScore { get; set; }
         public string Studio { get; set; }
         public bool AlreadyAdded { get; set; } = false;
+
+        // Generates a slug
+        [JsonIgnore]
+        public string TitleSlug
+        {
+            get
+            {
+                return string.Format("{0}-{1}", Title.ToLower().Replace(" ", "-"), TMDBId);
+            }
+        }
     }
 
     public class Genre

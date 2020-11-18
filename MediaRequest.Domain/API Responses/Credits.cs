@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace MediaRequest.Domain.TMDB
 {
@@ -14,6 +15,16 @@ namespace MediaRequest.Domain.TMDB
         public string Name { get; set; }
         public int Order { get; set; }
         public string Profile_path { get; set; }
+
+        // Generates a slug
+        [JsonIgnore]
+        public string Slug
+        {
+            get
+            {
+                return string.Format("{0}-{1}", Name.ToLower().Replace(" ", "-"), ID);
+            }
+        }
     }
 
     public class Crew

@@ -13,42 +13,40 @@ namespace MediaRequest
     public class DataInitializer
     {
         private IConfiguration _config { get; }
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public DataInitializer(IConfiguration config)
+        public DataInitializer(IConfiguration config, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _config = config;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
-        public void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public async Task SeedData()
         {
-            SeedRoles(roleManager);
-            SeedUsers(userManager);
+            await SeedRoles();
+            await SeedUsers();
         }
 
-        private void SeedRequests()
-        {
-            //var request = new UserRequest { UserId = "a4ab47cc-ddf1-419a-90eb-3e86dd8fa50c", MovieId =  }
-        }
-
-        public void SeedRoles(RoleManager<IdentityRole> roleManager)
+        public async Task SeedRoles()
         {
             var roles = new List<string> { "admin", "standard" };
 
             foreach (var roleName in roles)
             {
-                if (!roleManager.RoleExistsAsync(roleName).Result)
+                if (!_roleManager.RoleExistsAsync(roleName).Result)
                 {
                     var role = new IdentityRole(roleName);
-                    roleManager.CreateAsync(role).Wait();
+                    await _roleManager.CreateAsync(role);
                 }
             }
         }
-
-        public void SeedUsers(UserManager<ApplicationUser> userManager)
+        public async Task SeedUsers()
         {
             foreach (var employee in _config.GetSection("seedusers").GetChildren().ToList())
             {
-                if (userManager.FindByNameAsync(employee.Key).Result == null)
+                if (_userManager.FindByNameAsync(employee.Key).Result == null)
                 {
                     var user = new ApplicationUser
                     {
@@ -57,8 +55,8 @@ namespace MediaRequest
                         PhoneNumber = _config[$"seedusers:{employee.Key}:phone"]
                     };
 
-                    userManager.CreateAsync(user, _config[$"seedusers:{employee.Key}:password"]).Wait();
-                    userManager.AddToRoleAsync(user, employee.Key).Wait();
+                    await _userManager.CreateAsync(user, _config[$"seedusers:{employee.Key}:password"]);
+                    await _userManager.AddToRoleAsync(user, employee.Key);
                 }
             }
         }

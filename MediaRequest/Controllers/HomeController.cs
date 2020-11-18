@@ -29,21 +29,15 @@ namespace MediaRequest.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IMediaDbContext _context;
         private readonly IMediator _mediator;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<ApplicationUser> userManager)
+        public HomeController(IMediator mediator)
         {
             _mediator = mediator;
-            _userManager = userManager; 
-            _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var test = Environment.GetEnvironmentVariable("Apollo_Test");
-
             var movies = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
 
             var model = new IndexViewModel()
