@@ -88,6 +88,7 @@ nav.navbar {
   justify-content: space-between;
   align-items: center;
   z-index: 1999;
+  height: 60px;
   display: none; }
   .mobile-top-nav .navbar-brand {
     color: #f8f9fc; }
@@ -129,7 +130,7 @@ nav.navbar {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 60px;
   z-index: 2000;
   display: none; }
   .mobilenav .nav-item-container {
@@ -184,10 +185,12 @@ nav.navbar {
     display: none;
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow: hidden; }
 
 @media (max-width: 1080px) {
+  main {
+    margin-top: 60px; }
   nav.navbar {
     display: none; }
   .mobile-top-nav {
