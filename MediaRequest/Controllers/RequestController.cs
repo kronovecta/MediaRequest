@@ -153,7 +153,10 @@ namespace MediaRequest.WebUI.Controllers
                 ProfileId = 4,
                 year = movie.Year,
                 path = $"/home34/robert/downloads/movies/{movie.Title} ({movie.Year})".Replace(":", ""),
-                addOptions = { searchForMovie = "true" }
+                addOptions = new MovieRequestObjectOptions
+                {
+                    searchForMovie = "true"
+                }
             };
 
             return request;

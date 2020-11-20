@@ -15,7 +15,7 @@ namespace MediaRequest.Domain
         public string tmdbId { get; set; }
         public int year { get; set; }
         public string path { get; set; }
-        public MovieRequestObjectOptions addOptions => new MovieRequestObjectOptions();
+        public MovieRequestObjectOptions addOptions { get; set; }
     }
 
     public class MovieRequestObjectOptions

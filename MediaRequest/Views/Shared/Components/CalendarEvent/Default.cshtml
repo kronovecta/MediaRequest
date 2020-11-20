@@ -2,10 +2,10 @@
 
 <a class="calendar-event-container" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.TitleSlug">
     <div class="calendar-event">
-        <div class="poster-container">
-            @*<img src="@Model.Images.SingleOrDefault(x => x.CoverType == "poster").URL" />*@
+        @*<div class="poster-container">
             <img src="@Model.PosterUrl" />
-        </div>
+        </div>*@
+        <img class="fanart-container" src="@Model.FanartUrl" />
         <div class="event-movie-container">
             <div class="event-movie-head">
                 <h2 class="title">@Model.Title</h2>

@@ -24,7 +24,10 @@
             <partial name="partials/_UserInfoPartial" model="Model.User" />
 
             <h2 class="mb-1 mt-2">Latest Request</h2>
-            @await Component.InvokeAsync("CalendarEvent", new { maxPriority = 1, isDone = true, movie = Model.Requests.Last().Movie })
+            @if(Model.Requests.LastOrDefault() != null)
+            {
+                @await Component.InvokeAsync("CalendarEvent", new { maxPriority = 1, isDone = true, movie = Model.Requests.LastOrDefault().Movie })
+            }
 
             <h2 class="mb-1">Nearest upcoming (90 days)</h2>
             @if (Model.Upcoming != null)

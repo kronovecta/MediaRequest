@@ -59,6 +59,7 @@ nav.navbar {
         nav.navbar .nav-container .nav-item-container ul li:not(:last-child) {
           margin-right: -5px; }
         nav.navbar .nav-container .nav-item-container ul li div.submenu {
+          max-width: 150px;
           display: none;
           position: absolute;
           background: #121212;
@@ -67,6 +68,7 @@ nav.navbar {
           right: 5rem;
           border-radius: 0 0 3px 3px; }
           nav.navbar .nav-container .nav-item-container ul li div.submenu a.submenu-item {
+            text-wrap: normal;
             padding: 0;
             display: block;
             width: 100%;
@@ -807,7 +809,7 @@ nav.submenu {
       width: 100%;
       border-radius: 0.25rem 0.25rem 0 0; }
   .request-card .request-card-body {
-    padding: 1rem 1rem 2rem 1rem;
+    padding: 1rem;
     flex: 1; }
     .request-card .request-card-body .title {
       margin-bottom: 0.5rem;
@@ -1475,7 +1477,7 @@ section.recommended {
   .request-container .request-card .request-button-container {
     display: flex;
     justify-content: space-around;
-    padding: 1rem; }
+    padding: 0rem 1rem 1rem 1rem; }
     .request-container .request-card .request-button-container > .btn {
       flex: 1; }
       .request-container .request-card .request-button-container > .btn:last-child {
@@ -2037,19 +2039,27 @@ footer {
       margin-right: 1rem; }
       .calendar-event-container .calendar-event > .poster-container > img {
         height: 100%; }
-    .calendar-event-container .calendar-event > .event-movie-container .event-movie-head {
+    .calendar-event-container .calendar-event > .fanart-container {
+      height: 100%;
+      margin-right: 2rem; }
+    .calendar-event-container .calendar-event > .event-movie-container {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 0.5rem; }
-      .calendar-event-container .calendar-event > .event-movie-container .event-movie-head .title {
-        margin-right: 0.5rem; }
-    .calendar-event-container .calendar-event > .event-movie-container .description {
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis; }
+      flex-direction: column;
+      justify-content: center; }
+      .calendar-event-container .calendar-event > .event-movie-container .event-movie-head {
+        /*display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-bottom: 0.5rem;*/
+        display: block; }
+        .calendar-event-container .calendar-event > .event-movie-container .event-movie-head .title {
+          margin-right: 0.5rem; }
+      .calendar-event-container .calendar-event > .event-movie-container .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis; }
   .calendar-event-container:hover {
     text-decoration: none; }
 

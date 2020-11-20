@@ -13,8 +13,10 @@
     <div class="avatar-container">
         @for (int i = 0; i < Model.Requests.Count() && i < 3; i++)
         {
+            var avatar = Model.Requests[i].User.Avatar != null ? "data:image/jpeg;base64," + Convert.ToBase64String(Model.Requests[i].User.Avatar) : "http://all4ed.org/wp-content/themes/all4ed/assets/images/avatar-placeholder-generic.png";
+
             <div class="avatar-user-container">
-                <img class="avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Requests[i].User.Avatar)" />
+                <img class="avatar" src="@avatar" />
                 <span id="" class="username">@Model.Requests[i].User.UserName</span>
             </div>
         }

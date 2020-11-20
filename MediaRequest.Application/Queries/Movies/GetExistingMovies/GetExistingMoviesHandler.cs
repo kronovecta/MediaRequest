@@ -140,9 +140,7 @@ namespace MediaRequest.Application.Queries.Movies
             if (request.FilterMode == 1)
             {
                 model.Movies = model.Movies.Where(x => x.Downloaded == true).Reverse().ToList();
-            }
-
-            else if (request.FilterMode == 2)
+            } else if (request.FilterMode == 2)
             {
                 model.Movies = model.Movies.Where(x => x.Downloaded == false).Reverse().ToList();
             }

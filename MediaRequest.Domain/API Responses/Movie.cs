@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MediaRequest.Domain.Radarr
@@ -50,7 +51,8 @@ namespace MediaRequest.Domain.Radarr
         {
             get
             {
-                return string.Format("{0}-{1}", Title.ToLower().Replace(" ", "-"), TMDBId);
+                var stripped = Regex.Replace(Title.ToLower(), "[^a-zA-Z0-9_\\-.]+", "-", RegexOptions.Compiled);
+                return string.Format("{0}-{1}", stripped, TMDBId);
             }
         }
     }

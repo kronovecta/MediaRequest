@@ -60,6 +60,7 @@
                     }
 
                     div.submenu {
+                        max-width:150px;
                         display: none;
                         position: absolute;
                         background: #121212;
@@ -69,6 +70,7 @@
                         border-radius: 0 0 3px 3px;
 
                         a.submenu-item {
+                            text-wrap:normal;
                             padding: 0;
                             display: block;
                             width: 100%;

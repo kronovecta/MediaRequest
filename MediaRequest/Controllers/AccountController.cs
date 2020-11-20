@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediaRequest.WebUI.ViewModels.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,7 @@ namespace MediaRequest.WebUI.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -57,6 +59,8 @@ namespace MediaRequest.WebUI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(ApplicationUser input)
         {
             if(ModelState.IsValid)

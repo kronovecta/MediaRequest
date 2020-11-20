@@ -19,12 +19,22 @@
             }
         }
 
+        > .fanart-container {
+            height:100%;
+            margin-right:2rem;
+        }
+
         > .event-movie-container {
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+
             .event-movie-head {
-                display: flex;
+                /*display: flex;
                 flex-direction: row;
                 align-items: center;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.5rem;*/
+                display:block;
 
                 .title {
                     margin-right: 0.5rem;

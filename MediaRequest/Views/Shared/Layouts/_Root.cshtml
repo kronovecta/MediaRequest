@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/Layouts/_Base.cshtml";
+}
+
+@*<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Apollo</title>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <link rel="stylesheet" href="~/css/main.min.css" media="all" />
+        <script src="https://kit.fontawesome.com/8f9a064853.js"></script>
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/site.js" defer></script>
+        <script src="~/js/enhancers/navbar.js" defer></script>
+    </head>
+    <body>
+        <partial name="_Navbar" />
+        <div class="cover-backdrop"></div>
+        <main class="main">*@
+            <partial name="_CookieConsentPartial" />
+            @RenderBody()
+        @*</main>
+        <script src="~/js/jquery.unobtrusive-ajax-edited.js"></script>
+        <script src="~/js/enhancers/dropdown.js"></script>
+
+        <partial name="_Footer" />
+        <partial name="_MobileNav" />
+        <partial name="_MobileMenu" />
+    </body>
+</html>*@
