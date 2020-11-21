@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaRequest.WebUI", "MediaRequest\MediaRequest.WebUI.csproj", "{0FC113E8-D410-4EAA-8C5E-3051B32B97C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRequest.Data", "MediaRequest.Data\MediaRequest.Data.csproj", "{8AB89086-B54C-4E99-AC1C-3D7392655CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaRequest.Data", "MediaRequest.Data\MediaRequest.Data.csproj", "{8AB89086-B54C-4E99-AC1C-3D7392655CD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRequest.Application", "MediaRequest.Application\MediaRequest.Application.csproj", "{2355BC1D-4D7F-44D8-B52D-CFF55D308ECB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaRequest.Application", "MediaRequest.Application\MediaRequest.Application.csproj", "{2355BC1D-4D7F-44D8-B52D-CFF55D308ECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRequest.Domain", "MediaRequest.Domain\MediaRequest.Domain.csproj", "{74490AFF-DF94-4DF0-8D3F-B45C2B88CDF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaRequest.Domain", "MediaRequest.Domain\MediaRequest.Domain.csproj", "{74490AFF-DF94-4DF0-8D3F-B45C2B88CDF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

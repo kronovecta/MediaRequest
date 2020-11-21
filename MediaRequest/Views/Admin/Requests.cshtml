@@ -1,0 +1,43 @@
+﻿@model List<MediaRequest.WebUI.ViewModels.DistinctMovieUserRequestViewModel>
+
+@{ 
+    var pending = Model.Where(x => x.Status == false);
+    var approved = Model.Where(x => x.Status == true);
+}
+
+<h1 class="mb-2">Active requests</h1>
+
+<h2>Pending</h2>
+    @if (pending.Any())
+    {
+        <div class="request-container">
+            @foreach (var request in pending)
+            {
+                <partial name="_RequestPartial" model="request" />
+            }
+        </div>
+    }
+    else
+    {
+        <div class="m-2">
+            <h3 class="w-100 align-center">No pending requests</h3>
+        </div>
+    }
+
+<h2>Approved</h2>
+    @if (approved.Any())
+    {
+        <div class="request-container">
+            @foreach (var request in approved)
+            {
+                <partial name="_RequestPartial" model="request" />
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="m-2">
+            <h3 class="w-100 align-center">No approved requests</h3>
+        </div>
+    }

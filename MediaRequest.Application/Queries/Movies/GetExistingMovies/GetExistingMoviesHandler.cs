@@ -1,80 +1,200 @@
 ﻿using MediaRequest.Domain;
+using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Domain.TMDB;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text.Json;
+using MediaRequest.Application.Parsers;
+using MediaRequest.Application.Queries.Movies.GetTMDBContent;
 
-namespace MediaRequest.Application.Queries.Movies.GetExistingMovies
+namespace MediaRequest.Application.Queries.Movies
 {
+    static class Functions
+    {
+        public static int GetTotalPages(IEnumerable<Movie> movies, int results)
+        {
+            return movies.Count() % results != 0 ? movies.Count() / results : movies.Count() / results - 1;
+        }
+    }
+
     public class GetExistingMoviesHandler : IRequestHandler<GetExistingMoviesRequest, GetExistingMoviesResponse>
     {
-        private readonly IMediaDbContext _context;
+        private readonly IMediator _mediator;
+        private readonly IMediaDbContext _mediaDbContext;
+        private readonly ServicePath _path;
+        private readonly IHttpHelper _http;
 
-        public GetExistingMoviesHandler(IMediaDbContext context)
+        public GetExistingMoviesHandler(IHttpHelper http, IOptions<ServicePath> path, IMediator mediator, IMediaDbContext mediaDbContext)
         {
-            _context = context;
+            _mediator = mediator;
+            _mediaDbContext = mediaDbContext;
+            _path = path.Value;
+            _http = http;
         }
 
         public async Task<GetExistingMoviesResponse> Handle(GetExistingMoviesRequest request, CancellationToken cancellationToken)
         {
-            using (var client = new HttpClient())
+            var results = request.Amount;
+            var model = new GetExistingMoviesResponse()
             {
-                var res = await client.GetAsync($"https://tiger.seedhost.eu/robert/radarr/api/movie?apikey={request.ApiKey_Radarr}");
-                res.EnsureSuccessStatusCode();
+                CurrentPage = request.CurrentPage
+            };
 
-                var result = await res.Content.ReadAsStringAsync();
-                var movies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderBy(x => x.Title).ThenBy(x => x.Year));
+            var res = await _http.GetMovie();
+            res.EnsureSuccessStatusCode();
 
-                var moviePosters = await _context.MoviePoster.ToListAsync<MoviePoster>();
+            using(var stream = await res.Content.ReadAsStreamAsync())
+            {
+                var json = await JsonSerializer.DeserializeAsync<IEnumerable<Movie>>(stream, DefaultJsonSettings.Settings);
+                model.Movies = json.Reverse();
 
-                foreach (var movie in movies)
+                model.LatestMovie = model.Movies.Where(x => x.Downloaded == true).First();
+            }
+
+            if(request.Amount > 0)
+            {
+                model.TotalPages = Functions.GetTotalPages(model.Movies, request.Amount);
+                model.Movies = model.Movies.Skip(request.Amount * request.CurrentPage).Take(request.Amount).ToList();
+            }
+                
+            foreach (var movie in model.Movies)
+            {
+                var existingPoster = _mediaDbContext.MoviePoster.SingleOrDefault(x => x.MovieId == movie.TMDBId.ToString());
+
+                if (existingPoster == null)
                 {
-                    if(moviePosters.Any(x => x.MovieId == movie.TMDBId))
+                    var media = await _mediator.Send(new GetTMDBMediaRequest(movie.TMDBId));
+                    var posterPrefix = "https://image.tmdb.org/t/p/w500/";
+                    var fanartPrefix = "https://image.tmdb.org/t/p/original/";
+                    var fanart = fanartPrefix + media.Backdrops.FirstOrDefault()?.FilePath;
+                    var poster = posterPrefix + media.Posters.FirstOrDefault(x => x.iso_639_1 == "en")?.FilePath;
+                    var moviePoster = new MoviePoster
                     {
-                        var poster = await _context.MoviePoster.SingleOrDefaultAsync(x => x.MovieId == movie.TMDBId);
-                        if(poster != null && poster.PosterUrl != "")
-                            movie.PosterUrl = poster.PosterUrl;
-                    } else
+                        MovieId = movie.TMDBId.ToString(),
+                        FanartUrl = fanart,
+                        PosterUrl = poster
+                    };
+
+                    _mediaDbContext.MoviePoster.Add(moviePoster);
+                    await _mediaDbContext.SaveChangesAsync();
+
+                    movie.FanartUrl = fanart;
+                    movie.PosterUrl = poster;
+                } else
+                {
+                    movie.FanartUrl = existingPoster.FanartUrl;
+                    movie.PosterUrl = existingPoster.PosterUrl;
+                }
+            }
+
+            return model;
+        }
+    }
+
+    public class GetExistingMoviesFilteredHandler : IRequestHandler<GetExistingMoviesFilteredRequest, GetExistingMoviesResponse>
+    {
+        private readonly IMediaDbContext _context;
+        private readonly IMediator _mediator;
+        private readonly ServicePath _path;
+        private readonly IHttpHelper _http;
+
+        public GetExistingMoviesFilteredHandler(IHttpHelper http, IMediaDbContext context, IOptions<ServicePath> path, IMediator mediator)
+        {
+            _path = path.Value;
+            _context = context;
+            _mediator = mediator;
+            _http = http;
+        }
+
+        public async Task<GetExistingMoviesResponse> Handle(GetExistingMoviesFilteredRequest request, CancellationToken cancellationToken)
+        {
+            var results = 10;
+            var model = new GetExistingMoviesResponse()
+            {
+                CurrentPage = request.CurrentPage
+            };
+
+            var res = await _http.GetMovie();
+            res.EnsureSuccessStatusCode();
+
+            using (var stream = await res.Content.ReadAsStreamAsync())
+            {
+                var json = await JsonSerializer.DeserializeAsync<IEnumerable<Movie>>(stream, DefaultJsonSettings.Settings);
+                model.Movies = json;
+                model.LatestMovie = model.Movies.Where(x => x.Downloaded == true).OrderByDescending(x => x.Added).First();
+            }
+
+            if(request.Input != null)
+            {
+                model.Movies = model.Movies.Where(x => x.Title.ToLower().Contains(request.Input.ToLower())).ToList();
+            }
+
+            if (request.FilterMode == 1)
+            {
+                model.Movies = model.Movies.Where(x => x.Downloaded == true).Reverse().ToList();
+            } else if (request.FilterMode == 2)
+            {
+                model.Movies = model.Movies.Where(x => x.Downloaded == false).Reverse().ToList();
+            }
+
+            var totalPages = Functions.GetTotalPages(model.Movies as List<Movie>, results);
+            model.Movies = model.Movies.Skip(results * request.CurrentPage).Take(results).ToList();
+
+
+            if (model.Movies.Count() > 0)
+            {
+                var moviePosters = _context.MoviePoster.Where(x => model.Movies.Any(y => y.TMDBId.ToString() == x.MovieId)).ToList();
+
+                foreach (var movie in model.Movies)
+                {
+                    var existingPoster = _context.MoviePoster.SingleOrDefault(x => x.MovieId == movie.TMDBId.ToString());
+
+                    if (existingPoster == null)
                     {
-                        using (var tmdbclient = new HttpClient())
+                        var media = await _mediator.Send(new GetTMDBMediaRequest(movie.TMDBId));
+                        var posterPrefix = "https://image.tmdb.org/t/p/w500/";
+                        var fanartPrefix = "https://image.tmdb.org/t/p/original/";
+                        var fanart = fanartPrefix + media.Backdrops.FirstOrDefault()?.FilePath;
+                        var poster = posterPrefix + media.Posters.FirstOrDefault(x => x.iso_639_1 == "en")?.FilePath;
+                        var moviePoster = new MoviePoster
                         {
-                            var tmdb_response = await tmdbclient.GetAsync($"https://api.themoviedb.org/3/movie/{movie.TMDBId}?api_key={request.ApiKey_TMDB}");
-                            var tmdb_string = await tmdb_response.Content.ReadAsStringAsync();
-                            var tmdb_movie = (JsonConvert.DeserializeObject<TMDBMovie>(tmdb_string));
-                            var poster_path = $"https://image.tmdb.org/t/p/w500{tmdb_movie.poster_path}";
+                            MovieId = movie.TMDBId.ToString(),
+                            FanartUrl = fanart,
+                            PosterUrl = poster
+                        };
 
-                            movie.PosterUrl = poster_path;
+                        _context.MoviePoster.Add(moviePoster);
+                        await _context.SaveChangesAsync();
 
-                            var moviePoster = new MoviePoster()
-                            {
-                                MovieId = movie.TMDBId,
-                                PosterUrl = poster_path
-                            };
-
-                            await _context.MoviePoster.AddAsync(moviePoster);
-                            await _context.SaveChangesAsync();
-
-                            movie.PosterUrl = poster_path;
-                        }
+                        movie.FanartUrl = fanart;
+                        movie.PosterUrl = poster;
+                    }
+                    else
+                    {
+                        movie.FanartUrl = existingPoster.FanartUrl;
+                        movie.PosterUrl = existingPoster.PosterUrl;
                     }
                 }
 
-                
+                model.TotalPages = totalPages;
 
-                var response = new GetExistingMoviesResponse
+                return model;
+            } else
+            {
+                return new GetExistingMoviesResponse
                 {
-                    Movies = movies
+                    Movies = new List<Movie>(),
+                    TotalPages = totalPages,
+                    CurrentPage = request.CurrentPage
                 };
-
-                return response;
             }
         }
     }

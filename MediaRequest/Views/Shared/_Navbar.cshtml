@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-item-container nav-brand">
+            <ul>
+                <li>
+                    <a class="nav-link" asp-action="Index" asp-controller="Home"><i class="fas fa-film"></i> Apollo</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-item-container">
+            <ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a class="nav-link" asp-action="Index" asp-controller="Home">Home</a></li>
+                    <li><a class="nav-link" asp-action="Index" asp-controller="Search">Search</a></li>
+
+
+                    @if (this.User.IsInRole("admin"))
+                    {
+                        <li class="nav-link nav-dropdown">
+                            <a asp-action="AdminPanel" asp-controller="Admin">Admin</a>
+                            <div class="submenu">
+                                <a class="nav-link submenu-item" asp-action="Requests" asp-controller="Admin">Requests</a>
+                                <a class="nav-link submenu-item" asp-action="UserManager" asp-controller="Admin">Users</a>
+                                <a class="nav-link submenu-item" asp-action="Settings" asp-controller="Admin">Settings</a>
+                            </div>
+                        </li>
+                    }
+
+                    <li class="nav-link nav-dropdown">
+                        <a class="nav-link" asp-action="Requests" asp-controller="User">Profile</a>
+                        <div class="submenu">
+                            <a class="nav-link submenu-item" asp-action="Profile" asp-controller="User">Profile</a>
+                            <a class="nav-link submenu-item" asp-action="Requests" asp-controller="User">Requests</a>
+                            <a class="nav-link submenu-item" asp-action="Logout" asp-controller="Account">Logout</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

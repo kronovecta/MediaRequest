@@ -1,0 +1,47 @@
+﻿@model MediaRequest.WebUI.ViewModels.Admin.UserManagerViewModel
+
+<div class="admin-container">
+    <form class="invite-form" method="post">
+        <label>Invite new user</label>
+        <div class="form-group">
+            <div class="input-container">
+                <i class="fas fa-envelope"></i>
+                <input type="text" placeholder="Email" />
+            </div>
+            <input class="btn btn-default" type="submit" value="Invite" />
+        </div>
+    </form>
+
+    <div class="user-list">
+        <h1>Active users</h1>
+        @foreach (var user in Model.Users)
+        {
+            <div class="user">
+                <div class="username-role">
+                    <img class="avatar" src="~/img/halle.jpg" />
+                    <div>
+                        <h1>@user.User.UserName</h1>
+                        <span>
+                            @foreach (var role in user.Roles)
+                            {
+                                if (role.ToLower().Equals("admin"))
+                                {
+                                    <span class="badge badge-success">@role</span>
+                                } else if(role.ToLower().Equals("standard"))
+                                {
+                                    <span class="badge badge-secondary">@role</span>
+                                }
+                            }
+                        </span>
+                    </div>
+                </div>
+                
+                <h2>@user.User.Email</h2>
+
+                <div class="button-container">
+                    <a href="#"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

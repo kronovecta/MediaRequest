@@ -1,115 +1,114 @@
-﻿using MediaRequest.Application;
-using MediaRequest.Application.Commands;
-using MediaRequest.Application.Queries.Movies.GetExistingMovies;
-using MediaRequest.Application.Queries.Movies.SearchMovieByName;
-using MediaRequest.Domain;
+﻿using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Models;
-using MediaRequest.WebUI.Models.Configuration;
 using MediaRequest.WebUI.ViewModels;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Caching.Memory;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
 namespace MediaRequest.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly IMediaDbContext _context;
         private readonly IMediator _mediator;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly ApiKeys _apikeys;
+        private readonly IMemoryCache _memoryCache;
 
-        public HomeController(IMediaDbContext context, IMediator mediator, IOptions<ApiKeys> apikeys, UserManager<IdentityUser> userManager)
+        public HomeController(IMediator mediator, IMemoryCache memoryCache)
         {
-            _apikeys = apikeys.Value;
+            
             _mediator = mediator;
-            _userManager = userManager;
-            _context = context;
+            _memoryCache = memoryCache;
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetExistingMoviesRequest() { ApiKey_Radarr = _apikeys.Radarr, ApiKey_TMDB = _apikeys.TMDB });
+            GetExistingMoviesResponse response = new GetExistingMoviesResponse();
 
-            var model = new MoviesMovieUserViewModel { Model = new MovieUserViewModel() };
-            model.Movies = movies.Movies;
+            if (!_memoryCache.TryGetValue("_ExistingMovies", out response))
+            {
+                response = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(60));
 
-            return View(model);
-        }
+                _memoryCache.Set("_ExistingMovies", response, cacheEntryOptions);
+            }
 
-        public IActionResult Search()
-        {
-            var model = new SearchViewModel();
+            var model = new IndexViewModel()
+            {
+                LatestMovie = response.LatestMovie,
+                PartialView = new IndexListPartialViewModel
+                {
+                    Term = "",
+                    FilterMode = 0,
+                    Movies = response.Movies,
+                    TotalPages = response.TotalPages,
+                    CurrentPage = response.CurrentPage
+                }
+            };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> SearchMoviesByName(SearchViewModel query)
+        public async Task<IActionResult> Index(string term, int filter, int? pagenr)
         {
+            pagenr = pagenr - 1;
+            GetExistingMoviesResponse response = new GetExistingMoviesResponse();
 
-            var request = new SearchMovieByNameRequest
+            if(term == null && filter == 0)
             {
-                SearchTerm = query.Input,
-                ApiKey = _apikeys.Radarr
-            };
+                response = await _mediator.Send(new GetExistingMoviesRequest() { CurrentPage = pagenr ?? 0, Amount = 10 });
 
-            var results = await _mediator.Send(request);
+                //if(!_memoryCache.TryGetValue("_ExistingMovies", out response))
+                //{
+                //    var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(60));
 
-            var existingMovies = await _mediator.Send(new GetExistingMoviesRequest { ApiKey_Radarr = _apikeys.Radarr });
-            
-            var model = new SearchResultViewModel();
+                //    _memoryCache.Set("_ExistingMovies", response, cacheEntryOptions);
+                //}
 
-            foreach (var item in results.Movies)
-            {
-                var movieExists = new MovieExists();
-
-                if (existingMovies.Movies.Any(x => x.Title == item.Title))
+                var model = new IndexViewModel()
                 {
-                    movieExists.Exists = true;
-                    movieExists.Movie = item;
-                } else
-                {
-                    movieExists.Exists = false;
-                    movieExists.Movie = item;
-                }
+                    LatestMovie = response.LatestMovie,
+                    PartialView = new IndexListPartialViewModel
+                    {
+                        Term = term,
+                        FilterMode = filter,
+                        Movies = response.Movies,
+                        TotalPages = response.TotalPages,
+                        CurrentPage = response.CurrentPage
+                    }
+                };
 
-                model.Movies.Add(movieExists);
-            }
-
-            return PartialView("_MovieSearchResultPartial", model);
-        }
-
-        public async Task<IActionResult> Request(string tmdbid)
-        {
-            var requests = await _context.Request.ToListAsync();
-            bool valid = false;
-
-            if (!requests.Any(x => x.MovieId == tmdbid)) valid = true;
-
-            if (valid)
+                return PartialView("_MovieListPartial", model.PartialView);
+            } 
+            else
             {
-                var currentUser = await _userManager.GetUserAsync(User);
-                var request = new UserRequest() { Status = false, MovieId = tmdbid, UserId = Guid.Parse(currentUser.Id) };
+                 response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0 });
 
-                var command = new AddRequestCommand { Request = request };
+                var model = new IndexViewModel()
+                {
+                    LatestMovie = response.LatestMovie,
+                    PartialView = new IndexListPartialViewModel
+                    {
+                        Term = term,
+                        FilterMode = filter,
+                        Movies = response.Movies,
+                        TotalPages = response.TotalPages,
+                        CurrentPage = response.CurrentPage
+                    }
+                };
 
-                await _mediator.Send(command);
+                return PartialView("_MovieListPartial", model.PartialView);
             }
-
-            return RedirectToAction("Search", "Home");
         }
-
 
         public IActionResult Privacy()
         {

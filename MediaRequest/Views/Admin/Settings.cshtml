@@ -1,0 +1,25 @@
+﻿@using MediaRequest.WebUI.Business.Extensions;
+@model MediaRequest.WebUI.ViewModels.Admin.AdminSettingsViewModel
+
+<h1>Settings</h1>
+<form asp-action="Settings" asp-controller="Admin" method="post" class="base-form">
+    <div class="form-section">
+        <h2>System Configuration</h2>
+        <div class="form-group">
+            <label>Base URL</label>
+            <input name="BaseAdress" placeholder="https://example.com" value="@Model.BaseUrl" />
+        </div>
+    </div>
+
+    <div class="form-section">
+        <h2>Radarr Settings</h2>
+        <div class="form-group">
+            <label>Base adress</label>
+            <input name="BaseAdress" placeholder="https://example.com/radarr" value="@Model.RadarrUrl" />
+        </div>
+        <div class="form-group">
+            <label>API Key</label>
+            <input name="BaseAdress" placeholder="6770a12c62b34461b513b43cf73d864e" value="@(Model.RadarrAPIKey)" />
+        </div>
+    </div>
+</form>

@@ -9,7 +9,9 @@ namespace MediaRequest.WebUI.ViewModels
 {
     public class SearchResultViewModel
     {
+        public string SearchTerm { get; set; }
         public List<MovieExists> Movies { get; set; }
+        public Movie LatestMovie { get; set; }
 
         public SearchResultViewModel()
         {
@@ -22,5 +24,6 @@ namespace MediaRequest.WebUI.ViewModels
         public Movie Movie { get; set; }
         public bool Exists { get; set; }
         public bool Monitored { get; set; }
+        public bool Downloaded { get; set; }
     }
 }

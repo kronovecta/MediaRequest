@@ -1,0 +1,10 @@
+﻿@model MediaRequest.Domain.API_Responses.Recommendation
+
+<a class="recommended-movie-container" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.TitleSlug">
+    <div class="poster">
+        <img src="@Model.PosterUrl" />
+    </div>
+    <div class="info">
+        <h1>@Model.Title</h1>
+    </div>
+</a>

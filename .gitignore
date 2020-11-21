@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+*.sqlite
+/.git_bkp
+
+**/*settings.json

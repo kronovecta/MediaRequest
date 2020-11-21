@@ -9,5 +9,6 @@ namespace MediaRequest.Domain
         public int MoviePosterId { get; set; }
         public string MovieId { get; set; }
         public string PosterUrl { get; set; }
+        public string FanartUrl { get; set; }
     }
 }

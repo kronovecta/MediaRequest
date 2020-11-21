@@ -1,0 +1,56 @@
+﻿@model MediaRequest.WebUI.Models.IdentityModels.ApplicationUser
+
+<div class="flex-container flex-row userinfo-container mb-2">
+    <div class="profile-head mr-1">
+        @if (Model.Avatar != null)
+        {
+            <div class="avatar">
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Avatar)" />
+            </div>
+        }
+        else
+        {
+
+            <div class="avatar">
+                <div class="avatar-background"></div>
+                <img src="http://all4ed.org/wp-content/themes/all4ed/assets/images/avatar-placeholder-generic.png" />
+                <i class="fas fa-camera"></i>
+            </div>
+        }
+
+        <form hidden enctype="multipart/form-data" asp-controller="User" asp-action="UploadAvatar" method="post">
+            <label asp-for="@Model.Avatar">Avatar</label>
+            <input class="filebtn" type="file" name="image" />
+            <input class="filesubmit" type="submit" value="Upload" />
+        </form>
+    </div>
+
+    <form class="w-100" asp-action="Update" asp-controller="Account" method="post">
+        <div class="flex-container flex-column">
+            <div class="form-section input-inline mb-1">
+                <label asp-for="@Model.UserName">Username</label>
+                <input asp-for="@Model.UserName" value="@Model.UserName" />
+            </div>
+            <div class="form-section input-inline">
+                <label asp-for="@Model.Email">Email</label>
+                <input type="email" asp-for="@Model.Email" value="@Model.Email" />
+            </div>
+        </div>
+
+        <div class="row mb-1">
+        </div>
+
+        <input class="btn-sm btn-default" type="submit" value="Save" />
+        <a id="password" class="btn-sm btn-primary" type="submit" asp-action="UpdatePassword" asp-controller="User">Change password</a>
+    </form>
+</div>
+
+<script>
+    $('.avatar').on('click', function () {
+        $('.filebtn').click();
+    })
+
+    $('.filebtn').on('change', function () {
+        $('.filesubmit').click();
+    });
+</script>

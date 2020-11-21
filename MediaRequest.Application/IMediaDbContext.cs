@@ -1,9 +1,6 @@
 ﻿using MediaRequest.Domain;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Threading.Tasks;
 
 namespace MediaRequest.Application
@@ -12,6 +9,7 @@ namespace MediaRequest.Application
     {
         DbSet<UserRequest> Request { get; set; }
         DbSet<MoviePoster> MoviePoster { get; set; }
+
 
         Task<int> SaveChangesAsync();
     }

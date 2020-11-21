@@ -1,4 +1,5 @@
-﻿using MediaRequest.Domain.Configuration;
+﻿using MediaRequest.Domain;
+using MediaRequest.Domain.Configuration;
 using MediatR;
 using Microsoft.Extensions.Options;
 using System;
@@ -9,6 +10,6 @@ namespace MediaRequest.Application.Queries.Requests
 {
     public class GetRequestsRequest : IRequest<GetRequestsResponse>
     {
-        public IOptions<ApiKeys> ApiKeys { get; set; }
+        public List<UserRequest> Requests { get; set; }
     }
 }

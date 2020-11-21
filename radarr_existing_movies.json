@@ -1,0 +1,4622 @@
+[
+  {
+    "title": "Frozen",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 1,
+        "title": "Frozen (Sing-Along Edition)",
+        "sourceId": 109445,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 40
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 1,
+        "title": "Frozen 3D",
+        "sourceId": 109445,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 1
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "frozen",
+    "sizeOnDisk": 10742293916,
+    "status": "released",
+    "overview": "Young princess Anna of Arendelle dreams about finding true love at her sister Elsa’s coronation. Fate takes her on a dangerous journey in an attempt to end the eternal winter that has fallen over the kingdom. She's accompanied by ice delivery man Kristoff, his reindeer Sven, and snowman Olaf. On an adventure where she will find out what friendship, courage, family, and true love really means.",
+    "inCinemas": "2013-11-26T23:00:00Z",
+    "physicalRelease": "2014-06-02T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/1/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/1/fanart.jpg"
+      }
+    ],
+    "website": "http://movies.disney.com/frozen",
+    "downloaded": true,
+    "year": 2013,
+    "hasFile": true,
+    "youTubeTrailerId": "TbQm5doF_Uc",
+    "studio": "Walt Disney Pictures",
+    "path": "/home17/robert/downloads/movies/Frozen (2013)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Frozen (2013)",
+    "runtime": 102,
+    "lastInfoSync": "2019-09-11T21:01:23.736089Z",
+    "cleanTitle": "frozen",
+    "imdbId": "tt2294629",
+    "tmdbId": 109445,
+    "titleSlug": "frozen-109445",
+    "genres": [],
+    "tags": [],
+    "added": "2018-12-27T12:36:14.200805Z",
+    "ratings": {
+      "votes": 10202,
+      "value": 7.3
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Frozen 2013 BluRay 1080p DTSHD-MA 7.1 x264 dxva-FraMeSToR.mkv",
+      "size": 10742293916,
+      "dateAdded": "2019-03-14T11:50:49.833726Z",
+      "releaseGroup": "FraMeSToR",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 140 r2377 1ca7bb9",
+        "videoBitrate": 9072000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 856,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 0,
+        "runTime": "01:42:13.0500000",
+        "audioStreamCount": 1,
+        "audioChannels": 8,
+        "audioChannelPositions": "3/2/2.1 / 3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, Back: L R, LFE / Front: L C R, Side: L R, LFE",
+        "audioProfile": "MA",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / English / French / Spanish",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 44
+    },
+    "qualityProfileId": 4,
+    "id": 1
+  },
+  {
+    "title": "The Incredibles",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "incredibles",
+    "sizeOnDisk": 0,
+    "status": "released",
+    "overview": "Bob Parr has given up his superhero days to log in time as an insurance adjuster and raise his three children with his formerly heroic wife in suburbia. But when he receives a mysterious assignment, it's time to get back into costume.",
+    "inCinemas": "2004-11-04T23:00:00Z",
+    "physicalRelease": "2005-03-14T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/11/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/11/fanart.jpg"
+      }
+    ],
+    "website": "http://disney.go.com/disneyvideos/animatedfilms/incredibles/main.html",
+    "downloaded": false,
+    "year": 2004,
+    "hasFile": false,
+    "youTubeTrailerId": "ECJNnWRM_xA",
+    "studio": "Pixar",
+    "path": "/home17/robert/downloads/downloaded/The Incredibles (2004)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/downloaded/The Incredibles (2004)",
+    "runtime": 115,
+    "lastInfoSync": "2019-09-02T20:36:03.038521Z",
+    "cleanTitle": "theincredibles",
+    "imdbId": "tt0317705",
+    "tmdbId": 9806,
+    "titleSlug": "the-incredibles-9806",
+    "genres": [],
+    "tags": [],
+    "added": "2019-01-04T17:47:44.162058Z",
+    "ratings": {
+      "votes": 11068,
+      "value": 7.7
+    },
+    "qualityProfileId": 4,
+    "id": 11
+  },
+  {
+    "title": "Upgrade",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "upgrade",
+    "sizeOnDisk": 8216674986,
+    "status": "released",
+    "overview": "A brutal mugging leaves Grey Trace paralyzed in the hospital and his beloved wife dead. A billionaire inventor soon offers Trace a cure — an artificial intelligence implant called STEM that will enhance his body. Now able to walk, Grey finds that he also has superhuman strength and agility — skills he uses to seek revenge against the thugs who destroyed his life.",
+    "inCinemas": "2018-05-31T22:00:00Z",
+    "physicalRelease": "2018-08-28T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/17/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/17/fanart.jpg"
+      }
+    ],
+    "website": "http://www.upgrade.movie",
+    "downloaded": true,
+    "year": 2018,
+    "hasFile": true,
+    "youTubeTrailerId": "1hTLGlgZ4Z8",
+    "studio": "Goalpost Pictures",
+    "path": "/home17/robert/downloads/movies/Upgrade (2018)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Upgrade (2018)",
+    "runtime": 100,
+    "lastInfoSync": "2019-09-07T20:51:30.228219Z",
+    "cleanTitle": "upgrade",
+    "imdbId": "tt6499752",
+    "tmdbId": 500664,
+    "titleSlug": "upgrade-500664",
+    "genres": [],
+    "tags": [],
+    "added": "2019-01-09T09:54:17.149274Z",
+    "ratings": {
+      "votes": 1495,
+      "value": 7.3
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "upgrade.2018.1080p.bluray.x264-drones.mkv",
+      "size": 8216674986,
+      "dateAdded": "2019-01-09T09:56:05.652172Z",
+      "sceneName": "upgrade.2018.1080p.bluray.x264-drones",
+      "releaseGroup": "drones",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 155 r2901 7d0ff22",
+        "videoBitrate": 9455000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 808,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:39:54.5360000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 10
+    },
+    "qualityProfileId": 4,
+    "id": 17
+  },
+  {
+    "title": "Overlord",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 19,
+        "title": "Operation Cloverfield",
+        "sourceId": 438799,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 20
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "overlord",
+    "sizeOnDisk": 8526586423,
+    "status": "released",
+    "overview": "France, June 1944. On the eve of D-Day, some American paratroopers fall behind enemy lines after their aircraft crashes while on a mission to destroy a radio tower in a small village near the beaches of Normandy. After reaching their target, the surviving paratroopers realise that, in addition to fighting the Nazi troops that patrol the village, they also must fight against something else.",
+    "inCinemas": "2018-10-31T23:00:00Z",
+    "physicalRelease": "2019-01-15T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/19/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/19/fanart.jpg"
+      }
+    ],
+    "website": "http://www.overlordmovie.com",
+    "downloaded": true,
+    "year": 2018,
+    "hasFile": true,
+    "youTubeTrailerId": "USPd0vX2sdc",
+    "studio": "Bad Robot",
+    "path": "/home17/robert/downloads/movies/Overlord (2018)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Overlord (2018)",
+    "runtime": 110,
+    "lastInfoSync": "2019-09-12T21:04:44.080845Z",
+    "cleanTitle": "overlord",
+    "imdbId": "tt4530422",
+    "tmdbId": 438799,
+    "titleSlug": "overlord-438799",
+    "genres": [],
+    "tags": [],
+    "added": "2019-01-18T08:36:00.147042Z",
+    "ratings": {
+      "votes": 1191,
+      "value": 6.6
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "overlord.2018.1080p.bluray.x264-drones.mkv",
+      "size": 8526586423,
+      "dateAdded": "2019-02-08T06:59:05.700641Z",
+      "sceneName": "overlord.2018.1080p.bluray.x264-drones",
+      "releaseGroup": "drones",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 157 r2935 545de2f",
+        "videoBitrate": 9717000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 640000,
+        "runTime": "01:49:47.2960000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 26
+    },
+    "qualityProfileId": 4,
+    "id": 19
+  },
+  {
+    "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 20,
+        "title": "Pirates of the Caribbean 1",
+        "sourceId": 22,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 21
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "pirates caribbean curse black pearl",
+    "sizeOnDisk": 15105399092,
+    "status": "released",
+    "overview": "Jack Sparrow, a freewheeling 18th-century pirate, quarrels with a rival pirate bent on pillaging Port Royal. When the governor's daughter is kidnapped, Sparrow decides to help the girl's love save her.",
+    "inCinemas": "2003-07-08T22:00:00Z",
+    "physicalRelease": "2004-01-21T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/20/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/20/fanart.jpg"
+      }
+    ],
+    "website": "http://disney.go.com/disneyvideos/liveaction/pirates/main_site/main.html",
+    "downloaded": true,
+    "year": 2003,
+    "hasFile": true,
+    "youTubeTrailerId": "naQr0uTrH_s",
+    "studio": "Jerry Bruckheimer Films",
+    "path": "/home17/robert/downloads/movies/Pirates of the Caribbean The Curse of the Black Pearl (2003)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Pirates of the Caribbean The Curse of the Black Pearl (2003)",
+    "runtime": 143,
+    "lastInfoSync": "2019-09-17T21:12:26.356555Z",
+    "cleanTitle": "piratescaribbeancurseblackpearl",
+    "imdbId": "tt0325980",
+    "tmdbId": 22,
+    "titleSlug": "pirates-of-the-caribbean-the-curse-of-the-black-pearl-22",
+    "genres": [],
+    "tags": [],
+    "added": "2019-01-19T10:07:17.698409Z",
+    "ratings": {
+      "votes": 12915,
+      "value": 7.7
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Pirates.of.the.Caribbean.Curse.of.the.Black.Pearl.2003.1080p.BluRay.DTS.x264-TayTO.mkv",
+      "size": 15105399092,
+      "dateAdded": "2019-01-19T10:14:58.216003Z",
+      "sceneName": "Pirates.of.the.Caribbean.Curse.of.the.Black.Pearl.2003.1080p.BluRay.DTS.x264-TayTO",
+      "releaseGroup": "TayTO",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 148 r2744 b97ae06",
+        "videoBitrate": 11884721,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1916,
+        "height": 800,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509750,
+        "runTime": "02:23:15.8880000",
+        "audioStreamCount": 3,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English / English / English",
+        "subtitles": "English / English / English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 14
+    },
+    "qualityProfileId": 4,
+    "id": 20
+  },
+  {
+    "title": "Pirates of the Caribbean: Dead Man's Chest",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 21,
+        "title": "POTC2 Dead Man's Chest",
+        "sourceId": 58,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 22
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "pirates caribbean dead man s chest",
+    "sizeOnDisk": 0,
+    "status": "released",
+    "overview": "Captain Jack Sparrow works his way out of a blood debt with the ghostly Davey Jones, he also attempts to avoid eternal damnation.",
+    "inCinemas": "2006-06-19T22:00:00Z",
+    "physicalRelease": "2006-11-21T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/21/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/21/fanart.jpg"
+      }
+    ],
+    "website": "http://disney.go.com/disneypictures/pirates/",
+    "downloaded": false,
+    "year": 2006,
+    "hasFile": false,
+    "youTubeTrailerId": "elqO-GNfStM",
+    "studio": "Walt Disney Pictures",
+    "path": "/home17/robert/downloads/downloaded/Pirates of the Caribbean Dead Man's Chest (2006)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/downloaded/Pirates of the Caribbean Dead Man's Chest (2006)",
+    "runtime": 151,
+    "lastInfoSync": "2019-09-17T21:12:27.186692Z",
+    "cleanTitle": "piratescaribbeandeadmanschest",
+    "imdbId": "tt0383574",
+    "tmdbId": 58,
+    "titleSlug": "pirates-of-the-caribbean-dead-mans-chest-58",
+    "genres": [],
+    "tags": [],
+    "added": "2019-01-19T10:07:54.159349Z",
+    "ratings": {
+      "votes": 9807,
+      "value": 7.2
+    },
+    "qualityProfileId": 4,
+    "id": 21
+  },
+  {
+    "title": "Pirates of the Caribbean: At World's End",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 22,
+        "title": "At World's End",
+        "sourceId": 285,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 26
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 22,
+        "title": "POTC3 At World's End",
+        "sourceId": 285,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 27
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 22,
+        "title": "Pirates of the Caribbean 3",
+        "sourceId": 285,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 25
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 22,
+        "title": "Pirates of the Caribbean 3 - At World's End",
+        "sourceId": 285,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 23
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 22,
+        "title": "Pirates of the Caribbean III: At World's End",
+        "sourceId": 285,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 24
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "pirates caribbean at world s end",
+    "sizeOnDisk": 0,
+    "status": "released",
+    "overview": "Captain Barbossa, long believed to be dead, has come back to life and is headed to the edge of the Earth with Will Turner and Elizabeth Swann. But nothing is quite as it seems.",
+    "inCinemas": "2007-05-18T22:00:00Z",
+    "physicalRelease": "2007-11-23T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/22/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/22/fanart.jpg"
+      }
+    ],
+    "website": "http://disney.go.com/disneypictures/pirates",
+    "downloaded": false,
+    "year": 2007,
+    "hasFile": false,
+    "youTubeTrailerId": "HKSZtp_OGHY",
+    "studio": "Jerry Bruckheimer Films",
+    "path": "/home17/robert/downloads/downloaded/Pirates of the Caribbean At World's End (2007)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/downloaded/Pirates of the Caribbean At World's End (2007)",
+    "runtime": 169,
+    "lastInfoSync": "2019-09-17T21:12:25.455255Z",
+    "cleanTitle": "piratescaribbeanatworldsend",
+    "imdbId": "tt0449088",
+    "tmdbId": 285,
+    "titleSlug": "pirates-of-the-caribbean-at-worlds-end-285",
+    "genres": [],
+    "tags": [],
+    "added": "2019-01-19T10:08:01.236745Z",
+    "ratings": {
+      "votes": 8722,
+      "value": 7.1
+    },
+    "qualityProfileId": 4,
+    "id": 22
+  },
+  {
+    "title": "Casablanca",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "casablanca",
+    "sizeOnDisk": 7966489080,
+    "status": "released",
+    "overview": "In Casablanca, Morocco in December 1941, a cynical American expatriate meets a former lover, with unforeseen complications.",
+    "inCinemas": "1942-11-25T23:00:00Z",
+    "physicalRelease": "2003-11-12T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/31/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/31/fanart.jpg"
+      }
+    ],
+    "downloaded": true,
+    "year": 1942,
+    "hasFile": true,
+    "youTubeTrailerId": "BkL9l7qovsE",
+    "studio": "Warner Bros. Pictures",
+    "path": "/home17/robert/downloads/movies/Casablanca (1942)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Casablanca (1942)",
+    "runtime": 102,
+    "lastInfoSync": "2019-09-07T20:49:35.716107Z",
+    "cleanTitle": "casablanca",
+    "imdbId": "tt0034583",
+    "tmdbId": 289,
+    "titleSlug": "casablanca-289",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-09T23:30:46.141157Z",
+    "ratings": {
+      "votes": 2651,
+      "value": 8.1
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Casablanca 1942 1080p BluRay x264-CtrlHD.mkv",
+      "size": 7966489080,
+      "dateAdded": "2019-03-09T23:38:24.661516Z",
+      "sceneName": "Casablanca 1942 1080p BluRay x264-CtrlHD",
+      "releaseGroup": "CtrlHD",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "",
+        "videoBitrate": 9797113,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1472,
+        "height": 1080,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 192000,
+        "runTime": "01:42:34.5710000",
+        "audioStreamCount": 3,
+        "audioChannels": 1,
+        "audioChannelPositions": "1/0/0",
+        "audioChannelPositionsText": "Front: C",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English / English / English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 36
+    },
+    "qualityProfileId": 4,
+    "id": 31
+  },
+  {
+    "title": "Iron Man",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "iron man",
+    "sizeOnDisk": 17232240799,
+    "status": "released",
+    "overview": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+    "inCinemas": "2008-04-29T22:00:00Z",
+    "physicalRelease": "2008-10-01T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/32/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/32/fanart.jpg"
+      }
+    ],
+    "website": "https://www.marvel.com/movies/iron-man",
+    "downloaded": true,
+    "year": 2008,
+    "hasFile": true,
+    "youTubeTrailerId": "8hYlB38asDY",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Iron Man (2008)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Iron Man (2008)",
+    "runtime": 126,
+    "lastInfoSync": "2019-09-13T21:05:59.449497Z",
+    "cleanTitle": "ironman",
+    "imdbId": "tt0371746",
+    "tmdbId": 1726,
+    "titleSlug": "iron-man-1726",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-14T10:28:25.94776Z",
+    "ratings": {
+      "votes": 16491,
+      "value": 7.6
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Iron.Man.2008.1080p.UHD.BluRay.DD+7.1.HDR.x265-SA89.mkv",
+      "size": 17232240799,
+      "dateAdded": "2019-08-12T20:02:11.812535Z",
+      "sceneName": "Iron.Man.2008.1080p.UHD.BluRay.DD+7.1.HDR.x265-SA89",
+      "releaseGroup": "SA89",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "HEVC",
+        "videoCodecID": "V_MPEGH/ISO/HEVC",
+        "videoProfile": "Main 10@L5.1@High",
+        "videoCodecLibrary": "x265 - 3.1_RC1+3-3bdf06e3c628:[Windows][MSVC 1921][64 bit] 10bit",
+        "videoBitrate": 16696270,
+        "videoBitDepth": 10,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "BT.2020",
+        "videoTransferCharacteristics": "PQ",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_EAC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "Dep",
+        "audioBitrate": 1536000,
+        "runTime": "02:06:00.3200000",
+        "audioStreamCount": 1,
+        "audioChannels": 8,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, Back: L R, LFE",
+        "audioProfile": "Blu-ray Disc",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / English",
+        "scanType": "",
+        "schemaRevision": 5
+      },
+      "id": 84
+    },
+    "qualityProfileId": 1,
+    "id": 32
+  },
+  {
+    "title": "Iron Man 2",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 33,
+        "title": "Iron Man II",
+        "sourceId": 10138,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 42
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "iron man 2",
+    "sizeOnDisk": 15413658024,
+    "status": "released",
+    "overview": "With the world now aware of his dual life as the armored superhero Iron Man, billionaire inventor Tony Stark faces pressure from the government, the press and the public to share his technology with the military. Unwilling to let go of his invention, Stark, with Pepper Potts and James 'Rhodey' Rhodes at his side, must forge new alliances – and confront powerful enemies.",
+    "inCinemas": "2010-04-27T22:00:00Z",
+    "physicalRelease": "2010-10-06T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/33/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/33/fanart.jpg"
+      }
+    ],
+    "website": "https://www.marvel.com/movies/iron-man-2",
+    "downloaded": true,
+    "year": 2010,
+    "hasFile": true,
+    "youTubeTrailerId": "BoohRoVA9WQ",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Iron Man 2 (2010)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Iron Man 2 (2010)",
+    "runtime": 124,
+    "lastInfoSync": "2019-09-17T21:11:21.321694Z",
+    "cleanTitle": "ironman2",
+    "imdbId": "tt1228705",
+    "tmdbId": 10138,
+    "titleSlug": "iron-man-2-10138",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-20T18:13:27.926118Z",
+    "ratings": {
+      "votes": 12999,
+      "value": 6.8
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Iron.Man.2.2010.1080p.Blu-ray.DTS-HDMA.x264.dxva-FraMeSToR.mkv",
+      "size": 15413658024,
+      "dateAdded": "2019-03-20T18:24:36.80601Z",
+      "sceneName": "Iron.Man.2.2010.1080p.Blu-ray.DTS-HDMA.x264.dxva-FraMeSToR",
+      "releaseGroup": "FraMeSToR",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 104 r1703 cd21d05",
+        "videoBitrate": 12556000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 816,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 0,
+        "runTime": "02:04:39.1460000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "MA",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 50
+    },
+    "qualityProfileId": 4,
+    "id": 33
+  },
+  {
+    "title": "John Wick",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 34,
+        "title": "John Wick 1",
+        "sourceId": 245891,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 43
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 34,
+        "title": "John Wick: Chapter 1",
+        "sourceId": 245891,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 247
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "john wick",
+    "sizeOnDisk": 7034343021,
+    "status": "released",
+    "overview": "Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.",
+    "inCinemas": "2014-10-21T22:00:00Z",
+    "physicalRelease": "2015-02-25T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/34/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/34/fanart.jpg"
+      }
+    ],
+    "website": "http://www.johnwickthemovie.com/",
+    "downloaded": true,
+    "year": 2014,
+    "hasFile": true,
+    "youTubeTrailerId": "2AUmvWm5ZDQ",
+    "studio": "Summit Entertainment",
+    "path": "/home17/robert/downloads/movies/John Wick (2014)/",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/John Wick (2014)/",
+    "runtime": 101,
+    "lastInfoSync": "2019-09-18T21:13:59.464764Z",
+    "cleanTitle": "johnwick",
+    "imdbId": "tt2911666",
+    "tmdbId": 245891,
+    "titleSlug": "john-wick-245891",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-21T19:35:39.299605Z",
+    "ratings": {
+      "votes": 10810,
+      "value": 7.2
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "John Wick (2014) Bluray-1080p.mkv",
+      "size": 7034343021,
+      "dateAdded": "2019-03-21T19:36:26.803105Z",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 144 r2525 40bb568",
+        "videoBitrate": 8631000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 640000,
+        "runTime": "01:41:12.9480000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 51
+    },
+    "qualityProfileId": 1,
+    "id": 34
+  },
+  {
+    "title": "John Wick: Chapter 2",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 35,
+        "title": "John Wick 2",
+        "sourceId": 324552,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 44
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 35,
+        "title": "John Wick: Chapter Two",
+        "sourceId": 324552,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 45
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "john wick chapter 2",
+    "sizeOnDisk": 8528181069,
+    "status": "released",
+    "overview": "John Wick is forced out of retirement by a former associate looking to seize control of a shadowy international assassins’ guild. Bound by a blood oath to aid him, Wick travels to Rome and does battle against some of the world’s most dangerous killers.",
+    "inCinemas": "2017-02-07T23:00:00Z",
+    "physicalRelease": "2017-06-13T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/35/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/35/fanart.jpg"
+      }
+    ],
+    "website": "http://www.johnwick.movie/",
+    "downloaded": true,
+    "year": 2017,
+    "hasFile": true,
+    "youTubeTrailerId": "LZrX9mffH8Y",
+    "studio": "Thunder Road Pictures",
+    "path": "/home17/robert/downloads/movies/John Wick Chapter 2 (2017)/",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/John Wick Chapter 2 (2017)/",
+    "runtime": 122,
+    "lastInfoSync": "2019-09-18T21:14:00.37044Z",
+    "cleanTitle": "johnwickchapter2",
+    "imdbId": "tt4425200",
+    "tmdbId": 324552,
+    "titleSlug": "john-wick-chapter-2-324552",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-21T19:35:41.638089Z",
+    "ratings": {
+      "votes": 6445,
+      "value": 7.0
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "John.Wick.Chapter.2.2017.1080p.BluRay.x264-SPARKS.mkv",
+      "size": 8528181069,
+      "dateAdded": "2019-03-21T19:36:41.522059Z",
+      "releaseGroup": "SPARKS",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 150 r2829 d1fe6fd",
+        "videoBitrate": 8654000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 640000,
+        "runTime": "02:02:22.3840000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 52
+    },
+    "qualityProfileId": 1,
+    "id": 35
+  },
+  {
+    "title": "Thor",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 36,
+        "title": "Thor 1",
+        "sourceId": 10195,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 48
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 36,
+        "title": "Thor 1 3D",
+        "sourceId": 10195,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 49
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 36,
+        "title": "Thor 3D",
+        "sourceId": 10195,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 47
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 36,
+        "title": "Thor, God of Thunder",
+        "sourceId": 10195,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 46
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "thor",
+    "sizeOnDisk": 11671114754,
+    "status": "released",
+    "overview": "Against his father Odin's will, The Mighty Thor - a powerful but arrogant warrior god - recklessly reignites an ancient war. Thor is cast down to Earth and forced to live among humans as punishment. Once here, Thor learns what it takes to be a true hero when the most dangerous villain of his world sends the darkest forces of Asgard to invade Earth.",
+    "inCinemas": "2011-04-20T22:00:00Z",
+    "physicalRelease": "2011-09-14T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/36/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/36/fanart.jpg"
+      }
+    ],
+    "website": "http://thor.marvel.com/",
+    "downloaded": true,
+    "year": 2011,
+    "hasFile": true,
+    "youTubeTrailerId": "uHBnrJowBZE",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Thor (2011)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Thor (2011)",
+    "runtime": 115,
+    "lastInfoSync": "2019-09-19T21:15:11.224784Z",
+    "cleanTitle": "thor",
+    "imdbId": "tt0800369",
+    "tmdbId": 10195,
+    "titleSlug": "thor-10195",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-22T16:17:25.776715Z",
+    "ratings": {
+      "votes": 13388,
+      "value": 6.7
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Thor.2011.1080p.BluRay.DTS.x264-CtrlHD.mkv",
+      "size": 11671114754,
+      "dateAdded": "2019-03-22T16:23:49.70109Z",
+      "sceneName": "Thor.2011.1080p.BluRay.DTS.x264-CtrlHD",
+      "releaseGroup": "CtrlHD",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 116 r2037 f8ebd4a",
+        "videoBitrate": 12000000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 816,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:54:50.8070000",
+        "audioStreamCount": 2,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "ES",
+        "videoFps": 23.976,
+        "audioLanguages": "English / English",
+        "subtitles": "English / Chinese / Czech / Dutch / Finnish / French / Greek / Croatian / Norwegian / Spanish / Swedish",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 53
+    },
+    "qualityProfileId": 4,
+    "id": 36
+  },
+  {
+    "title": "Captain America: The First Avenger",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 37,
+        "title": "Captain America 1",
+        "sourceId": 1771,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 52
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 37,
+        "title": "Captain America 1: The First Avenger",
+        "sourceId": 1771,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 50
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 37,
+        "title": "Marvel's Captain America - The First Avenger",
+        "sourceId": 1771,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 51
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "captain america first avenger",
+    "sizeOnDisk": 8459056116,
+    "status": "released",
+    "overview": "During World War II, Steve Rogers is a sickly man from Brooklyn who's transformed into super-soldier Captain America to aid in the war effort. Rogers must stop the Red Skull – Adolf Hitler's ruthless head of weaponry, and the leader of an organization that intends to use a mysterious device of untold powers for world domination.",
+    "inCinemas": "2011-07-21T22:00:00Z",
+    "physicalRelease": "2011-11-23T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/37/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/37/fanart.jpg"
+      }
+    ],
+    "website": "http://captainamerica.marvel.com/",
+    "downloaded": true,
+    "year": 2011,
+    "hasFile": true,
+    "youTubeTrailerId": "W4DlMggBPvc",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Captain America The First Avenger (2011)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Captain America The First Avenger (2011)",
+    "runtime": 124,
+    "lastInfoSync": "2019-09-20T21:15:32.282363Z",
+    "cleanTitle": "captainamericafirstavenger",
+    "imdbId": "tt0458339",
+    "tmdbId": 1771,
+    "titleSlug": "captain-america-the-first-avenger-1771",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-23T17:45:37.659097Z",
+    "ratings": {
+      "votes": 13449,
+      "value": 6.9
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Captain.America.The.First.Avenger.2011.1080p.BluRay.DTS.x264-RUXi.mkv",
+      "size": 8459056116,
+      "dateAdded": "2019-03-23T17:47:39.966728Z",
+      "sceneName": "Captain.America.The.First.Avenger.2011.1080p.BluRay.DTS.x264-RUXi",
+      "releaseGroup": "RUXi",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 142 r2453 ea0ca51",
+        "videoBitrate": 7528000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 816,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:04:11.6180000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / Chinese / Greek / Icelandic / Korean / Romanian",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 54
+    },
+    "qualityProfileId": 4,
+    "id": 37
+  },
+  {
+    "title": "Echo in the Canyon",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "echo in canyon",
+    "sizeOnDisk": 8220625931,
+    "status": "released",
+    "overview": "A look at the roots of the historic music scene in L.A.'s Laurel Canyon featuring the music of iconic music groups such as The Byrds, The Beach Boys, Buffalo Springfield, and The Mamas and the Papas.",
+    "inCinemas": "2019-05-23T22:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/38/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/38/fanart.jpg"
+      }
+    ],
+    "website": "https://www.echointhecanyon.com",
+    "downloaded": true,
+    "year": 2018,
+    "hasFile": true,
+    "youTubeTrailerId": "QRVFBQHBUls",
+    "studio": "Mirror Films",
+    "path": "/home17/robert/downloads/movies/Echo in the Canyon (2018)",
+    "profileId": 4,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Echo in the Canyon (2018)",
+    "runtime": 82,
+    "lastInfoSync": "2019-09-20T21:15:38.278343Z",
+    "cleanTitle": "echoincanyon",
+    "imdbId": "tt8884430",
+    "tmdbId": 549551,
+    "titleSlug": "echo-in-the-canyon-549551",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-27T21:12:47.957304Z",
+    "ratings": {
+      "votes": 4,
+      "value": 7.5
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Echo in the Canyon (2018) Bluray-1080p.mkv",
+      "size": 8220625931,
+      "dateAdded": "2019-09-12T03:30:16.106061Z",
+      "sceneName": "Echo.in.the.Canyon.2018.1080p.BluRay.x264-BRMP",
+      "releaseGroup": "brmp",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 157 r2969 d4099dd",
+        "videoBitrate": 11814000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 1080,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:22:14.6030000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 90
+    },
+    "qualityProfileId": 4,
+    "id": 38
+  },
+  {
+    "title": "The Avengers",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 39,
+        "title": "Marvel Avengers Assemble",
+        "sourceId": 24428,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 57
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 39,
+        "title": "Marvel Studios' The Avengers",
+        "sourceId": 24428,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 102
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 39,
+        "title": "Marvel's The Avengers",
+        "sourceId": 24428,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 55
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 39,
+        "title": "The Avengers 1",
+        "sourceId": 24428,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 54
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 39,
+        "title": "The Avengers 3D",
+        "sourceId": 24428,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 53
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 39,
+        "title": "The Avengers: An IMAX 3D Experience",
+        "sourceId": 24428,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 56
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "avengers",
+    "sizeOnDisk": 0,
+    "status": "released",
+    "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+    "inCinemas": "2012-04-24T22:00:00Z",
+    "physicalRelease": "2012-08-26T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/39/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/39/fanart.jpg"
+      }
+    ],
+    "website": "http://marvel.com/avengers_movie/",
+    "downloaded": false,
+    "year": 2012,
+    "hasFile": false,
+    "youTubeTrailerId": "eOrNdBpGMv8",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/The Avengers (2012)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/The Avengers (2012)",
+    "runtime": 143,
+    "lastInfoSync": "2019-09-26T21:27:00.773167Z",
+    "cleanTitle": "theavengers",
+    "imdbId": "tt0848228",
+    "tmdbId": 24428,
+    "titleSlug": "the-avengers-24428",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-28T18:34:08.017127Z",
+    "ratings": {
+      "votes": 20581,
+      "value": 7.6
+    },
+    "qualityProfileId": 7,
+    "id": 39
+  },
+  {
+    "title": "Iron Man 3",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 40,
+        "title": "Caged Heat",
+        "sourceId": 68721,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 59
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 40,
+        "title": "Iron Man III",
+        "sourceId": 68721,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 61
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 40,
+        "title": "Iron Man Three",
+        "sourceId": 68721,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 60
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 40,
+        "title": "Marvel's Iron Man 3",
+        "sourceId": 68721,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 58
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "iron man 3",
+    "sizeOnDisk": 9387082400,
+    "status": "released",
+    "overview": "When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.",
+    "inCinemas": "2013-04-17T22:00:00Z",
+    "physicalRelease": "2013-08-28T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/40/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/40/fanart.jpg"
+      }
+    ],
+    "website": "https://www.marvel.com/movies/iron-man-3",
+    "downloaded": true,
+    "year": 2013,
+    "hasFile": true,
+    "youTubeTrailerId": "YLorLVa95Xo",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Iron Man 3 (2013)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Iron Man 3 (2013)",
+    "runtime": 131,
+    "lastInfoSync": "2019-09-26T21:27:12.263899Z",
+    "cleanTitle": "ironman3",
+    "imdbId": "tt1300854",
+    "tmdbId": 68721,
+    "titleSlug": "iron-man-3-68721",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-29T20:36:51.306757Z",
+    "ratings": {
+      "votes": 14798,
+      "value": 6.9
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Iron.Man.3.2013.1080p.BluRay.x264-SPARKS.mkv",
+      "size": 9387082400,
+      "dateAdded": "2019-03-29T20:45:12.702417Z",
+      "sceneName": "Iron.Man.3.2013.1080p.BluRay.x264-SPARKS",
+      "releaseGroup": "SPARKS",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 133 r2334 a3ac64b",
+        "videoBitrate": 8077000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:10:32.8750000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 56
+    },
+    "qualityProfileId": 1,
+    "id": 40
+  },
+  {
+    "title": "Thor: The Dark World",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 42,
+        "title": "Marvel's Thor: The Dark World",
+        "sourceId": 76338,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 64
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 42,
+        "title": "Thor 2",
+        "sourceId": 76338,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 63
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "thor dark world",
+    "sizeOnDisk": 8213907660,
+    "status": "released",
+    "overview": "Thor fights to restore order across the cosmos… but an ancient race led by the vengeful Malekith returns to plunge the universe back into darkness. Faced with an enemy that even Odin and Asgard cannot withstand, Thor must embark on his most perilous and personal journey yet, one that will reunite him with Jane Foster and force him to sacrifice everything to save us all.",
+    "inCinemas": "2013-10-28T23:00:00Z",
+    "physicalRelease": "2014-03-03T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/42/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/42/fanart.jpg"
+      }
+    ],
+    "website": "https://www.marvel.com/movies/thor-the-dark-world",
+    "downloaded": true,
+    "year": 2013,
+    "hasFile": true,
+    "youTubeTrailerId": "npvJ9FTgZbM",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Thor The Dark World (2013)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Thor The Dark World (2013)",
+    "runtime": 112,
+    "lastInfoSync": "2019-09-27T21:28:36.658275Z",
+    "cleanTitle": "thordarkworld",
+    "imdbId": "tt1981115",
+    "tmdbId": 76338,
+    "titleSlug": "thor-the-dark-world-76338",
+    "genres": [],
+    "tags": [],
+    "added": "2019-03-30T17:39:41.549711Z",
+    "ratings": {
+      "votes": 10757,
+      "value": 6.6
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Thor.The.Dark.World.2013.1080p.BluRay.x264-SPARKS.mkv",
+      "size": 8213907660,
+      "dateAdded": "2019-03-30T17:41:32.858831Z",
+      "sceneName": "Thor.The.Dark.World.2013.1080p.BluRay.x264-SPARKS",
+      "releaseGroup": "sparks",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 140 r2377 1ca7bb9",
+        "videoBitrate": 8263000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:52:03.2230000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 57
+    },
+    "qualityProfileId": 1,
+    "id": 42
+  },
+  {
+    "title": "Captain America: The Winter Soldier",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 45,
+        "title": "Capitan America 2",
+        "sourceId": 100402,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 71
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 45,
+        "title": "Captain America 2",
+        "sourceId": 100402,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 67
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 45,
+        "title": "Captain America 2 - The Winter Solider",
+        "sourceId": 100402,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 68
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 45,
+        "title": "Captain America 2: The Winter Soldier 3D",
+        "sourceId": 100402,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 70
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 45,
+        "title": "Marvel's Captain America: The Winter Soldier",
+        "sourceId": 100402,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 69
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "captain america winter soldier",
+    "sizeOnDisk": 9266545955,
+    "status": "released",
+    "overview": "After the cataclysmic events in New York with The Avengers, Steve Rogers, aka Captain America is living quietly in Washington, D.C. and trying to adjust to the modern world. But when a S.H.I.E.L.D. colleague comes under attack, Steve becomes embroiled in a web of intrigue that threatens to put the world at risk. Joining forces with the Black Widow, Captain America struggles to expose the ever-widening conspiracy while fighting off professional assassins sent to silence him at every turn. When the full scope of the villainous plot is revealed, Captain America and the Black Widow enlist the help of a new ally, the Falcon. However, they soon find themselves up against an unexpected and formidable enemy—the Winter Soldier.",
+    "inCinemas": "2014-03-19T23:00:00Z",
+    "physicalRelease": "2014-08-13T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/45/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/45/fanart.jpg"
+      }
+    ],
+    "website": "http://www.captainamericathewintersoldiermovie.com",
+    "downloaded": true,
+    "year": 2014,
+    "hasFile": true,
+    "youTubeTrailerId": "7SlILk2WMTI",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Captain America The Winter Soldier (2014)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Captain America The Winter Soldier (2014)",
+    "runtime": 136,
+    "lastInfoSync": "2019-09-03T20:38:23.226942Z",
+    "cleanTitle": "captainamericawintersoldier",
+    "imdbId": "tt1843866",
+    "tmdbId": 100402,
+    "titleSlug": "captain-america-the-winter-soldier-100402",
+    "genres": [],
+    "tags": [],
+    "added": "2019-04-05T17:50:41.17962Z",
+    "ratings": {
+      "votes": 11588,
+      "value": 7.7
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Captain.America.The.Winter.Soldier.2014.1080p.BluRay.DTS.x264-RUXi.mkv",
+      "size": 9266545955,
+      "dateAdded": "2019-04-05T17:54:09.73114Z",
+      "sceneName": "Captain.America.The.Winter.Soldier.2014.1080p.BluRay.DTS.x264-RUXi",
+      "releaseGroup": "RUXi",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 135 r2345 f0c1c53",
+        "videoBitrate": 7362000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:15:54.1960000",
+        "audioStreamCount": 2,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English / English",
+        "subtitles": "English / English / Romanian",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 59
+    },
+    "qualityProfileId": 7,
+    "id": 45
+  },
+  {
+    "title": "Guardians of the Galaxy",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 46,
+        "title": "G.O.T.G.",
+        "sourceId": 118340,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 73
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 46,
+        "title": "Guardianes de la Galaxia 1",
+        "sourceId": 118340,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 75
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 46,
+        "title": "Guardians of the Galaxy 1",
+        "sourceId": 118340,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 72
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 46,
+        "title": "Marvel's Guardians of the Galaxy",
+        "sourceId": 118340,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 74
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "guardians galaxy",
+    "sizeOnDisk": 9387818697,
+    "status": "released",
+    "overview": "Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.",
+    "inCinemas": "2014-07-29T22:00:00Z",
+    "physicalRelease": "2014-12-01T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/46/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/46/fanart.jpg"
+      }
+    ],
+    "website": "http://marvel.com/guardians",
+    "downloaded": true,
+    "year": 2014,
+    "hasFile": true,
+    "youTubeTrailerId": "b7yOuhI1dzU",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Guardians of the Galaxy (2014)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Guardians of the Galaxy (2014)",
+    "runtime": 121,
+    "lastInfoSync": "2019-09-09T20:55:52.834787Z",
+    "cleanTitle": "guardiansgalaxy",
+    "imdbId": "tt2015381",
+    "tmdbId": 118340,
+    "titleSlug": "guardians-of-the-galaxy-118340",
+    "genres": [],
+    "tags": [],
+    "added": "2019-04-11T17:19:18.792391Z",
+    "ratings": {
+      "votes": 18702,
+      "value": 7.9
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Guardians.of.the.Galaxy.2014.1080p.BluRay.x264-SPARKS.mkv",
+      "size": 9387818697,
+      "dateAdded": "2019-04-11T17:22:48.77074Z",
+      "sceneName": "Guardians.of.the.Galaxy.2014.1080p.BluRay.x264-SPARKS",
+      "releaseGroup": "SPARKS",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 142 r2479 dd79a61",
+        "videoBitrate": 8846000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:00:51.2100000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 60
+    },
+    "qualityProfileId": 7,
+    "id": 46
+  },
+  {
+    "title": "The Lego Movie 2: The Second Part",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 47,
+        "title": "The Lego Movie 2 The Second Part",
+        "sourceId": 280217,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 76
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "lego movie 2 second part",
+    "sizeOnDisk": 11232784880,
+    "status": "released",
+    "overview": "It's been five years since everything was awesome and the citizens are facing a huge new threat: LEGO DUPLO® invaders from outer space, wrecking everything faster than they can rebuild.",
+    "inCinemas": "2019-01-25T23:00:00Z",
+    "physicalRelease": "2019-04-16T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/47/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/47/fanart.jpg"
+      }
+    ],
+    "website": "http://www.thelegomovie.com",
+    "downloaded": true,
+    "year": 2019,
+    "hasFile": true,
+    "youTubeTrailerId": "XvHSlHhh1gk",
+    "studio": "Vertigo Entertainment",
+    "path": "/home17/robert/downloads/movies/The Lego Movie 2 The Second Part (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/The Lego Movie 2 The Second Part (2019)",
+    "runtime": 106,
+    "lastInfoSync": "2019-09-13T21:06:03.110839Z",
+    "cleanTitle": "thelegomovie2secondpart",
+    "imdbId": "tt3513498",
+    "tmdbId": 280217,
+    "titleSlug": "the-lego-movie-2-the-second-part-280217",
+    "genres": [],
+    "tags": [],
+    "added": "2019-04-12T18:52:19.691426Z",
+    "ratings": {
+      "votes": 762,
+      "value": 6.6
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "The Lego Movie 2 The Second Part.2019.1080p.HDRip.X264-EVO.mkv",
+      "size": 11232784880,
+      "dateAdded": "2019-04-12T18:54:07.672901Z",
+      "sceneName": "The Lego Movie 2 The Second Part.2019.1080p.HDRip.X264-EVO",
+      "releaseGroup": "EVO",
+      "quality": {
+        "quality": {
+          "id": 3,
+          "name": "WEBDL-1080p",
+          "source": "webdl",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "",
+        "videoBitrate": 13547905,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "BT.709",
+        "videoTransferCharacteristics": "BT.709",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 384000,
+        "runTime": "01:45:21.7550000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 29.970,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 61
+    },
+    "qualityProfileId": 7,
+    "id": 47
+  },
+  {
+    "title": "Avengers: Age of Ultron",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 48,
+        "title": "Marvel Avengers: Age of Ultron",
+        "sourceId": 99861,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 78
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 48,
+        "title": "Marvel Studios' Avengers: Age of Ultron",
+        "sourceId": 99861,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 96
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 48,
+        "title": "Marvel's Avengers: Age of Ultron",
+        "sourceId": 99861,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 80
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 48,
+        "title": "Marvel's The Avengers 2: Age of Ultron",
+        "sourceId": 99861,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 83
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 48,
+        "title": "The Avengers 2",
+        "sourceId": 99861,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 79
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 48,
+        "title": "The Avengers 2 - Age of Ultron",
+        "sourceId": 99861,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 82
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 48,
+        "title": "The Avengers Age of Ultron",
+        "sourceId": 99861,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 81
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "avengers age ultron",
+    "sizeOnDisk": 14483645921,
+    "status": "released",
+    "overview": "When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",
+    "inCinemas": "2015-04-21T22:00:00Z",
+    "physicalRelease": "2015-09-21T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/48/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/48/fanart.jpg"
+      }
+    ],
+    "website": "http://marvel.com/movies/movie/193/avengers_age_of_ultron",
+    "downloaded": true,
+    "year": 2015,
+    "hasFile": true,
+    "youTubeTrailerId": "MZoO8QVMxkk",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Avengers Age of Ultron (2015)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Avengers Age of Ultron (2015)",
+    "runtime": 141,
+    "lastInfoSync": "2019-09-16T21:09:06.968846Z",
+    "cleanTitle": "avengersageultron",
+    "imdbId": "tt2395427",
+    "tmdbId": 99861,
+    "titleSlug": "avengers-age-of-ultron-99861",
+    "genres": [],
+    "tags": [],
+    "added": "2019-04-18T19:23:36.081731Z",
+    "ratings": {
+      "votes": 14195,
+      "value": 7.3
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Avengers.Age.of.Ultron.2015.REPACK.1080p.BluRay.DTS.x264-DRACULA.mkv",
+      "size": 14483645921,
+      "dateAdded": "2019-04-18T19:27:20.569376Z",
+      "sceneName": "Avengers.Age.of.Ultron.2015.REPACK.1080p.BluRay.DTS.x264-DRACULA",
+      "releaseGroup": "DRACULA",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 2,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 148 r2579+50 65f745f t_mod_Custom [8-bit@all X86_64]",
+        "videoBitrate": 11052828,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 804,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:21:18.7700000",
+        "audioStreamCount": 3,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English / English / English",
+        "subtitles": "English / Portuguese / English / Portuguese",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 63
+    },
+    "qualityProfileId": 1,
+    "id": 48
+  },
+  {
+    "title": "The Man Who Killed Don Quixote",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "man who killed don quixote",
+    "sizeOnDisk": 12883850813,
+    "status": "released",
+    "overview": "Toby, a cynical advertising director finds himself trapped in the outrageous delusions of an old Spanish shoe-maker who believes himself to be Don Quixote. In the course of their comic and increasingly surreal adventures, Toby is forced to confront the tragic repercussions of a film he made in his idealistic youth.",
+    "inCinemas": "2018-05-18T22:00:00Z",
+    "physicalRelease": "2019-01-21T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/50/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/50/fanart.jpg"
+      }
+    ],
+    "website": "http://quixotemovie.com",
+    "downloaded": true,
+    "year": 2018,
+    "hasFile": true,
+    "youTubeTrailerId": "CmscmzjFLdc",
+    "studio": "Tornasol Films",
+    "path": "/home17/robert/downloads/movies/The Man Who Killed Don Quixote (2018)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/The Man Who Killed Don Quixote (2018)",
+    "runtime": 133,
+    "lastInfoSync": "2019-09-19T21:15:01.052345Z",
+    "cleanTitle": "themanwhokilleddonquixote",
+    "imdbId": "tt1318517",
+    "tmdbId": 297725,
+    "titleSlug": "the-man-who-killed-don-quixote-297725",
+    "genres": [],
+    "tags": [],
+    "added": "2019-04-21T18:34:12.559867Z",
+    "ratings": {
+      "votes": 416,
+      "value": 7.0
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "The.Man.Who.Killed.Don.Quixote.2018.1080p.BluRay.x264.DTS-WiKi.mkv",
+      "size": 12883850813,
+      "dateAdded": "2019-04-21T20:02:50.593436Z",
+      "sceneName": "The.Man.Who.Killed.Don.Quixote.2018.1080p.BluRay.x264.DTS-WiKi",
+      "releaseGroup": "WiKi",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 129 r2245 bc13772",
+        "videoBitrate": 11401000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 804,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:13:03.5420000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 24.000,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 65
+    },
+    "qualityProfileId": 7,
+    "id": 50
+  },
+  {
+    "title": "Rocketman",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "rocketman",
+    "sizeOnDisk": 4452842371,
+    "status": "released",
+    "overview": "The story of Elton John's life, from his years as a prodigy at the Royal Academy of Music through his influential and enduring musical partnership with Bernie Taupin.",
+    "inCinemas": "2019-05-21T22:00:00Z",
+    "physicalRelease": "2019-08-06T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/52/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/52/fanart.jpg"
+      }
+    ],
+    "website": "https://www.paramount.com/movies/Rocketman/",
+    "downloaded": true,
+    "year": 2019,
+    "hasFile": true,
+    "youTubeTrailerId": "S3vO8E2e6G0",
+    "studio": "Rocket Pictures",
+    "path": "/home17/robert/downloads/movies/Rocketman (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Rocketman (2019)",
+    "runtime": 121,
+    "lastInfoSync": "2019-09-04T20:43:24.062721Z",
+    "cleanTitle": "rocketman",
+    "imdbId": "tt2066051",
+    "tmdbId": 504608,
+    "titleSlug": "rocketman-504608",
+    "genres": [],
+    "tags": [],
+    "added": "2019-04-21T18:35:13.82585Z",
+    "ratings": {
+      "votes": 1050,
+      "value": 7.5
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Rocketman.2019.1080p.WEB-DL.H264.AC3-EVO.mkv",
+      "size": 4452842371,
+      "dateAdded": "2019-08-06T05:45:47.358065Z",
+      "sceneName": "Rocketman.2019.1080p.WEB-DL.H264.AC3-EVO",
+      "releaseGroup": "EVO",
+      "quality": {
+        "quality": {
+          "id": 3,
+          "name": "WEBDL-1080p",
+          "source": "webdl",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4",
+        "videoCodecLibrary": "",
+        "videoBitrate": 4405588,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "BT.709",
+        "videoTransferCharacteristics": "BT.709",
+        "width": 1908,
+        "height": 792,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 384000,
+        "runTime": "02:01:29.5420000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 24.000,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 83
+    },
+    "qualityProfileId": 7,
+    "id": 52
+  },
+  {
+    "title": "Avengers: Infinity War",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 53,
+        "title": "Avengers: Infinity War. Part I",
+        "sourceId": 299536,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 85
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 53,
+        "title": "Marvel Studios' Avengers: Infinity War",
+        "sourceId": 299536,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 101
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 53,
+        "title": "Marvel's The Avengers 3: Infinity War",
+        "sourceId": 299536,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 86
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 53,
+        "title": "The Avengers 3: Infinity War",
+        "sourceId": 299536,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 87
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "avengers infinity war",
+    "sizeOnDisk": 12902318788,
+    "status": "released",
+    "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+    "inCinemas": "2018-04-24T22:00:00Z",
+    "physicalRelease": "2018-07-31T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/53/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/53/fanart.jpg"
+      }
+    ],
+    "website": "http://marvel.com/movies/movie/223/avengers_infinity_war_part_1",
+    "downloaded": true,
+    "year": 2018,
+    "hasFile": true,
+    "youTubeTrailerId": "6ZfuNTqbHE8",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Avengers Infinity War (2018)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Avengers Infinity War (2018)",
+    "runtime": 149,
+    "lastInfoSync": "2019-09-22T21:20:37.033436Z",
+    "cleanTitle": "avengersinfinitywar",
+    "imdbId": "tt4154756",
+    "tmdbId": 299536,
+    "titleSlug": "avengers-infinity-war-299536",
+    "genres": [],
+    "tags": [],
+    "added": "2019-04-24T16:21:22.363637Z",
+    "ratings": {
+      "votes": 15239,
+      "value": 8.3
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "rep-avengersinfinitywar.2018.1080p.bluray.x264.mkv",
+      "size": 12902318788,
+      "dateAdded": "2019-04-24T16:24:59.330168Z",
+      "sceneName": "rep-avengersinfinitywar.2018.1080p.bluray.x264",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 155 r2901 7d0ff22",
+        "videoBitrate": 10007000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 808,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:29:21.2530000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / English / English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 66
+    },
+    "qualityProfileId": 1,
+    "id": 53
+  },
+  {
+    "title": "The Lego Batman Movie",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "lego batman movie",
+    "sizeOnDisk": 5864248839,
+    "status": "released",
+    "overview": "In the irreverent spirit of fun that made \"The Lego Movie\" a worldwide phenomenon, the self-described leading man of that ensemble—Lego Batman—stars in his own big-screen adventure. But there are big changes brewing in Gotham, and if he wants to save the city from The Joker’s hostile takeover, Batman may have to drop the lone vigilante thing, try to work with others and maybe, just maybe, learn to lighten up.",
+    "inCinemas": "2017-02-07T23:00:00Z",
+    "physicalRelease": "2017-05-19T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/54/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/54/fanart.jpg"
+      }
+    ],
+    "website": "http://www.legobatman.com",
+    "downloaded": true,
+    "year": 2017,
+    "hasFile": true,
+    "youTubeTrailerId": "aBJyp2LFHgk",
+    "studio": "Lin Pictures",
+    "path": "/home17/robert/downloads/movies/The Lego Batman Movie (2017)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/The Lego Batman Movie (2017)",
+    "runtime": 104,
+    "lastInfoSync": "2019-09-21T21:18:41.658304Z",
+    "cleanTitle": "thelegobatmanmovie",
+    "imdbId": "tt4116284",
+    "tmdbId": 324849,
+    "titleSlug": "the-lego-batman-movie-324849",
+    "genres": [],
+    "tags": [],
+    "added": "2019-05-24T09:04:31.810679Z",
+    "ratings": {
+      "votes": 3020,
+      "value": 7.2
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "The.LEGO.Batman.Movie.2017.1080p.BluRay.x264-Replica.mkv",
+      "size": 5864248839,
+      "dateAdded": "2019-05-24T09:15:13.7685Z",
+      "sceneName": "The.LEGO.Batman.Movie.2017.1080p.BluRay.x264-Replica",
+      "releaseGroup": "Replica",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 150 r2833 df79067",
+        "videoBitrate": 5971000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:44:30.1030000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 67
+    },
+    "qualityProfileId": 7,
+    "id": 54
+  },
+  {
+    "title": "Doctor Strange",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 55,
+        "title": "Dr. Strange",
+        "sourceId": 284052,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 88
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "doctor strange",
+    "sizeOnDisk": 8211254367,
+    "status": "released",
+    "overview": "After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under her wing and trains him to defend the world against evil.",
+    "inCinemas": "2016-10-24T22:00:00Z",
+    "physicalRelease": "2017-02-14T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/55/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/55/fanart.jpg"
+      }
+    ],
+    "website": "http://marvel.com/doctorstrange",
+    "downloaded": true,
+    "year": 2016,
+    "hasFile": true,
+    "youTubeTrailerId": "HSzx-zryEgM",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Doctor Strange (2016)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Doctor Strange (2016)",
+    "runtime": 115,
+    "lastInfoSync": "2019-09-22T21:20:44.515477Z",
+    "cleanTitle": "doctorstrange",
+    "imdbId": "tt1211837",
+    "tmdbId": 284052,
+    "titleSlug": "doctor-strange-284052",
+    "genres": [],
+    "tags": [],
+    "added": "2019-05-24T19:11:38.628197Z",
+    "ratings": {
+      "votes": 13277,
+      "value": 7.4
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Doctor.Strange.2016.1080p.BluRay.x264-SPARKS.mkv",
+      "size": 8211254367,
+      "dateAdded": "2019-05-24T19:15:03.085047Z",
+      "sceneName": "Doctor.Strange.2016.1080p.BluRay.x264-SPARKS",
+      "releaseGroup": "SPARKS",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 148 r2744 b97ae06",
+        "videoBitrate": 8011000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 808,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:54:58.5650000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 68
+    },
+    "qualityProfileId": 7,
+    "id": 55
+  },
+  {
+    "title": "Captain America: Civil War",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 56,
+        "title": "Captain America 3",
+        "sourceId": 271110,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 89
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 56,
+        "title": "Captain America 3 - Civil War",
+        "sourceId": 271110,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 91
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 56,
+        "title": "Marvel's Captain America: Civil War",
+        "sourceId": 271110,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 90
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "captain america civil war",
+    "sizeOnDisk": 11738883541,
+    "status": "released",
+    "overview": "Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.",
+    "inCinemas": "2016-04-26T22:00:00Z",
+    "physicalRelease": "2016-08-02T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/56/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/56/fanart.jpg"
+      }
+    ],
+    "website": "http://marvel.com/captainamericapremiere",
+    "downloaded": true,
+    "year": 2016,
+    "hasFile": true,
+    "youTubeTrailerId": "dKrVegVI0Us",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Captain America Civil War (2016)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Captain America Civil War (2016)",
+    "runtime": 147,
+    "lastInfoSync": "2019-09-23T21:22:13.115455Z",
+    "cleanTitle": "captainamericacivilwar",
+    "imdbId": "tt3498820",
+    "tmdbId": 271110,
+    "titleSlug": "captain-america-civil-war-271110",
+    "genres": [],
+    "tags": [],
+    "added": "2019-05-25T18:57:12.465393Z",
+    "ratings": {
+      "votes": 14728,
+      "value": 7.4
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Captain.America.Civil.War.2016.1080p.BluRay.X264-AMIABLE.mkv",
+      "size": 11738883541,
+      "dateAdded": "2019-05-25T19:00:38.755275Z",
+      "sceneName": "Captain.America.Civil.War.2016.1080p.BluRay.X264-AMIABLE",
+      "releaseGroup": "AMIABLE",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 148 r2705 3f5ed56",
+        "videoBitrate": 9086000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 808,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "02:27:41.9450000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English / English / English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 69
+    },
+    "qualityProfileId": 1,
+    "id": 56
+  },
+  {
+    "title": "Pokémon Detective Pikachu",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 58,
+        "title": "Detective Pikachu",
+        "sourceId": 447404,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 95
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "pokémon detective pikachu",
+    "sizeOnDisk": 7036386039,
+    "status": "released",
+    "overview": "In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.",
+    "inCinemas": "2019-05-02T22:00:00Z",
+    "physicalRelease": "2019-07-20T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/58/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/58/fanart.jpg"
+      }
+    ],
+    "website": "http://www.detectivepikachumovie.net/",
+    "downloaded": true,
+    "year": 2019,
+    "hasFile": true,
+    "youTubeTrailerId": "1roy4o4tqQM",
+    "studio": "Legendary Entertainment",
+    "path": "/home17/robert/downloads/movies/Pokémon Detective Pikachu (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Pokémon Detective Pikachu (2019)",
+    "runtime": 105,
+    "lastInfoSync": "2019-09-17T21:12:27.970538Z",
+    "cleanTitle": "pokemondetectivepikachu",
+    "imdbId": "tt5884052",
+    "tmdbId": 447404,
+    "titleSlug": "pokmon-detective-pikachu-447404",
+    "genres": [],
+    "tags": [],
+    "added": "2019-06-10T17:21:11.743811Z",
+    "ratings": {
+      "votes": 2422,
+      "value": 7.0
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Pokemon.Detective.Pikachu.2019.1080p.BluRay.x264-AAA.mkv",
+      "size": 7036386039,
+      "dateAdded": "2019-07-21T13:54:31.111827Z",
+      "sceneName": "Pokemon.Detective.Pikachu.2019.1080p.BluRay.x264-AAA",
+      "releaseGroup": "AAA",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 157 r2969 d4099dd",
+        "videoBitrate": 8339000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 808,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 640000,
+        "runTime": "01:44:29.1200000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 75
+    },
+    "qualityProfileId": 7,
+    "id": 58
+  },
+  {
+    "title": "Midsommar",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "midsommar",
+    "sizeOnDisk": 5989927337,
+    "status": "released",
+    "overview": "A young couple travels to Sweden to visit their friend’s rural hometown and attend its mid-summer festival. What begins as an idyllic retreat quickly descends into an increasingly violent and bizarre competition at the hands of a pagan cult.",
+    "inCinemas": "2019-07-02T22:00:00Z",
+    "physicalRelease": "2019-09-01T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/71/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/71/fanart.jpg"
+      }
+    ],
+    "website": "https://a24films.com/films/midsommar",
+    "downloaded": true,
+    "year": 2019,
+    "hasFile": true,
+    "youTubeTrailerId": "1Vnghdsjmd0",
+    "studio": "Parts and Labor",
+    "path": "/home17/robert/downloads/movies/Midsommar (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Midsommar (2019)",
+    "runtime": 147,
+    "lastInfoSync": "2019-09-28T21:29:25.154285Z",
+    "cleanTitle": "midsommar",
+    "imdbId": "tt8772262",
+    "tmdbId": 530385,
+    "titleSlug": "midsommar-530385",
+    "genres": [],
+    "tags": [],
+    "added": "2019-08-30T14:53:27.994844Z",
+    "ratings": {
+      "votes": 538,
+      "value": 7.2
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Midsommar (2019) WEBDL-1080p.mkv",
+      "size": 5989927337,
+      "dateAdded": "2019-09-24T05:08:16.036139Z",
+      "sceneName": "Midsommar.2019.1080p.WEB-DL.H264.AC3-EVO",
+      "releaseGroup": "EVO",
+      "quality": {
+        "quality": {
+          "id": 3,
+          "name": "WEBDL-1080p",
+          "source": "webdl",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4",
+        "videoCodecLibrary": "",
+        "videoBitrate": 4937718,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "BT.709",
+        "videoTransferCharacteristics": "BT.709",
+        "width": 1920,
+        "height": 958,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 384000,
+        "runTime": "02:27:05.3250000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 93
+    },
+    "qualityProfileId": 7,
+    "id": 71
+  },
+  {
+    "title": "Black Widow",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 72,
+        "title": "Blue Bayou",
+        "sourceId": 497698,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 120
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "black widow",
+    "sizeOnDisk": 0,
+    "status": "announced",
+    "overview": "Natasha Romanoff, on the run from the government following her disobedience to the Sokovia Accords and for aiding Steve Rogers, finds herself on her own and is forced to deal with some of the red in her ledger.",
+    "inCinemas": "2020-04-21T22:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/72/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/72/fanart.jpg"
+      }
+    ],
+    "downloaded": false,
+    "year": 2020,
+    "hasFile": false,
+    "studio": "Walt Disney Pictures",
+    "path": "/home17/robert/downloads/movies/Black Widow (2020)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Black Widow (2020)",
+    "runtime": 0,
+    "lastInfoSync": "2019-09-28T21:29:13.544937Z",
+    "cleanTitle": "blackwidow",
+    "imdbId": "tt3480822",
+    "tmdbId": 497698,
+    "titleSlug": "black-widow-497698",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:04:09.371222Z",
+    "ratings": {
+      "votes": 0,
+      "value": 0.0
+    },
+    "qualityProfileId": 7,
+    "id": 72
+  },
+  {
+    "title": "Joker",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "joker",
+    "sizeOnDisk": 0,
+    "status": "announced",
+    "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+    "inCinemas": "2019-10-01T22:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/77/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/77/fanart.jpg"
+      }
+    ],
+    "website": "http://www.jokermovie.net/",
+    "downloaded": false,
+    "year": 2019,
+    "hasFile": false,
+    "youTubeTrailerId": "t433PEQGErc",
+    "studio": "DC Entertainment",
+    "path": "/home17/robert/downloads/movies/Joker (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Joker (2019)",
+    "runtime": 118,
+    "lastInfoSync": "2019-09-28T21:29:22.604493Z",
+    "cleanTitle": "joker",
+    "imdbId": "tt7286456",
+    "tmdbId": 475557,
+    "titleSlug": "joker-475557",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:41:48.953573Z",
+    "ratings": {
+      "votes": 56,
+      "value": 5.5
+    },
+    "qualityProfileId": 7,
+    "id": 77
+  },
+  {
+    "title": "Ad Astra",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "ad astra",
+    "sizeOnDisk": 0,
+    "status": "inCinemas",
+    "overview": "An astronaut travels to the outer edges of the solar system to find his father and unravel a mystery that threatens the survival of our planet. He uncovers secrets which challenge the nature of human existence and our place in the cosmos.",
+    "inCinemas": "2019-09-16T22:00:00Z",
+    "physicalRelease": "2020-01-31T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/81/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/81/fanart.jpg"
+      }
+    ],
+    "downloaded": false,
+    "year": 2019,
+    "hasFile": false,
+    "youTubeTrailerId": "P6AaSMfXHbA",
+    "studio": "New Regency Productions",
+    "path": "/home17/robert/downloads/movies/Ad Astra (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Ad Astra (2019)",
+    "runtime": 124,
+    "lastInfoSync": "2019-09-28T21:29:08.160928Z",
+    "cleanTitle": "adastra",
+    "imdbId": "tt2935510",
+    "tmdbId": 419704,
+    "titleSlug": "ad-astra-419704",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:41:51.914934Z",
+    "ratings": {
+      "votes": 362,
+      "value": 6.2
+    },
+    "qualityProfileId": 7,
+    "id": 81
+  },
+  {
+    "title": "A Quiet Place: Part II",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "quiet place part ii",
+    "sizeOnDisk": 0,
+    "status": "announced",
+    "overview": "",
+    "inCinemas": "2020-03-17T23:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/93/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/93/fanart.jpg"
+      }
+    ],
+    "downloaded": false,
+    "year": 2020,
+    "hasFile": false,
+    "studio": "Platinum Dunes",
+    "path": "/home17/robert/downloads/movies/A Quiet Place Part II (2020)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/A Quiet Place Part II (2020)",
+    "runtime": 0,
+    "lastInfoSync": "2019-09-28T21:29:31.773797Z",
+    "cleanTitle": "aquietplacepartii",
+    "imdbId": "tt8332922",
+    "tmdbId": 520763,
+    "titleSlug": "a-quiet-place-part-ii-520763",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:42:17.876165Z",
+    "ratings": {
+      "votes": 0,
+      "value": 0.0
+    },
+    "qualityProfileId": 7,
+    "id": 93
+  },
+  {
+    "title": "Fast & Furious Presents: Hobbs & Shaw",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 161,
+        "title": "Fast & Furious 8.5 Hobbs & Shaw",
+        "sourceId": 384018,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 156
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "fast furious presents hobbs shaw",
+    "sizeOnDisk": 4119244811,
+    "status": "released",
+    "overview": "A spinoff of The Fate of the Furious, focusing on Johnson's US Diplomatic Security Agent Luke Hobbs forming an unlikely alliance with Statham's Deckard Shaw.",
+    "inCinemas": "2019-07-31T22:00:00Z",
+    "physicalRelease": "2019-09-26T00:00:00Z",
+    "physicalReleaseNote": "",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/161/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/161/fanart.jpg"
+      }
+    ],
+    "website": "https://www.hobbsandshawmovie.com",
+    "downloaded": true,
+    "year": 2019,
+    "hasFile": true,
+    "youTubeTrailerId": "9SA7FaKxZVI",
+    "studio": "Universal Pictures",
+    "path": "/home17/robert/downloads/movies/Fast & Furious Presents Hobbs & Shaw (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "inCinemas",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Fast & Furious Presents Hobbs & Shaw (2019)",
+    "runtime": 136,
+    "lastInfoSync": "2019-09-28T21:29:18.817631Z",
+    "cleanTitle": "fastfuriouspresentshobbsshaw",
+    "imdbId": "tt6806448",
+    "tmdbId": 384018,
+    "titleSlug": "fast-furious-presents-hobbs-shaw-384018",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:43:24.789669Z",
+    "ratings": {
+      "votes": 1235,
+      "value": 6.5
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Fast & Furious Presents Hobbs & Shaw (2019) WEBDL-1080p.mkv",
+      "size": 4119244811,
+      "dateAdded": "2019-09-26T21:41:22.597536Z",
+      "sceneName": "Fast.and.Furious.Presents.Hobbs.and.Shaw.2019.1080p.WEB-DL.X264.AC3-EVO",
+      "releaseGroup": "EVO",
+      "quality": {
+        "quality": {
+          "id": 3,
+          "name": "WEBDL-1080p",
+          "source": "webdl",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "",
+        "videoBitrate": 3578380,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "BT.709",
+        "videoTransferCharacteristics": "BT.709",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 384000,
+        "runTime": "02:15:51.1930000",
+        "audioStreamCount": 1,
+        "audioChannels": 2,
+        "audioChannelPositions": "2/0/0",
+        "audioChannelPositionsText": "Front: L R",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 94
+    },
+    "qualityProfileId": 7,
+    "id": 161
+  },
+  {
+    "title": "John Wick: Chapter 3 – Parabellum",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 162,
+        "title": "John Wick 3",
+        "sourceId": 458156,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 157
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 162,
+        "title": "John Wick 3 Parabellum",
+        "sourceId": 458156,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 245
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 162,
+        "title": "John Wick: Chapter 3",
+        "sourceId": 458156,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 158
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "john wick chapter 3 parabellum",
+    "sizeOnDisk": 8521752181,
+    "status": "released",
+    "overview": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.",
+    "inCinemas": "2019-05-14T22:00:00Z",
+    "physicalRelease": "2019-08-23T00:00:00Z",
+    "physicalReleaseNote": "",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/162/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/162/fanart.jpg"
+      }
+    ],
+    "website": "https://www.johnwick.movie",
+    "downloaded": true,
+    "year": 2019,
+    "hasFile": true,
+    "youTubeTrailerId": "M7XM597XO94",
+    "studio": "Summit Entertainment",
+    "path": "/home17/robert/downloads/movies/John Wick Chapter 3 – Parabellum (2019)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "inCinemas",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/John Wick Chapter 3 – Parabellum (2019)",
+    "runtime": 131,
+    "lastInfoSync": "2019-09-21T21:18:39.05951Z",
+    "cleanTitle": "johnwickchapter3parabellum",
+    "imdbId": "tt6146586",
+    "tmdbId": 458156,
+    "titleSlug": "john-wick-chapter-3-parabellum-458156",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:43:25.572175Z",
+    "ratings": {
+      "votes": 2524,
+      "value": 7.1
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "John Wick Chapter 3 – Parabellum (2019) Bluray-1080p.mkv",
+      "size": 8521752181,
+      "dateAdded": "2019-09-14T11:25:02.993578Z",
+      "sceneName": "John.Wick.Chapter.3.Parabellum.2019.1080p.BluRay.x264-SPARKS",
+      "releaseGroup": "SPARKS",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 157 r2969 d4099dd",
+        "videoBitrate": 8049000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "AC-3",
+        "audioCodecID": "A_AC3",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 640000,
+        "runTime": "02:10:45.8880000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 91
+    },
+    "qualityProfileId": 1,
+    "id": 162
+  },
+  {
+    "title": "Spider-Man: Far from Home",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 168,
+        "title": "Spider-Man - Far from Homing",
+        "sourceId": 429617,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 246
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 168,
+        "title": "Spider-Man: Homecoming 2",
+        "sourceId": 429617,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 244
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "spider man far from home",
+    "sizeOnDisk": 0,
+    "status": "released",
+    "overview": "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
+    "inCinemas": "2019-06-27T22:00:00Z",
+    "physicalRelease": "2019-09-17T00:00:00Z",
+    "physicalReleaseNote": "",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/168/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/168/fanart.jpg"
+      }
+    ],
+    "website": "https://www.marvel.com/movies/spider-man-far-from-home",
+    "downloaded": false,
+    "year": 2019,
+    "hasFile": false,
+    "youTubeTrailerId": "LFoz8ZJWmPs",
+    "studio": "Marvel Studios",
+    "path": "/home17/robert/downloads/movies/Spider-Man Far from Home (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "inCinemas",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Spider-Man Far from Home (2019)",
+    "runtime": 129,
+    "lastInfoSync": "2019-09-28T21:29:33.705785Z",
+    "cleanTitle": "spidermanfarfromhome",
+    "imdbId": "tt6320628",
+    "tmdbId": 429617,
+    "titleSlug": "spider-man-far-from-home-429617",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:43:30.306517Z",
+    "ratings": {
+      "votes": 3940,
+      "value": 7.7
+    },
+    "qualityProfileId": 7,
+    "id": 168
+  },
+  {
+    "title": "Men in Black: International",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 171,
+        "title": "Men in Black 4",
+        "sourceId": 479455,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 164
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 171,
+        "title": "Men in Black IV",
+        "sourceId": 479455,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 163
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "men in black international",
+    "sizeOnDisk": 0,
+    "status": "released",
+    "overview": "The Men in Black have always protected the Earth from the scum of the universe. In this new adventure, they tackle their biggest, most global threat to date: a mole in the Men in Black organization.",
+    "inCinemas": "2019-06-11T22:00:00Z",
+    "physicalRelease": "2019-08-20T00:00:00Z",
+    "physicalReleaseNote": "",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/171/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/171/fanart.jpg"
+      }
+    ],
+    "website": "https://www.meninblack.com",
+    "downloaded": false,
+    "year": 2019,
+    "hasFile": false,
+    "youTubeTrailerId": "40ghX7dNuKI",
+    "studio": "Amblin Entertainment",
+    "path": "/home17/robert/downloads/movies/Men in Black International (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "inCinemas",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Men in Black International (2019)",
+    "runtime": 115,
+    "lastInfoSync": "2019-09-18T21:14:04.166684Z",
+    "cleanTitle": "meninblackinternational",
+    "imdbId": "tt2283336",
+    "tmdbId": 479455,
+    "titleSlug": "men-in-black-international-479455",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:43:33.872294Z",
+    "ratings": {
+      "votes": 1229,
+      "value": 5.9
+    },
+    "qualityProfileId": 7,
+    "id": 171
+  },
+  {
+    "title": "Once Upon a Time in Hollywood",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "once upon time in hollywood",
+    "sizeOnDisk": 0,
+    "status": "inCinemas",
+    "overview": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+    "inCinemas": "2019-07-24T22:00:00Z",
+    "physicalRelease": "2020-01-17T00:00:00Z",
+    "physicalReleaseNote": "",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/176/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/176/fanart.jpg"
+      }
+    ],
+    "website": "http://www.onceuponatimeinhollywood.movie",
+    "downloaded": false,
+    "year": 2019,
+    "hasFile": false,
+    "youTubeTrailerId": "ELeMaP8EPAA",
+    "studio": "Heyday Films",
+    "path": "/home17/robert/downloads/movies/Once Upon a Time in Hollywood (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "inCinemas",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Once Upon a Time in Hollywood (2019)",
+    "runtime": 161,
+    "lastInfoSync": "2019-09-28T21:29:27.78585Z",
+    "cleanTitle": "onceupontimeinhollywood",
+    "imdbId": "tt7131622",
+    "tmdbId": 466272,
+    "titleSlug": "once-upon-a-time-in-hollywood-466272",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-04T07:43:38.922157Z",
+    "ratings": {
+      "votes": 1796,
+      "value": 7.6
+    },
+    "qualityProfileId": 7,
+    "id": 176
+  },
+  {
+    "title": "Alice in Wonderland",
+    "alternativeTitles": [
+      {
+        "sourceType": "mappings",
+        "movieId": 222,
+        "title": "Alice In Wonderland - Animation",
+        "sourceId": 47531,
+        "votes": 3,
+        "voteCount": 3,
+        "language": "english",
+        "id": 232
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 222,
+        "title": "Disney's Alice in Wonderland",
+        "sourceId": 12092,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 231
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "alice in wonderland",
+    "sizeOnDisk": 1455976797,
+    "status": "released",
+    "overview": "On a golden afternoon, young Alice follows a White Rabbit, who disappears down a nearby rabbit hole. Quickly following him, she tumbles into the burrow - and enters the merry, topsy-turvy world of Wonderland! Memorable songs and whimsical escapades highlight Alice's journey, which culminates in a madcap encounter with the Queen of Hearts - and her army of playing cards!",
+    "inCinemas": "1951-07-02T23:00:00Z",
+    "physicalRelease": "2011-02-09T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/222/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/222/fanart.jpg"
+      }
+    ],
+    "downloaded": true,
+    "year": 1951,
+    "hasFile": true,
+    "youTubeTrailerId": "KLIqErnQCuw",
+    "studio": "The Walt Disney Company",
+    "path": "/home17/robert/downloads/downloaded/Alice in Wonderland (1951)",
+    "profileId": 1,
+    "pathState": "static",
+    "monitored": false,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/downloaded/Alice in Wonderland (1951)",
+    "runtime": 75,
+    "lastInfoSync": "2019-09-07T23:25:44.3121Z",
+    "cleanTitle": "aliceinwonderland",
+    "imdbId": "tt0043274",
+    "tmdbId": 12092,
+    "titleSlug": "alice-in-wonderland-12092",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-07T23:25:43.699322Z",
+    "ratings": {
+      "votes": 3427,
+      "value": 7.1
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Alice in Wonderland (1951) WEBDL-1080p.mp4",
+      "size": 1455976797,
+      "dateAdded": "2019-09-07T23:41:01.647945Z",
+      "sceneName": "Alice In Wonderland - Animation 1951 Eng Ita Spa Multi-Subs 1080p [H264-mp4]",
+      "releaseGroup": "mp4",
+      "quality": {
+        "quality": {
+          "id": 3,
+          "name": "WEBDL-1080p",
+          "source": "webdl",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "MPEG-4",
+        "videoFormat": "AVC",
+        "videoCodecID": "avc1",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 130 r2273 b3065e6",
+        "videoBitrate": 2155000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "BT.709",
+        "videoTransferCharacteristics": "BT.709",
+        "width": 1424,
+        "height": 1080,
+        "audioFormat": "AAC",
+        "audioCodecID": "mp4a-40-2",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "LC",
+        "audioBitrate": 159836,
+        "runTime": "01:15:15.0100000",
+        "audioStreamCount": 3,
+        "audioChannels": 2,
+        "audioChannelPositions": "2/0/0",
+        "audioChannelPositionsText": "Front: L R",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English / Italian / Spanish",
+        "subtitles": "English / Italian / Spanish",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 89
+    },
+    "qualityProfileId": 1,
+    "id": 222
+  },
+  {
+    "title": "Stalker",
+    "alternativeTitles": [],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "stalker",
+    "sizeOnDisk": 7232107908,
+    "status": "released",
+    "overview": "Near a gray and unnamed city is the Zone, a place guarded by barbed wire and soldiers, and where the normal laws of physics are victim to frequent anomalies. A stalker guides two men into the Zone, specifically to an area in which deep-seated desires are granted.",
+    "inCinemas": "1979-04-15T22:00:00Z",
+    "physicalRelease": "2016-08-22T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/238/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/238/fanart.jpg"
+      }
+    ],
+    "downloaded": true,
+    "year": 1979,
+    "hasFile": true,
+    "youTubeTrailerId": "xB7jVTut3-g",
+    "studio": "Mosfilm",
+    "path": "/home17/robert/downloads/movies/Stalker (1979)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Stalker (1979)",
+    "runtime": 163,
+    "lastInfoSync": "2019-09-15T12:31:04.038971Z",
+    "cleanTitle": "stalker",
+    "imdbId": "tt0079944",
+    "tmdbId": 1398,
+    "titleSlug": "stalker-1398",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-15T12:31:03.407511Z",
+    "ratings": {
+      "votes": 785,
+      "value": 8.3
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Stalker (1979) Bluray-720p.mkv",
+      "size": 7232107908,
+      "dateAdded": "2019-09-15T12:38:52.865645Z",
+      "sceneName": "Stalker 1979 720p BluRay FLAC2.0 x264-DON",
+      "releaseGroup": "DON",
+      "quality": {
+        "quality": {
+          "id": 6,
+          "name": "Bluray-720p",
+          "source": "bluray",
+          "resolution": "r720P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 146 r2538kMod 121396c",
+        "videoBitrate": 5580357,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 958,
+        "height": 720,
+        "audioFormat": "FLAC",
+        "audioCodecID": "A_FLAC",
+        "audioCodecLibrary": "reference libFLAC 1.3.0 20130526",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 378797,
+        "runTime": "02:41:44.9050000",
+        "audioStreamCount": 1,
+        "audioChannels": 2,
+        "audioChannelPositions": "2/0/0",
+        "audioChannelPositionsText": "Front: L R",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "Russian",
+        "subtitles": "English / Dutch / French / German / Italian / Portuguese / Russian / Spanish / Swedish",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 92
+    },
+    "qualityProfileId": 7,
+    "id": 238
+  },
+  {
+    "title": "1408",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 244,
+        "title": "Room 1408",
+        "sourceId": 3021,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 256
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "1408",
+    "sizeOnDisk": 8532412993,
+    "status": "released",
+    "overview": "A man who specializes in debunking paranormal occurrences checks into the fabled room 1408 in the Dolphin Hotel. Soon after settling in, he confronts genuine terror.",
+    "inCinemas": "2007-06-21T22:00:00Z",
+    "physicalRelease": "2008-01-19T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/244/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/244/fanart.jpg"
+      }
+    ],
+    "website": "http://www.1408-themovie.com/",
+    "downloaded": true,
+    "year": 2007,
+    "hasFile": true,
+    "youTubeTrailerId": "WIASqPZqnhs",
+    "studio": "Di Bonaventura Pictures",
+    "path": "/home17/robert/downloads/movies/1408 (2007)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "tba",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/1408 (2007)",
+    "runtime": 104,
+    "lastInfoSync": "2019-09-26T01:28:16.247827Z",
+    "cleanTitle": "1408",
+    "imdbId": "tt0450385",
+    "tmdbId": 3021,
+    "titleSlug": "1408-3021",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-26T01:28:15.700567Z",
+    "ratings": {
+      "votes": 2417,
+      "value": 6.6
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "1408 (2007) Bluray-1080p.mkv",
+      "size": 8532412993,
+      "dateAdded": "2019-09-28T00:41:21.539151Z",
+      "sceneName": "1408.2007.Directors.Cut.1080p.BluRay.x264-SiNNERS",
+      "releaseGroup": "SiNNERS",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "Directors Cut",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L5.1",
+        "videoCodecLibrary": "x264 - core 57 svn-709C",
+        "videoBitrate": 8606000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 800,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:52:26.0380000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "",
+        "subtitles": "",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 95
+    },
+    "qualityProfileId": 7,
+    "id": 244
+  },
+  {
+    "title": "Dark Phoenix",
+    "alternativeTitles": [
+      {
+        "sourceType": "tmdb",
+        "movieId": 246,
+        "title": "Supernova",
+        "sourceId": 320288,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 260
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 246,
+        "title": "Teen Spirit",
+        "sourceId": 320288,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 259
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 246,
+        "title": "X-Men 7: Dark Phoenix",
+        "sourceId": 320288,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 258
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 246,
+        "title": "X-Men: Dark Phoenix",
+        "sourceId": 320288,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 257
+      },
+      {
+        "sourceType": "tmdb",
+        "movieId": 246,
+        "title": "X-Men: Teen Spirit",
+        "sourceId": 320288,
+        "votes": 0,
+        "voteCount": 0,
+        "language": "english",
+        "id": 261
+      }
+    ],
+    "secondaryYearSourceId": 0,
+    "sortTitle": "dark phoenix",
+    "sizeOnDisk": 9385974896,
+    "status": "released",
+    "overview": "The X-Men face their most formidable and powerful foe when one of their own, Jean Grey, starts to spiral out of control. During a rescue mission in outer space, Jean is nearly killed when she's hit by a mysterious cosmic force. Once she returns home, this force not only makes her infinitely more powerful, but far more unstable. The X-Men must now band together to save her soul and battle aliens that want to use Grey's new abilities to rule the galaxy.",
+    "inCinemas": "2019-06-04T22:00:00Z",
+    "physicalRelease": "2019-09-03T00:00:00Z",
+    "images": [
+      {
+        "coverType": "poster",
+        "url": "/robert/radarr/MediaCover/246/poster.jpg"
+      },
+      {
+        "coverType": "fanart",
+        "url": "/robert/radarr/MediaCover/246/fanart.jpg"
+      }
+    ],
+    "website": "http://darkphoenix.com",
+    "downloaded": true,
+    "year": 2019,
+    "hasFile": true,
+    "youTubeTrailerId": "QWbMckU3AOQ",
+    "studio": "The Donners' Company",
+    "path": "/home17/robert/downloads/movies/Dark Phoenix (2019)",
+    "profileId": 7,
+    "pathState": "static",
+    "monitored": true,
+    "minimumAvailability": "announced",
+    "isAvailable": true,
+    "folderName": "/home17/robert/downloads/movies/Dark Phoenix (2019)",
+    "runtime": 114,
+    "lastInfoSync": "2019-09-28T21:29:16.718896Z",
+    "cleanTitle": "darkphoenix",
+    "imdbId": "tt6565702",
+    "tmdbId": 320288,
+    "titleSlug": "dark-phoenix-320288",
+    "genres": [],
+    "tags": [],
+    "added": "2019-09-28T01:08:29.779077Z",
+    "ratings": {
+      "votes": 1935,
+      "value": 6.1
+    },
+    "movieFile": {
+      "movieId": 0,
+      "relativePath": "Dark Phoenix (2019) Bluray-1080p.mkv",
+      "size": 9385974896,
+      "dateAdded": "2019-09-28T01:08:30.880725Z",
+      "quality": {
+        "quality": {
+          "id": 7,
+          "name": "Bluray-1080p",
+          "source": "bluray",
+          "resolution": "r1080P",
+          "modifier": "none"
+        },
+        "customFormats": [],
+        "revision": {
+          "version": 1,
+          "real": 0
+        }
+      },
+      "edition": "",
+      "mediaInfo": {
+        "containerFormat": "Matroska",
+        "videoFormat": "AVC",
+        "videoCodecID": "V_MPEG4/ISO/AVC",
+        "videoProfile": "High@L4.1",
+        "videoCodecLibrary": "x264 - core 158 r2984 3759fcb",
+        "videoBitrate": 9479000,
+        "videoBitDepth": 8,
+        "videoMultiViewCount": 0,
+        "videoColourPrimaries": "",
+        "videoTransferCharacteristics": "",
+        "width": 1920,
+        "height": 808,
+        "audioFormat": "DTS",
+        "audioCodecID": "A_DTS",
+        "audioCodecLibrary": "",
+        "audioAdditionalFeatures": "",
+        "audioBitrate": 1509000,
+        "runTime": "01:53:56.4160000",
+        "audioStreamCount": 1,
+        "audioChannels": 6,
+        "audioChannelPositions": "3/2/0.1",
+        "audioChannelPositionsText": "Front: L C R, Side: L R, LFE",
+        "audioProfile": "",
+        "videoFps": 23.976,
+        "audioLanguages": "English",
+        "subtitles": "English",
+        "scanType": "Progressive",
+        "schemaRevision": 5
+      },
+      "id": 97
+    },
+    "qualityProfileId": 7,
+    "id": 246
+  }
+]

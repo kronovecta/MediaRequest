@@ -1,0 +1,21 @@
+﻿@model MediaRequest.Domain.Radarr.Movie
+
+<div class="calendar-event">
+    <div class="poster-container">
+        <img src="@Model.Images.SingleOrDefault(x => x.CoverType == "poster").URL" />
+    </div>
+    <div class="movie-container">
+        <h2>@Model.Title</h2>
+    </div>
+
+    @*@{
+        var date = Model.InCinemas.ToString("MMM d", System.Globalization.CultureInfo.CurrentCulture);
+        string dateFormatted = char.ToUpper(date.First()) + date.Substring(1).ToLower();
+    }
+    <div class="calendar-date @(Model.Downloaded != true ? "blue" : "green")">
+        <p>@dateFormatted</p>
+    </div>
+    <div class="calendar-info">
+        <p>@Model.Title</p>
+    </div>*@
+</div>

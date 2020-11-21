@@ -1,0 +1,38 @@
+﻿$input-padding: 0.5rem 1rem;
+$input-group-border: 1px solid #eaeaea;
+
+.base-form {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    width: 100%;
+
+    .form-section {
+        margin-top:2rem;
+
+        .form-group {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: row;
+
+            label {
+                flex: 1;
+                border-radius: 0.5rem 0 0 0.5rem;
+                padding: $input-padding;
+                border: $input-group-border;
+                border-right-color: #f7f7f7;
+                background: #f7f7f7;
+            }
+
+            input {
+                flex: 7;
+                padding: $input-padding;
+                border-radius: 0 0.5rem 0.5rem 0;
+                border: $input-group-border;
+
+                &:focus {
+                    border-color: red;
+                }
+            }
+        }
+    }
+}

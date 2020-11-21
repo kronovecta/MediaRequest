@@ -1,0 +1,43 @@
+﻿@model MediaRequest.WebUI.ViewModels.Profile.ProfileViewModel
+
+@{
+    if (TempData["success"] != null)
+    {
+        var msg = TempData["success"].ToString();
+        <span class="alert">@msg</span>
+    }
+
+    if (TempData["error"] != null)
+    {
+        var msg = TempData["error"].ToString();
+        <span class="alert">@msg</span>
+    }
+}
+
+<div class="profile-container h-100">
+    @await Component.InvokeAsync("VerticalNav", new { maxPriority = 1, isDone = false })
+    <div class="container h-100">
+        <div class="profile-body">
+            <h1 class="mb-1">Profile</h1>
+
+            <h2 class="pb-1">User info</h2>
+            <partial name="partials/_UserInfoPartial" model="Model.User" />
+
+            <h2 class="mb-1 mt-2">Latest Request</h2>
+            @if(Model.Requests.LastOrDefault() != null)
+            {
+                @await Component.InvokeAsync("CalendarEvent", new { maxPriority = 1, isDone = true, movie = Model.Requests.LastOrDefault().Movie })
+            }
+
+            <h2 class="mb-1">Nearest upcoming (90 days)</h2>
+            @if (Model.Upcoming != null)
+            {
+                await Component.InvokeAsync("CalendarEvent", new { maxPriority = 2, isDone = true, movie = Model.Upcoming });
+            } else
+            {
+                <p>No upcoming releases</p>
+            }
+        </div>
+    </div>
+</div>
+

@@ -3,6 +3,8 @@ using MediaRequest.Domain;
 using MediaRequest.Domain.Radarr;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +17,7 @@ namespace MediaRequest.Data
     {
         public MediaDbContext(DbContextOptions<MediaDbContext> options) : base(options)
         {
+            
         }
 
         public DbSet<UserRequest> Request { get; set; }
@@ -25,23 +28,9 @@ namespace MediaRequest.Data
             return base.SaveChangesAsync();
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected void OnModelCreation(ModelBuilder builder)
         {
-            //builder.Entity<UserRequest>(e =>
-            //{
-            //    e.HasKey(k => k.RequestId);
-            //});
-
-            //builder.Entity<Movie>(e =>
-            //{
-            //    e.HasKey(x => x.Id);
-
-            //    e.Ignore(x => x.Tags);
-            //    e.Ignore(x => x.AlternativeTitles);
-            //    e.Ignore(x => x.Genres);
-            //    e.Ignore(x => x.Images);
-            //    e.Ignore(x => x.Ratings);
-            //});
+            builder.Entity<UserRequest>().HasData(new UserRequest { UserId = "a4ab47cc-ddf1-419a-90eb-3e86dd8fa50c", MovieId = "181812", Status = false });
         }
     }
 }

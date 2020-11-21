@@ -1,0 +1,55 @@
+﻿@model MediaRequest.WebUI.ViewModels.MovieCreditsViewModel
+
+<section class="cast">
+    <h1>Top billed cast</h1>
+    <ul class="top-billed">
+        @foreach (var item in Model.Credits.TopBilled)
+        {
+            <partial name="_ActorPartial" , model="@item" />
+        }
+    </ul>
+
+    <h1>Cast</h1>
+    <ul class="cast-list">
+        @foreach (var item in Model.Credits.Cast)
+        {
+            <partial name="_ActorPartial" , model="@item" />
+        }
+
+        @if (!(Model.Credits.Cast.Count < 9))
+        {
+            if (Model.Credits.Cast.Count > 9)
+            {
+                <li class="loadmore"><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" asp-route-amount="0" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Show less</a></li>
+            }
+            else
+            {
+                <li class="loadmore"><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" asp-route-amount="1" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Show full cast</a></li>
+            }
+        }
+
+    </ul>
+
+    <h1>Crew</h1>
+    <ul class="crew-list">
+        @foreach (var item in Model.Credits.Crew)
+        {
+            <li>
+                <h2>@item.Name</h2>
+                <h3>@item.Job</h3>
+            </li>
+        }
+
+        @if (!(Model.Credits.Crew.Count < 20))
+        {
+            if (Model.Credits.Crew.Count > 20)
+            {
+                <li class="loadmore mt-1"><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" asp-route-amount="0" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Show less</a></li>
+            }
+            else
+            {
+                <li class="loadmore mt-1"><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" asp-route-amount="1" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Show full crew</a></li>
+            }
+        }
+    </ul>
+</section>
