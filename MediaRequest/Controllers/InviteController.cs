@@ -15,6 +15,8 @@ using MediaRequest.Domain;
 using Microsoft.Extensions.Options;
 using MediaRequest.Domain.Configuration;
 using MediaRequest.WebUI.Business.Extensions;
+using MediaRequest.WebUI.ViewModels.Account;
+using Microsoft.AspNetCore.Authentication;
 
 namespace MediaRequest.WebUI.Controllers
 {
@@ -51,8 +53,8 @@ namespace MediaRequest.WebUI.Controllers
 
             var invite = new InviteToken
             {
-                CreatedAt = DateTime.Now,
-                ValidUntil = DateTime.Now.AddHours(24),
+                CreatedAt = DateTime.Now.ToUniversalTime(),
+                ValidUntil = DateTime.Now.ToUniversalTime().AddHours(24),
                 Status = false,
                 Token = token,
                 TokenOwnerId = creatorId.Id
@@ -64,7 +66,6 @@ namespace MediaRequest.WebUI.Controllers
             var url = GenerateInviteUrl(token);
             return Content(url);
         }
-
 
         public IActionResult HandleInvite(string t)
         {
@@ -89,13 +90,54 @@ namespace MediaRequest.WebUI.Controllers
                 }
             }
 
-            TempData["Error"] = "Error handling invite. Invite might be expired";
+            TempData["Error"] = "Error handling invite. Invite might be expired or has already been used";
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult CreateMember(string t)
         {
             return View(nameof(CreateMember), t);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMember(RegisterViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                if(model.Token.ValidUntil >= DateTime.Now.ToUniversalTime() && model.Token.Status == false)
+                {
+                    if (model.Password == model.ConfirmPassword)
+                    {
+                        var user = new ApplicationUser
+                        {
+                            Email = model.Email ?? null,
+                            UserName = model.Username
+                        };
+
+                        var userResult = await _userManager.CreateAsync(user, model.Password);
+
+                        if (userResult.Succeeded)
+                        {
+                            var token = _context.InviteTokens.SingleOrDefault(x => x.Id == model.Token.Id);
+                            token.Status = true;
+
+                            await _context.SaveChangesAsync();
+                            await _signInManager.SignInAsync(user, true);
+
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("PasswordError", "Passwords do not match");
+                        return RedirectToAction(nameof(CreateMember), "Invite", new { t = model.Token });
+                    }
+                }
+            }
+                
+            ModelState.AddModelError("SignupError", "There was an error processing your registration");
+            return RedirectToAction(nameof(CreateMember), "Invite", new { t = model.Token });
         }
 
         private string GenerateInviteUrl(string token)

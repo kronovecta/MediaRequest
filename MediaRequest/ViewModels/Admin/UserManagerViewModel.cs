@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using MediaRequest.WebUI.Models.IdentityModels;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace MediaRequest.WebUI.ViewModels.Admin
 
     public class UserRoleViewModel
     {
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
         public IList<string> Roles { get; set; }
     }
 }
