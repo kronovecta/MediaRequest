@@ -541,6 +541,16 @@ nav.submenu {
     #cookieConsent .accept-policy:hover {
       background: #f8f9fc; }
 
+.alert-hover {
+  position: absolute;
+  z-index: 1000;
+  top: 2rem; }
+  .alert-hover .alert {
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem; }
+  .alert-hover .alert-danger {
+    background: red; }
+
 .single-movie-container {
   color: #f8f9fc;
   width: 100%;
@@ -855,8 +865,16 @@ nav.submenu {
   position: absolute;
   top: 3rem;
   margin: 0 auto;
-  width: 60%;
-  padding: 1rem; }
+  width: 100%;
+  padding: 1rem 2rem;
+  max-width: 768px;
+  z-index: 1000;
+  border-radius: 0.5rem;
+  border: 1px solid transparent; }
+  .alert.alert-danger {
+    color: #721c24;
+    background: #f8d7da;
+    border-color: #f5c6cb; }
 
 .w-10 {
   width: 10%;

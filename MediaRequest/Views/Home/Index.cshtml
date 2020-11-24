@@ -1,5 +1,12 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexViewModel
 
+@{
+    var err = TempData["Error"];
+    if(err != null)
+    {
+        <span class="alert alert-danger">@err</span>
+    }
+}
 
 @if (Model.PartialView.Movies != null)
 {

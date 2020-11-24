@@ -1,0 +1,7 @@
+﻿@model string
+
+@{
+    Layout = "~/Views/Shared/Layouts/_Root.cshtml";
+}
+
+@(await Component.InvokeAsync("CreateUser", new { t = Model }))

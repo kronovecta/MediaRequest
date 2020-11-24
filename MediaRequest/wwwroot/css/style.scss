@@ -224,6 +224,21 @@ nav.submenu {
     }
 }
 
+.alert-hover {
+    position: absolute;
+    z-index: 1000;
+    top: 2rem;
+
+    .alert {
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .alert-danger {
+        background: red;
+    }
+}
+
 .single-movie-container {
     color: $white-main;
     width: 100%;

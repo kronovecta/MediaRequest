@@ -7,10 +7,13 @@ using MediaRequest.Domain.Configuration;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +33,7 @@ namespace MediaRequest
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddJsonFile($"settings.json", false, true)
+                .AddYamlFile("settings.yaml", false, true)
                 .AddEnvironmentVariables(prefix: "Apollo_")
                 .AddUserSecrets<Startup>();
 
@@ -43,6 +47,7 @@ namespace MediaRequest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             var conn = Configuration.GetConnectionString("conn");
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -52,38 +57,55 @@ namespace MediaRequest
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            // Service Classes
+            services.AddSession();
+
+            #region Service Classes
             services.AddScoped<IHttpHelper, HttpHelper>();
             services.AddScoped<DataInitializer>();
 
-            services.AddSession();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            #endregion
 
-            // HTTP Clients
+            #region Data Protection
+            services.AddDataProtection();
+            #endregion
+
+            #region HTTP Clients
             services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
             services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
+            #endregion
 
-            // Configuration classes
-            
+            #region Configuration classes
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            #endregion
 
+            #region MediatR
             services.AddMediatR(
                 typeof(GetSingleMovieHandler).Assembly,
                 typeof(AddRequestHandler).Assembly);
+            #endregion
 
+            #region Cache
             services.AddMemoryCache();
             services.AddResponseCaching();
+            #endregion
 
+            #region Contexts
             services.AddDbContext<IMediaDbContext, MediaDbContext>(opt => opt.UseSqlite(conn, x => x.MigrationsAssembly("MediaRequest.WebUI")));
             services.AddDbContext<IdentityContext>(opt => opt.UseSqlite(conn, x => x.MigrationsAssembly("MediaRequest.WebUI")));
+            #endregion
 
+            #region Identity
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            #endregion
 
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IMediaDbContext context, IdentityContext identityContext, DataInitializer initializer)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMediaDbContext context, IdentityContext identityContext, DataInitializer initializer)
         {
             var cx = context as MediaDbContext;
             if (!cx.Database.CanConnect())
@@ -93,13 +115,14 @@ namespace MediaRequest
                 await initializer.SeedData();
             }
 
+            await initializer.SetConfigValues();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage(new DeveloperExceptionPageOptions
                 {
                     SourceCodeLineCount = 2
                 });
-
             }
             else
             {
@@ -107,6 +130,8 @@ namespace MediaRequest
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseStatusCodePages();
 
             app.UseAuthentication();
 
