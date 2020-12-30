@@ -17,6 +17,8 @@ using MediaRequest.Domain.Configuration;
 using MediaRequest.WebUI.Business.Extensions;
 using MediaRequest.WebUI.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MediaRequest.WebUI.Controllers
 {
@@ -46,7 +48,7 @@ namespace MediaRequest.WebUI.Controllers
             this.urlHelper = urlHelperFactory.GetUrlHelper(contextAccessor.ActionContext);
         }
 
-        public async Task<IActionResult> Invite()
+        public async Task<IActionResult> InviteWithUrl()
         {
             var token = GenerateToken();
             var creatorId = await _userManager.GetUserAsync(User);
@@ -64,9 +66,10 @@ namespace MediaRequest.WebUI.Controllers
             await _context.SaveChangesAsync();
 
             var url = GenerateInviteUrl(token);
-            return Content(url);
+            return PartialView("_InviteLinkPartial", url);
         }
 
+        [Route("handleinvite")]
         public IActionResult HandleInvite(string t)
         {
             var token = _context.InviteTokens.SingleOrDefault(x => x.Token == t);
@@ -94,18 +97,32 @@ namespace MediaRequest.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult CreateMember(string t)
+        [Route("register")]
+        public async Task<IActionResult> CreateMember(string t)
         {
-            return View(nameof(CreateMember), t);
+            var token = await _context.InviteTokens.SingleOrDefaultAsync(x => x.Token == t);
+
+            if (token != null)
+            {
+                if (token.ValidUntil.ToUniversalTime() >= DateTime.Now.ToUniversalTime() && token.Status == false)
+                {
+                    HttpContext.Session.  SetString("aptoken", t);
+                    return View("CreateMember", t);
+                }
+            }
+
+            TempData["Error"] = "Error handling invite. Invite might be expired or has already been used";
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
+        [Route("register")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateMember(RegisterViewModel model)
         {
             if(ModelState.IsValid)
             {
-                if(model.Token.ValidUntil >= DateTime.Now.ToUniversalTime() && model.Token.Status == false)
+                if(HttpContext.Session.GetString("aptoken") != null && model.Token.ValidUntil >= DateTime.Now.ToUniversalTime() && model.Token.Status == false)
                 {
                     if (model.Password == model.ConfirmPassword)
                     {
@@ -140,10 +157,11 @@ namespace MediaRequest.WebUI.Controllers
             return RedirectToAction(nameof(CreateMember), "Invite", new { t = model.Token });
         }
 
-        private string GenerateInviteUrl(string token)
+        public string GenerateInviteUrl(string token)
         {
             return urlHelper.Action(nameof(HandleInvite), "Invite", new { t = token }, HttpContext.Request.Scheme);
         }
+
         private string GenerateToken()
         {
             return _protectionProvider.Protect(_appSettings.AppIdentifier);

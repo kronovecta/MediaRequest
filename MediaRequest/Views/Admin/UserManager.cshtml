@@ -14,10 +14,13 @@
         </div>
     </form>*@
 
-    <div class="w-100 align-center center-block mt-2 mb-2">
+<div class="w-100 align-center center-block mt-2 mb-2">
+    <div class="invite-button-container">
         <a class="btn btn-default">Invite via Email</a>
-        <a class="btn btn-default">Generate Invite URL</a>
+        <a class="btn btn-default" asp-action="InviteWithUrl" asp-controller="Invite" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#invite-container" data-ajax-method="get">Get Invite URL</a>
     </div>
+    <div id="invite-container"></div>
+</div>
 
     <div class="user-list">
         <h2>Existing Users</h2>
