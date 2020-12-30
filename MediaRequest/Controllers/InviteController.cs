@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Threading.Tasks;
-using System.Web;
-using MediaRequest.WebUI.Models.IdentityModels;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using MediaRequest.Application;
-using MediaRequest.Domain;
-using Microsoft.Extensions.Options;
-using MediaRequest.Domain.Configuration;
-using MediaRequest.WebUI.Business.Extensions;
-using MediaRequest.WebUI.ViewModels.Account;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-
-namespace MediaRequest.WebUI.Controllers
+﻿namespace MediaRequest.WebUI.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Policy;
+    using System.Threading.Tasks;
+    using System.Web;
+    using MediaRequest.WebUI.Models.IdentityModels;
+    using Microsoft.AspNetCore.DataProtection;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Routing;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using MediaRequest.Application;
+    using MediaRequest.Domain;
+    using Microsoft.Extensions.Options;
+    using MediaRequest.Domain.Configuration;
+    using MediaRequest.WebUI.Business.Extensions;
+    using MediaRequest.WebUI.ViewModels.Account;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Http;
+
     public class InviteController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -106,8 +106,10 @@ namespace MediaRequest.WebUI.Controllers
             {
                 if (token.ValidUntil.ToUniversalTime() >= DateTime.Now.ToUniversalTime() && token.Status == false)
                 {
-                    HttpContext.Session.  SetString("aptoken", t);
-                    return View("CreateMember", t);
+                    HttpContext.Session.SetString("aptoken", t);
+                    await HttpContext.Session.CommitAsync();
+
+                    return View("CreateMember");
                 }
             }
 
@@ -122,7 +124,9 @@ namespace MediaRequest.WebUI.Controllers
         {
             if(ModelState.IsValid)
             {
-                if(HttpContext.Session.GetString("aptoken") != null && model.Token.ValidUntil >= DateTime.Now.ToUniversalTime() && model.Token.Status == false)
+                var tokenObject = await _context.InviteTokens.SingleOrDefaultAsync(x => x.Token == (HttpContext.Session.GetString("aptoken") ?? ""));
+
+                if (tokenObject != null && tokenObject.ValidUntil >= DateTime.Now.ToUniversalTime() && tokenObject.Status == false)
                 {
                     if (model.Password == model.ConfirmPassword)
                     {
@@ -136,25 +140,32 @@ namespace MediaRequest.WebUI.Controllers
 
                         if (userResult.Succeeded)
                         {
-                            var token = _context.InviteTokens.SingleOrDefault(x => x.Id == model.Token.Id);
-                            token.Status = true;
+                            tokenObject.Status = true;
 
                             await _context.SaveChangesAsync();
                             await _signInManager.SignInAsync(user, true);
 
                             return RedirectToAction("Index", "Home");
+                        } else
+                        {
+                            foreach (var error in userResult.Errors)
+                            {
+                                TempData["error_" + error.Code] = error.Description;
+                            }
+                            
+                            return RedirectToAction(nameof(CreateMember), "Invite", new { t = tokenObject.Token });
                         }
                     }
                     else
                     {
                         ModelState.AddModelError("PasswordError", "Passwords do not match");
-                        return RedirectToAction(nameof(CreateMember), "Invite", new { t = model.Token });
+                        return RedirectToAction(nameof(CreateMember), "Invite", new { t = tokenObject.Token });
                     }
                 }
             }
                 
             ModelState.AddModelError("SignupError", "There was an error processing your registration");
-            return RedirectToAction(nameof(CreateMember), "Invite", new { t = model.Token });
+            return RedirectToAction("Index", "Home");
         }
 
         public string GenerateInviteUrl(string token)

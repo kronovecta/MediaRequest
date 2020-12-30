@@ -53,7 +53,7 @@ namespace MediaRequest
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -98,7 +98,15 @@ namespace MediaRequest
             #endregion
 
             #region Identity
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(opt => 
+            {
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+
+                opt.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<IdentityContext>();
             #endregion
 
             services.AddRazorPages();
@@ -151,24 +159,6 @@ namespace MediaRequest
                 endpoints.MapControllerRoute("default", "{{action}}", new { controller = "Home" });
                 endpoints.MapDefaultControllerRoute();
             });
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute("Search", "{action}/{term?}", new { controller = "Home" });
-
-            //    //routes.MapRoute("Movies", "{action}", new { controller = "Movie" });
-            //    routes.MapRoute("ShowMovie", "{action}/{slug}", new { controller = "Movie" });
-
-            //    routes.MapRoute(
-            //        name: "Short",
-            //        template: "{action}",
-            //        defaults: new { controller = "Home" });
-
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}");
-            //        //template: "{controller=Movie}/{action=ShowMovie}/{id?}");
-            //});
         }
     }
 }
