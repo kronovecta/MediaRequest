@@ -1,0 +1,47 @@
+﻿@model MediaRequest.WebUI.ViewModels.Account.RegisterViewModel
+
+@{
+    Layout = "~/Views/Shared/Layouts/_Root.cshtml";
+}
+
+@if (TempData.Any(x => x.Key.StartsWith("error_")))
+{
+    var errors = TempData.Where(x => x.Key.StartsWith("error_"));
+    foreach (var error in errors)
+    {
+        <span class="alert alert-danger">@error.Value</span>
+    }
+}
+
+<div class="form-container">
+    <form asp-action="CreateMember" asp-controller="Invite" method="post">
+        <div class="form-group">
+            <label asp-for="Username">Username</label>
+            <input asp-for="Username" />
+            <span asp-validation-for="Username"></span>
+            
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email (Optional)</label>
+            <input asp-for="Email" type="email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ConfirmPassword">Confirm Password</label>
+            <input asp-for="ConfirmPassword" type="password" />
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+
+        <div class="form-group" style="margin:0">
+            <input class="btn btn-default" type="submit" value="Register" />
+        </div>
+    </form>
+</div>

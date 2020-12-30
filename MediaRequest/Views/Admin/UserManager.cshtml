@@ -1,8 +1,10 @@
 ﻿@model MediaRequest.WebUI.ViewModels.Admin.UserManagerViewModel
 
-<div class="admin-container">
-    <form class="invite-form" method="post">
-        <label>Invite new user</label>
+<div class="admin-container mr-2">
+    <h1>Users</h1>
+
+    @*<form class="invite-form" method="post">
+        <h2>Invite new user</h2>
         <div class="form-group">
             <div class="input-container">
                 <i class="fas fa-envelope"></i>
@@ -10,15 +12,30 @@
             </div>
             <input class="btn btn-default" type="submit" value="Invite" />
         </div>
-    </form>
+    </form>*@
+
+<div class="w-100 align-center center-block mt-2 mb-2">
+    <div class="invite-button-container">
+        <a class="btn btn-default">Invite via Email</a>
+        <a class="btn btn-default" asp-action="InviteWithUrl" asp-controller="Invite" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#invite-container" data-ajax-method="get">Get Invite URL</a>
+    </div>
+    <div id="invite-container"></div>
+</div>
 
     <div class="user-list">
-        <h1>Active users</h1>
+        <h2>Existing Users</h2>
         @foreach (var user in Model.Users)
         {
             <div class="user">
                 <div class="username-role">
-                    <img class="avatar" src="~/img/halle.jpg" />
+                    @if (user.User.Avatar != null)
+                    {
+                        <img class="avatar" src="data:image/jpeg;base64,@Convert.ToBase64String(user.User.Avatar)" />
+                    }
+                    else
+                    {
+                        <img class="avatar" src="http://all4ed.org/wp-content/themes/all4ed/assets/images/avatar-placeholder-generic.png" />
+                    }
                     <div>
                         <h1>@user.User.UserName</h1>
                         <span>
@@ -27,7 +44,8 @@
                                 if (role.ToLower().Equals("admin"))
                                 {
                                     <span class="badge badge-success">@role</span>
-                                } else if(role.ToLower().Equals("standard"))
+                                }
+                                else if (role.ToLower().Equals("standard"))
                                 {
                                     <span class="badge badge-secondary">@role</span>
                                 }

@@ -30,11 +30,21 @@
 }
 
 .alert {
-    position:absolute;
-    top:3rem;
-    margin:0 auto;
-    width:60%;
-    padding:1rem,
+    position: absolute;
+    top: 3rem;
+    margin: 0 auto;
+    width: 100%;
+    padding: 1rem 2rem;
+    max-width: 768px;
+    z-index: 1000;
+    border-radius: 0.5rem;
+    border:1px solid rgba(0,0,0,0);
+
+    &.alert-danger {
+        color: #721c24;
+        background: #f8d7da;
+        border-color: #f5c6cb;
+    }
 }
 
 .w-10 { width:10%; max-width:10%!important;  }

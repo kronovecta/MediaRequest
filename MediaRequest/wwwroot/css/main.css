@@ -541,6 +541,16 @@ nav.submenu {
     #cookieConsent .accept-policy:hover {
       background: #f8f9fc; }
 
+.alert-hover {
+  position: absolute;
+  z-index: 1000;
+  top: 2rem; }
+  .alert-hover .alert {
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem; }
+  .alert-hover .alert-danger {
+    background: red; }
+
 .single-movie-container {
   color: #f8f9fc;
   width: 100%;
@@ -855,8 +865,16 @@ nav.submenu {
   position: absolute;
   top: 3rem;
   margin: 0 auto;
-  width: 60%;
-  padding: 1rem; }
+  width: 100%;
+  padding: 1rem 2rem;
+  max-width: 768px;
+  z-index: 1000;
+  border-radius: 0.5rem;
+  border: 1px solid transparent; }
+  .alert.alert-danger {
+    color: #721c24;
+    background: #f8d7da;
+    border-color: #f5c6cb; }
 
 .w-10 {
   width: 10%;
@@ -1329,7 +1347,6 @@ section.recommended {
 
 .admin-container {
   max-width: 1000px;
-  margin: 5rem auto;
   align-items: center; }
   .admin-container .row {
     margin-bottom: 2rem;
@@ -1812,7 +1829,7 @@ body {
   background: white;
   display: flex;
   flex-direction: column;
-  max-width: 40vw;
+  max-width: 768px;
   padding: 2rem;
   min-width: 350px; }
   .form-container form .form-group:not(:last-child) {
@@ -2090,3 +2107,23 @@ footer {
         border: 1px solid #eaeaea; }
         .base-form .form-section .form-group input:focus {
           border-color: red; }
+
+.field-validation-error {
+  position: absolute;
+  margin-left: 1rem; }
+  .field-validation-error:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #c4162a transparent transparent; }
+  .field-validation-error span {
+    display: block;
+    background: #c4162a;
+    padding: .7rem 1rem;
+    color: white;
+    border-radius: 0.25rem; }

@@ -138,13 +138,5 @@ namespace MediaRequest.WebUI.Controllers
 
             return View(model);
         }
-
-        //[Route("Admin/Settings")]
-        //[HttpPost]
-        //public IActionResult Settings()
-        //{
-
-        //    return View();
-        //}
     }
 }

@@ -1,0 +1,57 @@
+﻿@*@model MediaRequest.WebUI.ViewModels.Account.RegisterViewModel
+
+<div class="form-container">
+    <form asp-action="Signup" asp-controller="Account">
+        <div class="form-group">
+            <label asp-for="@Model.Username">Username</label>
+            <input asp-for="@Model.Username" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Email">Confirm Password</label>
+            <input asp-for="@Model.Email" type="password" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Password">Password</label>
+            <input asp-for="@Model.Password" type="password" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.ConfirmPassword">Confirm Password</label>
+            <input asp-for="@Model.ConfirmPassword" type="password" />
+        </div>
+
+        <div class="form-group" style="margin:0">
+            <input class="btn btn-default" type="submit" value="Login" />
+        </div>
+    </form>
+</div>*@
+
+<div class="form-container">
+    <form asp-action="CreateMember" asp-controller="Invite" method="post">
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input name="Username" />
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email (Optional)</label>
+            <input name="Email" type="email" />
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input name="Password" type="password" />
+        </div>
+
+        <div class="form-group">
+            <label for="ConfirmPassword">Confirm Password</label>
+            <input name="ConfirmPassword" type="password" />
+        </div>
+
+        <div class="form-group" style="margin:0">
+            <input class="btn btn-default" type="submit" value="Register" />
+        </div>
+    </form>
+</div>

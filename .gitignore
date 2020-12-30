@@ -342,3 +342,4 @@ healthchecksdb
 /.git_bkp
 
 **/*settings.json
+/MediaRequest/settings.yaml

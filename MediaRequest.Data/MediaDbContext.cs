@@ -17,20 +17,24 @@ namespace MediaRequest.Data
     {
         public MediaDbContext(DbContextOptions<MediaDbContext> options) : base(options)
         {
-            
         }
 
         public DbSet<UserRequest> Request { get; set; }
         public DbSet<MoviePoster> MoviePoster { get; set; }
+        public DbSet<InviteToken> InviteTokens { get; set; }
 
         public Task<int> SaveChangesAsync()
         {
             return base.SaveChangesAsync();
         }
 
-        protected void OnModelCreation(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<UserRequest>().HasData(new UserRequest { UserId = "a4ab47cc-ddf1-419a-90eb-3e86dd8fa50c", MovieId = "181812", Status = false });
+            builder.Entity<InviteToken>(x =>
+            {
+                x.HasKey(key => key.Id);
+                x.HasIndex(ind => ind.Id);
+            });
         }
     }
 }

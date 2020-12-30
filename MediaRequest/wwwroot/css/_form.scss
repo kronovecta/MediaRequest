@@ -36,3 +36,27 @@ $input-group-border: 1px solid #eaeaea;
         }
     }
 }
+
+.field-validation-error {
+    position: absolute;
+    margin-left: 1rem;
+
+    &:before {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        right: 100%; /* To the left of the tooltip */
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent $red-main transparent transparent;
+    }
+
+    span {
+        display: block;
+        background: $red-main;
+        padding: .7rem 1rem;
+        color: white;
+        border-radius: 0.25rem;
+    }
+}
