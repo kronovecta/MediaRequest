@@ -146,7 +146,7 @@ namespace MediaRequest.WebUI.Controllers
             var request = new MovieRequestObject()
             {
                 title = movie.Title,
-                qualityProfileId = 7,
+                qualityProfileId = 4,
                 images = movie.Images,
                 tmdbId = movie.TMDBId.ToString(),
                 titleSlug = movie.TitleSlug,
