@@ -2,8 +2,12 @@ using FakeItEasy;
 using MediaRequest.Application.Clients;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.Requests.GetSingleRequest;
+using MediaRequest.Application.Tests.Fixtures;
 using MediaRequest.Data;
 using MediaRequest.Domain.Configuration;
+using MediaRequest.Domain.Radarr;
+using MediaRequest.WebUI.Models.IdentityModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +15,7 @@ using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MediaRequest.Application.Tests
@@ -20,82 +25,56 @@ namespace MediaRequest.Application.Tests
         private IMediator _mediator;
         private IHttpHelper _httpHelper;
         private IConfigurationRoot configurationBuilder;
-        private IMediaDbContext mediaDbContext;
+        private IMediaDbContext _mediaDbContext;
 
-        private RadarrClient radarrClient;
-        private TMDBClient tmdbClient;
+        private ApplicationUser user;
 
         [SetUp]
         public async Task Setup()
         {
             #region Configuration classes
-            var basePath = Path.GetFullPath("../../../../MediaRequest/");
 
-            configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(basePath)
-                .AddYamlFile("settings.yaml", false, true)
-                .Build();
+            var fixture = new ConfigurationFixture();
+            configurationBuilder = fixture.GenerateConfiguration();
 
-            var servicePath = Options.Create(GetServicePathConfiguration());
-            var apiKeys = Options.Create(GetApiKeysConfiguration());
-
-            radarrClient = new RadarrClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(servicePath.Value.Radarr) });
-            tmdbClient = new TMDBClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(servicePath.Value.TMDB) });
             #endregion
 
-            #region Database Context
-            var builder = new DbContextOptionsBuilder<MediaDbContext>();
-            builder.UseInMemoryDatabase(databaseName: "MediaDbMemory");
+            #region Database Con++text
 
-            var dbContextOptions = builder.Options;
-            mediaDbContext = new MediaDbContext(dbContextOptions);
-
-            mediaDbContext.Request.Add(new Domain.UserRequest()
+            _mediaDbContext = fixture.GetDbContext();
+            if(!_mediaDbContext.Request.Any())
             {
-                Id = 1,
-                MovieId = "577922",
-                UserId = new Guid().ToString()
-            });
+                _mediaDbContext.Request.Add(new Domain.UserRequest { Id = 1, MovieId = "577922", UserId = "bacbb67d-819e-4e7b-bb29-c81ff99b5d1d" });
+                await _mediaDbContext.SaveChangesAsync();
+            }
 
-            await mediaDbContext.SaveChangesAsync();
             #endregion
 
             #region Http Helper
-            _httpHelper = new HttpHelper(servicePath, apiKeys, radarrClient, tmdbClient);
+            _httpHelper = new HttpHelper(fixture.ServicePath, fixture.ApiKeys, fixture.radarrClient, fixture.tmdbClient);
             #endregion
 
             _mediator = A.Fake<IMediator>();
         }
 
-        private ServicePath GetServicePathConfiguration()
-        {
-            var servicePath = new ServicePath();
-            configurationBuilder.GetSection("settings:Path")
-                .Bind(servicePath);
-
-            return servicePath;
-        }
-        public ApiKeys GetApiKeysConfiguration()
-        {
-            var apiKeys = new ApiKeys();
-            configurationBuilder.GetSection("settings:ApiKeys")
-                .Bind(apiKeys);
-
-            return apiKeys;
-        }
-
-        [Test]
-        public async Task GetExistingRequest()
+        [TestCase("bacbb67d-819e-4e7b-bb29-c81ff99b5d1d", ExpectedResult = true)]
+        [TestCase("b039d8bb-26c5-40d7-aafd-a1a2a93642d6", ExpectedResult = false)]
+        public async Task<bool> GetExistingRequest(string userid)
         {
             // Arrange
-            var handler = new GetSingleMovieHandler(_httpHelper, mediaDbContext, _mediator);
-            var request = new GetSingleMovieRequest { TmdbId = "577922" };
+            var movieHandler = new GetSingleMovieHandler(_httpHelper, _mediaDbContext, _mediator);
+            var movieRequest = new GetSingleMovieRequest { TmdbId = "577922" };
+            var movieResponse = await movieHandler.Handle(movieRequest, new System.Threading.CancellationToken());
+
+            // Arrange
+            var handler = new RequestExistsHandler(_mediaDbContext);
+            var request = new RequestExistsRequest { Movie = movieResponse.Movie, UserId = userid };
 
             // Act
             var response = await handler.Handle(request, new System.Threading.CancellationToken());
 
             // Assert
-            Assert.NotNull(response);
+            return response.Exists;
         }
     }
 }

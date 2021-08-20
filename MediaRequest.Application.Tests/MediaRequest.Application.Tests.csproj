@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MediaRequest.Application\MediaRequest.Application.csproj" />
     <ProjectReference Include="..\MediaRequest.Data\MediaRequest.Data.csproj" />
+    <ProjectReference Include="..\MediaRequest\MediaRequest.WebUI.csproj" />
   </ItemGroup>
 
 </Project>
