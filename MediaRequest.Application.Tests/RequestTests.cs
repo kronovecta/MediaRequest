@@ -1,10 +1,15 @@
 using FakeItEasy;
 using MediaRequest.Application.Clients;
+using MediaRequest.Application.Commands;
+using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.Requests;
 using MediaRequest.Application.Queries.Requests.GetSingleRequest;
+using MediaRequest.Application.Queries.Requests.GetUserRequests;
 using MediaRequest.Application.Tests.Fixtures;
 using MediaRequest.Data;
+using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.WebUI.Models.IdentityModels;
@@ -59,14 +64,13 @@ namespace MediaRequest.Application.Tests
 
         [TestCase("bacbb67d-819e-4e7b-bb29-c81ff99b5d1d", ExpectedResult = true)]
         [TestCase("b039d8bb-26c5-40d7-aafd-a1a2a93642d6", ExpectedResult = false)]
-        public async Task<bool> GetExistingRequest(string userid)
+        public async Task<bool> GetSingleRequest(string userid)
         {
             // Arrange
             var movieHandler = new GetSingleMovieHandler(_httpHelper, _mediaDbContext, _mediator);
             var movieRequest = new GetSingleMovieRequest { TmdbId = "577922" };
             var movieResponse = await movieHandler.Handle(movieRequest, new System.Threading.CancellationToken());
 
-            // Arrange
             var handler = new RequestExistsHandler(_mediaDbContext);
             var request = new RequestExistsRequest { Movie = movieResponse.Movie, UserId = userid };
 
@@ -75,6 +79,51 @@ namespace MediaRequest.Application.Tests
 
             // Assert
             return response.Exists;
+        }
+
+        [Test]
+        public async Task AddRequestTest()
+        {
+            // Arrange
+            var command = new AddRequestCommand { Request = new Domain.UserRequest { Id = 2, MovieId = "577922", UserId = "bacbb67d-819e-4e7b-bb29-c81ff99b5d1d" } };
+            var handler = new AddRequestHandler(_mediaDbContext);
+
+            // Act
+            var response = await handler.Handle(command, new System.Threading.CancellationToken());
+
+            // Assert
+            var fetchedRequest = _mediaDbContext.Request.First();
+            Assert.IsNotNull(fetchedRequest);
+        }
+
+        [TestCase("bacbb67d-819e-4e7b-bb29-c81ff99b5d1d", ExpectedResult = 1)]
+        [TestCase("6a4726ec-2416-40db-842c-68be9258744f", ExpectedResult = 0)]
+        public async Task<int> GetUserRequests(string userId)
+        {
+            // Arrange
+            var request = new GetUserRequestRequest(userId);
+            var handler = new GetUserRequestHandler(_mediaDbContext);
+
+            // Act
+            var response = await handler.Handle(request, new System.Threading.CancellationToken());
+
+            // Assert
+            return response.Requests.Count;
+        }
+
+        [Test]
+        public async Task GetRequestsTest()
+        {
+            // Arrange
+            var request = new GetRequestsRequest();
+            var handler = new GetRequestsHandler(_mediaDbContext);
+            var expected = 1;
+
+            // Act
+            var response = await handler.Handle(request, new System.Threading.CancellationToken());
+
+            // Assert
+            Assert.AreEqual(expected, response.Requests.Count);
         }
     }
 }
