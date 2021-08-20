@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Application.Queries.Requests.GetUserRequests
 {
-    class GetUserRequestHandler : IRequestHandler<GetUserRequestRequest, GetUserRequestResponse>
+    public class GetUserRequestHandler : IRequestHandler<GetUserRequestRequest, GetUserRequestResponse>
     {
         private readonly IMediaDbContext _context;
 

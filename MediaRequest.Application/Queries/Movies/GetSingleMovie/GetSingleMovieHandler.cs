@@ -49,8 +49,8 @@ namespace MediaRequest.Application.Queries
             {
                 var tmdbmovie = await _mediator.Send(new GetMovieMediaRequest { TMDBId = request.TmdbId });
 
-                model.Movie.PosterUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "poster").First().URL;
-                model.Movie.FanartUrl = tmdbmovie.Movie.Images.Where(x => x.CoverType == "fanart").First().URL;
+                model.Movie.PosterUrl = tmdbmovie.Movie?.Images.Where(x => x.CoverType == "poster").FirstOrDefault()?.URL;
+                model.Movie.FanartUrl = tmdbmovie.Movie?.Images.Where(x => x.CoverType == "fanart").FirstOrDefault()?.URL;
             }
 
             return model;

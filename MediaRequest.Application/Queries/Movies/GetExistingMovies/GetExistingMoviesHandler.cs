@@ -74,8 +74,8 @@ namespace MediaRequest.Application.Queries.Movies
                     var media = await _mediator.Send(new GetTMDBMediaRequest(movie.TMDBId));
                     var posterPrefix = "https://image.tmdb.org/t/p/w500/";
                     var fanartPrefix = "https://image.tmdb.org/t/p/original/";
-                    var fanart = fanartPrefix + media.Backdrops.FirstOrDefault()?.FilePath;
-                    var poster = posterPrefix + media.Posters.FirstOrDefault(x => x.iso_639_1 == "en")?.FilePath;
+                    var fanart = fanartPrefix + media.Backdrops?.FirstOrDefault()?.FilePath;
+                    var poster = posterPrefix + media.Posters?.FirstOrDefault(x => x.iso_639_1 == "en")?.FilePath;
                     var moviePoster = new MoviePoster
                     {
                         MovieId = movie.TMDBId.ToString(),
