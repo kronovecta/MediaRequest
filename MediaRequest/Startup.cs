@@ -70,15 +70,16 @@ namespace MediaRequest
             services.AddDataProtection();
             #endregion
 
-            #region HTTP Clients
-            services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
-            services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
-            #endregion
-
             #region Configuration classes
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            #endregion
+
+            #region HTTP Clients
+            services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
+            services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
+            services.AddHttpClient<SonarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Sonarr").Value));
             #endregion
 
             #region MediatR

@@ -15,6 +15,7 @@ namespace MediaRequest.Application.Tests.Fixtures
     public class ConfigurationFixture
     {
         public RadarrClient radarrClient { get; set; }
+        public SonarrClient sonarrClient { get; set; }
         public TMDBClient tmdbClient { get; set; }
         public IOptions<ApiKeys> ApiKeys { get; set; }
         public IOptions<ServicePath> ServicePath { get; set; }
@@ -36,6 +37,7 @@ namespace MediaRequest.Application.Tests.Fixtures
 
             radarrClient = new RadarrClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(servicePath.Value.Radarr) });
             tmdbClient = new TMDBClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(servicePath.Value.TMDB) });
+            sonarrClient = new SonarrClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(servicePath.Value.Sonarr) }, apiKeys);
 
             ServicePath = Options.Create(GetServicePathConfiguration());
             ApiKeys = Options.Create(GetApiKeysConfiguration());
