@@ -19,11 +19,9 @@ namespace MediaRequest.WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var response = new GetAllSeriesResponse();
+            var response = await _mediator.Send(new GetAllSeriesRequest());
 
-            response = await _mediator.Send(new GetAllSeriesRequest());
-
-            return View();
+            return View(response.Series);
         }
     }
 }
