@@ -1,0 +1,112 @@
+﻿@model MediaRequest.WebUI.ViewModels.Series.SeriesViewModel
+
+<div class="single-movie-container" id="main-container">
+    <div class="hero-container">
+        <img class="background" src="@(Model.Series.Images.SingleOrDefault(x => x.CoverType == "fanart").Url)" />
+    </div>
+    <section class="container">
+        <div class="head">
+            <div class="poster">
+                <img src="@(Model.Series.Images.SingleOrDefault(x => x.CoverType == "poster").Url)">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <h1 style="color:#222;">@Model.Series.Title</h1>
+                    <div class="trivia">
+                        <ul>
+                            <li>@Model.Series.Year</li>
+                        </ul>
+                        <ul>
+                            @foreach (var genre in Model.Series.Genres)
+                            {
+                                <li>@genre</li>
+                            }
+                        </ul>
+                        <ul>
+                            <li>@Model.Series.Runtime minutes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="overview">@Model.Series.Overview</p>
+
+                <div class="ratings">
+                    <span title="The Movie Database rating">
+                        <i class="fas fa-star"></i>
+                        <span class="rating">@(Model.Series.Ratings.Value % 1 != 0 ? Model.Series.Ratings.Value.ToString() : Model.Series.Ratings.Value.ToString() + ",0")</span>
+                        <span class="totalvotes">/ @Model.Series.Ratings.Votes votes</span>
+                    </span>
+                </div>
+
+                @*<div class="button-block">
+                    <ul>
+                        <li><a class="btn btn-primary" asp-action="Trailer" asp-controller="Movie" asp-route-ytid="@Model.Movie.youTubeTrailerId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#trailer-container" data-ajax-method="get" data-ajax-loading=".loading">Watch trailer <i class="fab fa-youtube"></i></a></li>
+                        <partial name="_RequestMovieButton" model="@Model" />
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+        <div class="body">
+            @* Trailer Container *@
+            @*<div id="trailer-container"></div>
+            <nav class="page-nav">
+                <ul class="body-nav">
+                    <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TMDBId" id="credits" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Cast</a></li>
+                    <li><a asp-action="Recommendations" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Recommended</a></li>
+                </ul>
+            </nav>
+            <div id="container">
+                <section class="details">
+                </section>
+            </div>
+            <div hidden class="loading"><img src="~/img/loading.gif" /></div>*@
+        </div>
+    </section>
+</div>
+
+<div class="mobile-button-block">
+    <ul>
+        <li>@*<a class="btn btn-primary" href="@("https://www.youtube.com/watch?v=" + Model.Movie.youTubeTrailerId)">Watch trailer <i class="fab fa-youtube"></i></a>*@</li>
+        @if (Model.Accepted || Model.AlreadyAdded)
+        {
+            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
+        }
+        else if (Model.Requested)
+        {
+            <li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li>
+        }
+        else
+        {
+            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="">Request series <i class="fas fa-plus"></i></a></li>
+        }
+    </ul>
+</div>
+
+@*<script>
+    $(document).ready(function () {
+        let navBtn = $('.page-nav > .body-nav > li');
+        navBtn.first().children('a').toggleClass('active');
+        navBtn.first().children('a').click();
+
+        navBtn.on('click', function () {
+            $('#container').children().first().remove();
+            $('.loading').show();
+            navBtn.children('a').removeClass('active');
+            $(this).children('a').addClass('active');
+        })
+
+        let btnBlock = $('.mobile-button-block > ul > li');
+
+        $(document).scroll(function () {
+            if (window.scrollY >= 150) {
+                btnBlock.children().removeClass('btn')
+                btnBlock.children().addClass('btn-sm')
+            }
+
+            if (window.scrollY < 150) {
+                btnBlock.children().removeClass('btn-sm')
+                btnBlock.children().addClass('btn')
+            }
+        })
+    });
+</script>*@

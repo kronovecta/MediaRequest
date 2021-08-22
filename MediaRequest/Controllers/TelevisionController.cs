@@ -1,4 +1,5 @@
 ﻿using MediaRequest.Application.Queries.Television;
+using MediaRequest.WebUI.ViewModels.Series;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,9 +28,16 @@ namespace MediaRequest.WebUI.Controllers
         [Route("television/{slug}")]
         public async Task<IActionResult> Series(string slug)
         {
-            var tvdbId = slug.Split('-')[0];
+            var tvdbId = slug.Split('-').FirstOrDefault();
 
-            return View();
+            var response = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
+
+            var model = new SeriesViewModel()
+            {
+                Series = response.Series
+            };
+
+            return View(model);
         }
     }
 }

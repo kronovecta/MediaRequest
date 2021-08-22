@@ -67,7 +67,7 @@ namespace MediaRequest.Application.Queries.Movies
                 
             foreach (var movie in model.Movies)
             {
-                var existingPoster = _mediaDbContext.MoviePoster.SingleOrDefault(x => x.MovieId == movie.TMDBId.ToString());
+                var existingPoster = _mediaDbContext.MoviePoster.FirstOrDefault(x => x.MovieId == movie.TMDBId.ToString());
 
                 if (existingPoster == null)
                 {
@@ -155,7 +155,7 @@ namespace MediaRequest.Application.Queries.Movies
 
                 foreach (var movie in model.Movies)
                 {
-                    var existingPoster = _context.MoviePoster.SingleOrDefault(x => x.MovieId == movie.TMDBId.ToString());
+                    var existingPoster = _context.MoviePoster.FirstOrDefault(x => x.MovieId == movie.TMDBId.ToString());
 
                     if (existingPoster == null)
                     {

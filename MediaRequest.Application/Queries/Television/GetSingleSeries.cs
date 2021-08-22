@@ -16,6 +16,11 @@ namespace MediaRequest.Application.Queries.Television
     public class GetSingleSeriesRequest : IRequest<GetSingleSeriesResponse>, ISonarrRequest
     {
         public int Id { get; set; }
+
+        public GetSingleSeriesRequest(int id)
+        {
+            Id = id;
+        }
     }
 
     public class GetSingleSeriesResponse : ISonarrResponse
@@ -40,7 +45,7 @@ namespace MediaRequest.Application.Queries.Television
         {
             var model = new GetSingleSeriesResponse();
             model.TvShow = await _sonarrClient.GetSonarrResponseSingle<Series>($"api/series?apikey={_apiKeys.Sonarr}&id={request.Id}");
-
+            
             return model;
         }
     }
