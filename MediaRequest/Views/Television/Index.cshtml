@@ -1,6 +1,21 @@
 ﻿@model IEnumerable<MediaRequest.Domain.API_Responses.Sonarr.Series>
 
-@foreach (var show in Model)
-{
-    <p>@show.Title</p>
+@{
+    Layout = "~/Views/Shared/Layouts/_Base.cshtml";
 }
+
+<div class="container wide grid-layout grid-col-5 grid-gap-2">
+
+    @foreach (var show in Model)
+    {
+        <div class="television-card">
+            <div class="card-head">
+                <img src="@show.Images.SingleOrDefault(x => x.CoverType.ToLower() == "poster")?.RemoteUrl" />
+            </div>
+            <div class="card-body">
+                <h2 class="title">@show.Title</h2>
+                <p class="description">@show.Overview</p>
+            </div>
+        </div>
+    }
+</div>

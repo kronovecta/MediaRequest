@@ -79,7 +79,12 @@ namespace MediaRequest
             #region HTTP Clients
             services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
             services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
-            services.AddHttpClient<SonarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Sonarr").Value));
+            
+            services.AddHttpClient<SonarrClient>(client => {
+
+                client.BaseAddress = new Uri(Configuration.GetSection("Path:Sonarr").Value);
+                client.DefaultRequestHeaders.Add("X-Api-Key", Configuration.GetSection("ApiKeys:Sonarr").Value);
+            });
             #endregion
 
             #region MediatR

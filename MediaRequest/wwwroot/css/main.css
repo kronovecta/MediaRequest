@@ -483,6 +483,8 @@ body {
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   max-width: 100%; }
+  .container.wide {
+    width: 1400px; }
 
 form .input-container {
   position: relative;
@@ -2127,3 +2129,104 @@ footer {
     padding: .7rem 1rem;
     color: white;
     border-radius: 0.25rem; }
+
+.grid-layout {
+  display: grid; }
+
+.grid-gap-0 {
+  grid-gap: 0rem; }
+
+.grid-col-0 {
+  grid-template-columns: repeat(0, 1fr); }
+
+.grid-gap-1 {
+  grid-gap: 1rem; }
+
+.grid-col-1 {
+  grid-template-columns: repeat(1, 1fr); }
+
+.grid-gap-2 {
+  grid-gap: 2rem; }
+
+.grid-col-2 {
+  grid-template-columns: repeat(2, 1fr); }
+
+.grid-gap-3 {
+  grid-gap: 3rem; }
+
+.grid-col-3 {
+  grid-template-columns: repeat(3, 1fr); }
+
+.grid-gap-4 {
+  grid-gap: 4rem; }
+
+.grid-col-4 {
+  grid-template-columns: repeat(4, 1fr); }
+
+.grid-gap-5 {
+  grid-gap: 5rem; }
+
+.grid-col-5 {
+  grid-template-columns: repeat(5, 1fr); }
+
+.grid-gap-6 {
+  grid-gap: 6rem; }
+
+.grid-col-6 {
+  grid-template-columns: repeat(6, 1fr); }
+
+.grid-gap-7 {
+  grid-gap: 7rem; }
+
+.grid-col-7 {
+  grid-template-columns: repeat(7, 1fr); }
+
+.grid-gap-8 {
+  grid-gap: 8rem; }
+
+.grid-col-8 {
+  grid-template-columns: repeat(8, 1fr); }
+
+.grid-gap-9 {
+  grid-gap: 9rem; }
+
+.grid-col-9 {
+  grid-template-columns: repeat(9, 1fr); }
+
+.grid-gap-10 {
+  grid-gap: 10rem; }
+
+.grid-col-10 {
+  grid-template-columns: repeat(10, 1fr); }
+
+.television-card {
+  transition: 0.15s;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  -webkit-box-shadow: 0px 0px 18px 0px #bfbfbf;
+  -moz-box-shadow: 0px 0px 18px 0px #bfbfbf;
+  box-shadow: 0px 0px 18px 0px #bfbfbf; }
+  .television-card:hover {
+    -webkit-box-shadow: 0px 6px 18px 0px #bfbfbf;
+    -moz-box-shadow: 0px 6px 18px 0px #bfbfbf;
+    box-shadow: 0px 6px 18px 0px #bfbfbf; }
+  .television-card .card-head {
+    width: 100%; }
+    .television-card .card-head > img, .television-card .card-head a > img {
+      width: 100%;
+      border-radius: 0.25rem 0.25rem 0 0; }
+  .television-card .card-body {
+    padding: 1rem;
+    flex: 1; }
+    .television-card .card-body .title {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem; }
+    .television-card .card-body .description {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: normal; }
