@@ -28,7 +28,7 @@ namespace MediaRequest.WebUI.Controllers
         [Route("television/{slug}")]
         public async Task<IActionResult> Series(string slug)
         {
-            var tvdbId = slug.Split('-').FirstOrDefault();
+            var tvdbId = slug.Split('-').LastOrDefault();
 
             var response = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
 
