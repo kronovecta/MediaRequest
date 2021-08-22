@@ -60,8 +60,17 @@
                 </section>
             </div>
             <div hidden class="loading"><img src="~/img/loading.gif" /></div>*@
+
+            @foreach (var season in Model.Series.Seasons)
+	        {
+	            <div style="border:1px solid lightgrey;padding:2rem;border-radius:25px">
+                    <h3>Season @season.SeasonNumber</h3>
+                </div>
+	        }
         </div>
     </section>
+
+    
 </div>
 
 <div class="mobile-button-block">
