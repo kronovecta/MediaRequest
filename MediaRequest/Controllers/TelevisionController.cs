@@ -23,5 +23,13 @@ namespace MediaRequest.WebUI.Controllers
 
             return View(response.Series);
         }
+
+        [Route("television/{slug}")]
+        public async Task<IActionResult> Series(string slug)
+        {
+            var tvdbId = slug.Split('-')[0];
+
+            return View();
+        }
     }
 }

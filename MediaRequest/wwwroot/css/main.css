@@ -1,5 +1,37 @@
-﻿/*$blue-main: hsl(225, 73%, 52%);*/
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
+﻿@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
+.badge {
+  display: inline-block;
+  padding: .25rem .4rem;
+  font-size: 85%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem; }
+  .badge.badge-sm {
+    font-size: 70%; }
+
+.badge-xsm {
+  padding: 0.20rem .4rem 0.3rem; }
+
+.badge-secondary {
+  color: #fff;
+  background-color: #778088; }
+
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545; }
+
+.badge-success {
+  color: #fff;
+  background-color: #28a745; }
+
+.badge-warning {
+  color: #212529;
+  background-color: #ffc107; }
+
+/*$blue-main: hsl(225, 73%, 52%);*/
 .icon {
   width: 15px;
   height: 15px; }
@@ -836,32 +868,6 @@ nav.submenu {
       overflow: hidden;
       text-overflow: ellipsis;
       word-break: normal; }
-
-.badge {
-  display: inline-block;
-  padding: .25rem .4rem;
-  font-size: 85%;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25rem; }
-
-.badge-xsm {
-  padding: 0.20rem .4rem 0.3rem; }
-
-.badge-secondary {
-  color: #fff;
-  background-color: #778088; }
-
-.badge-danger {
-  color: #fff;
-  background-color: #dc3545; }
-
-.badge-success {
-  color: #fff;
-  background-color: #28a745; }
 
 .alert {
   position: absolute;
@@ -1814,6 +1820,16 @@ input[type="email"] {
 .mb-1 {
   margin-bottom: 1rem; }
 
+.status-container {
+  position: absolute; }
+  .status-container span {
+    display: inline-block;
+    position: relative;
+    top: 1rem;
+    left: 1rem; }
+    .status-container span:not(:first-child) {
+      margin-top: 0.25rem; }
+
 body {
   font-size: 16px;
   font-family: Roboto;
@@ -2138,66 +2154,132 @@ footer {
 
 .grid-col-0 {
   grid-template-columns: repeat(0, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-0 {
+      grid-template-columns: repeat(0, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-0 {
+      grid-template-columns: repeat(0, 1fr); } }
 
 .grid-gap-1 {
   grid-gap: 1rem; }
 
 .grid-col-1 {
   grid-template-columns: repeat(1, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-1 {
+      grid-template-columns: repeat(1, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-1 {
+      grid-template-columns: repeat(1, 1fr); } }
 
 .grid-gap-2 {
   grid-gap: 2rem; }
 
 .grid-col-2 {
-  grid-template-columns: repeat(2, 1fr); }
+  grid-template-columns: repeat(1, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-2 {
+      grid-template-columns: repeat(1, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-2 {
+      grid-template-columns: repeat(2, 1fr); } }
 
 .grid-gap-3 {
   grid-gap: 3rem; }
 
 .grid-col-3 {
-  grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: repeat(1, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-3 {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-3 {
+      grid-template-columns: repeat(3, 1fr); } }
 
 .grid-gap-4 {
   grid-gap: 4rem; }
 
 .grid-col-4 {
-  grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: repeat(1, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-4 {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-4 {
+      grid-template-columns: repeat(4, 1fr); } }
 
 .grid-gap-5 {
   grid-gap: 5rem; }
 
 .grid-col-5 {
-  grid-template-columns: repeat(5, 1fr); }
+  grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-5 {
+      grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-5 {
+      grid-template-columns: repeat(5, 1fr); } }
 
 .grid-gap-6 {
   grid-gap: 6rem; }
 
 .grid-col-6 {
-  grid-template-columns: repeat(6, 1fr); }
+  grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-6 {
+      grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-6 {
+      grid-template-columns: repeat(6, 1fr); } }
 
 .grid-gap-7 {
   grid-gap: 7rem; }
 
 .grid-col-7 {
-  grid-template-columns: repeat(7, 1fr); }
+  grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-7 {
+      grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-7 {
+      grid-template-columns: repeat(7, 1fr); } }
 
 .grid-gap-8 {
   grid-gap: 8rem; }
 
 .grid-col-8 {
-  grid-template-columns: repeat(8, 1fr); }
+  grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-8 {
+      grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-8 {
+      grid-template-columns: repeat(8, 1fr); } }
 
 .grid-gap-9 {
   grid-gap: 9rem; }
 
 .grid-col-9 {
-  grid-template-columns: repeat(9, 1fr); }
+  grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-9 {
+      grid-template-columns: repeat(5, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-9 {
+      grid-template-columns: repeat(9, 1fr); } }
 
 .grid-gap-10 {
   grid-gap: 10rem; }
 
 .grid-col-10 {
-  grid-template-columns: repeat(10, 1fr); }
+  grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 552px) {
+    .grid-col-10 {
+      grid-template-columns: repeat(5, 1fr); } }
+  @media (min-width: 992px) {
+    .grid-col-10 {
+      grid-template-columns: repeat(10, 1fr); } }
 
 .television-card {
   transition: 0.15s;
@@ -2211,7 +2293,8 @@ footer {
   .television-card:hover {
     -webkit-box-shadow: 0px 6px 18px 0px #bfbfbf;
     -moz-box-shadow: 0px 6px 18px 0px #bfbfbf;
-    box-shadow: 0px 6px 18px 0px #bfbfbf; }
+    box-shadow: 0px 6px 18px 0px #bfbfbf;
+    text-decoration: none; }
   .television-card .card-head {
     width: 100%; }
     .television-card .card-head > img, .television-card .card-head a > img {
@@ -2229,4 +2312,5 @@ footer {
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      word-break: normal; }
+      word-break: normal;
+      text-decoration: inherit; }

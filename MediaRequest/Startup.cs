@@ -161,6 +161,8 @@ namespace MediaRequest
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("ShowMovie", "{{action}}/{{slug}}", new { controller = "Home" });
+                endpoints.MapControllerRoute("ShowSeries", "{{action}}/{{slug}}", new { controller = "Television" });
+
                 endpoints.MapControllerRoute("Search", "{{action}}/{term?}", new { controller = "Home" });
                 endpoints.MapControllerRoute("default", "{{action}}", new { controller = "Home" });
                 endpoints.MapDefaultControllerRoute();

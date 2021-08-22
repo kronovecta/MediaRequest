@@ -8,14 +8,52 @@
 
     @foreach (var show in Model)
     {
-        <div class="television-card">
+        var slug = $"{show.TvdbId}-{show.TitleSlug}";
+
+        <a class="television-card" asp-controller="television" asp-action="series" asp-route-slug="@slug">
             <div class="card-head">
+                <div class="status-container">
+
+
+                    @if (show.Monitored)
+                    {
+                        <span class="badge badge-sm badge-success">Monitored</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-sm badge-danger">Not Monitored</span>
+                    }
+
+                    
+
+                </div>
                 <img src="@show.Images.SingleOrDefault(x => x.CoverType.ToLower() == "poster")?.RemoteUrl" />
             </div>
             <div class="card-body">
                 <h2 class="title">@show.Title</h2>
+                <div class="d-block mb-1">
+                    @if (show.EpisodeFileCount > 0)
+                    {
+                        var episodeStatus = "";
+                        if (show.EpisodeFileCount == 0) { episodeStatus = "danger"; }
+                        else if (show.EpisodeFileCount < show.EpisodeCount) { episodeStatus = "warning"; }
+                        else if (show.EpisodeFileCount == show.EpisodeCount) { episodeStatus = "success"; };
+
+                        <span class="badge badge-sm badge-@episodeStatus">@show.EpisodeFileCount/@show.EpisodeCount</span>
+                    }
+
+                    @if (show.Status == "continuing")
+                    {
+                        <span class="badge badge-sm badge-success">Continuing</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-sm badge-danger">Ended</span>
+                    }
+                </div>
+
                 <p class="description">@show.Overview</p>
             </div>
-        </div>
+        </a>
     }
 </div>
