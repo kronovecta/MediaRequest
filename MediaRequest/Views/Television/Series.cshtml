@@ -1,4 +1,4 @@
-﻿@model MediaRequest.WebUI.ViewModels.Series.SeriesViewModel
+﻿@model MediaRequest.WebUI.ViewModels.Television.SeriesViewModel
 
 <div class="single-movie-container" id="main-container">
     <div class="hero-container">
@@ -48,18 +48,13 @@
         </div>
         <div class="body">
             @* Trailer Container *@
-            @*<div id="trailer-container"></div>
-            <nav class="page-nav">
-                <ul class="body-nav">
-                    <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TMDBId" id="credits" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Cast</a></li>
-                    <li><a asp-action="Recommendations" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TMDBId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Recommended</a></li>
-                </ul>
-            </nav>
+            @*<div id="trailer-container"></div>*@
             <div id="container">
                 <section class="details">
-                </section>
+                    <partial name="_CreditsPartial" model="Model.Cast" />
+                </section>  
             </div>
-            <div hidden class="loading"><img src="~/img/loading.gif" /></div>*@
+            <div hidden class="loading"><img src="~/img/loading.gif" /></div>
         </div>
     </section>
 </div>

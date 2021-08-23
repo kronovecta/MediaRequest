@@ -1,5 +1,6 @@
 ﻿using MediaRequest.Application.Queries.Television;
-using MediaRequest.WebUI.ViewModels.Series;
+using MediaRequest.Application.Queries.Television.TvMaze;
+using MediaRequest.WebUI.ViewModels.Television;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,11 +31,13 @@ namespace MediaRequest.WebUI.Controllers
         {
             var tvdbId = slug.Split('-').LastOrDefault();
 
-            var response = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
+            var series = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
+            var cast = await _mediator.Send(new GetSeriesCastRequest(series.Series.TvMazeId));
 
             var model = new SeriesViewModel()
             {
-                Series = response.Series
+                Series = series.Series,
+                Cast = new SeriesCreditViewModel(cast.Cast)
             };
 
             return View(model);

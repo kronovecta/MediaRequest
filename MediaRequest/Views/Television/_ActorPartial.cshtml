@@ -1,0 +1,17 @@
+﻿@model MediaRequest.Domain.API_Responses.TvMaze.CastMember
+
+@{ 
+    var slug = $"{Model.Person.Name.Replace(" ", "-").ToLower()}-{Model.Person.Id}";
+}
+
+<a asp-action="Actor" asp-controller="Television" asp-route-actorslug="@slug">
+    <li class="actor">
+        <img src="@Model.Person.Image.Medium" alt="Portrait">
+        <div class="info">
+            <div>
+                <h1>@Model.Person.Name</h1>
+                <h2>@Model.Character.Name</h2>
+            </div>
+        </div>
+    </li>
+</a>

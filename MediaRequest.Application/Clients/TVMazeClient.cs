@@ -13,20 +13,20 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Application.Clients
 {
-    public class SonarrClient : ICustomHttpClient
+    public class TVMazeClient : ICustomHttpClient
     {
         private readonly ApiKeys _apiKeys;
 
         public HttpClient Client { get; }
 
-        public SonarrClient(HttpClient httpClient, IOptions<ApiKeys> apiKeys)
+        public TVMazeClient(HttpClient httpClient, IOptions<ApiKeys> apiKeys)
         {
             Client = httpClient;
             _apiKeys = apiKeys.Value;
         }
 
-        public async Task<TResponseType> GetSonarrResponseSingle<TResponseType>(string url) 
-            where TResponseType : ISonarrType, new()
+        public async Task<TResponseType> GetSingle<TResponseType>(string url)
+            where TResponseType : IApolloType, new()
         {
             var res = await Client.GetAsync(url);
 
@@ -45,8 +45,8 @@ namespace MediaRequest.Application.Clients
             }
         }
 
-        public async Task<IEnumerable<TResponseType>> GetSonarrResponseCollection<TResponseType>(string url)
-            where TResponseType : ISonarrType
+        public async Task<IEnumerable<TResponseType>> GetCollection<TResponseType>(string url)
+            where TResponseType : IApolloType
         {
             var res = await Client.GetAsync(url);
 
@@ -57,7 +57,7 @@ namespace MediaRequest.Application.Clients
                 using (var stream = await res.Content.ReadAsStreamAsync())
                 {
                     return await JsonSerializer.DeserializeAsync<IEnumerable<TResponseType>>(stream, DefaultJsonSettings.Settings);
-                    
+
                 }
             }
             catch (Exception ex)
