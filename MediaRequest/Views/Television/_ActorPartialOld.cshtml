@@ -1,0 +1,16 @@
+﻿@model MediaRequest.Domain.TMDB.Cast
+
+@{ 
+    var slug = $"{Model.Name.Replace(" ", "-").ToLower()}-{Model.ID}";
+}
+
+<a asp-action="Actor" asp-controller="Television" asp-route-actorslug="@slug">
+    <li class="actor">
+        <div class="info">
+            <div>
+                <h1>@Model.Name</h1>
+                <h2>@Model.Character</h2>
+            </div>
+        </div>
+    </li>
+</a>

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MediaRequest.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace MediaRequest.Domain.API_Responses.TvMaze
 {
-    public class Person
+    public class Person : IApolloType
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

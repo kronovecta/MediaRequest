@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MediaRequest.Application.Queries.Find;
 using System.Threading.Tasks;
+using MediaRequest.Application.Queries.Movies;
 
 namespace MediaRequest.WebUI.Controllers
 {
@@ -29,15 +31,39 @@ namespace MediaRequest.WebUI.Controllers
         [Route("television/{slug}")]
         public async Task<IActionResult> Series(string slug)
         {
+            var model = new SeriesViewModel();
+
             var tvdbId = slug.Split('-').LastOrDefault();
 
-            var series = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
-            var cast = await _mediator.Send(new GetSeriesCastRequest(series.Series.TvMazeId));
-
-            var model = new SeriesViewModel()
+            var sonarrSeries = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
+            var tmdbSeries = await _mediator.Send(new SearchByExternalIdRequest() { Id = tvdbId, Source = ExternalSource.TVDB });
+            
+            if(sonarrSeries.Series != null)
             {
-                Series = series.Series,
-                Cast = new SeriesCreditViewModel(cast.Cast)
+                model.Series = sonarrSeries.Series;
+
+                if (tmdbSeries.Result.TvResults.Any())
+                {
+                    var cast = await _mediator.Send(new GetCreditsRequest() { TMDBId = tmdbSeries.Result.TvResults.FirstOrDefault()?.Id.ToString() });
+                    model.Cast = new SeriesCreditViewModel(cast.Credits.Cast);
+                }
+            }
+
+            return View(model);
+        }
+
+        [Route("television/actor/{slug}")]
+        public async Task<IActionResult> Actor(string slug)
+        {
+            var mazeId = slug.Split("-").LastOrDefault();
+
+            var actor = await _mediator.Send(new GetActorRequest(mazeId));
+            var credits = await _mediator.Send(new GetActorWithCreditsRequest(mazeId));
+
+            var model = new TelevisionActorViewModel()
+            {
+                Actor = actor.Actor,
+                Credits = credits.Credits
             };
 
             return View(model);

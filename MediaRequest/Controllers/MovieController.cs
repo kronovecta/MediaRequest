@@ -98,7 +98,7 @@ namespace MediaRequest.Controllers
             var model = new ActorViewModel
             {
                 Actor = response.Actor,
-                PopularMovies = m
+                //PopularMovies = m
             };
 
             return View(model);

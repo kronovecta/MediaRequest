@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Movie = MediaRequest.Domain.API_Responses.TMDB.Movie;
 
 namespace MediaRequest.WebUI.ViewModels
 {
