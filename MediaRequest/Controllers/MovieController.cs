@@ -8,7 +8,9 @@ using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.People.GetCombinedMedia;
 using MediaRequest.Application.Queries.People.GetPopularMovies;
 using MediaRequest.Application.Queries.Requests.GetSingleRequest;
+using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
+using MediaRequest.Domain.Interfaces;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediaRequest.WebUI.ViewModels;
@@ -98,10 +100,23 @@ namespace MediaRequest.Controllers
             var model = new ActorViewModel
             {
                 Actor = response.Actor,
-                //PopularMovies = m
             };
 
             return View(model);
+        }
+
+        private async Task<IEnumerable<IMediaType>> GetPreviousWorks(string actorId)
+        {
+            var movies = await _mediator.Send(new GetPopularMoviesRequest { ActorId = actorId, MediaType = MediaType.Movie });
+            var series = await _mediator.Send(new GetPopularMoviesRequest { ActorId = actorId, MediaType = MediaType.Tv });
+
+            var joined = new List<IMediaType>();
+            joined.Concat(movies.Movies as IEnumerable<IMediaType>);
+            joined.Concat(series.Movies as IEnumerable<IMediaType>);
+
+            joined.OrderBy(x => x.)
+
+            return joined;
         }
     }
 }

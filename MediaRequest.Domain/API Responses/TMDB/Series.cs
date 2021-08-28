@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaRequest.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -129,7 +130,7 @@ namespace MediaRequest.Domain.API_Responses.TMDB
         public int SeasonNumber { get; set; }
     }
 
-    public class Series
+    public class Series : IMediaType
     {
         [JsonPropertyName("backdrop_path")]
         public string BackdropPath { get; set; }

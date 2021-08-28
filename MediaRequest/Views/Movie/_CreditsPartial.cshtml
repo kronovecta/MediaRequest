@@ -3,7 +3,7 @@
 <section class="cast">
     <h1>Top billed cast</h1>
     <ul class="top-billed">
-        @foreach (var item in Model.Credits.TopBilled)
+        @foreach (var item in Model.TopBilled)
         {
             <partial name="_ActorPartial" , model="@item" />
         }
@@ -11,14 +11,14 @@
 
     <h1>Cast</h1>
     <ul class="cast-list">
-        @foreach (var item in Model.Credits.Cast)
+        @foreach (var item in Model.Cast)
         {
             <partial name="_ActorPartial" , model="@item" />
         }
 
-        @if (!(Model.Credits.Cast.Count < 9))
+        @if (!(Model.Cast.Count < 9))
         {
-            if (Model.Credits.Cast.Count > 9)
+            if (Model.Cast.Count > 9)
             {
                 <li class="loadmore"><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.TMDBId" asp-route-amount="0" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Show less</a></li>
             }

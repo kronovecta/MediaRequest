@@ -15,6 +15,7 @@ namespace MediaRequest.Domain.TMDB
         public string Name { get; set; }
         public int Order { get; set; }
         public string Profile_path { get; set; }
+        public string PortraitPath => "https://image.tmdb.org/t/p/w200" + Profile_path;
 
         // Generates a slug
         [JsonIgnore]
@@ -41,13 +42,7 @@ namespace MediaRequest.Domain.TMDB
     public class Credits
     {
         public int Id { get; set; }
-        public List<Cast> TopBilled { get; set; }
         public List<Cast> Cast { get; set; }
         public List<Crew> Crew { get; set; }
-
-        public Credits()
-        {
-            TopBilled = new List<Cast>();
-        }
     }
 }

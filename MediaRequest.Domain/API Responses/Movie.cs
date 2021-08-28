@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaRequest.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Domain.Radarr
 {
-    public class Movie
+    public class Movie : IMediaType
     {
         public int Id { get; set; }
         public string Title { get; set; }

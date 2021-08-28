@@ -3,6 +3,7 @@ using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
 using MediaRequest.Application.Queries.Movies.GetTMDBContent;
+using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
 using Microsoft.Extensions.Options;
 using System;
@@ -59,7 +60,7 @@ namespace MediaRequest.Application
 
         public async Task<HttpResponseMessage> GetCast(GetCreditsRequest request)
         {
-            return await _tmdbClient.Client.GetAsync($"movie/{request.TMDBId}/credits?api_key=" + _keys.TMDB);
+            return await _tmdbClient.Client.GetAsync($"{request.MediaType.ToString().ToLower()}/{request.TMDBId}/credits?api_key=" + _keys.TMDB);
         }
 
         public async Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request)
@@ -84,9 +85,9 @@ namespace MediaRequest.Application
             return await _tmdbClient.Client.GetAsync("person/" + actorid + "/movie_credits?api_key=" + _keys.TMDB);
         }
 
-        public async Task<HttpResponseMessage> GetPopularMovies(string actorid)
+        public async Task<HttpResponseMessage> GetPopularMovies(string actorid, MediaType mediaType = MediaType.Movie)
         {
-            return await _tmdbClient.Client.GetAsync($"discover/movie?with_cast={actorid}&sort_by=popularity.desc&api_key={_keys.TMDB}");
+            return await _tmdbClient.Client.GetAsync($"discover/{mediaType}?with_cast={actorid}&sort_by=popularity.desc&api_key={_keys.TMDB}");
         }
 
         public async Task<HttpResponseMessage> GetTMDBMedia(GetTMDBMediaRequest request)

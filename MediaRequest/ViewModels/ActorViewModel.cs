@@ -1,5 +1,6 @@
 ﻿using MediaRequest.Domain.API_Responses;
 using MediaRequest.Domain.API_Responses.TMDB;
+using MediaRequest.Domain.Interfaces;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Domain.TMDB;
 using System;
@@ -14,5 +15,6 @@ namespace MediaRequest.WebUI.ViewModels
     {
         public Actor Actor { get; set; }
         public IEnumerable<Movie> PopularMovies { get; set; }
+        public IEnumerable<IMediaType> PreviousWorks { get; set; }
     }
 }

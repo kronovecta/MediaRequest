@@ -44,7 +44,7 @@ namespace MediaRequest.WebUI.Controllers
 
                 if (tmdbSeries.Result.TvResults.Any())
                 {
-                    var cast = await _mediator.Send(new GetCreditsRequest() { TMDBId = tmdbSeries.Result.TvResults.FirstOrDefault()?.Id.ToString() });
+                    var cast = await _mediator.Send(new GetCreditsRequest() { TMDBId = tmdbSeries.Result.TvResults.FirstOrDefault()?.Id.ToString(), MediaType = Domain.MediaType.Tv });
                     model.Cast = new SeriesCreditViewModel(cast.Credits.Cast);
                 }
             }

@@ -2,9 +2,9 @@
 
 <a asp-action="Actor" asp-controller="Movie" asp-route-actorslug="@Model.Slug">
     <li class="actor">
-        @if (Model.Profile_path.Contains(".jpg") || Model.Profile_path.Contains(".png") || Model.Profile_path.Contains(".gif"))
+        @if (Model.PortraitPath.Contains(".jpg") || Model.PortraitPath.Contains(".png") || Model.PortraitPath.Contains(".gif"))
         {
-            <img src="@Model.Profile_path" alt="Portrait">
+            <img src="@Model.PortraitPath" alt="Portrait">
         }
         <div class="info">
             <div>
