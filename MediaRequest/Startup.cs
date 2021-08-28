@@ -33,7 +33,7 @@ namespace MediaRequest
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddJsonFile($"settings.json", false, true)
-                .AddYamlFile("settings.yaml", false, true)
+                .AddYamlFile("settings.yaml", true, true)
                 .AddEnvironmentVariables(prefix: "Apollo_")
                 .AddUserSecrets<Startup>();
 
