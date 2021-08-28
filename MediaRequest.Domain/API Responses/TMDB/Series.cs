@@ -166,7 +166,7 @@ namespace MediaRequest.Domain.API_Responses.TMDB
         public LastEpisodeToAir LastEpisodeToAir { get; set; }
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [JsonPropertyName("next_episode_to_air")]
         public NextEpisodeToAir NextEpisodeToAir { get; set; }

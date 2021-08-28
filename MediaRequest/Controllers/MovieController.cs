@@ -114,7 +114,7 @@ namespace MediaRequest.Controllers
             joined.Concat(movies.Movies as IEnumerable<IMediaType>);
             joined.Concat(series.Movies as IEnumerable<IMediaType>);
 
-            joined.OrderBy(x => x.)
+            //joined.OrderBy(x => x.)
 
             return joined;
         }

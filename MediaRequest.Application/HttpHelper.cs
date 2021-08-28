@@ -3,6 +3,7 @@ using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
 using MediaRequest.Application.Queries.Movies.GetTMDBContent;
+using MediaRequest.Application.Queries.People.GetPopularMovies;
 using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
 using Microsoft.Extensions.Options;
@@ -50,6 +51,11 @@ namespace MediaRequest.Application
         {
             return await _radarrClient.Client.GetAsync($"api/movie/{request.RadarrMovieId}?apikey={_keys.Radarr}");
         }
+
+        public async Task<HttpResponseMessage> GetPopularMovies(string actorid)
+        {
+            return await _radarrClient.Client.GetAsync($"api/movie/{actorid}?apikey={_keys.Radarr}");
+        }
         #endregion
 
         #region Misc
@@ -60,7 +66,15 @@ namespace MediaRequest.Application
 
         public async Task<HttpResponseMessage> GetCast(GetCreditsRequest request)
         {
-            return await _tmdbClient.Client.GetAsync($"{request.MediaType.ToString().ToLower()}/{request.TMDBId}/credits?api_key=" + _keys.TMDB);
+            switch (request.MediaType)
+            {
+                case MediaType.Movie:
+                    return await _tmdbClient.Client.GetAsync($"{request.MediaType.ToString().ToLower()}/{request.TMDBId}/credits");
+                case MediaType.Tv:
+                    return await _tmdbClient.Client.GetAsync($"{request.MediaType.ToString().ToLower()}/{request.TMDBId}/aggregate_credits");
+                default:
+                    throw new GetCreditsException("There was an error retrieving the cast for the given title");
+            }
         }
 
         public async Task<HttpResponseMessage> GetRecommended(GetRecommendedRequest request)

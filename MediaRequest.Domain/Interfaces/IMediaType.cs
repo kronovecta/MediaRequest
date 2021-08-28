@@ -6,5 +6,6 @@ namespace MediaRequest.Domain.Interfaces
 {
     public interface IMediaType
     {
+        string Title { get; set; }
     }
 }
