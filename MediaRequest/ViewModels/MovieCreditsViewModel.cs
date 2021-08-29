@@ -10,13 +10,17 @@ namespace MediaRequest.WebUI.ViewModels
     {
         public string TMDBId { get; set; }
         public Credits Credits { get; set; }
-        public List<Cast> Cast { get; set; }
-        public List<Cast> TopBilled { get; set; }
+        public IEnumerable<Cast> Cast { get; set; }
+        public IEnumerable<Crew> Crew { get; set; }
+        public IEnumerable<Cast> TopBilled { get; set; }
 
-        public MovieCreditsViewModel()
+        public MovieCreditsViewModel(Credits sourceCast)
         {
-            TopBilled = Credits.Cast.GetRange(0, Credits.Cast.Count >= 5 ? 5 : Credits.Cast.Count);
-            Cast = Credits.Cast;
+            var amount = sourceCast.Cast.Count >= 5 ? 5 : Credits.Cast.Count;
+
+            TopBilled = sourceCast.Cast.GetRange(0, amount);
+            Cast = sourceCast.Cast.Skip(amount);
+            Crew = sourceCast.Crew;
         }
     }
 }

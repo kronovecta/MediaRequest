@@ -20,6 +20,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -31,14 +32,17 @@ namespace MediaRequest.Controllers
     {
         private readonly IMediator _mediator;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IMemoryCache _memoryCache;
 
-        public MovieController(IMediator mediator, UserManager<ApplicationUser> userManager)
+        public MovieController(IMediator mediator, UserManager<ApplicationUser> userManager, IMemoryCache memoryCache)
         {
             _mediator = mediator;
             _userManager = userManager;
+            _memoryCache = memoryCache;
         }
 
         [Route("movie/{slug}")]
+        [ResponseCache(Duration = 180, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> Show(string slug)
         {
             var result = await _mediator.Send(new GetSingleMovieRequest() { TmdbId = slug.Split('-').Last() });
@@ -67,8 +71,7 @@ namespace MediaRequest.Controllers
         public async Task<IActionResult> Credits(string tmdbid, int? amount)
         {
             var response = await _mediator.Send(new GetCreditsRequest { TMDBId = tmdbid, Amount = amount ?? 0 });
-
-            var model = new MovieCreditsViewModel { Credits = response.Credits, TMDBId = tmdbid };
+            var model = new MovieCreditsViewModel(response.Credits) { TMDBId = tmdbid };
 
             return PartialView("_CreditsPartial", model);
         }
