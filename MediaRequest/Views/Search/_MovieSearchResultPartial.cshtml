@@ -60,7 +60,7 @@
 
                 <section class="button-container">
 
-                    <a class="btn btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.Movie.TitleSlug"><i class="fas fa-film"></i> Go to movie page</a>
+                    <a class="btn btn-primary" asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Movie.TitleSlug"><i class="fas fa-film"></i> Go to movie page</a>
                     @if (item.Exists)
                     {
                         if (!item.Monitored || !item.Downloaded)

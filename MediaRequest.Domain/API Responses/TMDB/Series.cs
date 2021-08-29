@@ -130,7 +130,7 @@ namespace MediaRequest.Domain.API_Responses.TMDB
         public int SeasonNumber { get; set; }
     }
 
-    public class Series : IMediaType
+    public class Series : IApolloType, IMediaType
     {
         [JsonPropertyName("backdrop_path")]
         public string BackdropPath { get; set; }

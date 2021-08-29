@@ -41,7 +41,7 @@ namespace MediaRequest.WebUI.Controllers
 
             if (await _context.Request.Where(x => x.UserId == currentUser.Id && x.MovieId == tmdbid).CountAsync() > 0)
             {
-                return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+                return RedirectToAction("Show", "Movie", new { slug = movie.Movie.TitleSlug });
             }
                 
             var command = new AddRequestCommand
@@ -55,7 +55,7 @@ namespace MediaRequest.WebUI.Controllers
             };
 
             await _mediator.Send(command);
-            return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+            return RedirectToAction("Show", "Movie", new { slug = movie.Movie.TitleSlug });
         }
 
         public async Task<IActionResult> ApproveRequest(string id)

@@ -1,6 +1,6 @@
 ﻿@model MediaRequest.Domain.Radarr.Movie
 
-<a class="calendar-event-container" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.TitleSlug">
+<a class="calendar-event-container" asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.TitleSlug">
     <div class="calendar-event">
         @*<div class="poster-container">
             <img src="@Model.PosterUrl" />

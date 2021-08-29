@@ -1,8 +1,0 @@
-﻿@model MediaRequest.WebUI.ViewModels.Television.TelevisionActorViewModel
-
-<h1>@Model.Actor.Name</h1>
-
-@foreach (var credit in Model.Credits)
-{
-	<h2>@credit.Embedded.Show.Name</h2>
-}

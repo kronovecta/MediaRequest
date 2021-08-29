@@ -1,0 +1,34 @@
+﻿@model MediaRequest.WebUI.ViewModels.ActorViewModel
+
+<div class="container actor-container">
+    <h1 class="actor-name">@Model.Actor.name</h1>
+    <div class="actor-head">
+        <img src="@Model.Actor.profile_path" />
+        <div class="actor-info">
+            <pre>@Model.Actor.biography</pre>
+        </div>
+    </div>
+    <div class="actor-body">
+        <div class="request-container">
+            @*@foreach (var movie in Model.PopularMovies)
+            {
+                @await Component.InvokeAsync("MovieCard", new { maxPriority = 1, isDone = false, movieId = movie.Id.ToString() });
+            }*@
+
+            @foreach (var item in Model.PreviousWorks.Cast)
+            {
+                <div class="request-card">
+                    <a asp-action="Show" asp-controller="@(item.MediaType == "movie" ? "movie" : "television")" asp-route-slug="@item.Slug">
+                        <div class="request-card-head">
+                            <img src="@item.Poster" />
+                        </div>
+                        <div class="request-card-body">
+                            <h2 class="title">@item.ItemName</h2>
+                            <p class="description">@item.Overview</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

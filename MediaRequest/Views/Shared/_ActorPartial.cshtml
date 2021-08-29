@@ -1,6 +1,6 @@
 ﻿@model MediaRequest.Domain.TMDB.Cast
 
-<a asp-action="Actor" asp-controller="Movie" asp-route-actorslug="@Model.Slug">
+<a asp-action="Actor" asp-controller="Actor" asp-route-slug="@Model.Slug">
     <li class="actor">
         @if (Model.PortraitPath.Contains(".jpg") || Model.PortraitPath.Contains(".png") || Model.PortraitPath.Contains(".gif"))
         {

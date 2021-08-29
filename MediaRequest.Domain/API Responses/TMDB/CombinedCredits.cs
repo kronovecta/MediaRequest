@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaRequest.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -8,6 +9,8 @@ namespace MediaRequest.Domain.API_Responses.TMDB
     // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
     public class Cast
     {
+        public string ItemName => Title ?? OriginalTitle ?? Name ?? string.Empty;
+
         [JsonPropertyName("adult")]
         public bool Adult { get; set; }
 
@@ -38,6 +41,9 @@ namespace MediaRequest.Domain.API_Responses.TMDB
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
         [JsonPropertyName("video")]
         public bool Video { get; set; }
 
@@ -61,6 +67,16 @@ namespace MediaRequest.Domain.API_Responses.TMDB
 
         [JsonPropertyName("media_type")]
         public string MediaType { get; set; }
+        
+        [JsonIgnore]
+        public string Poster => "https://image.tmdb.org/t/p/w400" + PosterPath;
+
+        [JsonIgnore]
+        public string Backdrop => "https://image.tmdb.org/t/p/w400" + BackdropPath;
+
+        // Generates a slug
+        [JsonIgnore]
+        public string Slug => string.Format("{0}-{1}", ItemName.ToLower().Replace(" ", "-"), Id);
     }
 
     public class Crew
@@ -135,7 +151,7 @@ namespace MediaRequest.Domain.API_Responses.TMDB
         public int? EpisodeCount { get; set; }
     }
 
-    public class CombinedCredits
+    public class CombinedCredits : IApolloType
     {
         [JsonPropertyName("cast")]
         public List<Cast> Cast { get; set; }

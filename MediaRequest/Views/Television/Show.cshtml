@@ -2,39 +2,39 @@
 
 <div class="single-movie-container" id="main-container">
     <div class="hero-container">
-        <img class="background" src="@(Model.Series.Images.SingleOrDefault(x => x.CoverType == "fanart").Url)" />
+        <img class="background" src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "fanart").Url)" />
     </div>
     <section class="container">
         <div class="head">
             <div class="poster">
-                <img src="@(Model.Series.Images.SingleOrDefault(x => x.CoverType == "poster").Url)">
+                <img src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "poster").Url)">
             </div>
             <div class="info">
                 <div class="title">
-                    <h1 style="color:#222;">@Model.Series.Title</h1>
+                    <h1 style="color:#222;">@Model.SonarrSeries.Title</h1>
                     <div class="trivia">
                         <ul>
-                            <li>@Model.Series.Year</li>
+                            <li>@Model.SonarrSeries.Year</li>
                         </ul>
                         <ul>
-                            @foreach (var genre in Model.Series.Genres)
+                            @foreach (var genre in Model.SonarrSeries.Genres)
                             {
                                 <li>@genre</li>
                             }
                         </ul>
                         <ul>
-                            <li>@Model.Series.Runtime minutes</li>
+                            <li>@Model.SonarrSeries.Runtime minutes</li>
                         </ul>
                     </div>
                 </div>
 
-                <p class="overview">@Model.Series.Overview</p>
+                <p class="overview">@Model.SonarrSeries.Overview</p>
 
                 <div class="ratings">
                     <span title="The Movie Database rating">
                         <i class="fas fa-star"></i>
-                        <span class="rating">@(Model.Series.Ratings.Value % 1 != 0 ? Model.Series.Ratings.Value.ToString() : Model.Series.Ratings.Value.ToString() + ",0")</span>
-                        <span class="totalvotes">/ @Model.Series.Ratings.Votes votes</span>
+                        <span class="rating">@(Model.SonarrSeries.Ratings.Value % 1 != 0 ? Model.SonarrSeries.Ratings.Value.ToString() : Model.SonarrSeries.Ratings.Value.ToString() + ",0")</span>
+                        <span class="totalvotes">/ @Model.SonarrSeries.Ratings.Votes votes</span>
                     </span>
                 </div>
 
@@ -56,7 +56,7 @@
             </div>
             <div hidden class="loading"><img src="~/img/loading.gif" /></div>
 
-            @foreach (var season in Model.Series.Seasons)
+            @foreach (var season in Model.SonarrSeries.Seasons)
 	        {
 	            <div style="border:1px solid lightgrey;padding:2rem;border-radius:25px">
                     <h3>Season @season.SeasonNumber</h3>

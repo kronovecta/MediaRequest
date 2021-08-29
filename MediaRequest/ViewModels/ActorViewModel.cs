@@ -15,6 +15,6 @@ namespace MediaRequest.WebUI.ViewModels
     {
         public Actor Actor { get; set; }
         public IEnumerable<Movie> PopularMovies { get; set; }
-        public IEnumerable<IMediaType> PreviousWorks { get; set; }
+        public CombinedCreditsViewModel PreviousWorks { get; set; }
     }
 }

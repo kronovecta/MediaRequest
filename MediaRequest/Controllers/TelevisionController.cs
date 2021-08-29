@@ -29,44 +29,52 @@ namespace MediaRequest.WebUI.Controllers
         }
 
         [Route("television/{slug}")]
-        public async Task<IActionResult> Series(string slug)
+        public async Task<IActionResult> Show(string slug)
         {
-            var model = new SeriesViewModel();
 
             var tvdbId = slug.Split('-').LastOrDefault();
 
             var sonarrSeries = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
-            var tmdbSeries = await _mediator.Send(new SearchByExternalIdRequest() { Id = tvdbId, Source = ExternalSource.TVDB });
-            
-            if(sonarrSeries.Series != null)
-            {
-                model.Series = sonarrSeries.Series;
+            var tmdbLookup = await _mediator.Send(new SearchByExternalIdRequest() { Id = tvdbId, Source = ExternalSource.TVDB });
 
-                if (tmdbSeries.Result.TvResults.Any())
-                {
-                    var cast = await _mediator.Send(new GetCreditsRequest() { TMDBId = tmdbSeries.Result.TvResults.FirstOrDefault()?.Id.ToString(), MediaType = Domain.MediaType.Tv });
-                    model.Cast = new SeriesCreditViewModel(cast.Credits.Cast);
-                }
+            var tmdbId = tmdbLookup.Result.TvResults.FirstOrDefault()?.Id.ToString();
+
+            var tmdbSeries = await _mediator.Send(new MediaRequest.Application.Queries.TMDB.GetSingleSeriesRequest(tmdbId));
+            var cast = await _mediator.Send(new GetCreditsRequest() { TMDBId = tmdbSeries.Series.Id.ToString(), MediaType = Domain.MediaType.Tv });
+
+            var model = new SeriesViewModel();
+
+            if (sonarrSeries.Series != null)
+            {
+                model.SonarrSeries = sonarrSeries.Series;
+                model.TmdbSeries = tmdbSeries.Series;
+                model.Cast = new SeriesCreditViewModel(cast.Credits.Cast);
+
+                //if (tmdbLookup.Result.TvResults.Any())
+                //{
+                //    var cast = await _mediator.Send(new GetCreditsRequest() { TMDBId = tmdbSeries.Result.TvResults.FirstOrDefault()?.Id.ToString(), MediaType = Domain.MediaType.Tv });
+                //    model.Cast = new SeriesCreditViewModel(cast.Credits.Cast);
+                //}
             }
 
             return View(model);
         }
 
-        [Route("television/actor/{slug}")]
-        public async Task<IActionResult> Actor(string slug)
-        {
-            var mazeId = slug.Split("-").LastOrDefault();
+        //[Route("television/actor/{slug}")]
+        //public async Task<IActionResult> Actor(string slug)
+        //{
+        //    var mazeId = slug.Split("-").LastOrDefault();
 
-            var actor = await _mediator.Send(new GetActorRequest(mazeId));
-            var credits = await _mediator.Send(new GetActorWithCreditsRequest(mazeId));
+        //    var actor = await _mediator.Send(new GetActorRequest(mazeId));
+        //    var credits = await _mediator.Send(new GetActorWithCreditsRequest(mazeId));
 
-            var model = new TelevisionActorViewModel()
-            {
-                Actor = actor.Actor,
-                Credits = credits.Credits
-            };
+        //    var model = new TelevisionActorViewModel()
+        //    {
+        //        Actor = actor.Actor,
+        //        Credits = credits.Credits
+        //    };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
     }
 }

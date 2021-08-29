@@ -40,19 +40,12 @@ namespace MediaRequest.Application.Queries.Find
         public async Task<SearchByExternalIdResponse> Handle(SearchByExternalIdRequest request, CancellationToken cancellationToken)
         {
             var result = await _tmdbClient.GetSingle<FindResult>($"find/{request.Id}?external_source=tvdb_id");
-            var model = new SearchByExternalIdResponse() { Result = result };
+            var model = new SearchByExternalIdResponse()
+            {
+                Result = result
+            };
 
             return model;
-
-            //if (result.Any())
-            //{
-            //    model.Result = model.Result;   
-            //    return model;
-            //} else
-            //{
-            //    model.Result = new FindResult();
-            //    return model;
-            //}
         }
     }
 }

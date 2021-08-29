@@ -2,10 +2,10 @@
 
 <div class="request-card">
     <div class="request-card-head">
-        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><img src="@Model.Movie.FanartUrl" /></a>
+        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><img src="@Model.Movie.FanartUrl" /></a>
     </div>
     <div class="request-card-body">
-        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><h2 class="title">@Model.Movie.Title</h2></a>
+        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug"><h2 class="title">@Model.Movie.Title</h2></a>
         <p class="description">@Model.Movie.Overview</p>
 
     </div>
