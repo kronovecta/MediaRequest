@@ -9,11 +9,8 @@
         </div>
     </div>
     <div class="actor-body">
+        <h2>Known from</h2>
         <div class="request-container">
-            @*@foreach (var movie in Model.PopularMovies)
-            {
-                @await Component.InvokeAsync("MovieCard", new { maxPriority = 1, isDone = false, movieId = movie.Id.ToString() });
-            }*@
 
             @foreach (var item in Model.PreviousWorks.Cast)
             {

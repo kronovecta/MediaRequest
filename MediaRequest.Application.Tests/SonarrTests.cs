@@ -40,7 +40,7 @@ namespace MediaRequest.Application.Tests
         {
             // Assert
             var request = new GetAllSeriesRequest();
-            var handler = new GetAllSeriesHandler(_apiKeys, _servicePath, _sonarrClient);
+            var handler = new GetAllSeriesHandler(_sonarrClient);
 
             // Act
             var response = await handler.Handle(request, new System.Threading.CancellationToken());

@@ -1,4 +1,5 @@
-﻿using MediaRequest.Application.Queries.Television;
+﻿using MediaRequest.WebUI.Business.Extensions;
+using MediaRequest.Application.Queries.Television;
 using MediaRequest.Application.Queries.Television.TvMaze;
 using MediaRequest.WebUI.ViewModels.Television;
 using MediatR;

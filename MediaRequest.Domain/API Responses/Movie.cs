@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Domain.Radarr
 {
-    public class Movie : IMediaType
+    public class Movie : IRadarrType
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -52,7 +52,8 @@ namespace MediaRequest.Domain.Radarr
         {
             get
             {
-                var stripped = Regex.Replace(Title.ToLower(), "[^a-zA-Z0-9_\\-.]+", "-", RegexOptions.Compiled);
+                var stripped = Regex.Replace(Title.ToLower(), "[^A-Za-z0-9 ]+", "-", RegexOptions.Compiled);
+                
                 return string.Format("{0}-{1}", stripped, TMDBId);
             }
         }

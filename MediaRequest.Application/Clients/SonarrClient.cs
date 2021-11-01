@@ -13,57 +13,10 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Application.Clients
 {
-    public class SonarrClient : ICustomHttpClient
+    public class SonarrClient : ClientBase<IRadarrType>, ICustomHttpClient
     {
-        private readonly ApiKeys _apiKeys;
-
-        public HttpClient Client { get; }
-
-        public SonarrClient(HttpClient httpClient, IOptions<ApiKeys> apiKeys)
+        public SonarrClient(HttpClient httpClient) : base(httpClient)
         {
-            Client = httpClient;
-            _apiKeys = apiKeys.Value;
-        }
-
-        public async Task<TResponseType> GetSonarrResponseSingle<TResponseType>(string url) 
-            where TResponseType : ISonarrType, new()
-        {
-            var res = await Client.GetAsync(url);
-
-            try
-            {
-                res.EnsureSuccessStatusCode();
-
-                using (var stream = await res.Content.ReadAsStreamAsync())
-                {
-                    return await JsonSerializer.DeserializeAsync<TResponseType>(stream, DefaultJsonSettings.Settings);
-                }
-            }
-            catch (Exception ex)
-            {
-                return new TResponseType();
-            }
-        }
-
-        public async Task<IEnumerable<TResponseType>> GetSonarrResponseCollection<TResponseType>(string url)
-            where TResponseType : ISonarrType
-        {
-            var res = await Client.GetAsync(url);
-
-            try
-            {
-                res.EnsureSuccessStatusCode();
-
-                using (var stream = await res.Content.ReadAsStreamAsync())
-                {
-                    return await JsonSerializer.DeserializeAsync<IEnumerable<TResponseType>>(stream, DefaultJsonSettings.Settings);
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<TResponseType>();
-            }
         }
     }
 }

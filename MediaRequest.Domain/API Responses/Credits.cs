@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MediaRequest.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace MediaRequest.Domain.TMDB
 {
-    public class Cast
+    public class Cast : ICreditObject
     {
         public int Cast_Id { get; set; }
         public string Character { get; set; }
@@ -28,7 +29,7 @@ namespace MediaRequest.Domain.TMDB
         }
     }
 
-    public class Crew
+    public class Crew : ICreditObject
     {
         public string Credit_id { get; set; }
         public string Department { get; set; }

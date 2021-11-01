@@ -1,4 +1,5 @@
-﻿using MediaRequest.Domain.Interfaces;
+﻿using MediaRequest.Domain.API_Responses.Shared;
+using MediaRequest.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

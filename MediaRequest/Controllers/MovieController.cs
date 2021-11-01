@@ -49,7 +49,7 @@ namespace MediaRequest.Controllers
             var existing = await _mediator.Send(new GetExistingMoviesRequest());
             var currentUser = _userManager.GetUserId(User);
 
-            if (existing.Movies.Any(x => x.TMDBId == result.Movie.TMDBId))
+            if (existing.Movies.Any(x => x.TmdbId == result.Movie.TMDBId))
             {
                 result.Movie.AlreadyAdded = true;
             }

@@ -77,14 +77,19 @@ namespace MediaRequest
             #endregion
 
             #region HTTP Clients
-            services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
+            //services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
             services.AddHttpClient<TVMazeClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TvMaze").Value));
 
             services.AddHttpClient<TMDBClient>(client => {
                 client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value);
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZjc0NjY2ZmU2YzJhZGMxYWZjMGNjOTMxYTk2YjI1OCIsInN1YiI6IjU5Nzc5OWExYzNhMzY4NGE4NDAwYTljZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WAYML-XCKZ7370Lmkyd5_I4BZxH3BlSqNhnjaTRDUu8");
             });
-            
+
+            services.AddHttpClient<RadarrClient>(client => {
+                client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value);
+                client.DefaultRequestHeaders.Add("X-Api-Key", Configuration.GetSection("ApiKeys:Radarr").Value);
+            });
+
             services.AddHttpClient<SonarrClient>(client => {
                 client.BaseAddress = new Uri(Configuration.GetSection("Path:Sonarr").Value);
                 client.DefaultRequestHeaders.Add("X-Api-Key", Configuration.GetSection("ApiKeys:Sonarr").Value);

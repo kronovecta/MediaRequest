@@ -1,4 +1,8 @@
 ﻿using MediaRequest.Application.Queries.Movies;
+using MediaRequest.Application.Queries.Movies.GetHistory;
+using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
+using MediaRequest.Application.Queries.Television.Sonarr;
+using MediaRequest.Domain.API_Responses.Shared;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Models;
 using MediaRequest.WebUI.ViewModels;
@@ -10,6 +14,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
@@ -31,26 +36,44 @@ namespace MediaRequest.Controllers
         [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> Index()
         {
-            GetExistingMoviesResponse response = new GetExistingMoviesResponse();
+            var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(60));
 
-            if (!_memoryCache.TryGetValue("_ExistingMovies", out response))
+            var existingMovies = new GetExistingMoviesResponse();
+            var radarrHistory = new GetHistoryResponse();
+
+            var latestEpisode = new GetLatestEpisodeResponse();
+
+            if (!_memoryCache.TryGetValue("_ExistingMovies", out existingMovies))
             {
-                response = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
-                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(60));
-
-                _memoryCache.Set("_ExistingMovies", response, cacheEntryOptions);
+                existingMovies = await _mediator.Send(new GetExistingMoviesRequest() { Amount = 10 });
+                _memoryCache.Set("_ExistingMovies", existingMovies, cacheEntryOptions);
             }
+
+            if (!_memoryCache.TryGetValue("_LatestMovie", out radarrHistory))
+            {
+                radarrHistory = await _mediator.Send(new GetHistoryRequest { Order = Order.desc, Page = 1, PageSize = 20 });
+                _memoryCache.Set("_LatestMovie", radarrHistory.History, cacheEntryOptions);
+            }
+
+            if (!_memoryCache.TryGetValue("_LatestEpisode", out latestEpisode))
+            {
+                latestEpisode = await _mediator.Send(new GetLatestEpisodeRequest() { Order = Order.desc, PageSize = 1 });
+                _memoryCache.Set("_LatestEpisode", latestEpisode.History, cacheEntryOptions);
+            }
+
+            var latestMovie = await _mediator.Send(new GetSingleExistingMovieRequest { RadarrMovieId = radarrHistory.History.Records.FirstOrDefault(x => x.EventType == "downloadFolderImported").MovieId.ToString() });
 
             var model = new IndexViewModel()
             {
-                LatestMovie = response.LatestMovie,
+                LatestMovie = latestMovie.Movie,
+                LatestSeries = latestEpisode.History,
                 PartialView = new IndexListPartialViewModel
                 {
                     Term = "",
                     FilterMode = 0,
-                    Movies = response.Movies,
-                    TotalPages = response.TotalPages,
-                    CurrentPage = response.CurrentPage
+                    Movies = existingMovies.Movies,
+                    TotalPages = existingMovies.TotalPages,
+                    CurrentPage = existingMovies.CurrentPage
                 }
             };
 

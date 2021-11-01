@@ -39,7 +39,7 @@
         {
             <div class="movie-container">
                 <div class="movie-poster">
-                    @if (item.RemotePoster != null)
+                    @if (item.PosterUrl != null)
                     {
                         <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.TitleSlug">
                             <img src="@item.PosterUrl" />
@@ -79,16 +79,16 @@
 
                                 }
 
-                                @if (!item.Monitored && !item.Downloaded)
+                                @if (!item.Monitored && !item.HasFile)
                                 {
                                     <span class="badge badge-danger">Not Monitored</span>
                                 }
 
-                                @if (!item.Downloaded && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
+                                @if (!item.HasFile && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
                                 {
                                     <span class="badge badge-danger">Not Downloaded</span>
                                 }
-                                else if (item.Downloaded)
+                                else if (item.HasFile)
                                 {
                                     <span class="badge badge-success">Downloaded</span>
                                 }
@@ -109,7 +109,7 @@
                         <a class="btn-sm btn-primary" asp-action="Show" asp-controller="Movie" asp-route-slug="@item.TitleSlug"><span><i class="fas fa-film"></i> Go to movie page</span></a>
                         @if (item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
                         {
-                            if ((!item.Monitored && !item.Downloaded) || !item.Downloaded)
+                            if ((!item.Monitored && !item.HasFile) || !item.HasFile)
                             {
                                 <a class="btn-sm btn-default" href="#"><span><i class="fas fa-redo"></i> Request re-download</span></a>
                             }

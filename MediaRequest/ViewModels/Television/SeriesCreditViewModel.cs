@@ -1,5 +1,6 @@
 ﻿using MediaRequest.Domain.API_Responses.TvMaze;
 using MediaRequest.Domain.TMDB;
+using MediaRequest.WebUI.Business.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace MediaRequest.WebUI.ViewModels.Television
         private IEnumerable<Cast> _cast;
         private IEnumerable<Cast> _topBilled;
 
-        public SeriesCreditViewModel(IEnumerable<Cast> sourceCast)
+        public SeriesCreditViewModel(IEnumerable<Cast> sourceCast, int creditRows = 3)
         {
             _topBilled = sourceCast.ToList().GetRange(0, sourceCast.Count() > 5 ? 5 : sourceCast.Count());
-            _cast = sourceCast.Skip(5);
+            _cast = sourceCast.Skip(5).TakeRows(3);
         }
 
         public int TvMazeId { get; set; }
