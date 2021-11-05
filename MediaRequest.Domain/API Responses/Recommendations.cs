@@ -24,7 +24,7 @@ namespace MediaRequest.Domain.API_Responses
         public string FanartUrl { get; set; }
 
         [JsonIgnore]
-        public string TitleSlug
+        public string Slug
         {
             get
             {

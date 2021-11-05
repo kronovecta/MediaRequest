@@ -9,7 +9,7 @@ namespace MediaRequest.Application.Queries.Movies
     public class GetExistingMoviesRequest : IRequest<GetExistingMoviesResponse>
     {
         public int CurrentPage { get; set; }
-        public int Amount { get; set; }
+        public int Amount { get; set; } = 10;
     }
 
     public class GetExistingMoviesFilteredRequest : IRequest<GetExistingMoviesResponse>

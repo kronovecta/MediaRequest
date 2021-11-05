@@ -54,7 +54,7 @@ namespace MediaRequest.Application.Tests
         {
             // Arrange
             var request = new GetSingleSeriesRequest(1);
-            var handler = new GetSingleSeriesHandler(_apiKeys, _servicePath, _sonarrClient);
+            var handler = new GetSingleSeriesHandler(_sonarrClient);
             var response = new GetSingleSeriesResponse();
 
             // Act

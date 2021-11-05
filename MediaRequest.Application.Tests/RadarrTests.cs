@@ -100,7 +100,7 @@ namespace MediaRequest.Application.Tests
         {
             // Arrange
             var request = new GetSingleExistingMovieRequest { RadarrMovieId = radarrMovieId };
-            var handler = new GetSingleExistingMovieHandler(_httpHelper, _mediaDbContext, _servicePath, _apiKeys);
+            var handler = new GetSingleExistingMovieHandler(_radarrClient);
 
             GetSingleExistingMovieResponse response = null;
 
@@ -122,7 +122,7 @@ namespace MediaRequest.Application.Tests
         {
             // Arrange
             var request = new GetSingleMovieRequest { TmdbId = tmdbId };
-            var handler = new GetSingleMovieHandler(_httpHelper, _mediaDbContext, _mediator);
+            var handler = new GetSingleMovieHandler(_radarrClient);
 
             GetSingleMovieResponse response = null;
 

@@ -39,7 +39,7 @@ namespace MediaRequest.Application.Tests.Fixtures
             #region Sonarr
             var sonarrHttpClient = new HttpClient() { BaseAddress = new Uri(ServicePath.Value.Sonarr), };
             sonarrHttpClient.DefaultRequestHeaders.Add("X-Api-Key", ApiKeys.Value.Sonarr);
-            sonarrClient = new SonarrClient(sonarrHttpClient, ApiKeys);
+            sonarrClient = new SonarrClient(sonarrHttpClient);
             #endregion
 
             #region Radarr

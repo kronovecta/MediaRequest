@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MediaRequest.Application.Clients
 {
-    public class SonarrClient : ClientBase<IRadarrType>, ICustomHttpClient
+    public class SonarrClient : ClientBase<ISonarrType>, ICustomHttpClient
     {
         public SonarrClient(HttpClient httpClient) : base(httpClient)
         {

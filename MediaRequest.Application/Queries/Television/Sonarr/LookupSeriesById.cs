@@ -31,7 +31,7 @@ namespace MediaRequest.Application.Queries.Television
         public async Task<LookupSeriesByIdResponse> Handle(LookupSeriesByIdRequest request, CancellationToken cancellationToken)
         {
             var model = new LookupSeriesByIdResponse();
-            var result = await _sonarrClient.GetSonarrResponseCollection<Series>($"api/series/lookup?term=tvdb:{request.Id}");
+            var result = await _sonarrClient.GetResponseCollection<Series>($"api/series/lookup?term=tvdb:{request.Id}");
 
             if(result.Any())
             {

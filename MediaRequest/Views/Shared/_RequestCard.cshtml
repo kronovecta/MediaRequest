@@ -1,7 +1,7 @@
-﻿@model MediaRequest.Domain.Radarr.Movie
+﻿@model MediaRequest.Domain.API_Responses.Radarr.v3.Movie
 
 <div class="request-card">
-    <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.TitleSlug">
+    <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.Slug">
         <div class="request-card-head">
             <img src="@Model.FanartUrl" />
         </div>

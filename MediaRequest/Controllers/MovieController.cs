@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using MediaRequest.Application.Queries;
-using MediaRequest.Application.Queries.Movies;
-using MediaRequest.Application.Queries.People.GetCombinedMedia;
+﻿using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.People.GetPopularMovies;
 using MediaRequest.Application.Queries.Requests.GetSingleRequest;
-using MediaRequest.Application.Queries.TMDB;
 using MediaRequest.Domain;
-using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Interfaces;
-using MediaRequest.Domain.Radarr;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediaRequest.WebUI.ViewModels;
 using MediaRequest.WebUI.ViewModels.SingleMovie;
@@ -21,9 +11,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MediaRequest.Controllers
 {
@@ -49,9 +39,9 @@ namespace MediaRequest.Controllers
             var existing = await _mediator.Send(new GetExistingMoviesRequest());
             var currentUser = _userManager.GetUserId(User);
 
-            if (existing.Movies.Any(x => x.TmdbId == result.Movie.TMDBId))
+            if (existing.Movies.Any(x => x.TmdbId == result.Movie.TmdbId))
             {
-                result.Movie.AlreadyAdded = true;
+                result.Movie.HasFile = true;
             }
 
             var requested = await _mediator.Send(new RequestExistsRequest { Movie = result.Movie, UserId = currentUser });

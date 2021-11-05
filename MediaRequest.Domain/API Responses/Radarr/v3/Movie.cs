@@ -5,13 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace MediaRequest.Domain.API_Responses.Radarr.v3
 {
-    public class Movie : IRadarrType
+    public class Movie : MediaBase, IRadarrType
     {
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
 
         [JsonPropertyName("originalTitle")]
         public string OriginalTitle { get; set; }
@@ -22,17 +21,11 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
         [JsonPropertyName("secondaryYearSourceId")]
         public int SecondaryYearSourceId { get; set; }
 
-        [JsonPropertyName("sortTitle")]
-        public string SortTitle { get; set; }
-
         [JsonPropertyName("sizeOnDisk")]
         public object SizeOnDisk { get; set; }
 
         [JsonPropertyName("status")]
         public string Status { get; set; }
-
-        [JsonPropertyName("overview")]
-        public string Overview { get; set; }
 
         [JsonPropertyName("inCinemas")]
         public DateTime InCinemas { get; set; }
@@ -42,9 +35,6 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
 
         [JsonPropertyName("digitalRelease")]
         public DateTime DigitalRelease { get; set; }
-
-        [JsonPropertyName("images")]
-        public List<Image> Images { get; set; }
 
         [JsonPropertyName("website")]
         public string Website { get; set; }
@@ -60,9 +50,6 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
 
         [JsonPropertyName("studio")]
         public string Studio { get; set; }
-
-        [JsonPropertyName("path")]
-        public string Path { get; set; }
 
         [JsonPropertyName("qualityProfileId")]
         public int QualityProfileId { get; set; }
@@ -121,7 +108,18 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
         [JsonPropertyName("secondaryYear")]
         public int? SecondaryYear { get; set; }
 
-        public string PosterUrl => Images.SingleOrDefault(x => x.CoverType == "poster")?.RemoteUrl;
-        public string FanartUrl => Images.SingleOrDefault(x => x.CoverType == "fanart")?.RemoteUrl;
+        [JsonIgnore]
+        public bool AlreadyAdded { get; set; } = false;
+
+        [JsonIgnore]
+        public string Slug
+        {
+            get
+            {
+                var stripped = Regex.Replace(CleanTitle.ToLower(), "[^A-Za-z0-9 ]+", "-", RegexOptions.Compiled);
+
+                return string.Format("{0}-{1}", stripped, TmdbId);
+            }
+        }
     }
 }

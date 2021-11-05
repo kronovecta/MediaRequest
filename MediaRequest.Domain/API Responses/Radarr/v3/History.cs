@@ -90,7 +90,7 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
         public string Message { get; set; }
     }
 
-    public class Record
+    public class Record : HistoryBase
     {
         [JsonPropertyName("movieId")]
         public int MovieId { get; set; }
@@ -110,14 +110,8 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
         [JsonPropertyName("qualityCutoffNotMet")]
         public bool QualityCutoffNotMet { get; set; }
 
-        [JsonPropertyName("date")]
-        public DateTime Date { get; set; }
-
         [JsonPropertyName("downloadId")]
         public string DownloadId { get; set; }
-
-        [JsonPropertyName("eventType")]
-        public string EventType { get; set; }
 
         [JsonPropertyName("data")]
         public Data Data { get; set; }

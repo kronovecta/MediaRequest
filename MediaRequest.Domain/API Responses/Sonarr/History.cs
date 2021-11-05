@@ -30,7 +30,7 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
         public string PreferredWordScore { get; set; }
     }
 
-    public class Record
+    public class Record : HistoryBase
     {
         [JsonPropertyName("episodeId")]
         public int EpisodeId { get; set; }
@@ -47,14 +47,8 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
         [JsonPropertyName("qualityCutoffNotMet")]
         public bool QualityCutoffNotMet { get; set; }
 
-        [JsonPropertyName("date")]
-        public DateTime Date { get; set; }
-
         [JsonPropertyName("downloadId")]
         public string DownloadId { get; set; }
-
-        [JsonPropertyName("eventType")]
-        public string EventType { get; set; }
 
         [JsonPropertyName("data")]
         public Data Data { get; set; }

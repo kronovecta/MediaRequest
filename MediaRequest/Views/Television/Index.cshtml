@@ -8,7 +8,7 @@
 
     @foreach (var show in Model)
     {
-        var slug = $"{show.TitleSlug}-{show.TvdbId}";
+        var slug = $"{show.Slug}-{show.TvdbId}";
 
         <a class="television-card" asp-controller="television" asp-action="show" asp-route-slug="@slug">
             <div class="card-head">

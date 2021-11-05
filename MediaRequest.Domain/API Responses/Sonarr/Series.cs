@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace MediaRequest.Domain.API_Responses.Sonarr
 {
@@ -46,16 +47,12 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
 
 
 
-    public class Series : ISonarrType
+    public class Series : MediaBase, ISonarrType
     {
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
 
         [JsonPropertyName("alternateTitles")]
         public List<AlternateTitle> AlternateTitles { get; set; }
 
-        [JsonPropertyName("sortTitle")]
-        public string SortTitle { get; set; }
 
         [JsonPropertyName("seasonCount")]
         public int SeasonCount { get; set; }
@@ -75,9 +72,6 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
         [JsonPropertyName("status")]
         public string Status { get; set; }
 
-        [JsonPropertyName("overview")]
-        public string Overview { get; set; }
-
         [JsonPropertyName("nextAiring")]
         public DateTime NextAiring { get; set; }
 
@@ -90,17 +84,11 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
         [JsonPropertyName("airTime")]
         public string AirTime { get; set; }
 
-        [JsonPropertyName("images")]
-        public List<Image> Images { get; set; }
-
         [JsonPropertyName("seasons")]
         public List<Season> Seasons { get; set; }
 
         [JsonPropertyName("year")]
         public int Year { get; set; }
-
-        [JsonPropertyName("path")]
-        public string Path { get; set; }
 
         [JsonPropertyName("profileId")]
         public int ProfileId { get; set; }
@@ -167,5 +155,16 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
 
         [JsonPropertyName("id")]
         public int Id { get; set; }
+
+        [JsonIgnore]
+        public string Slug
+        {
+            get
+            {
+                var stripped = Regex.Replace(CleanTitle.ToLower(), "[^A-Za-z0-9 ]+", "-", RegexOptions.Compiled);
+
+                return string.Format("{0}-{1}", stripped, TvdbId);
+            }
+        }
     }
 }
