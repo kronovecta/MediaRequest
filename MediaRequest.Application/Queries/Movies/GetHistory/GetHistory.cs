@@ -1,6 +1,7 @@
 ﻿using MediaRequest.Application.Clients;
 using MediaRequest.Domain.API_Responses.Radarr.v3;
 using MediaRequest.Domain.API_Responses.Shared;
+using MediaRequest.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace MediaRequest.Application.Queries.Movies.GetHistory
         public Order Order { get; set; }
     }
 
-    public class GetHistoryResponse
+    public class GetHistoryResponse : IRequestResponse
     {
         public History History { get; set; }
     }

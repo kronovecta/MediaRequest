@@ -38,7 +38,7 @@ namespace MediaRequest.Application.Queries.Television
         public async Task<GetSingleEpisodeResponse> Handle(GetSingleEpisodeRequest request, CancellationToken cancellationToken)
         {
             var model = new GetSingleEpisodeResponse();
-            model.Episode = await _sonarrClient.GetSonarrResponseSingle<Episode>($"api/series?apikey={_apiKeys.Sonarr}&id={request.Id}");
+            model.Episode = await _sonarrClient.GetResponseSingle<Episode>($"api/series?apikey={_apiKeys.Sonarr}&id={request.Id}");
 
             return model;
         }

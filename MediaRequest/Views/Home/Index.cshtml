@@ -1,8 +1,12 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexViewModel
+@using MediaRequest.Domain.API_Responses
+@using MediaRequest.Domain.API_Responses.Shared
+@using MediaRequest.Domain.API_Responses.Sonarr
+@using MediaRequest.Domain.API_Responses.Radarr.v3
 
 @{
     var err = TempData["Error"];
-    if(err != null)
+    if (err != null)
     {
         <span class="alert alert-danger">@err</span>
     }
@@ -17,7 +21,14 @@
                 <h1>@Model.LatestMovie.Title </h1>
                 <p>@Model.LatestMovie.Overview</p>
                 <div class="button-container">
-                    <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.LatestMovie.TitleSlug" class="btn btn-primary btn-shadow"><span>Go to movie page <i class="fas fa-film"></i></span></a>
+                    @if (Model.LatestMovie is Movie)
+                    {
+                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@(((Movie)Model.LatestMovie).Slug)" class="btn btn-primary btn-shadow"><span>Go to movie page <i class="fas fa-film"></i></span></a>
+                    }
+                    else if (Model.LatestMovie is Series)
+                    {
+                        <a asp-action="Show" asp-controller="Television" asp-route-slug="@(((Series)Model.LatestMovie).Slug)" class="btn btn-primary btn-shadow"><span>Go to show page <i class="fas fa-film"></i></span></a>
+                    }
                 </div>
             </div>
             <div class="movie-hero-poster">

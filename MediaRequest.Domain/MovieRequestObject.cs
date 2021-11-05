@@ -1,4 +1,4 @@
-﻿using MediaRequest.Domain.Radarr;
+﻿using MediaRequest.Domain.API_Responses.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;

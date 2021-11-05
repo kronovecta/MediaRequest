@@ -1,8 +1,7 @@
 ﻿using MediaRequest.Domain.TMDB;
-using System;
+using MediaRequest.WebUI.Business.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MediaRequest.WebUI.ViewModels
 {
@@ -19,8 +18,8 @@ namespace MediaRequest.WebUI.ViewModels
             var amount = sourceCast.Cast.Count >= 5 ? 5 : Credits.Cast.Count;
 
             TopBilled = sourceCast.Cast.GetRange(0, amount);
-            Cast = sourceCast.Cast.Skip(amount);
-            Crew = sourceCast.Crew;
+            Cast = sourceCast.Cast.Skip(amount).TakeRows(3);
+            Crew = sourceCast.Crew.TakeRows(3);
         }
     }
 }

@@ -24,7 +24,7 @@
         <div class="row">
             @if (Model.LatestRequest != null)
             {
-                <a class="card card-lg" asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.LatestRequest.Movie.TitleSlug">
+                <a class="card card-lg" asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.LatestRequest.Movie.Slug">
                     <h1>Latest request</h1>
                     <h2>@Model.LatestRequest.Movie.Title <span style="display:block;font-size:1.5rem; opacity:0.7;">requested by @Model.LatestRequest.User.UserName</span></h2>
                 </a>
@@ -41,7 +41,7 @@
     <div class="row">
         @if (Model.NextUpcomingMovie != null)
 	    {
-            <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.NextUpcomingMovie.TitleSlug" class="card card-lg">
+            <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.NextUpcomingMovie.Slug" class="card card-lg">
                 <h1>Next upcoming (30 days)</h1>
                 <h2>@Model.NextUpcomingMovie.Title</h2>
             </a>

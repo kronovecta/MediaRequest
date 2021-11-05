@@ -33,7 +33,7 @@ namespace MediaRequest.Application.Queries.Television
         public async Task<LookupSeriesByTermResponse> Handle(LookupSeriesByTermRequest request, CancellationToken cancellationToken)
         {
             var model = new LookupSeriesByTermResponse();
-            model.Series = await _sonarrClient.GetSonarrResponseCollection<Series>($"api/series/lookup?term={request.Term}");
+            model.Series = await _sonarrClient.GetResponseCollection<Series>($"api/series/lookup?term={request.Term}");
 
             return model;
         }

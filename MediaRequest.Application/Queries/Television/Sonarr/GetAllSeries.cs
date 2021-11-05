@@ -43,7 +43,7 @@ namespace MediaRequest.Application.Queries.Television
         {
             var model = new GetAllSeriesResponse();
 
-            model.Series = await _sonarrClient.GetSonarrResponseCollection<Series>($"api/series");
+            model.Series = await _sonarrClient.GetResponseCollection<Series>($"api/series");
 
             return model;
         }

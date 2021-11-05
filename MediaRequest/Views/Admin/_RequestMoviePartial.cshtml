@@ -6,13 +6,13 @@
     </div>
     <div class="movie-info">
         <h2>
-            <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.Movie.TitleSlug">@Model.Movie.Title</a>
+            <a asp-action="Show" asp-controller="Movie" asp-route-slug="@Model.Movie.Slug">@Model.Movie.Title</a>
             <span style="opacity:0.7">(@Model.Movie.Year)</span>
         </h2>
         @if (Model.Requests.All(x => x.Request.Status != true))
         {
             <ul class="button-container">
-                <li><a class="btn btn-accept" asp-action="ApproveRequest" asp-controller="Request" asp-route-id="@Model.Movie.TMDBId">Accept <i class="fas fa-check-circle"></i></a></li>
+                <li><a class="btn btn-accept" asp-action="ApproveRequest" asp-controller="Request" asp-route-id="@Model.Movie.TmdbId">Accept <i class="fas fa-check-circle"></i></a></li>
                 <li><a class="btn btn-primary" href="#">Decline <i class="fas fa-check-circle"></i></a></li>
             </ul>
         }

@@ -29,6 +29,8 @@
                 </div>
 
                 <p class="overview">@Model.SonarrSeries.Overview</p>
+                <p>@Model.SonarrSeries.EncodedPath</p>
+                @*<a href="@Model.SonarrSeries.EncodedPath.AbsoluteUri">FTP Link</a>*@
 
                 <div class="ratings">
                     <span title="The Movie Database rating">
@@ -37,18 +39,9 @@
                         <span class="totalvotes">/ @Model.SonarrSeries.Ratings.Votes votes</span>
                     </span>
                 </div>
-
-                @*<div class="button-block">
-                    <ul>
-                        <li><a class="btn btn-primary" asp-action="Trailer" asp-controller="Movie" asp-route-ytid="@Model.Movie.youTubeTrailerId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#trailer-container" data-ajax-method="get" data-ajax-loading=".loading">Watch trailer <i class="fab fa-youtube"></i></a></li>
-                        <partial name="_RequestMovieButton" model="@Model" />
-                    </ul>
-                </div>*@
             </div>
         </div>
         <div class="body">
-            @* Trailer Container *@
-            @*<div id="trailer-container"></div>*@
             <div id="container">
                 <section class="details">
                     <partial name="_CreditsPartial" model="Model.Cast" />
@@ -70,7 +63,6 @@
 
 <div class="mobile-button-block">
     <ul>
-        <li>@*<a class="btn btn-primary" href="@("https://www.youtube.com/watch?v=" + Model.Movie.youTubeTrailerId)">Watch trailer <i class="fab fa-youtube"></i></a>*@</li>
         @if (Model.Accepted || Model.AlreadyAdded)
         {
             <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>

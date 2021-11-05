@@ -41,13 +41,13 @@
                 <div class="movie-poster">
                     @if (item.PosterUrl != null)
                     {
-                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.TitleSlug">
+                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
                             <img src="@item.PosterUrl" />
                         </a>
                     }
                     else
                     { 
-                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.TitleSlug">
+                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
                             <img src="@item.PosterUrl" />
                         </a>
                     }
@@ -56,7 +56,7 @@
                 <div class="movie-info">
                     <div class="info">
                         <h2>
-                            <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.TitleSlug">@item.Title</a>
+                            <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">@item.Title</a>
                             <span style="opacity:0.7">(@item.Year)</span>
                         </h2>
                         <section class="badge-container">
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="button-container">
-                        <a class="btn-sm btn-primary" asp-action="Show" asp-controller="Movie" asp-route-slug="@item.TitleSlug"><span><i class="fas fa-film"></i> Go to movie page</span></a>
+                        <a class="btn-sm btn-primary" asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug"><span><i class="fas fa-film"></i> Go to movie page</span></a>
                         @if (item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
                         {
                             if ((!item.Monitored && !item.HasFile) || !item.HasFile)

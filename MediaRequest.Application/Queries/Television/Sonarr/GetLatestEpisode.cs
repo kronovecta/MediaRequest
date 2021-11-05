@@ -1,6 +1,7 @@
 ﻿using MediaRequest.Application.Clients;
 using MediaRequest.Domain.API_Responses.Shared;
 using MediaRequest.Domain.API_Responses.Sonarr;
+using MediaRequest.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace MediaRequest.Application.Queries.Television.Sonarr
         public Order Order { get; set; }
     }
 
-    public class GetLatestEpisodeResponse
+    public class GetLatestEpisodeResponse : IRequestResponse
     {
         public History History { get; set; }
     }
@@ -32,7 +33,7 @@ namespace MediaRequest.Application.Queries.Television.Sonarr
 
         public async Task<GetLatestEpisodeResponse> Handle(GetLatestEpisodeRequest request, CancellationToken cancellationToken)
         {
-            var response = await _sonarrClient.GetSonarrResponseSingle<History>($"api/history?pageSize=${request.PageSize}&sortKey=date&sortDir=${request.Order}");
+            var response = await _sonarrClient.GetResponseSingle<History>($"api/history?pageSize=${request.PageSize}&sortKey=date&sortDir=${request.Order}");
 
             return new GetLatestEpisodeResponse() { History = response };
         }

@@ -122,101 +122,61 @@ namespace MediaRequest.Application.Queries.Movies
 
     public class GetExistingMoviesFilteredHandler : IRequestHandler<GetExistingMoviesFilteredRequest, GetExistingMoviesResponse>
     {
+        private readonly RadarrClient _radarrClient;
         private readonly IMediaDbContext _context;
-        private readonly IMediator _mediator;
-        private readonly ServicePath _path;
-        private readonly IHttpHelper _http;
 
-        public GetExistingMoviesFilteredHandler(IHttpHelper http, IMediaDbContext context, IOptions<ServicePath> path, IMediator mediator)
+        public GetExistingMoviesFilteredHandler(RadarrClient radarrClient, IMediaDbContext context)
         {
-            _path = path.Value;
+            _radarrClient = radarrClient;
             _context = context;
-            _mediator = mediator;
-            _http = http;
         }
 
         public async Task<GetExistingMoviesResponse> Handle(GetExistingMoviesFilteredRequest request, CancellationToken cancellationToken)
         {
-            //    var results = 10;
-            //    var model = new GetExistingMoviesResponse()
-            //    {
-            //        CurrentPage = request.CurrentPage
-            //    };
+            var results = 10;
+            var model = new GetExistingMoviesResponse()
+            {
+                CurrentPage = request.CurrentPage
+            };
 
-            //    var res = await _http.GetMovie();
-            //    res.EnsureSuccessStatusCode();
+            var res = await _radarrClient.GetResponseCollection<Movie>("api/v3/movie");
+            model.Movies = res;
 
-            //    using (var stream = await res.Content.ReadAsStreamAsync())
-            //    {
-            //        var json = await JsonSerializer.DeserializeAsync<IEnumerable<Movie>>(stream, DefaultJsonSettings.Settings);
-            //        model.Movies = json;
-            //        model.LatestMovie = model.Movies.Where(x => x.Downloaded == true).OrderByDescending(x => x.Added).First();
-            //    }
+            if (request.Input != null)
+            {
+                model.Movies = model.Movies.Where(x => x.Title.ToLower().Contains(request.Input.ToLower())).ToList();
+            }
 
-            //    if(request.Input != null)
-            //    {
-            //        model.Movies = model.Movies.Where(x => x.Title.ToLower().Contains(request.Input.ToLower())).ToList();
-            //    }
+            if (request.FilterMode == 1)
+            {
+                model.Movies = model.Movies.Where(x => x.HasFile == true).Reverse().ToList();
+            }
+            else if (request.FilterMode == 2)
+            {
+                model.Movies = model.Movies.Where(x => x.HasFile == false).Reverse().ToList();
+            }
 
-            //    if (request.FilterMode == 1)
-            //    {
-            //        model.Movies = model.Movies.Where(x => x.Downloaded == true).Reverse().ToList();
-            //    } else if (request.FilterMode == 2)
-            //    {
-            //        model.Movies = model.Movies.Where(x => x.Downloaded == false).Reverse().ToList();
-            //    }
-
-            //    var totalPages = Functions.GetTotalPages(model.Movies as List<Movie>, results);
-            //    model.Movies = model.Movies.Skip(results * request.CurrentPage).Take(results).ToList();
+            var totalPages = Functions.GetTotalPages(model.Movies as List<Movie>, results);
+            model.Movies = model.Movies.Skip(results * request.CurrentPage).Take(results).ToList();
 
 
-            //    if (model.Movies.Count() > 0)
-            //    {
-            //        var moviePosters = _context.MoviePoster.Where(x => model.Movies.Any(y => y.TMDBId.ToString() == x.MovieId)).ToList();
+            if (model.Movies.Count() > 0)
+            {
+                var moviePosters = _context.MoviePoster.Where(x => model.Movies.Any(y => y.TmdbId.ToString() == x.MovieId)).ToList();
 
-            //        foreach (var movie in model.Movies)
-            //        {
-            //            var existingPoster = _context.MoviePoster.FirstOrDefault(x => x.MovieId == movie.TMDBId.ToString());
+                model.TotalPages = totalPages;
 
-            //            if (existingPoster == null)
-            //            {
-            //                var media = await _mediator.Send(new GetTMDBMediaRequest(movie.TMDBId));
-            //                var posterPrefix = "https://image.tmdb.org/t/p/w500/";
-            //                var fanartPrefix = "https://image.tmdb.org/t/p/original/";
-            //                var fanart = fanartPrefix + media.Backdrops.FirstOrDefault()?.FilePath;
-            //                var poster = posterPrefix + media.Posters.FirstOrDefault(x => x.iso_639_1 == "en")?.FilePath;
-            //                var moviePoster = new MoviePoster
-            //                {
-            //                    MovieId = movie.TMDBId.ToString(),
-            //                    FanartUrl = fanart,
-            //                    PosterUrl = poster
-            //                };
-
-            //                _context.MoviePoster.Add(moviePoster);
-            //                await _context.SaveChangesAsync();
-
-            //                movie.FanartUrl = fanart;
-            //                movie.PosterUrl = poster;
-            //            }
-            //            else
-            //            {
-            //                movie.FanartUrl = existingPoster.FanartUrl;
-            //                movie.PosterUrl = existingPoster.PosterUrl;
-            //            }
-            //        }
-
-            //        model.TotalPages = totalPages;
-
-            //        return model;
-            //    } else
-            //    {
-            //        return new GetExistingMoviesResponse
-            //        {
-            //            Movies = new List<Movie>(),
-            //            TotalPages = totalPages,
-            //            CurrentPage = request.CurrentPage
-            //        };
-            //    }
+                return model;
+            }
+            else
+            {
+                return new GetExistingMoviesResponse
+                {
+                    Movies = new List<Movie>(),
+                    TotalPages = totalPages,
+                    CurrentPage = request.CurrentPage
+                };
+            }
 
             throw new NotImplementedException();
         }
