@@ -1,18 +1,15 @@
-﻿using MediaRequest.WebUI.Business.Extensions;
-using MediaRequest.Application.Queries.Television;
-using MediaRequest.Application.Queries.Television.TvMaze;
-using MediaRequest.WebUI.ViewModels.Television;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using MediaRequest.Application.Queries.Find;
-using System.Threading.Tasks;
-using MediaRequest.Application.Queries.Movies;
-
-namespace MediaRequest.WebUI.Controllers
+﻿namespace MediaRequest.WebUI.Controllers
 {
+    using MediaRequest.Application.Queries.Find;
+    using MediaRequest.Application.Queries.Movies;
+    using MediaRequest.Application.Queries.Television;
+    using MediaRequest.Application.Queries.Television.Sonarr;
+    using MediaRequest.WebUI.ViewModels.Television;
+    using MediatR;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class TelevisionController : Controller
     {
         private readonly IMediator _mediator;
@@ -35,12 +32,13 @@ namespace MediaRequest.WebUI.Controllers
 
             var tvdbId = slug.Split('-').LastOrDefault();
 
-            var sonarrSeries = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
+            //var sonarrSeries = await _mediator.Send(new LookupSeriesByIdRequest() { Id = tvdbId });
+            var sonarrSeries = await _mediator.Send(new GetSingleSeriesByTvdbIdRequest { TvdbId = tvdbId });
             var tmdbLookup = await _mediator.Send(new SearchByExternalIdRequest() { Id = tvdbId, Source = ExternalSource.TVDB });
 
             var tmdbId = tmdbLookup.Result.TvResults.FirstOrDefault()?.Id.ToString();
 
-            var tmdbSeries = await _mediator.Send(new MediaRequest.Application.Queries.TMDB.GetSingleSeriesRequest(tmdbId));
+            var tmdbSeries = await _mediator.Send(new Application.Queries.TMDB.GetSingleSeriesRequest(tmdbId));
             var cast = await _mediator.Send(new GetCreditsRequest() { TMDBId = tmdbSeries.Series.Id.ToString(), MediaType = Domain.MediaType.Tv });
 
             var model = new SeriesViewModel();

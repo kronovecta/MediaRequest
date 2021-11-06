@@ -2,12 +2,14 @@
 
 <div class="single-movie-container" id="main-container">
     <div class="hero-container">
-        <img class="background" src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "fanart").Url)" />
+        @*<img class="background" src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "fanart").Url)" />*@
+        <img class="background" src="@Model.SonarrSeries.FanartUrl" />
     </div>
     <section class="container">
         <div class="head">
             <div class="poster">
-                <img src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "poster").Url)">
+                @*<img src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "poster").Url)">*@
+                <img class="background" src="@Model.SonarrSeries.PosterUrl" />
             </div>
             <div class="info">
                 <div class="title">
@@ -52,7 +54,7 @@
             @foreach (var season in Model.SonarrSeries.Seasons)
 	        {
 	            <div style="border:1px solid lightgrey;padding:2rem;border-radius:25px">
-                    <h3>Season @season.SeasonNumber</h3>
+                    <h3>Season @season.SeasonNumber @season.Statistics.EpisodeCount/@season.Statistics.TotalEpisodeCount</h3>
                 </div>
 	        }
         </div>

@@ -10,6 +10,7 @@
     <form asp-action="Index" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">
         <div class="input-container">
             <i class="fas fa-search"></i>
+            @*<input name="term" placeholder="Search.." />*@
             @if (Model.Term != null)
             {
                 <input name="term" placeholder="Search.." value="@Model.Term" />
