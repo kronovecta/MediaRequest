@@ -164,8 +164,5 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
                 return string.Format("{0}-{1}", stripped, TvdbId);
             }
         }
-
-        [JsonIgnore]
-        public string PosterUrl
     }
 }
