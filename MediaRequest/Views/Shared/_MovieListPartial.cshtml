@@ -34,7 +34,7 @@
     @if (Model.Movies.Count() > 0)
     {
         <div class="loading mb-3"><img src="~/img/loading.gif" /></div>
-        @foreach (var item in Model.Movies)
+        @foreach (var item in Model.Movies.OrderByDescending(x => x.FileOrMediaAdded))
         {
             <div class="movie-container">
                 <div class="movie-poster">

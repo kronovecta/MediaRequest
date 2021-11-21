@@ -142,9 +142,6 @@ namespace MediaRequest.Domain.API_Responses.Sonarr
         [JsonPropertyName("tags")]
         public List<object> Tags { get; set; }
 
-        [JsonPropertyName("added")]
-        public DateTime Added { get; set; }
-
         [JsonPropertyName("ratings")]
         public Rating Ratings { get; set; }
 

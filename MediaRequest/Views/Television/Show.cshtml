@@ -2,13 +2,11 @@
 
 <div class="single-movie-container" id="main-container">
     <div class="hero-container">
-        @*<img class="background" src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "fanart").Url)" />*@
         <img class="background" src="@Model.SonarrSeries.FanartUrl" />
     </div>
     <section class="container">
         <div class="head">
             <div class="poster">
-                @*<img src="@(Model.SonarrSeries.Images.SingleOrDefault(x => x.CoverType == "poster").Url)">*@
                 <img class="background" src="@Model.SonarrSeries.PosterUrl" />
             </div>
             <div class="info">

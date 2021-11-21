@@ -24,6 +24,9 @@ namespace MediaRequest.Domain.API_Responses.Shared
         [JsonPropertyName("path")]
         public string Path { get; set; }
 
+        [JsonPropertyName("added")]
+        public DateTime Added { get; set; }
+
         [JsonIgnore]
         public string EncodedPath => Path;
 

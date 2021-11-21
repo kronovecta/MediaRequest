@@ -90,9 +90,6 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
         [JsonPropertyName("tags")]
         public List<object> Tags { get; set; }
 
-        [JsonPropertyName("added")]
-        public DateTime Added { get; set; }
-
         [JsonPropertyName("ratings")]
         public Rating Ratings { get; set; }
 
@@ -110,6 +107,9 @@ namespace MediaRequest.Domain.API_Responses.Radarr.v3
 
         [JsonIgnore]
         public bool AlreadyAdded { get; set; } = false;
+
+        [JsonIgnore]
+        public DateTime FileOrMediaAdded => MovieFile?.DateAdded ?? Added;
 
         [JsonIgnore]
         public string Slug
