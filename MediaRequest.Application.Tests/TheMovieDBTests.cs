@@ -29,6 +29,7 @@ namespace MediaRequest.Application.Tests
 
         private IOptions<ServicePath> _servicePath;
         private IOptions<ApiKeys> _apiKeys;
+        private RadarrClient _radarrClient;
 
         [SetUp]
         public void Setup()
@@ -45,13 +46,14 @@ namespace MediaRequest.Application.Tests
 
             _servicePath = fixture.ServicePath;
             _apiKeys = fixture.ApiKeys;
+            _radarrClient = fixture.radarrClient;
         }
 
         [TestCase("577922")]
         public async Task GetMovieTest(string tmdbId)
         {
             // Arrange
-            var handler = new GetSingleMovieHandler(_httpHelper, _mediaDbContext, _mediator);
+            var handler = new GetSingleMovieHandler(_radarrClient);
             var request = new GetSingleMovieRequest { TmdbId = tmdbId };
 
             // Act

@@ -1,0 +1,43 @@
+﻿@model MediaRequest.WebUI.ViewModels.Television.SeriesCreditViewModel
+
+<section class="cast">
+    <h1>Top billed cast</h1>
+    <ul class="top-billed">
+        @foreach (var member in Model.TopBilled)
+        {
+            <partial name="_ActorPartial" , model="@member" />
+        }
+    </ul>
+
+    <h1>Cast</h1>
+    <ul class="cast-list">
+        @foreach (var item in Model.Cast)
+        {
+            <partial name="_ActorPartial" , model="@item" />
+        }
+
+        @if (!(Model.Cast.Count() < 9))
+        {
+            if (Model.Cast.Count() > 9)
+            {
+                <li class="loadmore"><a asp-action="Credits" asp-controller="Television" asp-route-mazeid="@Model" asp-route-amount="0" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Show less</a></li>
+            }
+            else
+            {
+                <li class="loadmore"><a asp-action="Credits" asp-controller="Television" asp-route-mazeid="@Model.TvMazeId" asp-route-amount="1" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get">Show full cast</a></li>
+            }
+        }
+
+    </ul>
+
+    @*<h1>Crew</h1>
+    <ul class="crew-list">
+        @foreach (var item in Model.Cast)
+        {
+            <li>
+                <h2>@item.Name</h2>
+                <h3>@item.Job</h3>
+            </li>
+        }
+    </ul>*@
+</section>

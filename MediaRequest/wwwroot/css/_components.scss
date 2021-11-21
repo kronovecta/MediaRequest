@@ -69,3 +69,18 @@ input[type="email"] {
 .mb-1 {
     margin-bottom:1rem;
 }
+
+.status-container {
+    position: absolute;
+
+    span {
+        display:inline-block;
+        position: relative;
+        top:1rem;
+        left:1rem;
+
+        &:not(:first-child) {
+            margin-top:0.25rem;
+        }
+    }
+}

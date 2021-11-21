@@ -1,0 +1,108 @@
+﻿@model MediaRequest.WebUI.ViewModels.Television.SeriesViewModel
+
+<div class="single-movie-container" id="main-container">
+    <div class="hero-container">
+        <img class="background" src="@Model.SonarrSeries.FanartUrl" />
+    </div>
+    <section class="container">
+        <div class="head">
+            <div class="poster">
+                <img class="background" src="@Model.SonarrSeries.PosterUrl" />
+            </div>
+            <div class="info">
+                <div class="title">
+                    <h1 style="color:#222;">@Model.SonarrSeries.Title</h1>
+                    <div class="trivia">
+                        <ul>
+                            <li>@Model.SonarrSeries.Year</li>
+                        </ul>
+                        <ul>
+                            @foreach (var genre in Model.SonarrSeries.Genres)
+                            {
+                                <li>@genre</li>
+                            }
+                        </ul>
+                        <ul>
+                            <li>@Model.SonarrSeries.Runtime minutes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="overview">@Model.SonarrSeries.Overview</p>
+                <p>@Model.SonarrSeries.EncodedPath</p>
+                @*<a href="@Model.SonarrSeries.EncodedPath.AbsoluteUri">FTP Link</a>*@
+
+                <div class="ratings">
+                    <span title="The Movie Database rating">
+                        <i class="fas fa-star"></i>
+                        <span class="rating">@(Model.SonarrSeries.Ratings.Value % 1 != 0 ? Model.SonarrSeries.Ratings.Value.ToString() : Model.SonarrSeries.Ratings.Value.ToString() + ",0")</span>
+                        <span class="totalvotes">/ @Model.SonarrSeries.Ratings.Votes votes</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div id="container">
+                <section class="details">
+                    <partial name="_CreditsPartial" model="Model.Cast" />
+                </section>  
+            </div>
+            <div hidden class="loading"><img src="~/img/loading.gif" /></div>
+
+            @foreach (var season in Model.SonarrSeries.Seasons)
+	        {
+	            <div style="border:1px solid lightgrey;padding:2rem;border-radius:25px">
+                    <h3>Season @season.SeasonNumber @season.Statistics.EpisodeCount/@season.Statistics.TotalEpisodeCount</h3>
+                </div>
+	        }
+        </div>
+    </section>
+
+    
+</div>
+
+<div class="mobile-button-block">
+    <ul>
+        @if (Model.Accepted || Model.AlreadyAdded)
+        {
+            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
+        }
+        else if (Model.Requested)
+        {
+            <li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li>
+        }
+        else
+        {
+            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="">Request series <i class="fas fa-plus"></i></a></li>
+        }
+    </ul>
+</div>
+
+@*<script>
+    $(document).ready(function () {
+        let navBtn = $('.page-nav > .body-nav > li');
+        navBtn.first().children('a').toggleClass('active');
+        navBtn.first().children('a').click();
+
+        navBtn.on('click', function () {
+            $('#container').children().first().remove();
+            $('.loading').show();
+            navBtn.children('a').removeClass('active');
+            $(this).children('a').addClass('active');
+        })
+
+        let btnBlock = $('.mobile-button-block > ul > li');
+
+        $(document).scroll(function () {
+            if (window.scrollY >= 150) {
+                btnBlock.children().removeClass('btn')
+                btnBlock.children().addClass('btn-sm')
+            }
+
+            if (window.scrollY < 150) {
+                btnBlock.children().removeClass('btn-sm')
+                btnBlock.children().addClass('btn')
+            }
+        })
+    });
+</script>*@

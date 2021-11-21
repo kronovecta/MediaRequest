@@ -8,7 +8,7 @@ using MediaRequest.Application.Commands.ApproveRequest;
 using MediaRequest.Application.Commands.CancelRequest;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain;
-using MediaRequest.Domain.Radarr;
+using MediaRequest.Domain.API_Responses.Radarr.v3;
 using MediaRequest.WebUI.Models.IdentityModels;
 using MediaRequest.WebUI.ViewModels.SingleMovie;
 using MediatR;
@@ -41,7 +41,7 @@ namespace MediaRequest.WebUI.Controllers
 
             if (await _context.Request.Where(x => x.UserId == currentUser.Id && x.MovieId == tmdbid).CountAsync() > 0)
             {
-                return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+                return RedirectToAction("Show", "Movie", new { slug = movie.Movie.TitleSlug });
             }
                 
             var command = new AddRequestCommand
@@ -55,7 +55,7 @@ namespace MediaRequest.WebUI.Controllers
             };
 
             await _mediator.Send(command);
-            return RedirectToAction("ShowMovie", "Movie", new { slug = movie.Movie.TitleSlug });
+            return RedirectToAction("Show", "Movie", new { slug = movie.Movie.TitleSlug });
         }
 
         public async Task<IActionResult> ApproveRequest(string id)
@@ -148,8 +148,8 @@ namespace MediaRequest.WebUI.Controllers
                 title = movie.Title,
                 qualityProfileId = 4,
                 images = movie.Images,
-                tmdbId = movie.TMDBId.ToString(),
-                titleSlug = movie.TitleSlug,
+                tmdbId = movie.TmdbId.ToString(),
+                titleSlug = movie.Slug,
                 ProfileId = 4,
                 year = movie.Year,
                 path = $"/home34/robert/downloads/movies/{movie.Title} ({movie.Year})".Replace(":", ""),

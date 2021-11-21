@@ -1,0 +1,71 @@
+﻿@import "../image.scss";
+
+.actor {
+    display: flex;
+    align-items: center;
+    background: $grey-superlight;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 3px;
+    background: #f9f9f9;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+
+    &:not(:last-child) {
+        margin-right: 1rem;
+    }
+
+    &:hover {
+        background: $grey-light;
+    }
+
+    .info {
+        display: inline-block;
+
+        h1 {
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 0.9rem;
+        }
+
+        > * {
+            display: block;
+        }
+    }
+}
+
+.actor-image {
+    margin-right: 2rem;
+    height: 100%;
+
+    > img {
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media (min-width:552px) {
+    .actor {
+        flex-direction: row;
+    }
+}
+
+@media (min-width:992px) {
+
+    .top-billed {
+        .actor-image {
+            max-width: 100%;
+
+            > img {
+                border-radius: 0%;
+                height: unset;
+            }
+        }
+    }
+
+    
+}

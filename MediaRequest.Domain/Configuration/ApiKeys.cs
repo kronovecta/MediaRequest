@@ -11,4 +11,9 @@ namespace MediaRequest.Domain.Configuration
         public string Sonarr { get; set; }
         public string TMDB { get; set; }
     }
+
+    public class Bearer
+    {
+        public string TMDB { get; set; }
+    }
 }

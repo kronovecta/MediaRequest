@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace MediaRequest.Domain.API_Responses
 {
@@ -23,11 +24,12 @@ namespace MediaRequest.Domain.API_Responses
         public string FanartUrl { get; set; }
 
         [JsonIgnore]
-        public string TitleSlug
+        public string Slug
         {
             get
             {
-                return string.Format("{0}-{1}", Title.ToLower().Replace(" ", "-"), Id);
+                var stripped = Regex.Replace(Title.ToLower(), "[^A-Za-z0-9 ]+", "-", RegexOptions.Compiled);
+                return string.Format("{0}-{1}", stripped, Id);
             }
         }
     }

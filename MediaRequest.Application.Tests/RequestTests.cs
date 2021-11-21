@@ -33,6 +33,7 @@ namespace MediaRequest.Application.Tests
         private IMediaDbContext _mediaDbContext;
 
         private ApplicationUser user;
+        private RadarrClient _radarrClient;
 
         [SetUp]
         public async Task Setup()
@@ -41,6 +42,7 @@ namespace MediaRequest.Application.Tests
 
             var fixture = new ConfigurationFixture();
             configurationBuilder = fixture.GenerateConfiguration();
+            _radarrClient = fixture.radarrClient;
 
             #endregion
 
@@ -67,7 +69,7 @@ namespace MediaRequest.Application.Tests
         public async Task<bool> GetSingleRequest(string userid)
         {
             // Arrange
-            var movieHandler = new GetSingleMovieHandler(_httpHelper, _mediaDbContext, _mediator);
+            var movieHandler = new GetSingleMovieHandler(_radarrClient);
             var movieRequest = new GetSingleMovieRequest { TmdbId = "577922" };
             var movieResponse = await movieHandler.Handle(movieRequest, new System.Threading.CancellationToken());
 
