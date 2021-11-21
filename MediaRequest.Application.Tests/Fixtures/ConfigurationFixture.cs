@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Net.Http;
 
 namespace MediaRequest.Application.Tests.Fixtures
 {
@@ -15,6 +16,7 @@ namespace MediaRequest.Application.Tests.Fixtures
     public class ConfigurationFixture
     {
         public RadarrClient radarrClient { get; set; }
+        public SonarrClient sonarrClient { get; set; }
         public TMDBClient tmdbClient { get; set; }
         public IOptions<ApiKeys> ApiKeys { get; set; }
         public IOptions<ServicePath> ServicePath { get; set; }
@@ -31,14 +33,23 @@ namespace MediaRequest.Application.Tests.Fixtures
                 .AddYamlFile("settings.yaml", false, true)
                 .Build();
 
-            var servicePath = Options.Create(GetServicePathConfiguration());
-            var apiKeys = Options.Create(GetApiKeysConfiguration());
-
-            radarrClient = new RadarrClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(servicePath.Value.Radarr) });
-            tmdbClient = new TMDBClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(servicePath.Value.TMDB) });
-
             ServicePath = Options.Create(GetServicePathConfiguration());
             ApiKeys = Options.Create(GetApiKeysConfiguration());
+
+            #region Sonarr
+            var sonarrHttpClient = new HttpClient() { BaseAddress = new Uri(ServicePath.Value.Sonarr), };
+            sonarrHttpClient.DefaultRequestHeaders.Add("X-Api-Key", ApiKeys.Value.Sonarr);
+            sonarrClient = new SonarrClient(sonarrHttpClient);
+            #endregion
+
+            #region Radarr
+            var radarrHttpClient = new HttpClient() { BaseAddress = new Uri(ServicePath.Value.Radarr), };
+            radarrHttpClient.DefaultRequestHeaders.Add("X-Api-Key", ApiKeys.Value.Radarr);
+            radarrClient = new RadarrClient(radarrHttpClient);
+            #endregion
+
+            tmdbClient = new TMDBClient(new System.Net.Http.HttpClient() { BaseAddress = new System.Uri(ServicePath.Value.TMDB) });
+
             #endregion
         }
 

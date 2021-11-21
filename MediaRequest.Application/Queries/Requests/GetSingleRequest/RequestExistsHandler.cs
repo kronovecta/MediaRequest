@@ -32,8 +32,8 @@ namespace MediaRequest.Application.Queries.Requests.GetSingleRequest
 
         public async Task<RequestExistsResponse> Handle(RequestExistsRequest request, CancellationToken cancellationToken)
         {
-            var accepted = AcceptedRequest(request.Movie.TMDBId.ToString());
-            var exists = await _context.Request.AnyAsync(x => x.MovieId == request.Movie.TMDBId.ToString() && x.UserId == request.UserId);
+            var accepted = AcceptedRequest(request.Movie.TmdbId.ToString());
+            var exists = await _context.Request.AnyAsync(x => x.MovieId == request.Movie.TmdbId.ToString() && x.UserId == request.UserId);
             return new RequestExistsResponse { Exists = exists, Accepted = accepted };
         }
     }

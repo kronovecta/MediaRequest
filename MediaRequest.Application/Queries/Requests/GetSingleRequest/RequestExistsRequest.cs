@@ -1,8 +1,5 @@
-﻿using MediaRequest.Domain.Radarr;
+﻿using MediaRequest.Domain.API_Responses.Radarr.v3;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MediaRequest.Application.Queries.Requests.GetSingleRequest
 {

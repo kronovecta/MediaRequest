@@ -1,4 +1,5 @@
 ﻿using FakeItEasy;
+using MediaRequest.Application.Clients;
 using MediaRequest.Application.Queries;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
@@ -27,6 +28,7 @@ namespace MediaRequest.Application.Tests
 
         private IOptions<ServicePath> _servicePath;
         private IOptions<ApiKeys> _apiKeys;
+        private RadarrClient _radarrClient;
 
         [SetUp]
         public void Setup()
@@ -43,6 +45,8 @@ namespace MediaRequest.Application.Tests
 
             _servicePath = fixture.ServicePath;
             _apiKeys = fixture.ApiKeys;
+
+            _radarrClient = fixture.radarrClient;
         }
 
         [Test]
@@ -50,7 +54,7 @@ namespace MediaRequest.Application.Tests
         {
             // Arrange
             var request = new GetExistingMoviesRequest();
-            var handler = new GetExistingMoviesHandler(_httpHelper, _servicePath, _mediator, _mediaDbContext);
+            var handler = new GetExistingMoviesHandler(_radarrClient);
 
             GetExistingMoviesResponse response = null;
 
@@ -96,7 +100,7 @@ namespace MediaRequest.Application.Tests
         {
             // Arrange
             var request = new GetSingleExistingMovieRequest { RadarrMovieId = radarrMovieId };
-            var handler = new GetSingleExistingMovieHandler(_httpHelper, _mediaDbContext, _servicePath, _apiKeys);
+            var handler = new GetSingleExistingMovieHandler(_radarrClient);
 
             GetSingleExistingMovieResponse response = null;
 
@@ -118,7 +122,7 @@ namespace MediaRequest.Application.Tests
         {
             // Arrange
             var request = new GetSingleMovieRequest { TmdbId = tmdbId };
-            var handler = new GetSingleMovieHandler(_httpHelper, _mediaDbContext, _mediator);
+            var handler = new GetSingleMovieHandler(_radarrClient);
 
             GetSingleMovieResponse response = null;
 

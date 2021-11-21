@@ -1,0 +1,40 @@
+﻿.badge {
+    display: inline-block;
+    padding: .25rem .4rem;
+    font-size: 85%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+
+    &.badge-sm {
+        font-size:70%;
+    }
+}
+
+.badge-xsm {
+    padding: 0.20rem .4rem 0.3rem;
+}
+
+
+.badge-secondary {
+    color: #fff;
+    background-color: hsl(208, 7%, 50%);
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.badge-warning {
+    color: #212529;
+    background-color: #ffc107;
+}

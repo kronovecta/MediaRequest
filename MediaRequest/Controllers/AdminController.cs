@@ -103,7 +103,7 @@ namespace MediaRequest.WebUI.Controllers
                 modelList.Add(distinctrequest);
             }
 
-            modelList = modelList.GroupBy(x => x.Movie.TMDBId).Select(y => y.First()).ToList();
+            modelList = modelList.GroupBy(x => x.Movie.TmdbId).Select(y => y.First()).ToList();
             return View(modelList);
         }
 

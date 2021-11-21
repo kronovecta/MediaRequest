@@ -1,7 +1,7 @@
 ﻿using MediaRequest.Application.Parsers;
 using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Domain.Configuration;
-using MediaRequest.Domain.Radarr;
+using MediaRequest.Domain.API_Responses.Radarr.v3;
 using MediatR;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
@@ -10,48 +10,24 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using MediaRequest.Application.Clients;
 
 namespace MediaRequest.Application.Queries
 {
     public class GetSingleMovieHandler : IRequestHandler<GetSingleMovieRequest, GetSingleMovieResponse>
     {
-        private readonly IMediaDbContext _context;
-        private readonly IMediator _mediator;
-        private readonly IHttpHelper _http;
+        private readonly RadarrClient _radarrClient;
 
-        public GetSingleMovieHandler(IHttpHelper http, IMediaDbContext context, IMediator mediator)
+        public GetSingleMovieHandler(RadarrClient radarrClient)
         {
-            _context = context;
-            _mediator = mediator;
-            _http = http;
+            _radarrClient = radarrClient;
+
         }
 
         public async Task<GetSingleMovieResponse> Handle(GetSingleMovieRequest request, CancellationToken cancellationToken)
         {
-            var response = await _http.GetMovie(request);
-            response.EnsureSuccessStatusCode();
-
-            var model = new GetSingleMovieResponse();
-
-            using (var stream = await response.Content.ReadAsStreamAsync())
-            {
-                var json = await JsonSerializer.DeserializeAsync<Movie>(stream, DefaultJsonSettings.Settings);
-                model.Movie = json;
-            }
-
-            var existingMovie = _context.MoviePoster.SingleOrDefault(x => x.MovieId == request.TmdbId);
-
-            if (existingMovie != null)
-            {
-                model.Movie.PosterUrl = existingMovie.PosterUrl;
-                model.Movie.FanartUrl = existingMovie.FanartUrl;
-            } else
-            {
-                var tmdbmovie = await _mediator.Send(new GetMovieMediaRequest { TMDBId = request.TmdbId });
-
-                model.Movie.PosterUrl = tmdbmovie.Movie?.Images.Where(x => x.CoverType == "poster").FirstOrDefault()?.URL;
-                model.Movie.FanartUrl = tmdbmovie.Movie?.Images.Where(x => x.CoverType == "fanart").FirstOrDefault()?.URL;
-            }
+            var res = await _radarrClient.GetResponseSingle<Movie>($"api/v3/movie/lookup/tmdb?tmdbId={request.TmdbId}");
+            var model = new GetSingleMovieResponse() { Movie = res };
 
             return model;
         }

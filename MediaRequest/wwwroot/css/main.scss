@@ -1,11 +1,12 @@
-﻿@import "colors.scss";
+﻿// Custom
+@import "colors.scss";
 @import "variables.scss";
 @import "icons.scss";
 @import "navbar.scss";
 @import "pages/startpage.scss";
 @import "style.scss";
 @import "bootstrap.scss";
-@import "pages/showmovie.scss";
+@import "pages/show.scss";
 @import "pages/adminpanel.scss";
 @import "profile.scss";
 @import "components.scss";
@@ -17,3 +18,10 @@
 @import "dropdown.scss";
 @import "components/calendarevent.scss";
 @import "form.scss";
+@import "layouts.scss";
+@import "television.scss";
+@import "image.scss";
+
+//  Components
+@import "components/badge.scss";
+@import "components/actor.scss";

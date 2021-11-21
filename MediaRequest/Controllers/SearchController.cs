@@ -42,11 +42,11 @@ namespace MediaRequest.WebUI.Controllers
             foreach (var item in results.Movies)
             {
                 var movieExists = new MovieExists();
-                var existingMovie = existingMovies.Movies.SingleOrDefault(x => x.TMDBId == item.TMDBId);
+                var existingMovie = existingMovies.Movies.SingleOrDefault(x => x.TmdbId == item.TmdbId);
 
                 if (existingMovie != null)
                 {
-                    movieExists.Downloaded = existingMovie.Downloaded;
+                    movieExists.Downloaded = existingMovie.MovieFile != null;
                     movieExists.Monitored = existingMovie.Monitored;
                     movieExists.Exists = true;
                     movieExists.Movie = item;

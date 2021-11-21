@@ -1,17 +1,19 @@
-﻿using System;
+﻿using MediaRequest.Application.Parsers;
+using MediaRequest.Domain.Configuration;
+using MediaRequest.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace MediaRequest.Application.Clients
 {
-    public class RadarrClient : ICustomHttpClient
+    public class RadarrClient : ClientBase<IRadarrType>, ICustomHttpClient
     {
-        public HttpClient Client { get; }
-
-        public RadarrClient(HttpClient httpClient)
+        public RadarrClient(HttpClient httpClient) : base(httpClient)
         {
-            Client = httpClient;
         }
     }
 }

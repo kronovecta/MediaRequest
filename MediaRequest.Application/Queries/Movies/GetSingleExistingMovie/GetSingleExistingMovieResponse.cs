@@ -1,4 +1,4 @@
-﻿using MediaRequest.Domain.Radarr;
+﻿using MediaRequest.Domain.API_Responses.Radarr.v3;
 
 namespace MediaRequest.Application.Queries.Movies.GetSingleExistingMovie
 {
