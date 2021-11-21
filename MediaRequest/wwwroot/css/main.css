@@ -219,15 +219,21 @@ main {
     box-shadow: 0px 37px 29px -29px rgba(0, 0, 0, 0.47); }
     main .movie-hero .movie-hero-content {
       display: flex;
-      flex-direction: row;
+      flex-direction: column-reverse;
       justify-content: space-between;
       top: 25vh;
       left: 15vw;
       z-index: 3;
       align-items: center;
       padding: 0 1rem;
-      max-width: 992px;
+      max-width: 768px;
       width: 100%; }
+      @media (min-width: 768px) {
+        main .movie-hero .movie-hero-content {
+          flex-direction: row; } }
+      @media (min-width: 1080px) {
+        main .movie-hero .movie-hero-content {
+          max-width: 992px; } }
       main .movie-hero .movie-hero-content > .movie-hero-poster {
         max-width: 300px; }
         main .movie-hero .movie-hero-content > .movie-hero-poster img {
@@ -237,15 +243,28 @@ main {
           box-shadow: 0px 14px 10px -5px rgba(0, 0, 0, 0.75); }
       main .movie-hero .movie-hero-content > .text-body {
         max-width: 400px; }
+        main .movie-hero .movie-hero-content > .text-body h2, main .movie-hero .movie-hero-content > .text-body h3, main .movie-hero .movie-hero-content > .text-body p {
+          text-align: center; }
+          @media (min-width: 768px) {
+            main .movie-hero .movie-hero-content > .text-body h2, main .movie-hero .movie-hero-content > .text-body h3, main .movie-hero .movie-hero-content > .text-body p {
+              text-align: left; } }
         main .movie-hero .movie-hero-content > .text-body h2, main .movie-hero .movie-hero-content > .text-body p {
           color: #f8f9fc; }
         main .movie-hero .movie-hero-content > .text-body p {
+          display: none;
           font-size: 1.1rem;
           color: #dbe3f0; }
+          @media (min-width: 768px) {
+            main .movie-hero .movie-hero-content > .text-body p {
+              display: block; } }
         main .movie-hero .movie-hero-content > .text-body h3 {
           color: #b6c6e2; }
         main .movie-hero .movie-hero-content > .text-body .button-container {
-          margin-top: 2em; }
+          margin-top: 2em;
+          justify-content: center; }
+          @media (min-width: 992px) {
+            main .movie-hero .movie-hero-content > .text-body .button-container {
+              justify-content: left; } }
     main .movie-hero > .gradient {
       position: absolute;
       left: 0;
@@ -291,7 +310,6 @@ main {
     padding: 1.5em;
     display: flex;
     flex-direction: row;
-    max-width: 1000px;
     width: 100%;
     background: white;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
@@ -299,10 +317,10 @@ main {
     border-radius: 3px; }
     main .container .movie-container > .movie-poster {
       margin-right: 3em;
-      max-width: 150px;
-      min-width: 100px;
-      overflow: hidden;
-      padding-bottom: 10px; }
+      overflow: hidden; }
+      @media (min-width: 992px) {
+        main .container .movie-container > .movie-poster {
+          flex: 1; } }
       main .container .movie-container > .movie-poster img {
         width: 100%;
         -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
@@ -310,6 +328,9 @@ main {
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
     main .container .movie-container > .movie-info {
       width: 100%; }
+      @media (min-width: 992px) {
+        main .container .movie-container > .movie-info {
+          flex: 4; } }
       main .container .movie-container > .movie-info > .info > p {
         margin-top: 1rem; }
       main .container .movie-container > .movie-info > .info > .badge-container {
@@ -324,6 +345,37 @@ main {
     main .container .movie-container:hover {
       background: #f8f9fc; }
 
+.movie-list-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem; }
+  @media (min-width: 768px) {
+    .movie-list-container {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 993px) {
+    .movie-list-container {
+      grid-template-columns: repeat(1, 1fr); } }
+  .movie-list-container .movie-container {
+    max-width: 350px;
+    margin: 0 auto;
+    background: #fafafa;
+    padding: 1rem 1.5rem; }
+    @media (min-width: 768px) {
+      .movie-list-container .movie-container {
+        max-width: unset; } }
+    .movie-list-container .movie-container .movie-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
+      .movie-list-container .movie-container .movie-info .button-container .btn span, .movie-list-container .movie-container .movie-info .button-container .btn-sm span {
+        text-align: center; }
+    .movie-list-container .movie-container:not(:last-child) {
+      margin-bottom: 1rem; }
+      @media (min-width: 768px) {
+        .movie-list-container .movie-container:not(:last-child) {
+          margin-bottom: 0; } }
+
 .SearchPartialContainer {
   display: flex;
   align-items: center;
@@ -336,25 +388,38 @@ main {
     .SearchPartialContainer form > input[type="submit"] {
       margin-left: 1rem; }
 
-@media screen and (max-width: 9928px) {
-  .movie-hero {
-    height: auto; }
-    .movie-hero .movie-hero-content {
-      flex-direction: column-reverse;
-      min-width: initial;
-      width: 100%; }
-      .movie-hero .movie-hero-content .movie-hero-content {
-        max-width: none; }
-      .movie-hero .movie-hero-content .text-body h1, .movie-hero .movie-hero-content .text-body h3 {
-        text-align: center; }
-      .movie-hero .movie-hero-content .text-body .button-container {
-        margin-top: 1rem;
-        display: flex;
-        justify-content: center; }
-        .movie-hero .movie-hero-content .text-body .button-container .btn {
-          max-width: 200px;
-          width: 100%;
-          text-align: center; }
+@media screen and (max-width: 992px) {
+  /*.movie-hero {
+        height:auto;
+
+        .movie-hero-content {*/
+  /*flex-direction:column-reverse;*/
+  /*min-width:initial;
+            width:100%;
+
+            .movie-hero-content {
+                max-width:none;
+            }
+
+            .text-body {
+                h1, h3 {
+                    text-align:center;
+                }
+
+                .button-container {
+                    margin-top:1rem;
+                    display:flex;
+                    justify-content:center;
+
+                    .btn {
+                        max-width:200px;
+                        width:100%;
+                        text-align:center;
+                    }
+                }
+            }
+        }
+    }*/
   main .container {
     width: 100%;
     min-width: unset;
@@ -366,23 +431,7 @@ main {
         width: 100%; }
       main .container .movie-list-header form {
         margin-bottom: 1rem;
-        width: 100%; }
-  main .movie-list-container {
-    margin-top: 1rem; }
-    main .movie-list-container .movie-container {
-      max-width: 300px;
-      margin: 0 auto;
-      background: #fafafa;
-      padding: 1rem 0.5rem; }
-      main .movie-list-container .movie-container .movie-info .button-container .btn, main .movie-list-container .movie-container .movie-info .button-container .btn-sm {
-        width: 100%; }
-        main .movie-list-container .movie-container .movie-info .button-container .btn span, main .movie-list-container .movie-container .movie-info .button-container .btn-sm span {
-          text-align: center; }
-      main .movie-list-container .movie-container:not(:last-child) {
-        margin-bottom: 1rem; } }
-      @media screen and (max-width: 9928px) and (min-width: 768px) {
-        main .movie-list-container .movie-container:not(:last-child) {
-          margin-bottom: 0; } }
+        width: 100%; } }
 
 :focus {
   outline: none; }
@@ -780,20 +829,29 @@ nav.submenu {
     display: none; }
   main .movie-hero {
     height: initial;
-    padding: 2rem 0; }
-    main .movie-hero .movie-hero-content {
-      flex-direction: column-reverse;
-      width: 100%;
-      min-width: initial; }
-      main .movie-hero .movie-hero-content .movie-hero-poster {
-        margin-bottom: 1rem;
-        max-width: 200px; }
-      main .movie-hero .movie-hero-content .text-body {
-        width: 100%; }
-        main .movie-hero .movie-hero-content .text-body p {
-          display: none; }
-        main .movie-hero .movie-hero-content .text-body .button-container {
-          margin-top: 1rem; }
+    padding: 2rem 0;
+    /*.movie-hero-content {
+                flex-direction: column-reverse;
+                width: 100%;
+                min-width: initial;
+
+                .movie-hero-poster {
+                    margin-bottom: 1rem;
+                    max-width: 200px;
+                }
+
+                .text-body {
+                    width: 100%;
+
+                    p {
+                        display: none;
+                    }
+
+                    .button-container {
+                        margin-top: 1rem;
+                    }
+                }
+            }*/ }
   main .movie-list-container .movie-container {
     flex-direction: column; }
     main .movie-list-container .movie-container .movie-info .button-container {
@@ -1481,10 +1539,7 @@ nav.submenu {
   border-radius: 3px; }
   .movie-container > .movie-poster {
     margin-right: 3em;
-    max-width: 150px;
-    min-width: 100px;
-    overflow: hidden;
-    padding-bottom: 10px; }
+    overflow: hidden; }
     .movie-container > .movie-poster img {
       width: 100%;
       -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);

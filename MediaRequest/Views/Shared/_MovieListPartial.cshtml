@@ -37,7 +37,7 @@
         @foreach (var item in Model.Movies.OrderByDescending(x => x.FileOrMediaAdded))
         {
             <div class="movie-container">
-                <div class="movie-poster">
+                <div class="movie-poster pb-sm-3 pb-lg-0">
                     @if (item.PosterUrl != null)
                     {
                         <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
