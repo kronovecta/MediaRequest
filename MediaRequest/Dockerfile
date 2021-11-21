@@ -9,6 +9,7 @@ WORKDIR /src
 COPY ["MediaRequest/MediaRequest.WebUI.csproj", "MediaRequest/"]
 COPY ["MediaRequest.Data/MediaRequest.Data.csproj", "MediaRequest.Data/"]
 COPY ["MediaRequest.Application/MediaRequest.Application.csproj", "MediaRequest.Application/"]
+COPY ["MediaRequest.Application/MediaRequest.Application.Tests.csproj", "MediaRequest.Application.Tests/"]
 COPY ["MediaRequest.Domain/MediaRequest.Domain.csproj", "MediaRequest.Domain/"]
 RUN dotnet restore "MediaRequest/MediaRequest.WebUI.csproj"
 COPY . .
