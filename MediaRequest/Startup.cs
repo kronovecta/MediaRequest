@@ -83,7 +83,7 @@ namespace MediaRequest
 
             services.AddHttpClient<TMDBClient>(client => {
                 client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value);
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Configuration.GetSection("Bearer:TMDB")}");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Configuration.GetSection("Bearer:TMDB").Value}");
             });
 
             services.AddHttpClient<RadarrClient>(client => {

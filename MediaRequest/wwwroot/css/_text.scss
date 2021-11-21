@@ -1,0 +1,11 @@
+﻿$alignments: left, center, right;
+
+@each $align in $alignments {
+    .text-#{$align} {
+        text-align: $align;
+    }
+}
+
+.text-white {
+    color:white!important;
+}

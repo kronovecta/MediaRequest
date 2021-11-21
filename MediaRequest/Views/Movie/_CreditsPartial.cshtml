@@ -1,8 +1,8 @@
 ﻿@model MediaRequest.WebUI.ViewModels.MovieCreditsViewModel
 
-<section class="cast">
-    <h2>Top billed cast</h2>
-    <ul class="top-billed">
+<section class="cast pt-sm-3">
+    <h2 class="py-sm-4 py-lg-2">Top billed cast</h2>
+    <ul class="top-billed pb-2">
         @foreach (var item in Model.TopBilled)
         {
             <partial name="_ActorPartial" , model="@item" />
@@ -10,7 +10,7 @@
     </ul>
 
     <h2>Cast</h2>
-    <ul class="cast-list">
+    <ul class="cast-list py-sm-3">
         @foreach (var item in Model.Cast)
         {
             <partial name="_ActorPartial" , model="@item" />
@@ -31,7 +31,7 @@
     </ul>
 
     <h2>Crew</h2>
-    <ul class="crew-list">
+    <ul class="crew-list py-sm-3">
         @foreach (var item in Model.Crew)
         {
             <li>

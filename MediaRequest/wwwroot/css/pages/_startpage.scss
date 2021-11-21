@@ -27,11 +27,10 @@
             top: 25vh;
             left: 15vw;
             z-index: 3;
-            max-width: 80vw;
-            width: 60%;
             align-items: center;
             padding: 0 1rem;
-            min-width: 768px;
+            max-width: 992px;
+            width: 100%;
 
             > .movie-hero-poster {
                 max-width: 300px;
@@ -47,7 +46,7 @@
             > .text-body {
                 max-width: 400px;
 
-                h1, p {
+                h2, p {
                     color: hsl(218, 43%, 98%)
                 }
 
@@ -118,7 +117,7 @@
         }
 
         .movie-list-filter {
-            text-align:right;
+            text-align: right;
 
             ul {
                 list-style: none;
@@ -204,7 +203,7 @@
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:9928px) {
     .movie-hero {
         height:auto;
 
@@ -239,41 +238,51 @@
 
     main {
         .container {
-            width:100%;
+            width: 100%;
             min-width: unset;
-            padding:3rem 2rem;
+            padding: 3rem 2rem;
 
             .movie-list-header {
                 flex-direction: column-reverse;
-                margin:0;
-                
+                margin: 0;
+
                 h1 {
-                    width:100%;
+                    width: 100%;
                 }
 
                 form {
-                    margin-bottom:1rem;
-                    width:100%;
+                    margin-bottom: 1rem;
+                    width: 100%;
                 }
             }
         }
 
         .movie-list-container {
-            margin-top:1rem;
+            margin-top: 1rem;
 
             .movie-container {
-                background:$grey-superlight;
-                padding:1rem 0.5rem;
+                max-width: 300px;
+                margin: 0 auto;
+                background: $grey-superlight;
+                padding: 1rem 0.5rem;
 
                 .movie-info {
                     .button-container {
                         .btn, .btn-sm {
-                            width:100%;
+                            width: 100%;
 
                             span {
-                                text-align:center;
+                                text-align: center;
                             }
                         }
+                    }
+                }
+
+                &:not(:last-child) {
+                    margin-bottom:1rem;
+
+                    @media (min-width:768px) {
+                        margin-bottom: 0;
                     }
                 }
             }

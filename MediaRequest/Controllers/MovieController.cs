@@ -58,6 +58,7 @@ namespace MediaRequest.Controllers
             return PartialView("_TrailerPartial", ytid);
         }
 
+        [Route("movie/credits")]
         public async Task<IActionResult> Credits(string tmdbid, int? amount)
         {
             var response = await _mediator.Send(new GetCreditsRequest { TMDBId = tmdbid, Amount = amount ?? 0 });
@@ -66,6 +67,7 @@ namespace MediaRequest.Controllers
             return PartialView("_CreditsPartial", model);
         }
 
+        [Route("movie/recommendations")]
         public async Task<IActionResult> Recommendations(string tmdbid)
         {
             var response = await _mediator.Send(new GetRecommendedRequest { TMDBId = tmdbid, Page = 1 });
