@@ -5,13 +5,14 @@
     {
         <div class="movie-container">
             <div class="movie-poster">
-                @if (item.Movie.RemotePoster != null && (item.Movie.RemotePoster.EndsWith("jpg") || item.Movie.RemotePoster.EndsWith("png"))) 
+                <img src="@item.Movie.PosterUrl" />
+                @*@if (item.Movie.RemotePoster != null && (item.Movie.RemotePoster.EndsWith("jpg") || item.Movie.RemotePoster.EndsWith("png"))) 
                 { 
                     <img src="@item.Movie.RemotePoster" />
                 } else
                 {
                     <img src="~/img/noposter.png" />
-                }
+                }*@
             </div>
             <div class="movie-info">
                 <h2>
@@ -60,7 +61,7 @@
 
                 <section class="button-container">
 
-                    <a class="btn btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.Movie.TitleSlug"><i class="fas fa-film"></i> Go to movie page</a>
+                    <a class="btn btn-primary" asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Movie.Slug"><i class="fas fa-film"></i> Go to movie page</a>
                     @if (item.Exists)
                     {
                         if (!item.Monitored || !item.Downloaded)

@@ -1,0 +1,18 @@
+﻿@model MediaRequest.Domain.TMDB.Cast
+
+<a asp-action="Actor" asp-controller="Actor" asp-route-slug="@Model.Slug" class="actor-container">
+    <li class="actor">
+        @if (Model.PortraitPath.Contains(".jpg") || Model.PortraitPath.Contains(".png") || Model.PortraitPath.Contains(".gif"))
+        {
+            <div class="actor-image">
+                <img src="@Model.PortraitPath" alt="Portrait">
+            </div>
+        }
+        <div class="info">
+            <div>
+                <h1>@Model.Name</h1>
+                <h2>@Model.Character</h2>
+            </div>
+        </div>
+    </li>
+</a>

@@ -33,25 +33,19 @@ namespace MediaRequest.Application.Queries.Movies
                     model.Credits = await JsonSerializer.DeserializeAsync<Credits>(stream, DefaultJsonSettings.Settings);
                 }
 
-                model.Credits.Cast.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
-
                 model.Credits.Crew = model.Credits.Crew.Take(20).ToList();
-                model.Credits.Crew.ForEach(x => x.Profile_path = "https://image.tmdb.org/t/p/w200" + x.Profile_path);
 
-                model.Credits.TopBilled = model.Credits.Cast.Take(5).ToList();
-
-                if (request.Amount > 0)
-                {
-                    model.Credits.Cast = model.Credits.Cast.Skip(5).ToList();
-                } else
-                {
-                    model.Credits.Cast = model.Credits.Cast.Skip(5).Take(9).ToList();
-                }
+                //if (request.Amount > 0)
+                //{
+                //    model.Credits.Cast = model.Credits.Cast.Skip(5).ToList();
+                //} else
+                //{
+                //    model.Credits.Cast = model.Credits.Cast.Skip(5).Take(9).ToList();
+                //}
 
                 return new GetCreditsResponse
                 {
                     Credits = model.Credits
-
                 };
             } else
             {

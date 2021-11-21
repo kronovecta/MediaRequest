@@ -9,5 +9,7 @@ namespace MediaRequest.Domain.Configuration
         public string BaseURL { get; set; }
         public string Radarr { get; set; }
         public string TMDB { get; set; }
+        public string Sonarr { get; set; }
+        public string TvMaze { get; set; }
     }
 }

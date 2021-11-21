@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaRequest.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaRequest.Domain", "MediaRequest.Domain\MediaRequest.Domain.csproj", "{74490AFF-DF94-4DF0-8D3F-B45C2B88CDF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRequest.Application.Tests", "MediaRequest.Application.Tests\MediaRequest.Application.Tests.csproj", "{6E9F1E6F-C73C-43DC-A5C0-927C4251536D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{74490AFF-DF94-4DF0-8D3F-B45C2B88CDF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74490AFF-DF94-4DF0-8D3F-B45C2B88CDF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74490AFF-DF94-4DF0-8D3F-B45C2B88CDF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E9F1E6F-C73C-43DC-A5C0-927C4251536D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E9F1E6F-C73C-43DC-A5C0-927C4251536D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E9F1E6F-C73C-43DC-A5C0-927C4251536D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E9F1E6F-C73C-43DC-A5C0-927C4251536D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 ﻿using MediaRequest.Domain;
 using MediaRequest.Domain.Configuration;
-using MediaRequest.Domain.Radarr;
+using MediaRequest.Domain.API_Responses.Radarr.v3;
 using MediaRequest.Domain.TMDB;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -40,7 +40,7 @@ namespace MediaRequest.Application.Queries.Movies.SearchMovieByName
                 existingResponse.EnsureSuccessStatusCode();
 
                 var existingResponseResult = await existingResponse.Content.ReadAsStringAsync();
-                var existingMovies = (JsonConvert.DeserializeObject<IEnumerable<Movie>>(result).OrderByDescending(x => x.lastInfoSync));
+                var existingMovies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result);
 
                 var responseObject = new SearchMovieByNameResponse
                 {
@@ -50,12 +50,12 @@ namespace MediaRequest.Application.Queries.Movies.SearchMovieByName
 
                 foreach (var movie in moviesJson)
                 {
-                    var existingMovie = existingMovies.SingleOrDefault(x => x.TMDBId == movie.TMDBId);
+                    var existingMovie = existingMovies.SingleOrDefault(x => x.TmdbId == movie.TmdbId);
                     if(existingMovie != null)
                     {
                         movie.Added = existingMovie.Added;
                         movie.PhysicalRelease = existingMovie.PhysicalRelease;
-                        movie.Downloaded = existingMovie.Downloaded;
+                        //(movie.MovieFile != null) = (existingMovie.MovieFile != null);
                         movie.Monitored = existingMovie.Monitored; 
                     }
 

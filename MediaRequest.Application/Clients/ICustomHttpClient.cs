@@ -7,6 +7,6 @@ namespace MediaRequest.Application.Clients
 {
     public interface ICustomHttpClient
     {
-        HttpClient Client { get; }
+        //HttpClient Client { get; }
     }
 }
