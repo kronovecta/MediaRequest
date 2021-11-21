@@ -1,7 +1,7 @@
 ﻿@model MediaRequest.WebUI.ViewModels.MovieCreditsViewModel
 
 <section class="cast">
-    <h1>Top billed cast</h1>
+    <h2>Top billed cast</h2>
     <ul class="top-billed">
         @foreach (var item in Model.TopBilled)
         {
@@ -9,7 +9,7 @@
         }
     </ul>
 
-    <h1>Cast</h1>
+    <h2>Cast</h2>
     <ul class="cast-list">
         @foreach (var item in Model.Cast)
         {
@@ -30,7 +30,7 @@
 
     </ul>
 
-    <h1>Crew</h1>
+    <h2>Crew</h2>
     <ul class="crew-list">
         @foreach (var item in Model.Crew)
         {

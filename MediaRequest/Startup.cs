@@ -72,6 +72,7 @@ namespace MediaRequest
 
             #region Configuration classes
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
+            services.Configure<Bearer>(Configuration.GetSection("Bearer"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             #endregion
@@ -82,7 +83,7 @@ namespace MediaRequest
 
             services.AddHttpClient<TMDBClient>(client => {
                 client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value);
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZjc0NjY2ZmU2YzJhZGMxYWZjMGNjOTMxYTk2YjI1OCIsInN1YiI6IjU5Nzc5OWExYzNhMzY4NGE4NDAwYTljZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WAYML-XCKZ7370Lmkyd5_I4BZxH3BlSqNhnjaTRDUu8");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Configuration.GetSection("Bearer:TMDB")}");
             });
 
             services.AddHttpClient<RadarrClient>(client => {

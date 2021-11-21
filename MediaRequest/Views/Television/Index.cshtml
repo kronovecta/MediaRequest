@@ -6,7 +6,7 @@
 
 <div class="container wide grid-layout grid-col-5 grid-gap-2">
 
-    @foreach (var show in Model)
+    @foreach (var show in Model.OrderBy(x => x.Title))
     {
         <a class="television-card" asp-controller="television" asp-action="show" asp-route-slug="@show.Slug">
             <div class="card-head">
