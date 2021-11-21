@@ -1,0 +1,9 @@
+﻿.img-circle {
+    border-radius:50%;
+}
+
+@mixin img-circle {
+    .img-circle {
+        border-radius:50%;
+    }
+}

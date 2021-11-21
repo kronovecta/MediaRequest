@@ -1,5 +1,5 @@
 ﻿using MediaRequest.Domain;
-using MediaRequest.Domain.Radarr;
+using MediaRequest.Domain.API_Responses.Radarr.v3;
 using MediaRequest.WebUI.Models.IdentityModels;
 using System;
 using System.Collections.Generic;

@@ -33,7 +33,7 @@ namespace MediaRequest
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddJsonFile($"settings.json", false, true)
-                .AddYamlFile("settings.yaml", false, true)
+                .AddYamlFile("settings.yaml", true, true)
                 .AddEnvironmentVariables(prefix: "Apollo_")
                 .AddUserSecrets<Startup>();
 
@@ -70,15 +70,32 @@ namespace MediaRequest
             services.AddDataProtection();
             #endregion
 
-            #region HTTP Clients
-            services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
-            services.AddHttpClient<TMDBClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value));
-            #endregion
-
             #region Configuration classes
             services.Configure<ApiKeys>(Configuration.GetSection("ApiKeys"));
+            services.Configure<Bearer>(Configuration.GetSection("Bearer"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            #endregion
+
+            #region HTTP Clients
+            //services.AddHttpClient<RadarrClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value));
+            services.AddHttpClient<TVMazeClient>(client => client.BaseAddress = new Uri(Configuration.GetSection("Path:TvMaze").Value));
+
+            services.AddHttpClient<TMDBClient>(client => {
+                client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value);
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Configuration.GetSection("Bearer:TMDB")}");
+            });
+
+            services.AddHttpClient<RadarrClient>(client => {
+                client.BaseAddress = new Uri(Configuration.GetSection("Path:Radarr").Value);
+                client.DefaultRequestHeaders.Add("X-Api-Key", Configuration.GetSection("ApiKeys:Radarr").Value);
+            });
+
+            services.AddHttpClient<SonarrClient>(client => {
+                client.BaseAddress = new Uri(Configuration.GetSection("Path:Sonarr").Value);
+                client.DefaultRequestHeaders.Add("X-Api-Key", Configuration.GetSection("ApiKeys:Sonarr").Value);
+            });
+
             #endregion
 
             #region MediatR
@@ -154,7 +171,9 @@ namespace MediaRequest
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("ShowMovie", "{{action}}/{{slug}}", new { controller = "Home" });
+                endpoints.MapControllerRoute("Show", "{{action}}/{{slug}}", new { controller = "Home" });
+                endpoints.MapControllerRoute("ShowSeries", "{{action}}/{{slug}}", new { controller = "Television" });
+
                 endpoints.MapControllerRoute("Search", "{{action}}/{term?}", new { controller = "Home" });
                 endpoints.MapControllerRoute("default", "{{action}}", new { controller = "Home" });
                 endpoints.MapDefaultControllerRoute();

@@ -10,7 +10,6 @@
     <form asp-action="Index" asp-controller="Home" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">
         <div class="input-container">
             <i class="fas fa-search"></i>
-            @*<input name="term" placeholder="Search.." />*@
             @if (Model.Term != null)
             {
                 <input name="term" placeholder="Search.." value="@Model.Term" />
@@ -35,19 +34,19 @@
     @if (Model.Movies.Count() > 0)
     {
         <div class="loading mb-3"><img src="~/img/loading.gif" /></div>
-        @foreach (var item in Model.Movies)
+        @foreach (var item in Model.Movies.OrderByDescending(x => x.FileOrMediaAdded))
         {
             <div class="movie-container">
                 <div class="movie-poster">
-                    @if (item.RemotePoster != null)
+                    @if (item.PosterUrl != null)
                     {
-                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug">
+                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
                             <img src="@item.PosterUrl" />
                         </a>
                     }
                     else
                     { 
-                        <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug">
+                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
                             <img src="@item.PosterUrl" />
                         </a>
                     }
@@ -56,7 +55,7 @@
                 <div class="movie-info">
                     <div class="info">
                         <h2>
-                            <a asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug">@item.Title</a>
+                            <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">@item.Title</a>
                             <span style="opacity:0.7">(@item.Year)</span>
                         </h2>
                         <section class="badge-container">
@@ -79,16 +78,16 @@
 
                                 }
 
-                                @if (!item.Monitored && !item.Downloaded)
+                                @if (!item.Monitored && !item.HasFile)
                                 {
                                     <span class="badge badge-danger">Not Monitored</span>
                                 }
 
-                                @if (!item.Downloaded && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
+                                @if (!item.HasFile && item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
                                 {
                                     <span class="badge badge-danger">Not Downloaded</span>
                                 }
-                                else if (item.Downloaded)
+                                else if (item.HasFile)
                                 {
                                     <span class="badge badge-success">Downloaded</span>
                                 }
@@ -106,10 +105,10 @@
                     </div>
 
                     <div class="button-container">
-                        <a class="btn-sm btn-primary" asp-action="ShowMovie" asp-controller="Movie" asp-route-slug="@item.TitleSlug"><span><i class="fas fa-film"></i> Go to movie page</span></a>
+                        <a class="btn-sm btn-primary" asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug"><span><i class="fas fa-film"></i> Go to movie page</span></a>
                         @if (item.PhysicalRelease < DateTime.Now && item.PhysicalRelease != DateTime.Parse("0001-01-01 00:00:00"))
                         {
-                            if ((!item.Monitored && !item.Downloaded) || !item.Downloaded)
+                            if ((!item.Monitored && !item.HasFile) || !item.HasFile)
                             {
                                 <a class="btn-sm btn-default" href="#"><span><i class="fas fa-redo"></i> Request re-download</span></a>
                             }
@@ -124,7 +123,7 @@
     {
         if (prevPage >= 0)
         {
-            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="1" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">First</a>
+            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="1" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">First</a>
         }
         else
         {
@@ -133,7 +132,7 @@
 
         if (prevPage != -1)
         {
-            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(prevPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Previous</a>
+            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(prevPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Previous</a>
         }
         else
         {
@@ -144,7 +143,7 @@
 
         if (nextPage != (Model.TotalPages + 1))
         {
-            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(nextPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Next</a>
+            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(nextPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Next</a>
         }
         else
         {
@@ -153,7 +152,7 @@
 
         if (nextPage < Model.TotalPages)
         {
-            <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(Model.TotalPages + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Last</a>
+            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(Model.TotalPages + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Last</a>
         }
         else
         {

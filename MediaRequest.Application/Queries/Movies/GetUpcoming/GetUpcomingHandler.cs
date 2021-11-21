@@ -1,5 +1,5 @@
 ﻿using MediaRequest.Domain.Configuration;
-using MediaRequest.Domain.Radarr;
+using MediaRequest.Domain.API_Responses.Radarr.v3;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -33,7 +33,7 @@ namespace MediaRequest.Application.Queries.Movies.GetUpcoming
                 var result = await res.Content.ReadAsStringAsync();
                 var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(result);
 
-                movies.ToList().ForEach(x => x.PosterUrl = _path.BaseURL + x.Images.SingleOrDefault(y => y.CoverType == "poster").URL);
+                //movies.ToList().ForEach(x => x.PosterUrl = _path.BaseURL + x.Images.SingleOrDefault(y => y.CoverType == "poster").URL);
 
                 response.Movies = movies;
                 return response;
