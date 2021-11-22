@@ -13,7 +13,7 @@ $breakpoints: (sm, md, lg, xlg);
     .grid-col-#{$space} {
         grid-template-columns: repeat(ceil($space / 4), 1fr);
 
-        @media(min-width:552px) {
+        @media(min-width:768px) {
             grid-template-columns: repeat(ceil($space / 2), 1fr);
         }
 

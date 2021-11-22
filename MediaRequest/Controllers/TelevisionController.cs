@@ -19,6 +19,7 @@
             _mediator = mediator;
         }
 
+        [Route("television")]
         public async Task<IActionResult> Index()
         {
             var response = await _mediator.Send(new GetAllSeriesRequest());

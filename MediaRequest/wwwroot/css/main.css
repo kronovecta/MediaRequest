@@ -2135,7 +2135,7 @@ footer {
 
 .grid-col-0 {
   grid-template-columns: repeat(0, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-0 {
       grid-template-columns: repeat(0, 1fr); } }
   @media (min-width: 992px) {
@@ -2147,7 +2147,7 @@ footer {
 
 .grid-col-1 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-1 {
       grid-template-columns: repeat(1, 1fr); } }
   @media (min-width: 992px) {
@@ -2159,7 +2159,7 @@ footer {
 
 .grid-col-2 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-2 {
       grid-template-columns: repeat(1, 1fr); } }
   @media (min-width: 992px) {
@@ -2171,7 +2171,7 @@ footer {
 
 .grid-col-3 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-3 {
       grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 992px) {
@@ -2183,7 +2183,7 @@ footer {
 
 .grid-col-4 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-4 {
       grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 992px) {
@@ -2195,7 +2195,7 @@ footer {
 
 .grid-col-5 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-5 {
       grid-template-columns: repeat(3, 1fr); } }
   @media (min-width: 992px) {
@@ -2207,7 +2207,7 @@ footer {
 
 .grid-col-6 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-6 {
       grid-template-columns: repeat(3, 1fr); } }
   @media (min-width: 992px) {
@@ -2219,7 +2219,7 @@ footer {
 
 .grid-col-7 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-7 {
       grid-template-columns: repeat(4, 1fr); } }
   @media (min-width: 992px) {
@@ -2231,7 +2231,7 @@ footer {
 
 .grid-col-8 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-8 {
       grid-template-columns: repeat(4, 1fr); } }
   @media (min-width: 992px) {
@@ -2243,7 +2243,7 @@ footer {
 
 .grid-col-9 {
   grid-template-columns: repeat(3, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-9 {
       grid-template-columns: repeat(5, 1fr); } }
   @media (min-width: 992px) {
@@ -2255,7 +2255,7 @@ footer {
 
 .grid-col-10 {
   grid-template-columns: repeat(3, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-10 {
       grid-template-columns: repeat(5, 1fr); } }
   @media (min-width: 992px) {
