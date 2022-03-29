@@ -19,8 +19,10 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
 using System;
 using System.Threading.Tasks;
+using Microsoft.FeatureManagement.FeatureFilters;
 
 namespace MediaRequest
 {
@@ -33,6 +35,7 @@ namespace MediaRequest
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddJsonFile($"settings.json", false, true)
+                .AddJsonFile("features.json", true)
                 .AddYamlFile("settings.yaml", true, true)
                 .AddEnvironmentVariables(prefix: "Apollo_")
                 .AddUserSecrets<Startup>();
@@ -75,6 +78,7 @@ namespace MediaRequest
             services.Configure<Bearer>(Configuration.GetSection("Bearer"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<ImageProcessor>(Configuration.GetSection("ImageProcessor"));
             #endregion
 
             #region HTTP Clients
@@ -95,6 +99,8 @@ namespace MediaRequest
                 client.BaseAddress = new Uri(Configuration.GetSection("Path:Sonarr").Value);
                 client.DefaultRequestHeaders.Add("X-Api-Key", Configuration.GetSection("ApiKeys:Sonarr").Value);
             });
+
+            services.AddFeatureManagement();
 
             #endregion
 
@@ -169,6 +175,7 @@ namespace MediaRequest
 
             app.UseRouting();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("Show", "{{action}}/{{slug}}", new { controller = "Home" });

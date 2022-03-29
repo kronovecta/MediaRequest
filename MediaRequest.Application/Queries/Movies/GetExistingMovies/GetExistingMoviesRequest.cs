@@ -1,4 +1,5 @@
-﻿using MediaRequest.Application.Queries.Movies;
+﻿using MediaRequest.Application.Business.Enums;
+using MediaRequest.Application.Queries.Movies;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace MediaRequest.Application.Queries.Movies
     {
         public int CurrentPage { get; set; }
         public int Amount { get; set; } = 10;
+        public string Input { get; set; }
+        public Filters FilterMode { get; set; }
     }
 
     public class GetExistingMoviesFilteredRequest : IRequest<GetExistingMoviesResponse>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.FeatureManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,21 @@ using System.Text.RegularExpressions;
 
 namespace MediaRequest.Domain.API_Responses.Shared
 {
+    public class MediaBaseDto : MediaBase
+    {
+        private readonly IFeatureManager _featureManager;
+
+        public MediaBaseDto(IFeatureManager featureManager)
+        {
+            _featureManager = featureManager;
+        }
+
+        public string GetImageUrl()
+        {
+            return null;
+        }
+    }
+
     public class MediaBase
     {
         [JsonPropertyName("title")]
@@ -31,7 +47,7 @@ namespace MediaRequest.Domain.API_Responses.Shared
         public string EncodedPath => Path;
 
         [JsonIgnore]
-        public string PosterUrl
+        public virtual string PosterUrl
         {
             get
             {
