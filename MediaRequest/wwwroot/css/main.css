@@ -433,6 +433,9 @@ main {
         margin-bottom: 1rem;
         width: 100%; } }
 
+img {
+  max-width: 100%; }
+
 :focus {
   outline: none; }
 

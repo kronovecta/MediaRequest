@@ -5,12 +5,12 @@
 
 <div class="single-movie-container" id="main-container">
     <div class="hero-container">
-        <img class="background" src="@Model.Movie.FanartUrl" />
+        <partial name="_Fanart" model="Model.Movie" />
     </div>
     <section class="container">
         <div class="head">
             <div class="poster">
-                <img src="@await ImageProcessor.GetImageUrl(Model.Movie.PosterUrl, 300, 450)" />
+                <partial name="_Poster" model="Model.Movie" />
             </div>
             <div class="info">
                 <div class="title">
@@ -22,7 +22,8 @@
                         <ul>
                             @foreach (var genre in Model.Movie.Genres)
                             {
-                <li>@genre</li>}
+                <li>@genre</li>
+}
                         </ul>
                         <ul>
                             <li>@Model.Movie.Runtime minutes</li>
@@ -71,13 +72,14 @@
         <li><a class="btn btn-primary" href="@("https://www.youtube.com/watch?v=" + Model.Movie.YouTubeTrailerId)">Watch trailer <i class="fab fa-youtube"></i></a></li>
         @if (Model.Accepted || Model.Movie.HasFile)
         {
-<li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li> }
-            else if (Model.Requested)
-            {
-<li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li> }
-            else
-            {
-<li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TmdbId">Request movie <i class="fas fa-plus"></i></a></li>}
+            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
+        } else if (Model.Requested)
+        {
+            <li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li>
+        } else
+        {
+            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TmdbId">Request movie <i class="fas fa-plus"></i></a></li>
+        }
 
         @*@if (Model.Movie.AlreadyAdded != true)
             {

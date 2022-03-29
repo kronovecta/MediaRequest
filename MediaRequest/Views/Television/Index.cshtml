@@ -25,7 +25,7 @@
                     
 
                 </div>
-                <img src="@show.Images.SingleOrDefault(x => x.CoverType.ToLower() == "poster")?.RemoteUrl" />
+                <partial name="_Poster" model="show" />
             </div>
             <div class="card-body">
                 <h2 class="title">@show.Title</h2>

@@ -33,11 +33,11 @@
                 </div>
             </div>
             <div class="movie-hero-poster">
-                <img src="@await ImageProcessor.GetImageUrl(Model.LatestMovie.PosterUrl, 300, 450)" />
+                <partial name="_Poster" model="Model.LatestMovie" />
             </div>
         </div>
         <div class="background">
-            <img src="@await ImageProcessor.GetImageUrl(Model.LatestMovie.FanartUrl, 1920, 1080)" />
+            <partial name="_Fanart" model="Model.LatestMovie" />
         </div>
     </div>
 

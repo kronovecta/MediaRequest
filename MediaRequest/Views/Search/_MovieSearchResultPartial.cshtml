@@ -5,14 +5,7 @@
     {
         <div class="movie-container">
             <div class="movie-poster">
-                <img src="@item.Movie.PosterUrl" />
-                @*@if (item.Movie.RemotePoster != null && (item.Movie.RemotePoster.EndsWith("jpg") || item.Movie.RemotePoster.EndsWith("png"))) 
-                { 
-                    <img src="@item.Movie.RemotePoster" />
-                } else
-                {
-                    <img src="~/img/noposter.png" />
-                }*@
+                <partial name="_Poster" model="item.Movie" />
             </div>
             <div class="movie-info">
                 <h2>

@@ -1,0 +1,10 @@
+﻿@using MediaRequest.WebUI.Business.Services
+@inject IImageProcessorService ImageProcessor
+
+@model MediaRequest.Domain.API_Responses.Shared.MediaBase
+
+<picture>
+    <source media="(max-width: 576px)" srcset="@await ImageProcessor.GetImageUrl(Model.PosterUrl, 300, 450)">
+    <source media="(max-width: 992px)" srcset="@await ImageProcessor.GetImageUrl(Model.PosterUrl, 450, 675)">
+    <img src="@await ImageProcessor.GetImageUrl(Model.PosterUrl, 300, 450)" alt="Blabla">
+</picture>

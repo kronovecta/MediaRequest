@@ -1,13 +1,16 @@
-﻿@model MediaRequest.WebUI.ViewModels.Television.SeriesViewModel
+﻿@using MediaRequest.WebUI.Business.Services
+@inject IImageProcessorService ImageProcessor
+
+@model MediaRequest.WebUI.ViewModels.Television.SeriesViewModel
 
 <div class="single-movie-container" id="main-container">
     <div class="hero-container">
-        <img class="background" src="@Model.SonarrSeries.FanartUrl" />
+        <partial name="_Fanart" model="Model.SonarrSeries" />
     </div>
     <section class="container">
         <div class="head">
             <div class="poster">
-                <img class="background" src="@Model.SonarrSeries.PosterUrl" />
+                <partial name="_Poster" model="Model.SonarrSeries" />
             </div>
             <div class="info">
                 <div class="title">
@@ -19,8 +22,7 @@
                         <ul>
                             @foreach (var genre in Model.SonarrSeries.Genres)
                             {
-                                <li>@genre</li>
-                            }
+                <li>@genre</li>}
                         </ul>
                         <ul>
                             <li>@Model.SonarrSeries.Runtime minutes</li>
@@ -30,7 +32,6 @@
 
                 <p class="overview">@Model.SonarrSeries.Overview</p>
                 <p>@Model.SonarrSeries.EncodedPath</p>
-                @*<a href="@Model.SonarrSeries.EncodedPath.AbsoluteUri">FTP Link</a>*@
 
                 <div class="ratings">
                     <span title="The Movie Database rating">
@@ -45,64 +46,60 @@
             <div id="container">
                 <section class="details">
                     <partial name="_CreditsPartial" model="Model.Cast" />
-                </section>  
+                </section>
             </div>
             <div hidden class="loading"><img src="~/img/loading.gif" /></div>
 
             @foreach (var season in Model.SonarrSeries.Seasons)
-	        {
-	            <div style="border:1px solid lightgrey;padding:2rem;border-radius:25px">
-                    <h3>Season @season.SeasonNumber @season.Statistics.EpisodeCount/@season.Statistics.TotalEpisodeCount</h3>
-                </div>
-	        }
+            {
+<div style="border:1px solid lightgrey;padding:2rem;border-radius:25px">
+    <h3>Season @season.SeasonNumber @season.Statistics.EpisodeCount/@season.Statistics.TotalEpisodeCount</h3>
+</div>}
         </div>
     </section>
 
-    
+
 </div>
 
 <div class="mobile-button-block">
     <ul>
         @if (Model.Accepted || Model.AlreadyAdded)
         {
-            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
-        }
-        else if (Model.Requested)
-        {
-            <li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li>
-        }
-        else
-        {
-            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="">Request series <i class="fas fa-plus"></i></a></li>
-        }
+<li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li> }
+            else if (Model.Requested)
+            {
+<li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li> }
+            else
+            {
+<li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="">Request series <i class="fas fa-plus"></i></a></li>}
     </ul>
 </div>
 
 @*<script>
-    $(document).ready(function () {
-        let navBtn = $('.page-nav > .body-nav > li');
-        navBtn.first().children('a').toggleClass('active');
-        navBtn.first().children('a').click();
+        $(document).ready(function () {
+            let navBtn = $('.page-nav > .body-nav > li');
+            navBtn.first().children('a').toggleClass('active');
+            navBtn.first().children('a').click();
 
-        navBtn.on('click', function () {
-            $('#container').children().first().remove();
-            $('.loading').show();
-            navBtn.children('a').removeClass('active');
-            $(this).children('a').addClass('active');
-        })
+            navBtn.on('click', function () {
+                $('#container').children().first().remove();
+                $('.loading').show();
+                navBtn.children('a').removeClass('active');
+                $(this).children('a').addClass('active');
+            })
 
-        let btnBlock = $('.mobile-button-block > ul > li');
+            let btnBlock = $('.mobile-button-block > ul > li');
 
-        $(document).scroll(function () {
-            if (window.scrollY >= 150) {
-                btnBlock.children().removeClass('btn')
-                btnBlock.children().addClass('btn-sm')
-            }
+            $(document).scroll(function () {
+                if (window.scrollY >= 150) {
+                    btnBlock.children().removeClass('btn')
+                    btnBlock.children().addClass('btn-sm')
+                }
 
-            if (window.scrollY < 150) {
-                btnBlock.children().removeClass('btn-sm')
-                btnBlock.children().addClass('btn')
-            }
-        })
-    });
-</script>*@
+                if (window.scrollY < 150) {
+                    btnBlock.children().removeClass('btn-sm')
+                    btnBlock.children().addClass('btn')
+                }
+            })
+        });
+    </script>*@
