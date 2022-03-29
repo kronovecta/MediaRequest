@@ -1,0 +1,25 @@
+﻿$sizes: 1, 2, 3, 4, 5;
+
+.d-flex {
+    display:flex;
+}
+
+
+
+.flex-space-even {
+    justify-content:space-evenly;
+}
+
+@each $size in $sizes {
+    .flex-gutter-#{$size} {
+        > *:not(:last-child) {
+            margin-right:  #{$size}rem;
+        }
+    }
+}
+
+@each $size in $sizes {
+    .flex-#{$size} {
+        flex: $size;
+    }
+}

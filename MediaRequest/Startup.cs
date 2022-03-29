@@ -19,8 +19,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
 using System;
 using System.Threading.Tasks;
+using Microsoft.FeatureManagement.FeatureFilters;
+using MediaRequest.WebUI.Business.Services;
 
 namespace MediaRequest
 {
@@ -33,6 +36,7 @@ namespace MediaRequest
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddJsonFile($"settings.json", false, true)
+                .AddJsonFile("features.json", true)
                 .AddYamlFile("settings.yaml", true, true)
                 .AddEnvironmentVariables(prefix: "Apollo_")
                 .AddUserSecrets<Startup>();
@@ -58,12 +62,14 @@ namespace MediaRequest
             });
 
             services.AddSession();
+            services.AddFeatureManagement(Configuration.GetSection("FeatureManagement"));
 
             #region Service Classes
             services.AddScoped<IHttpHelper, HttpHelper>();
             services.AddScoped<DataInitializer>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddSingleton<IImageProcessorService, ImageProcessorService>();
             #endregion
 
             #region Data Protection
@@ -75,6 +81,7 @@ namespace MediaRequest
             services.Configure<Bearer>(Configuration.GetSection("Bearer"));
             services.Configure<ServicePath>(Configuration.GetSection("Path"));
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<ImageProcessor>(Configuration.GetSection("ImageProcessor"));
             #endregion
 
             #region HTTP Clients
@@ -83,7 +90,7 @@ namespace MediaRequest
 
             services.AddHttpClient<TMDBClient>(client => {
                 client.BaseAddress = new Uri(Configuration.GetSection("Path:TMDB").Value);
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Configuration.GetSection("Bearer:TMDB")}");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Configuration.GetSection("Bearer:TMDB").Value}");
             });
 
             services.AddHttpClient<RadarrClient>(client => {
@@ -169,6 +176,7 @@ namespace MediaRequest
 
             app.UseRouting();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("Show", "{{action}}/{{slug}}", new { controller = "Home" });

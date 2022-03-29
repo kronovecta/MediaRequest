@@ -42,13 +42,13 @@
                     @if (item.PosterUrl != null)
                     {
                         <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
-                            <img src="@item.PosterUrl" />
+                            <partial name="_Poster" model="item" />
                         </a>
                     }
                     else
                     { 
                         <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
-                            <img src="@item.PosterUrl" />
+                            <partial name="_Poster" model="item" />
                         </a>
                     }
                 </div>

@@ -1,8 +1,9 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexViewModel
-@using MediaRequest.Domain.API_Responses
-@using MediaRequest.Domain.API_Responses.Shared
 @using MediaRequest.Domain.API_Responses.Sonarr
 @using MediaRequest.Domain.API_Responses.Radarr.v3
+
+@using MediaRequest.WebUI.Business.Services 
+@inject IImageProcessorService ImageProcessor
 
 @{
     var err = TempData["Error"];
@@ -18,7 +19,7 @@
         <div class="movie-hero-content">
             <div class="text-body">
                 <h3>Recently Added:</h3>
-                <h1>@Model.LatestMovie.Title </h1>
+                <h2>@Model.LatestMovie.Title</h2>
                 <p>@Model.LatestMovie.Overview</p>
                 <div class="button-container">
                     @if (Model.LatestMovie is Movie)
@@ -32,11 +33,11 @@
                 </div>
             </div>
             <div class="movie-hero-poster">
-                <img src="@Model.LatestMovie.PosterUrl" />
+                <partial name="_Poster" model="Model.LatestMovie" />
             </div>
         </div>
         <div class="background">
-            <img src="@Model.LatestMovie.FanartUrl" />
+            <partial name="_Fanart" model="Model.LatestMovie" />
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 ﻿/*$blue-main: hsl(225, 73%, 52%);*/
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700&display=swap");
+@import url(utilities/spacing.css);
 .icon {
   width: 15px;
   height: 15px; }
@@ -218,16 +219,21 @@ main {
     box-shadow: 0px 37px 29px -29px rgba(0, 0, 0, 0.47); }
     main .movie-hero .movie-hero-content {
       display: flex;
-      flex-direction: row;
+      flex-direction: column-reverse;
       justify-content: space-between;
       top: 25vh;
       left: 15vw;
       z-index: 3;
-      max-width: 80vw;
-      width: 60%;
       align-items: center;
       padding: 0 1rem;
-      min-width: 768px; }
+      max-width: 768px;
+      width: 100%; }
+      @media (min-width: 768px) {
+        main .movie-hero .movie-hero-content {
+          flex-direction: row; } }
+      @media (min-width: 1080px) {
+        main .movie-hero .movie-hero-content {
+          max-width: 992px; } }
       main .movie-hero .movie-hero-content > .movie-hero-poster {
         max-width: 300px; }
         main .movie-hero .movie-hero-content > .movie-hero-poster img {
@@ -237,15 +243,28 @@ main {
           box-shadow: 0px 14px 10px -5px rgba(0, 0, 0, 0.75); }
       main .movie-hero .movie-hero-content > .text-body {
         max-width: 400px; }
-        main .movie-hero .movie-hero-content > .text-body h1, main .movie-hero .movie-hero-content > .text-body p {
+        main .movie-hero .movie-hero-content > .text-body h2, main .movie-hero .movie-hero-content > .text-body h3, main .movie-hero .movie-hero-content > .text-body p {
+          text-align: center; }
+          @media (min-width: 768px) {
+            main .movie-hero .movie-hero-content > .text-body h2, main .movie-hero .movie-hero-content > .text-body h3, main .movie-hero .movie-hero-content > .text-body p {
+              text-align: left; } }
+        main .movie-hero .movie-hero-content > .text-body h2, main .movie-hero .movie-hero-content > .text-body p {
           color: #f8f9fc; }
         main .movie-hero .movie-hero-content > .text-body p {
+          display: none;
           font-size: 1.1rem;
           color: #dbe3f0; }
+          @media (min-width: 768px) {
+            main .movie-hero .movie-hero-content > .text-body p {
+              display: block; } }
         main .movie-hero .movie-hero-content > .text-body h3 {
           color: #b6c6e2; }
         main .movie-hero .movie-hero-content > .text-body .button-container {
-          margin-top: 2em; }
+          margin-top: 2em;
+          justify-content: center; }
+          @media (min-width: 992px) {
+            main .movie-hero .movie-hero-content > .text-body .button-container {
+              justify-content: left; } }
     main .movie-hero > .gradient {
       position: absolute;
       left: 0;
@@ -291,7 +310,6 @@ main {
     padding: 1.5em;
     display: flex;
     flex-direction: row;
-    max-width: 1000px;
     width: 100%;
     background: white;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
@@ -299,10 +317,10 @@ main {
     border-radius: 3px; }
     main .container .movie-container > .movie-poster {
       margin-right: 3em;
-      max-width: 150px;
-      min-width: 100px;
-      overflow: hidden;
-      padding-bottom: 10px; }
+      overflow: hidden; }
+      @media (min-width: 992px) {
+        main .container .movie-container > .movie-poster {
+          flex: 1; } }
       main .container .movie-container > .movie-poster img {
         width: 100%;
         -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
@@ -310,6 +328,9 @@ main {
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
     main .container .movie-container > .movie-info {
       width: 100%; }
+      @media (min-width: 992px) {
+        main .container .movie-container > .movie-info {
+          flex: 4; } }
       main .container .movie-container > .movie-info > .info > p {
         margin-top: 1rem; }
       main .container .movie-container > .movie-info > .info > .badge-container {
@@ -324,6 +345,37 @@ main {
     main .container .movie-container:hover {
       background: #f8f9fc; }
 
+.movie-list-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem; }
+  @media (min-width: 768px) {
+    .movie-list-container {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 993px) {
+    .movie-list-container {
+      grid-template-columns: repeat(1, 1fr); } }
+  .movie-list-container .movie-container {
+    max-width: 350px;
+    margin: 0 auto;
+    background: #fafafa;
+    padding: 1rem 1.5rem; }
+    @media (min-width: 768px) {
+      .movie-list-container .movie-container {
+        max-width: unset; } }
+    .movie-list-container .movie-container .movie-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
+      .movie-list-container .movie-container .movie-info .button-container .btn span, .movie-list-container .movie-container .movie-info .button-container .btn-sm span {
+        text-align: center; }
+    .movie-list-container .movie-container:not(:last-child) {
+      margin-bottom: 1rem; }
+      @media (min-width: 768px) {
+        .movie-list-container .movie-container:not(:last-child) {
+          margin-bottom: 0; } }
+
 .SearchPartialContainer {
   display: flex;
   align-items: center;
@@ -336,25 +388,38 @@ main {
     .SearchPartialContainer form > input[type="submit"] {
       margin-left: 1rem; }
 
-@media screen and (max-width: 768px) {
-  .movie-hero {
-    height: auto; }
-    .movie-hero .movie-hero-content {
-      flex-direction: column-reverse;
-      min-width: initial;
-      width: 100%; }
-      .movie-hero .movie-hero-content .movie-hero-content {
-        max-width: none; }
-      .movie-hero .movie-hero-content .text-body h1, .movie-hero .movie-hero-content .text-body h3 {
-        text-align: center; }
-      .movie-hero .movie-hero-content .text-body .button-container {
-        margin-top: 1rem;
-        display: flex;
-        justify-content: center; }
-        .movie-hero .movie-hero-content .text-body .button-container .btn {
-          max-width: 200px;
-          width: 100%;
-          text-align: center; }
+@media screen and (max-width: 992px) {
+  /*.movie-hero {
+        height:auto;
+
+        .movie-hero-content {*/
+  /*flex-direction:column-reverse;*/
+  /*min-width:initial;
+            width:100%;
+
+            .movie-hero-content {
+                max-width:none;
+            }
+
+            .text-body {
+                h1, h3 {
+                    text-align:center;
+                }
+
+                .button-container {
+                    margin-top:1rem;
+                    display:flex;
+                    justify-content:center;
+
+                    .btn {
+                        max-width:200px;
+                        width:100%;
+                        text-align:center;
+                    }
+                }
+            }
+        }
+    }*/
   main .container {
     width: 100%;
     min-width: unset;
@@ -366,16 +431,10 @@ main {
         width: 100%; }
       main .container .movie-list-header form {
         margin-bottom: 1rem;
-        width: 100%; }
-  main .movie-list-container {
-    margin-top: 1rem; }
-    main .movie-list-container .movie-container {
-      background: #fafafa;
-      padding: 1rem 0.5rem; }
-      main .movie-list-container .movie-container .movie-info .button-container .btn, main .movie-list-container .movie-container .movie-info .button-container .btn-sm {
-        width: 100%; }
-        main .movie-list-container .movie-container .movie-info .button-container .btn span, main .movie-list-container .movie-container .movie-info .button-container .btn-sm span {
-          text-align: center; } }
+        width: 100%; } }
+
+img {
+  max-width: 100%; }
 
 :focus {
   outline: none; }
@@ -391,7 +450,8 @@ html, * {
   font-family: 'Segoe UI', sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif; }
+  font-family: 'Segoe UI', "Open Sans", Tahoma, Geneva, Verdana, sans-serif;
+  color: #000; }
 
 p, pre {
   line-height: 1.6rem;
@@ -560,6 +620,9 @@ nav.submenu {
   justify-content: flex-start;
   align-items: center;
   height: 100vh; }
+  @media (min-width: 992px) {
+    .single-movie-container {
+      margin-top: 10rem; } }
   .single-movie-container > .head {
     max-width: 400px; }
   .single-movie-container .img-container {
@@ -597,7 +660,6 @@ nav.submenu {
   align-items: center;
   z-index: 999; }
   .single-movie-container section.container {
-    margin-top: 5rem;
     max-width: 1080px;
     width: 100%;
     z-index: 999;
@@ -608,6 +670,13 @@ nav.submenu {
     -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5); }
+    @media (min-width: 768px) {
+      .single-movie-container section.container {
+        margin-top: 25rem; } }
+    @media (min-width: 992px) {
+      .single-movie-container section.container {
+        margin-top: 5rem;
+        width: 90%; } }
     .single-movie-container section.container > .head {
       display: flex;
       flex-direction: row;
@@ -659,7 +728,8 @@ nav.submenu {
         /*margin-top: -7rem;*/
         width: 300px;
         margin-right: 5rem;
-        z-index: 3; }
+        z-index: 3;
+        min-width: 250px; }
         .single-movie-container section.container > .head .poster img {
           width: 100%;
           -webkit-box-shadow: 0px 14px 10px -5px rgba(0, 0, 0, 0.75);
@@ -757,25 +827,34 @@ nav.submenu {
   .single-movie-container section.container .head .poster {
     min-width: 250px; } }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 992px) {
   nav.navbar {
     display: none; }
   main .movie-hero {
     height: initial;
-    padding: 2rem 0; }
-    main .movie-hero .movie-hero-content {
-      flex-direction: column-reverse;
-      width: 100%;
-      min-width: initial; }
-      main .movie-hero .movie-hero-content .movie-hero-poster {
-        margin-bottom: 1rem;
-        max-width: 200px; }
-      main .movie-hero .movie-hero-content .text-body {
-        width: 100%; }
-        main .movie-hero .movie-hero-content .text-body p {
-          display: none; }
-        main .movie-hero .movie-hero-content .text-body .button-container {
-          margin-top: 1rem; }
+    padding: 2rem 0;
+    /*.movie-hero-content {
+                flex-direction: column-reverse;
+                width: 100%;
+                min-width: initial;
+
+                .movie-hero-poster {
+                    margin-bottom: 1rem;
+                    max-width: 200px;
+                }
+
+                .text-body {
+                    width: 100%;
+
+                    p {
+                        display: none;
+                    }
+
+                    .button-container {
+                        margin-top: 1rem;
+                    }
+                }
+            }*/ }
   main .movie-list-container .movie-container {
     flex-direction: column; }
     main .movie-list-container .movie-container .movie-info .button-container {
@@ -788,13 +867,16 @@ nav.submenu {
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
-      overflow: hidden; }
+      overflow: hidden; } }
+    @media screen and (max-width: 992px) and (max-width: 552px) {
+      main .movie-list-container .movie-container .movie-info p {
+        display: none; } }
+
+@media screen and (max-width: 992px) {
     main .movie-list-container .movie-container .movie-poster {
       width: 100%;
       margin: 0;
       max-width: initial; }
-  .single-movie-container .hero-container {
-    margin-bottom: 1rem; }
   .single-movie-container section.container .head {
     flex-direction: column;
     align-items: center; }
@@ -1095,8 +1177,7 @@ nav.submenu {
 .cast-list {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem; }
+  grid-gap: 1rem; }
   .cast-list .actor-container {
     height: 6rem; }
   .cast-list .actor-image {
@@ -1162,7 +1243,7 @@ nav.submenu {
 .mobile-button-block {
   display: none; }
 
-@media (max-width: 1080px) {
+@media (max-width: 992px) {
   main {
     padding: 0 !important;
     padding-bottom: 2rem !important; }
@@ -1196,15 +1277,28 @@ nav.submenu {
         .mobile-button-block ul li:last-child {
           margin-right: 0 !important; }
   .single-movie-container .hero-container {
-    height: 40vh; }
+    min-height: 400px;
+    display: block;
+    position: relative; } }
+  @media (max-width: 992px) and (min-width: 768px) {
+    .single-movie-container .hero-container {
+      height: 40vh;
+      position: fixed; } }
+
+@media (max-width: 992px) {
   .single-movie-container .container {
     border-radius: 0 !important;
     min-width: 0;
-    margin-top: 40vh !important;
+    /*margin-top: 40vh !important;*/
     padding-left: 2rem !important;
     padding-right: 2rem !important; }
     .single-movie-container .container .head {
-      margin-top: -40vh !important; }
+      margin-top: -25rem !important; } }
+    @media (max-width: 992px) and (min-width: 552px) {
+      .single-movie-container .container .head {
+        margin-top: -30rem; } }
+
+@media (max-width: 992px) {
       .single-movie-container .container .head .info {
         padding-top: 2rem !important; }
       .single-movie-container .container .head .poster {
@@ -1213,77 +1307,6 @@ nav.submenu {
         display: none; }
   .single-movie-container .hero-container {
     top: unset; }
-  .single-movie-container section.cast {
-    /*.top-billed {
-                flex-direction: column;
-
-                > a {
-                    margin-bottom: 1rem;
-                    width: 100%;
-
-                    .actor {
-                        display: flex;
-                        flex-direction: row;*/
-    /*img {
-                            height: 100px;
-                            width: 100px;
-                            margin: 0 2rem 0 0;
-                            border-radius: 50%;
-                            padding: 0.5rem;
-                        }*/
-    /*.info {
-                            display: flex;
-                            align-items: center;
-                            flex: 1;
-                            vertical-align: middle;
-                            flex-wrap: wrap;
-
-                            > div {
-                                width: 100%;
-
-                                h1, h2 {
-                                    display: block;
-                                    width: 100%;
-                                }
-                            }
-                        }
-                    }
-                }
-            }*/
-    /*.cast-list {
-                a {
-                    width: 100%;
-                }
-            }
-
-            .crew-list {
-                justify-content: space-between;
-
-                .actor {*/
-    /*width: 49%;*/
-    /*&:nth-child(even) {
-                        margin-right: 0;
-                    }
-
-                    &:nth-child(odd) {
-                        margin-right: 0.5rem;
-                    }
-                }
-
-                li {
-                    width: 100%;
-                    margin-left: 0 !important;
-                    margin-right: 0 !important;
-
-                    h2 {
-                        text-align: left;
-                    }
-
-                    h3 {
-                        text-align: right;
-                    }
-                }
-            }*/ }
   .single-movie-container section.recommended {
     width: 100%;
     padding-left: 0 !important;
@@ -1295,7 +1318,7 @@ nav.submenu {
   .top-billed {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 0.5rem;
+    column-gap: 0.5rem;
     flex-direction: row; }
     .top-billed a {
       height: unset !important;
@@ -1308,7 +1331,10 @@ nav.submenu {
       margin: 0;
       aspect-ratio: unset; }
   .cast-list {
-    grid-template-columns: repeat(3, 1fr); } }
+    grid-template-columns: [start] 1fr [center] 1fr [end] 1fr; }
+  .loadmore {
+    grid-column-start: start;
+    grid-column-end: span 3; } }
 
 @media screen and (min-width: 552px) {
   .top-billed a {
@@ -1516,10 +1542,7 @@ nav.submenu {
   border-radius: 3px; }
   .movie-container > .movie-poster {
     margin-right: 3em;
-    max-width: 150px;
-    min-width: 100px;
-    overflow: hidden;
-    padding-bottom: 10px; }
+    overflow: hidden; }
     .movie-container > .movie-poster img {
       width: 100%;
       -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.75);
@@ -2115,7 +2138,7 @@ footer {
 
 .grid-col-0 {
   grid-template-columns: repeat(0, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-0 {
       grid-template-columns: repeat(0, 1fr); } }
   @media (min-width: 992px) {
@@ -2127,7 +2150,7 @@ footer {
 
 .grid-col-1 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-1 {
       grid-template-columns: repeat(1, 1fr); } }
   @media (min-width: 992px) {
@@ -2139,7 +2162,7 @@ footer {
 
 .grid-col-2 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-2 {
       grid-template-columns: repeat(1, 1fr); } }
   @media (min-width: 992px) {
@@ -2151,7 +2174,7 @@ footer {
 
 .grid-col-3 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-3 {
       grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 992px) {
@@ -2163,7 +2186,7 @@ footer {
 
 .grid-col-4 {
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-4 {
       grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 992px) {
@@ -2175,7 +2198,7 @@ footer {
 
 .grid-col-5 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-5 {
       grid-template-columns: repeat(3, 1fr); } }
   @media (min-width: 992px) {
@@ -2187,7 +2210,7 @@ footer {
 
 .grid-col-6 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-6 {
       grid-template-columns: repeat(3, 1fr); } }
   @media (min-width: 992px) {
@@ -2199,7 +2222,7 @@ footer {
 
 .grid-col-7 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-7 {
       grid-template-columns: repeat(4, 1fr); } }
   @media (min-width: 992px) {
@@ -2211,7 +2234,7 @@ footer {
 
 .grid-col-8 {
   grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-8 {
       grid-template-columns: repeat(4, 1fr); } }
   @media (min-width: 992px) {
@@ -2223,7 +2246,7 @@ footer {
 
 .grid-col-9 {
   grid-template-columns: repeat(3, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-9 {
       grid-template-columns: repeat(5, 1fr); } }
   @media (min-width: 992px) {
@@ -2235,7 +2258,7 @@ footer {
 
 .grid-col-10 {
   grid-template-columns: repeat(3, 1fr); }
-  @media (min-width: 552px) {
+  @media (min-width: 768px) {
     .grid-col-10 {
       grid-template-columns: repeat(5, 1fr); } }
   @media (min-width: 992px) {
@@ -2279,6 +2302,18 @@ footer {
 
 .img-circle {
   border-radius: 50%; }
+
+.text-left {
+  text-align: left; }
+
+.text-center {
+  text-align: center; }
+
+.text-right {
+  text-align: right; }
+
+.text-white {
+  color: white !important; }
 
 .badge {
   display: inline-block;
@@ -2357,3 +2392,39 @@ footer {
     .top-billed .actor-image > img {
       border-radius: 0%;
       height: unset; } }
+
+.d-flex {
+  display: flex; }
+
+.flex-space-even {
+  justify-content: space-evenly; }
+
+.flex-gutter-1 > *:not(:last-child) {
+  margin-right: 1rem; }
+
+.flex-gutter-2 > *:not(:last-child) {
+  margin-right: 2rem; }
+
+.flex-gutter-3 > *:not(:last-child) {
+  margin-right: 3rem; }
+
+.flex-gutter-4 > *:not(:last-child) {
+  margin-right: 4rem; }
+
+.flex-gutter-5 > *:not(:last-child) {
+  margin-right: 5rem; }
+
+.flex-1 {
+  flex: 1; }
+
+.flex-2 {
+  flex: 2; }
+
+.flex-3 {
+  flex: 3; }
+
+.flex-4 {
+  flex: 4; }
+
+.flex-5 {
+  flex: 5; }

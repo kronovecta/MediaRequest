@@ -1,9 +1,11 @@
-﻿using MediaRequest.Application.Queries.Movies;
+﻿using MediaRequest.Application.Business.Enums;
+using MediaRequest.Application.Queries.Movies;
 using MediaRequest.Application.Queries.Movies.GetHistory;
 using MediaRequest.Application.Queries.Movies.GetSingleExistingMovie;
 using MediaRequest.Application.Queries.Television;
 using MediaRequest.Application.Queries.Television.Sonarr;
 using MediaRequest.Domain.API_Responses.Shared;
+using MediaRequest.Domain.Configuration;
 using MediaRequest.Domain.Interfaces;
 using MediaRequest.Domain.Radarr;
 using MediaRequest.Models;
@@ -12,6 +14,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.FeatureManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,13 +30,17 @@ namespace MediaRequest.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMemoryCache _memoryCache;
+        private readonly IFeatureManager featureManager;
         private readonly MemoryCacheEntryOptions _cacheEntryOptions;
 
-        public HomeController(IMediator mediator, IMemoryCache memoryCache)
+        private readonly int _takeAmount = 10;
+
+        public HomeController(IMediator mediator, IMemoryCache memoryCache, IFeatureManager featureManager)
         {
             
             _mediator = mediator;
             _memoryCache = memoryCache;
+            this.featureManager = featureManager;
             _cacheEntryOptions = new MemoryCacheEntryOptions()
                 .SetSlidingExpiration(TimeSpan.FromSeconds(300));
         }
@@ -43,7 +50,7 @@ namespace MediaRequest.Controllers
         {
             #region Cache Response
 
-            var existingMovies = await GetResponseAndSaveToCache(new GetExistingMoviesRequest() { Amount = 10 });
+            var existingMovies = await GetResponseAndSaveToCache(new GetExistingMoviesRequest() { Amount = _takeAmount });
             var radarrHistory = await GetResponseAndSaveToCache(new GetHistoryRequest { Order = Order.desc, Page = 1, PageSize = 20 });
             var latestEpisode = await GetResponseAndSaveToCache(new GetLatestEpisodeRequest() { Order = Order.desc, PageSize = 1 });
 
@@ -76,9 +83,9 @@ namespace MediaRequest.Controllers
                 LatestSeries = latestEpisode.History,
                 PartialView = new IndexListPartialViewModel
                 {
-                    Movies = existingMovies.Movies,
+                    Movies = existingMovies.Movies.Take(_takeAmount),
                     TotalPages = existingMovies.TotalPages,
-                    CurrentPage = existingMovies.CurrentPage
+                    CurrentPage = existingMovies.CurrentPage,
                 }
             };
 
@@ -86,49 +93,26 @@ namespace MediaRequest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string term, int filter, int? pagenr)
-        {
-            pagenr = pagenr - 1;
-            GetExistingMoviesResponse response = new GetExistingMoviesResponse();
+        public async Task<IActionResult> Index(string term, Filters filter, int? pagenr) 
+        { 
+            var response = new GetExistingMoviesResponse();
 
-            if(term == null && filter == 0)
+            response = await _mediator.Send(new GetExistingMoviesRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0, Amount = _takeAmount });
+
+            var model = new IndexViewModel()
             {
-                response = await _mediator.Send(new GetExistingMoviesRequest() { CurrentPage = pagenr ?? 0, Amount = 10 });
-
-                var model = new IndexViewModel()
+                LatestMovie = response.LatestMovie,
+                PartialView = new IndexListPartialViewModel
                 {
-                    LatestMovie = response.LatestMovie,
-                    PartialView = new IndexListPartialViewModel
-                    {
-                        Term = term,
-                        FilterMode = filter,
-                        Movies = response.Movies,
-                        TotalPages = response.TotalPages,
-                        CurrentPage = response.CurrentPage
-                    }
-                };
+                    Term = term,
+                    FilterMode = filter,
+                    Movies = response.Movies,
+                    TotalPages = response.TotalPages,
+                    CurrentPage = pagenr ?? 0
+                }
+            };
 
-                return PartialView("_MovieListPartial", model.PartialView);
-            } 
-            else
-            {
-                 response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0 });
-
-                var model = new IndexViewModel()
-                {
-                    LatestMovie = response.LatestMovie,
-                    PartialView = new IndexListPartialViewModel
-                    {
-                        Term = term,
-                        FilterMode = filter,
-                        Movies = response.Movies,
-                        TotalPages = response.TotalPages,
-                        CurrentPage = response.CurrentPage
-                    }
-                };
-
-                return PartialView("_MovieListPartial", model.PartialView);
-            }
+            return PartialView("_MovieListPartial", model.PartialView);
         }
 
         public IActionResult Privacy()

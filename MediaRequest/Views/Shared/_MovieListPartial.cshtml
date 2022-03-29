@@ -1,4 +1,8 @@
-﻿@model MediaRequest.WebUI.ViewModels.IndexListPartialViewModel
+﻿@using MediaRequest.Application.Business.Enums 
+@using MediaRequest.WebUI.Business.Services 
+
+@inject IImageProcessorService ImageProcessor
+@model MediaRequest.WebUI.ViewModels.IndexListPartialViewModel
 
 @{ 
     var nextPage = Model.CurrentPage + 1;
@@ -23,10 +27,10 @@
 </div>
 
 <div class="movie-list-filter mb-1">
-    <ul>
-        <li class="btn-sm btn-blank filter-0"><a asp-action="Index" asp-controller="Home" asp-route-filter="0" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">All</a></li>
-        <li class="btn-sm btn-blank filter-1"><a asp-action="Index" asp-controller="Home" asp-route-filter="1" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Downloaded</a></li>
-        <li class="btn-sm btn-blank filter-2"><a asp-action="Index" asp-controller="Home" asp-route-filter="2" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Missing</a></li>
+    <ul class="py-3">
+        <li class="btn-sm btn-blank filter-0"><a asp-action="Index" asp-controller="Home" asp-route-filter="@Filters.All" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">All</a></li>
+        <li class="btn-sm btn-blank filter-1"><a asp-action="Index" asp-controller="Home" asp-route-filter="@Filters.Downloaded" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Downloaded</a></li>
+        <li class="btn-sm btn-blank filter-2"><a asp-action="Index" asp-controller="Home" asp-route-filter="@Filters.Missing" asp-route-term="@Model.Term" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post">Missing</a></li>
     </ul>
 </div>
 
@@ -37,17 +41,17 @@
         @foreach (var item in Model.Movies.OrderByDescending(x => x.FileOrMediaAdded))
         {
             <div class="movie-container">
-                <div class="movie-poster">
+                <div class="movie-poster pb-sm-3 pb-lg-0">
                     @if (item.PosterUrl != null)
                     {
                         <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
-                            <img src="@item.PosterUrl" />
+                            <partial name="_Poster" model="item" />
                         </a>
                     }
                     else
                     { 
                         <a asp-action="Show" asp-controller="Movie" asp-route-slug="@item.Slug">
-                            <img src="@item.PosterUrl" />
+                            <partial name="_Poster" model="item" />
                         </a>
                     }
                 </div>
@@ -65,17 +69,10 @@
                                     // If movie isn't in cinema
                                     <span class="badge badge-secondary">In Cinemas: @item.InCinemas.ToString("dd MMMM yyyy")</span>
                                 }
-                                else if (item.InCinemas < DateTime.Now && item.PhysicalRelease == DateTime.Parse("0001-01-01 00:00:00"))
-                                {
-                                    // If movie is in cinema and no physical release date
-                                    <span class="badge badge-secondary">In Cinemas</span>
-                                }
                                 else if (item.InCinemas < DateTime.Now && item.PhysicalRelease > DateTime.Now)
                                 {
                                     // If movie is in cinemas and physical release is announced
-
                                     <span class="badge badge-secondary">In Cinemas</span>
-
                                 }
 
                                 @if (!item.Monitored && !item.HasFile)
@@ -119,48 +116,7 @@
         }
 
 <div class="pagination">
-    @if (Model.TotalPages > 1)
-    {
-        if (prevPage >= 0)
-        {
-            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="1" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">First</a>
-        }
-        else
-        {
-            <p class="pagination-item disabled">First</p>
-        }
-
-        if (prevPage != -1)
-        {
-            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(prevPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Previous</a>
-        }
-        else
-        {
-            <p class="pagination-item disabled">Previous</p>
-        }
-
-        <p class="pagination-item disabled">@(Model.CurrentPage + 1) of @(Model.TotalPages+1)</p>
-
-        if (nextPage != (Model.TotalPages + 1))
-        {
-            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(nextPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Next</a>
-        }
-        else
-        {
-            <p class="pagination-item disabled">Next</p>
-        }
-
-        if (nextPage < Model.TotalPages)
-        {
-            <a class="pagination-item" asp-action="Show" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(Model.TotalPages + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Last</a>
-        }
-        else
-        {
-            <p class="pagination-item disabled">Last</p>
-        }
-
-
-    }
+    @(await Html.PartialAsync("~/Views/Shared/Partials/_Pagination.cshtml"))
 </div>
     }
     else

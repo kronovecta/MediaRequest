@@ -1,0 +1,12 @@
+﻿@using MediaRequest.WebUI.Business.Services
+@inject IImageProcessorService ImageProcessor
+
+@model MediaRequest.Domain.API_Responses.Shared.MediaBase
+
+<picture>
+    <source media="(max-width: 576px)" srcset="@await ImageProcessor.GetImageUrl(Model.FanartUrl, 600, 700)">
+    <source media="(max-width: 767px)" srcset="@await ImageProcessor.GetImageUrl(Model.FanartUrl, 800, 700)">
+    <source media="(max-width: 992px)" srcset="@await ImageProcessor.GetImageUrl(Model.FanartUrl, 1000, 700)">
+    <source media="(max-width: 1200px)" srcset="@await ImageProcessor.GetImageUrl(Model.FanartUrl, 1400, 800)">
+    <img class="background" src="@await ImageProcessor.GetImageUrl(Model.FanartUrl, 2560, 1440)">
+</picture>

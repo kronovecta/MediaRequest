@@ -1,0 +1,47 @@
+﻿@model MediaRequest.WebUI.ViewModels.IndexListPartialViewModel
+
+@{ 
+    var nextPage = Model.CurrentPage + 1;
+    var prevPage = Model.CurrentPage - 1;
+}
+
+@if (Model.TotalPages > 1)
+{
+    if (prevPage >= 0)
+    {
+        <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="1" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">First</a>
+    }
+    else
+    {
+        <p class="pagination-item disabled">First</p>
+    }
+
+    if (prevPage != -1)
+    {
+        <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(prevPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Previous</a>
+    }
+    else
+    {
+        <p class="pagination-item disabled">Previous</p>
+    }
+
+    <p class="pagination-item disabled">@(Model.CurrentPage + 1) of @(Model.TotalPages+1)</p>
+
+    if (nextPage != (Model.TotalPages + 1))
+    {
+        <a class="pagination-item" asp-action="Index" asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(nextPage + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Next</a>
+    }
+    else
+    {
+        <p class="pagination-item disabled">Next</p>
+    }
+
+    if (nextPage < Model.TotalPages)
+    {
+        <a class="pagination-item" asp-action="Index    " asp-controller="Home" asp-route-filter="@Model.FilterMode" asp-route-term="@Model.Term" asp-route-pagenr="@(Model.TotalPages + 1)" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update=".movies-partial-container" data-ajax-method="post" data-ajax-loading=".loading">Last</a>
+    }
+    else
+    {
+        <p class="pagination-item disabled">Last</p>
+    }
+}

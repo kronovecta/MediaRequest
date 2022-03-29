@@ -2,7 +2,8 @@
     <div class="nav-item-container">
         <ul>
             <li><a asp-action="Index" asp-controller="Home"><span>Home</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
-            <li><a asp-action="Search" asp-controller="Home"><span>Search</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
+            <li><a asp-action="Index" asp-controller="Television"><span>Television</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
+            <li><a asp-action="Search" asp-controller="Search"><span>Search</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
             <li><a asp-action="Profile" asp-controller="User"><span>Profile</span> <span><img class="icon" src="~/img/chevron-right-solid.svg" /></span></a></li>
             @if (this.User.IsInRole("admin"))
             {

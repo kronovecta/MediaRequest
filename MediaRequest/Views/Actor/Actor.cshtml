@@ -14,6 +14,7 @@
 
             @foreach (var item in Model.PreviousWorks.Cast)
             {
+                // TODO: Migrate to use unified model
                 <div class="request-card">
                     <a asp-action="Show" asp-controller="@(item.MediaType == "movie" ? "movie" : "television")" asp-route-slug="@item.Slug">
                         <div class="request-card-head">

@@ -21,7 +21,13 @@
 @import "layouts.scss";
 @import "television.scss";
 @import "image.scss";
+@import "text.scss";
 
 //  Components
 @import "components/badge.scss";
 @import "components/actor.scss";
+
+// Bootstrap
+@import "utilities/utilities.scss";
+@import "utilities/flex.scss";
+@import "utilities/spacing.css";
