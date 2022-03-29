@@ -5,24 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace MediaRequest.Domain.API_Responses.Shared
 {
-    public class MediaBaseDto : MediaBase
-    {
-        private readonly IFeatureManager _featureManager;
-
-        public MediaBaseDto(IFeatureManager featureManager)
-        {
-            _featureManager = featureManager;
-        }
-
-        public string GetImageUrl()
-        {
-            return null;
-        }
-    }
-
     public class MediaBase
     {
         [JsonPropertyName("title")]

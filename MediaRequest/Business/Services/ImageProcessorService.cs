@@ -1,35 +1,35 @@
 ﻿using MediaRequest.Domain.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MediaRequest.WebUI.Business.Services
 {
     public interface IImageProcessorService
     {
+        Task<string> GetImageUrl(string media, int width, int height);
     }
 
     public class ImageProcessorService : IImageProcessorService
     {
+        private readonly IFeatureManager _featureManager;
         private readonly ImageProcessor _imageProcessor;
 
-        public ImageProcessorService(IOptions<ImageProcessor> imageProcessor)
+        public ImageProcessorService(IFeatureManager featureManager, IOptions<ImageProcessor> imageProcessor)
         {
+            _featureManager = featureManager;
             _imageProcessor = imageProcessor.Value;
         }
 
-        public string GetImageUrl(string input)
+        public async Task<string> GetImageUrl(string media, int width, int height)
         {
-
-            if (_imageProcessor.Active && !string.IsNullOrWhiteSpace(_imageProcessor.Url))
+            if(await _featureManager.IsEnabledAsync("ImageProcessor"))
             {
-                return _imageProcessor.Url + input;
-            } else
+                return $"{_imageProcessor.Url}{width}x{height}/{media}";
+            }
+            else
             {
-                return input;
+                return media;
             }
         }
     }

@@ -1,8 +1,9 @@
 ﻿@model MediaRequest.WebUI.ViewModels.IndexViewModel
-@using MediaRequest.Domain.API_Responses
-@using MediaRequest.Domain.API_Responses.Shared
 @using MediaRequest.Domain.API_Responses.Sonarr
 @using MediaRequest.Domain.API_Responses.Radarr.v3
+
+@using MediaRequest.WebUI.Business.Services 
+@inject IImageProcessorService ImageProcessor
 
 @{
     var err = TempData["Error"];
@@ -32,11 +33,11 @@
                 </div>
             </div>
             <div class="movie-hero-poster">
-                <img src="@Model.LatestMovie.PosterUrl" />
+                <img src="@await ImageProcessor.GetImageUrl(Model.LatestMovie.PosterUrl, 300, 450)" />
             </div>
         </div>
         <div class="background">
-            <img src="@Model.LatestMovie.FanartUrl" />
+            <img src="@await ImageProcessor.GetImageUrl(Model.LatestMovie.FanartUrl, 1920, 1080)" />
         </div>
     </div>
 

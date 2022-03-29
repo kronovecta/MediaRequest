@@ -1,4 +1,7 @@
-﻿@model MediaRequest.WebUI.ViewModels.SingleMovie.MovieViewModel
+﻿@using MediaRequest.WebUI.Business.Services
+@inject IImageProcessorService ImageProcessor
+
+@model MediaRequest.WebUI.ViewModels.SingleMovie.MovieViewModel
 
 <div class="single-movie-container" id="main-container">
     <div class="hero-container">
@@ -7,7 +10,7 @@
     <section class="container">
         <div class="head">
             <div class="poster">
-                <img src="@Model.Movie.PosterUrl">
+                <img src="@await ImageProcessor.GetImageUrl(Model.Movie.PosterUrl, 300, 450)" />
             </div>
             <div class="info">
                 <div class="title">
@@ -19,8 +22,7 @@
                         <ul>
                             @foreach (var genre in Model.Movie.Genres)
                             {
-                                <li>@genre</li>
-                            }
+                <li>@genre</li>}
                         </ul>
                         <ul>
                             <li>@Model.Movie.Runtime minutes</li>
@@ -57,7 +59,6 @@
             </nav>
             <div id="container">
                 <section class="details">
-
                 </section>
             </div>
             <div hidden class="loading"><img src="~/img/loading.gif" /></div>
@@ -70,25 +71,22 @@
         <li><a class="btn btn-primary" href="@("https://www.youtube.com/watch?v=" + Model.Movie.YouTubeTrailerId)">Watch trailer <i class="fab fa-youtube"></i></a></li>
         @if (Model.Accepted || Model.Movie.HasFile)
         {
-            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
-        }
-        else if (Model.Requested)
-        {
-            <li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li>
-        }
-        else
-        {
-            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TmdbId">Request movie <i class="fas fa-plus"></i></a></li>
-        }
+<li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li> }
+            else if (Model.Requested)
+            {
+<li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li> }
+            else
+            {
+<li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TmdbId">Request movie <i class="fas fa-plus"></i></a></li>}
 
         @*@if (Model.Movie.AlreadyAdded != true)
-        {
-            <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
-        }
-        else
-        {
-            <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
-        }*@
+            {
+                <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
+            }
+            else
+            {
+                <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
+            }*@
     </ul>
 </div>
 

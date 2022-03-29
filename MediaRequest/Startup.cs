@@ -23,6 +23,7 @@ using Microsoft.FeatureManagement;
 using System;
 using System.Threading.Tasks;
 using Microsoft.FeatureManagement.FeatureFilters;
+using MediaRequest.WebUI.Business.Services;
 
 namespace MediaRequest
 {
@@ -61,12 +62,14 @@ namespace MediaRequest
             });
 
             services.AddSession();
+            services.AddFeatureManagement(Configuration.GetSection("FeatureManagement"));
 
             #region Service Classes
             services.AddScoped<IHttpHelper, HttpHelper>();
             services.AddScoped<DataInitializer>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddSingleton<IImageProcessorService, ImageProcessorService>();
             #endregion
 
             #region Data Protection
@@ -99,8 +102,6 @@ namespace MediaRequest
                 client.BaseAddress = new Uri(Configuration.GetSection("Path:Sonarr").Value);
                 client.DefaultRequestHeaders.Add("X-Api-Key", Configuration.GetSection("ApiKeys:Sonarr").Value);
             });
-
-            services.AddFeatureManagement();
 
             #endregion
 
