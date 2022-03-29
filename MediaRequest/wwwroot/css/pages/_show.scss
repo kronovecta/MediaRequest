@@ -81,7 +81,8 @@
 .cast-list {
     display: grid;
     grid-template-columns: (repeat(1, 1fr));
-    grid-gap:1rem;
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
 
     .actor-container {
         height:6rem;
@@ -182,7 +183,7 @@
     display:none;
 }
 
-@media (max-width:992px) {
+@media (max-width:1080px) {
     main {
         padding:0!important;
         padding-bottom:2rem!important;
@@ -235,14 +236,7 @@
 
     .single-movie-container {
         .hero-container {
-            min-height:400px;
-            display:block;
-            position:relative;
-
-            @media (min-width:768px) {
-                height:40vh; 
-                position:fixed;
-            }
+            height:40vh;
         }
     }
 
@@ -250,16 +244,12 @@
         .container {
             border-radius: 0 !important;
             min-width: 0;
-            /*margin-top: 40vh !important;*/
+            margin-top: 40vh !important;
             padding-left: 2rem !important;
             padding-right: 2rem !important;
 
             .head {
-                margin-top: -25rem !important;
-
-                @media (min-width:552px) {
-                    margin-top: -30rem;
-                }
+                margin-top: -40vh !important;
 
                 .info {
                     padding-top:2rem!important;
@@ -279,6 +269,83 @@
             top:unset;
         }
 
+        section.cast {
+            /*.top-billed {
+                flex-direction: column;
+
+                > a {
+                    margin-bottom: 1rem;
+                    width: 100%;
+
+                    .actor {
+                        display: flex;
+                        flex-direction: row;*/
+
+                        /*img {
+                            height: 100px;
+                            width: 100px;
+                            margin: 0 2rem 0 0;
+                            border-radius: 50%;
+                            padding: 0.5rem;
+                        }*/
+
+                        /*.info {
+                            display: flex;
+                            align-items: center;
+                            flex: 1;
+                            vertical-align: middle;
+                            flex-wrap: wrap;
+
+                            > div {
+                                width: 100%;
+
+                                h1, h2 {
+                                    display: block;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }*/
+
+            /*.cast-list {
+                a {
+                    width: 100%;
+                }
+            }
+
+            .crew-list {
+                justify-content: space-between;
+
+                .actor {*/
+                    /*width: 49%;*/
+
+                    /*&:nth-child(even) {
+                        margin-right: 0;
+                    }
+
+                    &:nth-child(odd) {
+                        margin-right: 0.5rem;
+                    }
+                }
+
+                li {
+                    width: 100%;
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+
+                    h2 {
+                        text-align: left;
+                    }
+
+                    h3 {
+                        text-align: right;
+                    }
+                }
+            }*/
+        }
+
         section.recommended {
             width: 100%;
             padding-left: 0 !important;
@@ -295,7 +362,7 @@
     .top-billed {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        column-gap: 0.5rem;
+        grid-column-gap: 0.5rem;
         flex-direction: row;
 
         a {
@@ -318,12 +385,7 @@
     }
 
     .cast-list {
-        grid-template-columns: [start] 1fr [center] 1fr [end] 1fr;
-    }
-
-    .loadmore {
-        grid-column-start: start;
-        grid-column-end: span 3;
+        grid-template-columns: (repeat(3, 1fr));
     }
 }
 
