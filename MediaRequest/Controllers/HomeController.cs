@@ -54,8 +54,6 @@ namespace MediaRequest.Controllers
             var radarrHistory = await GetResponseAndSaveToCache(new GetHistoryRequest { Order = Order.desc, Page = 1, PageSize = 20 });
             var latestEpisode = await GetResponseAndSaveToCache(new GetLatestEpisodeRequest() { Order = Order.desc, PageSize = 1 });
 
-            var isactive = await featureManager.IsEnabledAsync("ImageProcessor");
-
             #endregion
 
             var first = new List<HistoryBase>() 
@@ -87,7 +85,7 @@ namespace MediaRequest.Controllers
                 {
                     Movies = existingMovies.Movies.Take(_takeAmount),
                     TotalPages = existingMovies.TotalPages,
-                    CurrentPage = existingMovies.CurrentPage
+                    CurrentPage = existingMovies.CurrentPage,
                 }
             };
 
@@ -95,9 +93,8 @@ namespace MediaRequest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string term, Filters filter, int? pagenr)
-        {
-            pagenr = pagenr - 1;
+        public async Task<IActionResult> Index(string term, Filters filter, int? pagenr) 
+        { 
             var response = new GetExistingMoviesResponse();
 
             response = await _mediator.Send(new GetExistingMoviesRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0, Amount = _takeAmount });
@@ -116,28 +113,6 @@ namespace MediaRequest.Controllers
             };
 
             return PartialView("_MovieListPartial", model.PartialView);
-            //if(term == null && filter == 0)
-            //{
-            //} 
-            //else
-            //{
-            //     response = await _mediator.Send(new GetExistingMoviesFilteredRequest() { Input = term, FilterMode = filter, CurrentPage = pagenr ?? 0 });
-
-            //    var model = new IndexViewModel()
-            //    {
-            //        LatestMovie = response.LatestMovie,
-            //        PartialView = new IndexListPartialViewModel
-            //        {
-            //            Term = term,
-            //            FilterMode = filter,
-            //            Movies = response.Movies.Skip(pagenr ?? 0 * _takeAmount).Take(_takeAmount),
-            //            TotalPages = response.TotalPages,
-            //            CurrentPage = pagenr ?? 0
-            //        }
-            //    };
-
-            //    return PartialView("_MovieListPartial", model.PartialView);
-            //}
         }
 
         public IActionResult Privacy()
