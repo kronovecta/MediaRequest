@@ -1,0 +1,26 @@
+﻿@import "_variables.scss";
+
+@mixin respond-to($breakpoint) {
+    // If the key exists in the map
+    @if map-has-key($breakpoint-map, $breakpoint) {
+        // Prints a media query based on the value
+        @media (min-width: map-get($breakpoint-map, $breakpoint)) {
+            @content;
+        }
+    }
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + "Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+}
+
+@mixin container {
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.16);
+    border-radius: 3px;
+    background: white;
+
+    &:hover {
+        cursor: pointer;
+        background: $white-main;
+    }
+}

@@ -1,1 +1,47 @@
-﻿
+﻿@import "../_variables.scss";
+@import "../_mixins.scss";
+
+$sizes: 1, 2, 3, 4, 5;
+$spaceamounts: 1, 2, 3, 4, 5; // Adjust this to include the pixel amounts you need.
+
+$sides: top, bottom, left, right; // Leave this variable alone
+$longitudinal: y, x;
+$spacers: margin, padding;
+
+@each $break in $breakpoints {
+    @each $space in $spaceamounts {
+        @each $spacer in $spacers {
+            @each $side in $sides {
+                .#{str-slice($spacer, 0, 1)}#{str-slice($side, 0, 1)}-#{$break}-#{$space} {
+                    @include respond-to($break) {
+                        #{$spacer}-#{$side}: #{$space}rem !important;
+                    }
+                }
+
+                .#{str-slice($spacer, 0, 1)}#{str-slice($side, 0, 1)}-#{$break}-#{$space} {
+                    @include respond-to($break) {
+                        #{$spacer}-#{$side}: #{$space}rem !important;
+                    }
+                }
+            }
+
+            @each $long in $longitudinal {
+                .#{str-slice($spacer, 0, 1)}#{$long}-#{$break}-#{$space} {
+                    @if($long == "y") {
+                        @include respond-to($break) {
+                            #{$spacer}-top: #{$space}rem !important;
+                            #{$spacer}-bottom: #{$space}rem !important;
+                        }
+                    }
+
+                    @if($long == "x") {
+                        @include respond-to($break) {
+                            #{$spacer}-left: #{$space}rem !important;
+                            #{$spacer}-right: #{$space}rem !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

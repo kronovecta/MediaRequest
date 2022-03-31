@@ -2,3 +2,7 @@
 $transition-fast:0.25s;
 $transition-standard:0.5s;
 $transition-slow:1s;
+
+// Breakpoints
+$breakpoint-map: ( "xs": 0, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1200px, "xxl": 1400px) !default;
+$breakpoints: xs sm md lg xl xxl;

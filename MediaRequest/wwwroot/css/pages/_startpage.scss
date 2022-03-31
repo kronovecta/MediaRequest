@@ -1,4 +1,6 @@
-﻿main {
+﻿@import "../_mixins.scss";
+
+main {
     min-height: 100vh;
     background: #f2f2f2;
     display: flex;
@@ -32,11 +34,11 @@
             max-width: 768px;
             width: 100%;
 
-            @media (min-width:768px) {
+            @include respond-to("md") {
                 flex-direction: row;
             }
 
-            @media (min-width:1080px) {
+            @include respond-to("lg") {
                 max-width: 992px;
             }
 
@@ -57,7 +59,7 @@
                 h2, h3, p {
                     text-align: center;
 
-                    @media (min-width:768px) {
+                    @include respond-to("md") {
                         text-align: left;
                     }
                 }
@@ -71,7 +73,7 @@
                     font-size: 1.1rem;
                     color: hsl(218, 43%, 90%);
 
-                    @media (min-width:768px) {
+                    @include respond-to("md") {
                         display: block;
                     }
                 }
@@ -84,7 +86,7 @@
                     margin-top: 2em;
                     justify-content: center;
 
-                    @media(min-width:992px) {
+                    @include respond-to("lg") {
                         justify-content: left;
                     }
                 }
@@ -168,7 +170,7 @@
                 margin-right: 3em;
                 overflow: hidden;
 
-                @media (min-width:992px) {
+                @include respond-to("lg") {
                     flex: 1;
                 }
 
@@ -183,7 +185,7 @@
             > .movie-info {
                 width: 100%;
 
-                @media (min-width:992px) {
+                @include respond-to("lg") {
                     flex: 4;
                 }
 
@@ -222,11 +224,11 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
 
-    @media (min-width:768px) {
+    @include respond-to("md") {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (min-width:993px) {
+    @include respond-to("lg") {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -236,14 +238,14 @@
         background: $grey-superlight;
         padding: 1rem 1.5rem;
 
-        @media (min-width:768px) {
-            max-width:unset;
+        @include respond-to("md") {
+            max-width: unset;
         }
 
         .movie-info {
-            display:flex;
-            flex-direction:column;
-            justify-content:space-between;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
             .button-container {
                 .btn, .btn-sm {
@@ -258,7 +260,7 @@
         &:not(:last-child) {
             margin-bottom: 1rem;
 
-            @media (min-width:768px) {
+            @include respond-to("md") {
                 margin-bottom: 0;
             }
         }
@@ -283,38 +285,6 @@
 }
 
 @media screen and (max-width:992px) {
-    /*.movie-hero {
-        height:auto;
-
-        .movie-hero-content {*/
-            /*flex-direction:column-reverse;*/
-            /*min-width:initial;
-            width:100%;
-
-            .movie-hero-content {
-                max-width:none;
-            }
-
-            .text-body {
-                h1, h3 {
-                    text-align:center;
-                }
-
-                .button-container {
-                    margin-top:1rem;
-                    display:flex;
-                    justify-content:center;
-
-                    .btn {
-                        max-width:200px;
-                        width:100%;
-                        text-align:center;
-                    }
-                }
-            }
-        }
-    }*/
-
     main {
         .container {
             width: 100%;
@@ -335,8 +305,5 @@
                 }
             }
         }
-
-        
     }
-    
 }
