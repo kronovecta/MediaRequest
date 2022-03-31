@@ -1,4 +1,5 @@
-﻿using MediaRequest.Domain.Configuration;
+﻿using MediaRequest.Domain.API_Responses.Radarr.v3;
+using MediaRequest.Domain.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
@@ -19,9 +20,9 @@ namespace MediaRequest.WebUI.Views.User.Components
             _path = path.Value;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int maxPriority, MediaRequest.Domain.Radarr.Movie movie)
+        public async Task<IViewComponentResult> InvokeAsync(int maxPriority, MediaRequest.Domain.API_Responses.Radarr.v3.Movie movie)
         {
-            movie.Images.ForEach(x => x.URL = _path.BaseURL + x.URL);
+            //movie.Images.ForEach(x => x.URL = _path.BaseURL + x.URL);
             return View(movie);
         }
     }

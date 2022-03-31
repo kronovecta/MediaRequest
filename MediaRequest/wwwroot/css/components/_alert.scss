@@ -7,11 +7,26 @@
     max-width: 768px;
     z-index: 1000;
     border-radius: 0.5rem;
-    border:1px solid rgba(0,0,0,0);
+    border: 1px solid rgba(0,0,0,0);
 
     &.alert-danger {
         color: #721c24;
         background: #f8d7da;
         border-color: #f5c6cb;
+    }
+}
+
+.alert-hover {
+    position: absolute;
+    z-index: 1000;
+    top: 2rem;
+
+    .alert {
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .alert-danger {
+        background: red;
     }
 }
