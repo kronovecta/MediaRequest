@@ -68,20 +68,6 @@
             margin-top: 5rem;
             width: 90%;
         }
-
-        .head {
-            .info {
-                padding-top: 2rem !important;
-            }
-
-            .poster {
-                margin: 0 !important;
-
-                @include respond-to('md') {
-                    min-width: 250px;
-                }
-            }
-        }
     }
 
     .head {
@@ -133,9 +119,12 @@
 }
 
 .info {
-    padding-top: 1rem;
     max-width: 600px;
     flex-grow: 1;
+
+    @include respond-to('md') {
+        flex: 2;
+    }
 
     .title {
         margin-bottom: 1rem;
@@ -172,10 +161,12 @@
 }
 
 .poster {
-    width: 300px;
-    margin-right: 5rem;
+    /*width: 300px;*/
     z-index: 3;
-    min-width: 250px;
+
+    @include respond-to('md') {
+        flex:1;
+    }
 
     img {
         width: 100%;
@@ -277,9 +268,7 @@
 }
 
 .recommended {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
     justify-content: space-between;
     padding: 2rem;
 
@@ -287,22 +276,19 @@
         width: 100%;
         padding-left: 0 !important;
         padding-right: 0 !important;
-
-        a {
-        }
     }
 
     .recommended-movie-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        /*width: 50%;*/
         margin: 0;
         padding: 1rem;
 
-        @include respond-to('md') {
+        /*@include respond-to('md') {
             width: 20% !important;
-        }
+        }*/
 
         &:hover {
             text-decoration: none;
@@ -450,19 +436,15 @@
 }
 
 .crew-list {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
 
     li {
-        width: 48%;
+        /*width: 48%;*/
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         padding-bottom: 0.3rem;
-
-        &:nth-child(2n) {
-            margin-left: 2rem;
-        }
 
         h2, h3 {
             display: inline-block;

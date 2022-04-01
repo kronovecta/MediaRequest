@@ -1,24 +1,40 @@
-﻿$spaces: (0,1,2,3,4,5,6,7,8,9,10);
-$breakpoints: (sm, md, lg, xlg);
+﻿@import "variables.scss";
+@import "mixins.scss";
+
+$spaces: (0,1,2,3,4,5,6,7,8,9,10);
 
 .grid-layout {
     display:grid;
 }
 
-@each $space in $spaces {
-    .grid-gap-#{$space} {
-        grid-gap: #{$space}rem;
-    }
-
-    .grid-col-#{$space} {
-        grid-template-columns: repeat(ceil($space / 4), 1fr);
-
-        @media(min-width:768px) {
-            grid-template-columns: repeat(ceil($space / 2), 1fr);
+@each $break in $breakpoints {
+    @each $space in $spaces {
+        .grid-gap-#{$space} {
+            grid-gap: #{$space}rem;
         }
 
-        @media(min-width:992px) {
-            grid-template-columns: repeat($space, 1fr);
+        .grid-gap-#{$break}-#{$space} {
+            @include respond-to($break) {
+                grid-gap: #{$space}rem;
+            }
+        }
+
+        .grid-col-#{$space} {
+            grid-template-columns: repeat(ceil($space / 4), 1fr);
+
+            @media(min-width:768px) {
+                grid-template-columns: repeat(ceil($space / 2), 1fr);
+            }
+
+            @media(min-width:992px) {
+                grid-template-columns: repeat($space, 1fr);
+            }
+        }
+
+        .grid-col-#{$break}-#{$space} {
+            @include respond-to($break) {
+                grid-template-columns: repeat($space, 1fr);
+            }
         }
     }
 }

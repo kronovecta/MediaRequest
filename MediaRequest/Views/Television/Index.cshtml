@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/Layouts/_Base.cshtml";
 }
 
-<div class="container wide grid-layout grid-col-5 grid-gap-2">
+<div class="container px-xs-1 px-sm-2 wide grid-layout grid-col-xs-2 grid-col-md-3 grid-col-lg-4 grid-col-xl-5 grid-gap-xs-1 grid-gap-sm-2">
 
     @foreach (var show in Model.OrderBy(x => x.Title))
     {

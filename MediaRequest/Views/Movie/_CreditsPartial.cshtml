@@ -9,8 +9,8 @@
         }
     </ul>
 
-    <h2>Cast</h2>
-    <ul class="cast-list py-sm-3">
+    <h2 class="py-xs-1">Cast</h2>
+    <ul class="cast-list">
         @foreach (var item in Model.Cast)
         {
             <partial name="_ActorPartial" , model="@item" />
@@ -30,8 +30,8 @@
 
     </ul>
 
-    <h2>Crew</h2>
-    <ul class="crew-list py-sm-3">
+    <h2 class="py-xs-1">Crew</h2>
+    <ul class="crew-list grid-col-xs-1 grid-col-sm-2">
         @foreach (var item in Model.Crew)
         {
             <li>

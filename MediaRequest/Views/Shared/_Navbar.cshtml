@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNetCore.Authorization
+﻿@using Microsoft.FeatureManagement
+@inject IFeatureManager FeatureManager
+@using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 
 <nav class="navbar">
@@ -15,7 +17,10 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li><a class="nav-link" asp-action="Index" asp-controller="Home">Home</a></li>
-                    <li><a class="nav-link" asp-action="Index" asp-controller="Television">Television</a></li>
+                    @if (await FeatureManager.IsEnabledAsync("Sonarr"))
+                    {
+                        <li><a class="nav-link" asp-action="Index" asp-controller="Television">Television</a></li>
+                    }
                     <li><a class="nav-link" asp-action="Index" asp-controller="Search">Search</a></li>
 
 

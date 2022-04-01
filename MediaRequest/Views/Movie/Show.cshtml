@@ -1,4 +1,7 @@
-﻿@using MediaRequest.WebUI.Business.Services
+﻿@using Microsoft.FeatureManagement
+@inject IFeatureManager FeatureManager
+
+@using MediaRequest.WebUI.Business.Services
 @inject IImageProcessorService ImageProcessor
 
 @model MediaRequest.WebUI.ViewModels.SingleMovie.MovieViewModel
@@ -7,23 +10,23 @@
     <div class="hero-container">
         <partial name="_Fanart" model="Model.Movie" />
     </div>
-    <section class="container">
+    <section class="container px-xs-1 px-sm-2 px-md-3">
         <div class="head">
             <div class="poster">
                 <partial name="_Poster" model="Model.Movie" />
             </div>
-            <div class="info">
+            <div class="info pt-xs-2 pt-lg-0">
                 <div class="title">
                     <h1 style="color:#222;">@Model.Movie.Title</h1>
-                    <div class="trivia">
+                    <div class="trivia py-lg-1">
                         <ul>
                             <li>@Model.Movie.Year</li>
                         </ul>
                         <ul>
                             @foreach (var genre in Model.Movie.Genres)
                             {
-                <li>@genre</li>
-}
+                                <li>@genre</li>
+                            }
                         </ul>
                         <ul>
                             <li>@Model.Movie.Runtime minutes</li>
@@ -52,16 +55,21 @@
         <div class="body">
             @* Trailer Container *@
             <div id="trailer-container"></div>
-            <nav class="page-nav">
-                <ul class="body-nav">
-                    <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TmdbId" id="credits" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Cast</a></li>
-                    <li><a asp-action="Recommendations" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TmdbId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Recommended</a></li>
-                </ul>
-            </nav>
-            <div id="container">
-                <section class="details">
-                </section>
-            </div>
+
+            @if (await FeatureManager.IsEnabledAsync("TheMovieDB"))
+            {
+                <nav class="page-nav">
+                    <ul class="body-nav">
+                        <li><a asp-action="Credits" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TmdbId" id="credits" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Cast</a></li>
+                        <li><a asp-action="Recommendations" asp-controller="Movie" asp-route-tmdbid="@Model.Movie.TmdbId" method="get" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#container" data-ajax-method="get" data-ajax-loading=".loading">Recommended</a></li>
+                    </ul>
+                </nav>
+                <div id="container">
+                    <section class="details">
+                    </section>
+                </div>
+                <div hidden class="loading"><img src="~/img/loading.gif" /></div>
+            }
             <div hidden class="loading"><img src="~/img/loading.gif" /></div>
         </div>
     </section>
@@ -73,50 +81,46 @@
         @if (Model.Accepted || Model.Movie.HasFile)
         {
             <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
-        } else if (Model.Requested)
+        }
+        else if (Model.Requested)
         {
             <li><a class="btn btn-disabled">Pending approval <i class="fas fa-plus"></i></a></li>
-        } else
+        }
+        else
         {
             <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TmdbId">Request movie <i class="fas fa-plus"></i></a></li>
         }
-
-        @*@if (Model.Movie.AlreadyAdded != true)
-            {
-                <li><a class="btn btn-default" asp-action="AddRequest" asp-controller="Request" asp-route-tmdbid="@Model.Movie.TMDBId">Request movie <i class="fas fa-plus"></i></a></li>
-            }
-            else
-            {
-                <li><a class="btn btn-disabled">Already added <i class="fas fa-plus"></i></a></li>
-            }*@
     </ul>
 </div>
 
-<script>
-    $(document).ready(function () {
-        let navBtn = $('.page-nav > .body-nav > li');
-        navBtn.first().children('a').toggleClass('active');
-        navBtn.first().children('a').click();
+@if (await FeatureManager.IsEnabledAsync("TheMovieDB"))
+{
+    <script>
+        $(document).ready(function () {
+            let navBtn = $('.page-nav > .body-nav > li');
+            navBtn.first().children('a').toggleClass('active');
+            navBtn.first().children('a').click();
 
-        navBtn.on('click', function () {
-            $('#container').children().first().remove();
-            $('.loading').show();
-            navBtn.children('a').removeClass('active');
-            $(this).children('a').addClass('active');
-        })
+            navBtn.on('click', function () {
+                $('#container').children().first().remove();
+                $('.loading').show();
+                navBtn.children('a').removeClass('active');
+                $(this).children('a').addClass('active');
+            })
 
-        let btnBlock = $('.mobile-button-block > ul > li');
+            let btnBlock = $('.mobile-button-block > ul > li');
 
-        $(document).scroll(function () {
-            if (window.scrollY >= 150) {
-                btnBlock.children().removeClass('btn')
-                btnBlock.children().addClass('btn-sm')
-            }
+            $(document).scroll(function () {
+                if (window.scrollY >= 150) {
+                    btnBlock.children().removeClass('btn')
+                    btnBlock.children().addClass('btn-sm')
+                }
 
-            if (window.scrollY < 150) {
-                btnBlock.children().removeClass('btn-sm')
-                btnBlock.children().addClass('btn')
-            }
-        })
-    });
-</script>
+                if (window.scrollY < 150) {
+                    btnBlock.children().removeClass('btn-sm')
+                    btnBlock.children().addClass('btn')
+                }
+            })
+        });
+    </script>
+}

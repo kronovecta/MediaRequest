@@ -17,18 +17,18 @@
 {
     <div class="movie-hero">
         <div class="movie-hero-content">
-            <div class="text-body">
+            <div class="text-body mt-xs-1">
                 <h3>Recently Added:</h3>
                 <h2>@Model.LatestMovie.Title</h2>
                 <p>@Model.LatestMovie.Overview</p>
                 <div class="button-container">
                     @if (Model.LatestMovie is Movie)
                     {
-                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@(((Movie)Model.LatestMovie).Slug)" class="btn btn-primary btn-shadow"><span>Go to movie page <i class="fas fa-film"></i></span></a>
+                        <a asp-action="Show" asp-controller="Movie" asp-route-slug="@(((Movie)Model.LatestMovie).Slug)" class="btn btn-primary btn-shadow w-100"><span>Go to movie page <i class="fas fa-film"></i></span></a>
                     }
                     else if (Model.LatestMovie is Series)
                     {
-                        <a asp-action="Show" asp-controller="Television" asp-route-slug="@(((Series)Model.LatestMovie).Slug)" class="btn btn-primary btn-shadow"><span>Go to show page <i class="fas fa-film"></i></span></a>
+                        <a asp-action="Show" asp-controller="Television" asp-route-slug="@(((Series)Model.LatestMovie).Slug)" class="btn btn-primary btn-shadow w-100"><span>Go to show page <i class="fas fa-film"></i></span></a>
                     }
                 </div>
             </div>

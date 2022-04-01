@@ -13,6 +13,10 @@ namespace MediaRequest.WebUI.ViewModels
         public IEnumerable<Crew> Crew { get; set; }
         public IEnumerable<Cast> TopBilled { get; set; }
 
+        public MovieCreditsViewModel()
+        {
+        }
+
         public MovieCreditsViewModel(Credits sourceCast)
         {
             var amount = sourceCast.Cast.Count >= 5 ? 5 : Credits.Cast.Count;
